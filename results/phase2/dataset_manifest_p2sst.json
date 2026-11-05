@@ -1,0 +1,350 @@
+{
+  "schema_version": 1,
+  "run_kind": "phase2_freeze_splits",
+  "utc": "2026-10-03T05:02:18+00:00",
+  "git": {
+    "commit": null,
+    "branch": null,
+    "dirty": null,
+    "dirty_file_count": null,
+    "dirty_files": []
+  },
+  "env": {
+    "python": "3.10.12",
+    "platform": "Linux-3.10.0-1160.119.1.el7.x86_64-x86_64-with-glibc2.35",
+    "machine": "x86_64",
+    "blas_threads": {
+      "OMP_NUM_THREADS": "6",
+      "OPENBLAS_NUM_THREADS": "6",
+      "MKL_NUM_THREADS": "6",
+      "NUMEXPR_NUM_THREADS": null
+    },
+    "cpu_count": 12,
+    "libraries": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.7.2",
+      "torch": "2.7.0+cu126",
+      "transformers": "4.56.1"
+    }
+  },
+  "decision": "D-338",
+  "axis": "p2sst",
+  "code": {
+    "sha256": {
+      "src/phase2_freeze_splits.py": "f8e4be50f8fe0e048f4c3158ca3856db19a670b9032093088d2b9dcfb543096b",
+      "src/phase2_pool_clusters.py": "f832b6a373c9e000f3d4b738f10aefd2188803f38a5e613aef2ed33108b11776",
+      "src/freeze_splits.py": "75542eb8a041614a31f1fb838b1535de4bca744732683d65f8deafcb14a3c831",
+      "src/split_diagnostics.py": "46be71fb36aa8236d6f2591026e9087c51e240afb83f995499918a3e06c57dbe",
+      "src/paraphrase_overlap.py": "501ea12967d09d4e550e099b1522f53b9cb9c97194e1014c8f637b8918de8383",
+      "src/paired.py": "80429fa57f0267236a2af1670c74ef327802598257ab75834fddf64a70d97195",
+      "src/populations.py": "c31519368bb69dd253f6c586cb88e1d2a1cd7a82a5f8c29c1b74eb8df7784a36",
+      "src/provenance.py": "3cef96e8ede12af7dc920409cc9bd7e072cdedc579e9211604cf481084e9aa47",
+      "src/superseded_provenance.py": "6613f47f086958ef424f1be1263afc4a5918f17a50b24d025baad69aeb0738b8",
+      "src/hf_env_guard.py": "fc8f08625e84ef0b6d922708664e33b0c283aee9b5795763ab5862048c601af4",
+      "src/safe_outputs.py": "e0c7a4bcb969de9a0c5c1b97377e8f38f5257672a869036eb8d6c9c642b40639"
+    },
+    "commit": "6ebeef5fa733f813ad4e289460ba708a9c58177d",
+    "commit_source": "SYNC_COMMIT",
+    "libraries": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.7.2"
+    }
+  },
+  "seed": 20261001,
+  "config": {
+    "fill_rule": "Axis p2sst (D-338 (3)): the rule below with step (2) left out, because p2sst has no pool4d split; steps (1), (3) and (4) as written, with SIZES_P2SST and the same SPLIT_SEED. Units are the clusters holding at least one pool item. A unit is 'clean' when its cluster holds no Phase 1 item, and 'excluded' when it holds an XSTest item (no split). Units are sorted by their smallest pool item_id, then shuffled by random.Random(SPLIT_SEED) (as freeze_splits partitions). A fill walks that order and takes a whole unit only if it fits every remaining count of the split; a unit that would overflow is skipped and stays free. (1) eval positives first: clean ALL-POSITIVE units, until exactly eval_pos; clean mixed-label units only if those do not reach it. A mixed unit's negatives come with it (b) and are benign near-duplicates of harmful items that calibration can never hold (a D-283-kind confound), so each split row records 'mixed_label_cluster' and the record counts them. (2) pool4d (evaluation-like, D-303 (2); its negatives are 4d's recalibration traffic): clean all-positive units for its positives; clean mixed-label units only while those leave positives short (the same confound; each brings its negatives; counted in the record); then clean all-negative units, until exactly pool4d_pos and pool4d_neg. Each single-class pass takes multi-item units first, then singletons (as step (4)), so the singletons complete it exactly whenever enough remain. (3) probe_train: FIRST the units holding a WildGuardMix or Aegis Phase 1 item (never an XSTest one), in the shuffled order, each taken if it fits both classes' remaining counts; THEN free clean units, in the same order, to complete exactly probe_pos and probe_neg. Phase 1 units may enter probe_train only (D-303 (2)), so using them there first costs calibration and evaluation nothing (the coordinator's decision, 2026-10-01). (4) The remaining negatives (the clean all-negative units still free, N_R) are split equally between calibration and evaluation (D-303 (4)): each holds T = floor((N_R + b) / 2) negatives, and calibration holds negatives only. Multi-item units are placed first, then singletons, each in the shuffled order and each into whichever split has more room (ties to eval). The fill is exact, with at most one negative (the parity) unused, unless a multi-item unit had to be skipped for want of room; then a split falls short of T and the run exits 3. Clean mixed-label units left after (1)-(3) have no split left for their positives and are recorded as unused. A split not at its exact target, or T below either minimum, is a shortfall: exit 3.",
+    "sizes": {
+      "eval_pos": 4000,
+      "eval_neg_min": 5000,
+      "cal_neg_min": 5000,
+      "probe_pos": 2000,
+      "probe_neg": 2000
+    },
+    "sizes_registered": true,
+    "record_fields": "freeze_splits load_axis fields plus 'cluster' (the manifest's label) and 'mixed_label_cluster' (the cluster holds both classes in the pool; for an eval negative: it came with a positive of a mixed cluster)",
+    "split_dir": "data/frozen_p2/ (not data/frozen/: Phase 2 outputs never change a Phase 1 reader's inputs, D-303)",
+    "index_manifests": "manifests/splits_p2/, in src/write_split_manifests.py's format",
+    "axis": "p2sst",
+    "splits": [
+      "eval",
+      "calibration",
+      "probe_train"
+    ],
+    "labels": "GLUE's coding: label 1 (positive sentiment) is the probe's positive class and label 0 its negatives, so the threshold is set on label-0 calibration items (D-338 (2)); a sign convention, not a claim about either sentiment",
+    "dataset_manifest": "results/phase2/dataset_manifest_p2sst.json (p2sst's own record; p2wg's dataset_manifest_p2.json is never touched)"
+  },
+  "inputs": {
+    "manifests/phase2_pool_clusters_p2sst.json": "69fa6a72e52ff2c22981c33d41d00697b81c74db80892ba13c7dcd9f10719edd",
+    "results/phase2/pool_clusters_p2sst.json": "ebf79d1fa815e7b5b0c401fb42fe1286731acd67722772976d74f5186651dd06"
+  },
+  "dataset_read": {
+    "source_was_local_snapshot": true,
+    "snapshot": "datasets--nyu-mll--glue/snapshots/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c",
+    "local_snapshot_path": "<HOME>/.cache/gccf_scratch/p2_datasets/hub/datasets--nyu-mll--glue/snapshots/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c",
+    "snapshot_files_sha256": {
+      ".gitattributes": "40e650854e43f5d4a0efaa68f487161e1226e22bc5480bd0effa0a8dadb5b848",
+      "README.md": "073f689c80fc6b3366d583eb570a05be2140b01ff2fdd706c416e14d0d2d5d5a",
+      "ax/test-00000-of-00001.parquet": "a07b802fe2d4968a1f7ccce9406826dc77e0d1dc53fea9491664bd8ebba8571a",
+      "cola/test-00000-of-00001.parquet": "3c4d526b6f49f432621de43569f9ecf6af41f639baaf4a9d821b95d745def61d",
+      "cola/train-00000-of-00001.parquet": "2e7538afa2000e63f5343f16a758d75c452661a384208399d2035cd2fce45c33",
+      "cola/validation-00000-of-00001.parquet": "c14b7219a7d9f9fe3dd291fd000f6623ee413805eb108c9c49578ed50873e4ba",
+      "mnli/test_matched-00000-of-00001.parquet": "a330c4f2aeb0bc92f1b4b133fbbaf51bf9c7d0f5cac3d06f49ef63af47dbb822",
+      "mnli/test_mismatched-00000-of-00001.parquet": "e5078398d5c83d183578b1bdafe94e4491ed28ad1cf8d98ee8846afcec651f16",
+      "mnli/train-00000-of-00001.parquet": "49a4a5508b89b8fed2c6e81d2c47d00f4759050a7048c6cc5d95d31122ced3c1",
+      "mnli/validation_matched-00000-of-00001.parquet": "7f918c09d9c35446b8e8f06a5672f8ab704e2897fecbf52e2e154141f3d7c421",
+      "mnli/validation_mismatched-00000-of-00001.parquet": "04aba92823a954be36fe1b69b61eed334c9eb1009daba0dd79f69d77b87c535c",
+      "mnli_matched/test-00000-of-00001.parquet": "a330c4f2aeb0bc92f1b4b133fbbaf51bf9c7d0f5cac3d06f49ef63af47dbb822",
+      "mnli_matched/validation-00000-of-00001.parquet": "7f918c09d9c35446b8e8f06a5672f8ab704e2897fecbf52e2e154141f3d7c421",
+      "mnli_mismatched/test-00000-of-00001.parquet": "e5078398d5c83d183578b1bdafe94e4491ed28ad1cf8d98ee8846afcec651f16",
+      "mnli_mismatched/validation-00000-of-00001.parquet": "04aba92823a954be36fe1b69b61eed334c9eb1009daba0dd79f69d77b87c535c",
+      "mrpc/test-00000-of-00001.parquet": "a623ed1cbdf445b11f8e249acbf649d7d3a5ee58c918554c40cbd8307e488693",
+      "mrpc/train-00000-of-00001.parquet": "61fd41301e0e244b0420c4350a170c8e7cf64740335fc875a4af2d79af0df0af",
+      "mrpc/validation-00000-of-00001.parquet": "33c007dbf5bfa8463d87a13e6226df8c0fcf2596c2cd39d0f3bb79754e00f50f",
+      "qnli/test-00000-of-00001.parquet": "f39520cd07925c9784e4a7f1f7aed8f17f136039b8498f7ad07c7bf13d65ba83",
+      "qnli/train-00000-of-00001.parquet": "ebc7cb70a5bbde0b0336c3d51f31bb4df4673e908e8874b090b52169b1365c6c",
+      "qnli/validation-00000-of-00001.parquet": "e69311b81dc65589286091d9905a27617a90436dd215c7a59832fa8f4f336169",
+      "qqp/test-00000-of-00001.parquet": "95d5d1efcfa3ff7e090565e98085770b3497aad8dbcf12996412b23d2fb669e8",
+      "qqp/train-00000-of-00001.parquet": "4d6f02e643f7c36e9a4f7d4971a5ee9bd74063a319452fe6c87850c739774cd7",
+      "qqp/validation-00000-of-00001.parquet": "efd86a539c412d74874ee451573d7bd142f56c47fe36de033b9f367d8bb0fa71",
+      "rte/test-00000-of-00001.parquet": "3f44aadbfb8bbb7a64ba0674bd26ff77b66e88fdf7a6d64255a5ba6ae9057383",
+      "rte/train-00000-of-00001.parquet": "a6252ab17015d718f6de1effe0980f7b158df63e3d16207cd8bd396b608e5147",
+      "rte/validation-00000-of-00001.parquet": "fb2aa2e04f551133ba663617a15ae133dc22b0f6a969bc0629b5ea6003ee9cf8",
+      "sst2/test-00000-of-00001.parquet": "e9d23cf0067211d2baf018328b507f5153fb6704d75117295a8bda47c7adccb1",
+      "sst2/train-00000-of-00001.parquet": "66a253e67968acfabcbe49dbe9da964b42ac1c851c40ab760e8c8942efdb3229",
+      "sst2/validation-00000-of-00001.parquet": "a1371f3b3a7b0bcefa8388799a9359dc3ce76c349cc0079507a7991364fd2a9b",
+      "stsb/test-00000-of-00001.parquet": "04fa2561f1ff3c395cf8980e3eed5d133c194abf636d5e1870d765c861087bd9",
+      "stsb/train-00000-of-00001.parquet": "bbd93bbb988fd18437e02185fe3b2bd9a18350376c392e7820de9df1b247ed1f",
+      "stsb/validation-00000-of-00001.parquet": "152de7cf1fa34ee4df1c243bd209b02ade21a1d5c4fb3b7da5240f78e4000aa9",
+      "wnli/test-00000-of-00001.parquet": "766d3754c46a80f3275cb81a32ee6b7b49176fa8c1ef85ea92a4a3676510b902",
+      "wnli/train-00000-of-00001.parquet": "40f4c0c60db68addeda8e9cbe25e6344cd99d5bbb80125535994a9a3141ee0a9",
+      "wnli/validation-00000-of-00001.parquet": "880037e45e03df868d5799ca21dc03f3a6378f0adf3c01c7bfc46b94fa61f1cb"
+    },
+    "libraries": {
+      "datasets": "5.0.1",
+      "huggingface_hub": "0.36.2",
+      "pyarrow": "25.0.1",
+      "fsspec": "2026.6.0"
+    },
+    "offline_env": {
+      "HF_HUB_OFFLINE": "1",
+      "HF_DATASETS_OFFLINE": "1"
+    },
+    "datasets_cache": {
+      "dir": "<HOME>/.cache/hf/gccf_datasets_cache/phase2_freeze_splits.20261003T050212Z.2199293.273ab958",
+      "root": "<HOME>/.cache/hf/gccf_datasets_cache",
+      "mount_point": "<HOME>/.cache",
+      "mount_source": "/dev/nvme1n1p1",
+      "test_standin_modules_present": [],
+      "note": "HF_DATASETS_CACHE is a fresh directory made for this run on NVMe before datasets is imported. Any cleanup the datasets library does of its own Arrow cache (on a failed load its builder removes its '.incomplete' directory, freeze_splits.load_axis -> load_dataset) is therefore confined to this run's directory. That library-internal cleanup is the one remaining deletion in this pipeline, and it is the author's to accept. The directory is left after the run; removal is a human's scripts/safe_rm.sh call.",
+      "library_reported": "<HOME>/.cache/hf/gccf_datasets_cache/phase2_freeze_splits.20261003T050212Z.2199293.273ab958"
+    }
+  },
+  "notes": [
+    "HF_DATASETS_CACHE is a fresh directory made for this run on NVMe before datasets is imported. Any cleanup the datasets library does of its own Arrow cache (on a failed load its builder removes its '.incomplete' directory, freeze_splits.load_axis -> load_dataset) is therefore confined to this run's directory. That library-internal cleanup is the one remaining deletion in this pipeline, and it is the author's to accept. The directory is left after the run; removal is a human's scripts/safe_rm.sh call."
+  ],
+  "checks": {
+    "no_cluster_in_two_splits": true,
+    "whole_clusters_only": true,
+    "phase1_clusters_only_in_probe_train": true,
+    "xstest_clusters_in_no_split": true,
+    "every_split_at_its_exact_target": true,
+    "plan_equals_recorded_plan": true,
+    "assign_sha256_equals_recorded": "c1debdb0cfae2e142a0df7eeabca696c75600dae39de236c41258c72851ab2ee",
+    "pool_split_bytes_sha256_equals_recorded": "8f1a67c0c1ba60541df4cbd23a39c60caaa0cd7498e729150b2633f59122f677",
+    "phase2_pool_clusters_code_equals_recorded": "f832b6a373c9e000f3d4b738f10aefd2188803f38a5e613aef2ed33108b11776",
+    "containment_equals_recorded": true
+  },
+  "axes": {
+    "p2sst": {
+      "source": "nyu-mll/glue",
+      "source_revision_sha": "bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c",
+      "config": "sst2",
+      "split": "train",
+      "cleaning": {
+        "rows_in": 67349,
+        "dropped_placeholder": 0,
+        "dropped_unlabelled": 0,
+        "dropped_conflicting_label": 10,
+        "dropped_duplicate_text": 366
+      },
+      "total_usable_rows": 66973,
+      "partitions": {
+        "eval": {
+          "file": "data/frozen_p2/p2sst__eval.jsonl",
+          "sha256": "4fdd8fa12653d7a6d4f6582a398a13917b936f9598093a542b29d46930bc4f80",
+          "n": 15689,
+          "n_pos": 4000,
+          "n_neg": 11689,
+          "target_pos": 4000,
+          "target_neg": 11689,
+          "n_clusters": 7429,
+          "n_multi_item_clusters": 2750,
+          "n_items_in_multi_item_clusters": 11010,
+          "n_clusters_holding_phase1": 0,
+          "n_phase1_items": 0,
+          "n_from_mixed_label_clusters": {
+            "pos": 0,
+            "neg": 0
+          },
+          "index_manifest": {
+            "file": "manifests/splits_p2/p2sst__eval__manifest.json",
+            "sha256": "61cbcac613aa27fae39eec179b4053b95e08e801dadf1e70f51842d6782b5df1"
+          }
+        },
+        "calibration": {
+          "file": "data/frozen_p2/p2sst__calibration.jsonl",
+          "sha256": "5cca98612f862fb644f7a9fbfe6a88a2e416c79f7b2d272535b8e8a5e2633ea0",
+          "n": 11689,
+          "n_pos": 0,
+          "n_neg": 11689,
+          "target_pos": 0,
+          "target_neg": 11689,
+          "n_clusters": 5476,
+          "n_multi_item_clusters": 2034,
+          "n_items_in_multi_item_clusters": 8247,
+          "n_clusters_holding_phase1": 0,
+          "n_phase1_items": 0,
+          "n_from_mixed_label_clusters": {
+            "pos": 0,
+            "neg": 0
+          },
+          "index_manifest": {
+            "file": "manifests/splits_p2/p2sst__calibration__manifest.json",
+            "sha256": "21d91c6231868a334d8d7a0a0aea5215213d32d8c8a344488916787c69b09732"
+          }
+        },
+        "probe_train": {
+          "file": "data/frozen_p2/p2sst__probe_train.jsonl",
+          "sha256": "33f6b3061ccd963e67739ab62e7e91cb2741725381e161126fb0657135df1c5f",
+          "n": 4000,
+          "n_pos": 2000,
+          "n_neg": 2000,
+          "target_pos": 2000,
+          "target_neg": 2000,
+          "n_clusters": 1736,
+          "n_multi_item_clusters": 692,
+          "n_items_in_multi_item_clusters": 2956,
+          "n_clusters_holding_phase1": 19,
+          "n_phase1_items": 4,
+          "n_from_mixed_label_clusters": {
+            "pos": 305,
+            "neg": 330
+          },
+          "index_manifest": {
+            "file": "manifests/splits_p2/p2sst__probe_train__manifest.json",
+            "sha256": "4044609833a237059dc03eb06cf20f101b8157eeec1cdcb866774512768d6333"
+          }
+        }
+      },
+      "composition": {
+        "containment": {
+          "rule": "D-338 (3): composition (rule 5), not a split rule. Normalised text: the loader's text (freeze_splits.load_axis strips it) lowercased with str.lower. 'substring': a is contained in b when Python's `a in b` holds on the normalised texts (character level). 'token_aligned': the same on ' ' + text + ' ' (whole space-separated tokens). Counted: calibration and evaluation items contained in some probe_train item (with their labels); across calibration and evaluation, the items of each contained in some item of the other, and the unordered pairs (c, e) with c in e or e in c: pairs = |c in e| + |e in c| - pairs whose normalised texts are equal (only those hold both ways). Exact: the candidates of a needle are the items holding its rarest 4-character gram (an inverted index), and every candidate is verified with `in`; a needle shorter than 4 characters is checked against every item.",
+          "substring": {
+            "in_probe_train": {
+              "calibration": {
+                "n": 11689,
+                "contained": 751,
+                "contained_pos": 0,
+                "contained_neg": 751
+              },
+              "eval": {
+                "n": 15689,
+                "contained": 1049,
+                "contained_pos": 294,
+                "contained_neg": 755
+              }
+            },
+            "calibration_vs_eval": {
+              "calibration_items_in_some_eval_item": {
+                "n": 11689,
+                "contained": 2848,
+                "contained_pos": 0,
+                "contained_neg": 2848
+              },
+              "eval_items_in_some_calibration_item": {
+                "n": 15689,
+                "contained": 3034,
+                "contained_pos": 317,
+                "contained_neg": 2717
+              },
+              "pairs_calibration_in_eval": 17357,
+              "pairs_eval_in_calibration": 28476,
+              "pairs_equal_normalised_text": 0,
+              "pairs": 45833
+            }
+          },
+          "token_aligned": {
+            "in_probe_train": {
+              "calibration": {
+                "n": 11689,
+                "contained": 692,
+                "contained_pos": 0,
+                "contained_neg": 692
+              },
+              "eval": {
+                "n": 15689,
+                "contained": 959,
+                "contained_pos": 262,
+                "contained_neg": 697
+              }
+            },
+            "calibration_vs_eval": {
+              "calibration_items_in_some_eval_item": {
+                "n": 11689,
+                "contained": 2797,
+                "contained_pos": 0,
+                "contained_neg": 2797
+              },
+              "eval_items_in_some_calibration_item": {
+                "n": 15689,
+                "contained": 2970,
+                "contained_pos": 285,
+                "contained_neg": 2685
+              },
+              "pairs_calibration_in_eval": 13603,
+              "pairs_eval_in_calibration": 14773,
+              "pairs_equal_normalised_text": 0,
+              "pairs": 28376
+            }
+          }
+        },
+        "note": "computed on the plan's splits when the plan is exact; null on a shortfall"
+      }
+    }
+  },
+  "T": 11689,
+  "unused": {
+    "clean_mixed_label": {
+      "units": 1486,
+      "pos": 3580,
+      "neg": 4264,
+      "multi_item_units": 1486
+    },
+    "clean_all_negative_parity_or_packing": {
+      "units": 1,
+      "pos": 0,
+      "neg": 1,
+      "multi_item_units": 0
+    },
+    "clean_all_positive": {
+      "units": 13342,
+      "pos": 27750,
+      "neg": 0,
+      "multi_item_units": 4923
+    },
+    "phase1_clusters_not_in_probe_train": {
+      "units": 0,
+      "pos": 0,
+      "neg": 0,
+      "multi_item_units": 0
+    },
+    "excluded_xstest_clusters": {
+      "units": 0,
+      "pos": 0,
+      "neg": 0,
+      "multi_item_units": 0
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "run_kind": "dataset_freeze",
+  "utc": "2026-09-15T05:32:28+00:00",
+  "git": {
+    "commit": "aaf526511ebc9c35f94104891e4efe588e082795",
+    "branch": "master",
+    "dirty": true,
+    "dirty_file_count": 25,
+    "dirty_files": [
+      "M DECISIONS.md",
+      " M FAILURES.md",
+      " M data/hidden/Qwen__Qwen2.5-7B@d14972939875__safety__eval__mean.npz",
+      " M data/hidden/Qwen__Qwen2.5-7B@d14972939875__safety__probe_train__mean.npz",
+      " M data/hidden/Qwen__Qwen2.5-7B@d14972939875__safety__threshold_calib__mean.npz",
+      " M data/hidden/mistral-community__Mistral-7B-v0.2@80cf49b18de6__safety__eval__mean.npz",
+      " M data/hidden/mistral-community__Mistral-7B-v0.2@80cf49b18de6__safety__probe_train__mean.npz",
+      " M data/hidden/mistral-community__Mistral-7B-v0.2@80cf49b18de6__safety__threshold_calib__mean.npz",
+      " M results/extract__Qwen__Qwen2.5-7B@d14972939875.json",
+      " M results/extract__mistral-community__Mistral-7B-v0.2@80cf49b18de6.json",
+      " M src/freeze_splits.py",
+      "?? data/hidden/Qwen__Qwen2.5-7B-Instruct@a09a35458c70__safety__eval__mean.npz",
+      "?? data/hidden/Qwen__Qwen2.5-7B-Instruct@a09a35458c70__safety__probe_train__mean.npz",
+      "?? data/hidden/Qwen__Qwen2.5-7B-Instruct@a09a35458c70__safety__threshold_calib__mean.npz",
+      "?? results/access_check.json",
+      "?? results/depth_mistral_v01_v02.json",
+      "?? results/depth_mistral_v01_v02_dense.json",
+      "?? results/depth_qwen_base2instruct.json",
+      "?? results/extract__Qwen__Qwen2.5-7B-Instruct@a09a35458c70.json",
+      "?? results/repair_mistral_base2instruct.json",
+      "?? results/repair_qwen_base2instruct.json",
+      "?? results/rotation_mistral_base2instruct.json",
+      "?? src/access_check.py",
+      "?? src/repair_test.py",
+      "?? src/rotation_test.py"
+    ]
+  },
+  "env": {
+    "python": "3.10.12",
+    "platform": "Linux-5.14.0-687.46.1.el9_8.x86_64-x86_64-with-glibc2.35",
+    "machine": "x86_64"
+  },
+  "seed": 20260914,
+  "spec_hash": "9bf03985da0c4925573d71226e08fd7191434c3231c5c055013e8efc1f800cb4",
+  "axes": {
+    "safety_wildguard": {
+      "source": "allenai/wildguardmix",
+      "source_revision_sha": "d29c47f41c8b51348b5c8e8c81c039b3132b66d1",
+      "config": "wildguardtrain",
+      "split": "train",
+      "cleaning": {
+        "rows_in": 86759,
+        "dropped_placeholder": 14,
+        "dropped_unlabelled": 0,
+        "dropped_conflicting_label": 30,
+        "dropped_duplicate_text": 38879
+      },
+      "total_usable_rows": 47836,
+      "partitions": {
+        "probe_train": {
+          "file": "data/frozen/safety_wildguard__probe_train.jsonl",
+          "sha256": "ce30e1461d8eaa9e4942277b95bceaae9764e58da8a95ece2aacc94b67dc0752",
+          "n": 4000,
+          "n_pos": 2000,
+          "n_neg": 2000
+        },
+        "threshold_calib": {
+          "file": "data/frozen/safety_wildguard__threshold_calib.jsonl",
+          "sha256": "40983eb205080f9c92c0177f5cb76129d9bb61078c32b840a05866f0b8551e9d",
+          "n": 2000,
+          "n_pos": 1000,
+          "n_neg": 1000
+        },
+        "eval": {
+          "file": "data/frozen/safety_wildguard__eval.jsonl",
+          "sha256": "d4300fce757a22f9f3283ea6f8b189efcb01abc814c8ee0aa9bc82c287a5348c",
+          "n": 4000,
+          "n_pos": 2000,
+          "n_neg": 2000
+        }
+      }
+    }
+  }
+}

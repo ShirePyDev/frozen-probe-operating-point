@@ -1,0 +1,696 @@
+{
+  "schema_version": 1,
+  "run_kind": "phase2_resplit_v2",
+  "utc": "2026-10-06T13:27:35+00:00",
+  "git": {
+    "commit": null,
+    "branch": null,
+    "dirty": null,
+    "dirty_file_count": null,
+    "dirty_files": []
+  },
+  "env": {
+    "python": "3.10.12",
+    "platform": "Linux-3.10.0-1160.119.1.el7.x86_64-x86_64-with-glibc2.35",
+    "machine": "x86_64",
+    "blas_threads": {
+      "OMP_NUM_THREADS": "6",
+      "OPENBLAS_NUM_THREADS": "6",
+      "MKL_NUM_THREADS": "6",
+      "NUMEXPR_NUM_THREADS": null
+    },
+    "cpu_count": 12,
+    "libraries": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.7.2",
+      "torch": "2.7.0+cu126",
+      "transformers": "4.56.1"
+    }
+  },
+  "decision": "D-318 (8), D-320, D-324 (5)(iii), D-326",
+  "split_version": 2,
+  "code": {
+    "sha256": {
+      "src/phase2_resplit_v2.py": "8929519b4618119693038f5b123a4d980f0063591e64f741bbbdfebeb40966bc",
+      "src/phase2_freeze_splits.py": "f8e4be50f8fe0e048f4c3158ca3856db19a670b9032093088d2b9dcfb543096b",
+      "src/phase2_pool_clusters.py": "f832b6a373c9e000f3d4b738f10aefd2188803f38a5e613aef2ed33108b11776",
+      "src/freeze_splits.py": "75542eb8a041614a31f1fb838b1535de4bca744732683d65f8deafcb14a3c831",
+      "src/split_diagnostics.py": "46be71fb36aa8236d6f2591026e9087c51e240afb83f995499918a3e06c57dbe",
+      "src/paraphrase_overlap.py": "501ea12967d09d4e550e099b1522f53b9cb9c97194e1014c8f637b8918de8383",
+      "src/paired.py": "80429fa57f0267236a2af1670c74ef327802598257ab75834fddf64a70d97195",
+      "src/populations.py": "c31519368bb69dd253f6c586cb88e1d2a1cd7a82a5f8c29c1b74eb8df7784a36",
+      "src/provenance.py": "3cef96e8ede12af7dc920409cc9bd7e072cdedc579e9211604cf481084e9aa47",
+      "src/superseded_provenance.py": "6613f47f086958ef424f1be1263afc4a5918f17a50b24d025baad69aeb0738b8",
+      "src/hf_env_guard.py": "fc8f08625e84ef0b6d922708664e33b0c283aee9b5795763ab5862048c601af4",
+      "src/safe_outputs.py": "e0c7a4bcb969de9a0c5c1b97377e8f38f5257672a869036eb8d6c9c642b40639"
+    },
+    "commit": "7841c49b4f330f098a126a5212b1d7c77328d892",
+    "commit_source": "SYNC_COMMIT",
+    "libraries": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.7.2"
+    }
+  },
+  "seed": 20261002,
+  "config": {
+    "rule": "v2 re-allocates v1's benign items (D-318 (8)): probe_train untouched; every positive of v1 eval and pool4d, and every item of a cluster holding a positive, stays in its v1 split; the movable units are the clusters whose items in v1 calibration, eval and pool4d are all negatives (each wholly in one v1 split), sorted by smallest item_id and shuffled by random.Random(20261002); targets calibration 5000 negatives, eval 6000 negatives in all, pool4d the rest; a split's room is its target minus its fixed negatives; multi-item units first, then singletons, each in the shuffled order into the split with the largest share of its room still free that can hold it (ties eval, calibration, pool4d); every target exact or exit 3. Rows are v1's lines, byte for byte. The EXCLUDED_ITEMS (recorded pre-analysis exclusions, D-324 (5)(iii)) are removed before planning and enter no v2 split.",
+    "join_rule": "A v2 split's caches are its items gathered by item_id from the model's v1 caches, each item from the cache of the split v1 put it in (v1 calibration: the select record's p2wg/calibration cache; v1 eval or pool4d: the rest record's p2wg/eval or p2wg/pool4d cache), whichever v2 split it is now in; plan.items_from_v1_to_v2 counts the moved negatives by v1 and v2 split (positives stay in their v1 split). A cache keyed 'p2wg/<split>' is a v1 cache and is never read as a v2 split. Under D-307 (1) a result reads only ingested caches, so a v2 reader needs the rest caches (or their durable layer subsets) ingested and indexed first.",
+    "excluded_items": {
+      "ef72f52bd8c3ec85": "D-324 (5)(iii), D-323: its text begins with a literal '<s>[INST] <<SYS>>', which the Mistral and Phi-3 tokenizers read as a BOS id inside the user span (a second BOS for Mistral); excluded before any analysis",
+      "52c52cdb43a59029": "D-329, D-357 (B)(3): its user text holds a literal '[/INST]', which Mistral-7B-Instruct-v0.3's tokenizer reads as a control token inside the user span (the extracted v0.3 caches hold it so); excluded from every v2 split before any analysis"
+    },
+    "target_calibration_neg": 5000,
+    "target_eval_neg": 6000,
+    "pool4d": "every remaining negative",
+    "seed": 20261002,
+    "split_dir": "data/frozen_p2_v2/ (v1 stays in data/frozen_p2/; output basenames p2wg_v2__*)",
+    "index_manifests": "manifests/splits_p2_v2/, in phase2_freeze_splits' format plus split_path and split_version, with v2's rebuild note"
+  },
+  "config_hash": "75e60110e89b5184f8c1a6444699c6609ec74fbe303292bac85126d6d0eac897",
+  "inputs": {
+    "results/phase2/dataset_manifest_p2.json": "b51e8419ccbf035581d7f4960d422a7a1a9d46eca35b3c47cfe46e6507d1621e",
+    "data/frozen_p2/p2wg__eval.jsonl": "59719eaae7b7e2239ac2b66594e600d2f7019346f2b2c2c10fc11727f0a1e814",
+    "data/frozen_p2/p2wg__calibration.jsonl": "6667eec613ba561b02ee6c04d79325508fd3cde6ece9654974fe5358721b7417",
+    "data/frozen_p2/p2wg__pool4d.jsonl": "5950473f591fd329a4c999236639680b83107acf7f8de1dc48d8aee86d28682f",
+    "data/frozen_p2/p2wg__probe_train.jsonl": "ef4c947f0b5e415cabb4100a9b9cb2d5656c583e6d8cd953d15201ca2264f9c6",
+    "results/phase2/extract__Qwen__Qwen2-7B-Instruct__p2tpl@f2826a00ceef__rest.json": "89123481ffd095e94e4ad79008226289df1ab6ac16d203b459b8a7a86ea38ef0",
+    "results/phase2/extract__Qwen__Qwen2-7B-Instruct__p2tpl@f2826a00ceef__select.json": "86520b551dd1380684c01d8c0ce92576d9072ec7e048d08e5ee109f8072d10ec",
+    "results/phase2/extract__Qwen__Qwen2.5-7B-Instruct__p2tpl@a09a35458c70__rest.json": "77e24eed0ae296e571376e842b65fcb5df41cfbf228bd5810dc5390957e6edd0",
+    "results/phase2/extract__Qwen__Qwen2.5-7B-Instruct__p2tpl@a09a35458c70__select.json": "e6e9b5ecde7fa8539e050877ebb94804e417a533838e4c26dcae725d794f0256",
+    "results/phase2/extract__allenai__Llama-3.1-Tulu-3-8B-DPO__p2tpl@a7beb67e33ff__rest.json": "35b80cdf7c5b86692864e5b5bce396c6e42a075b0c73da86dc69d89cf8f833e1",
+    "results/phase2/extract__allenai__Llama-3.1-Tulu-3-8B-DPO__p2tpl@a7beb67e33ff__select.json": "8eddc0b6300a54ab4b20ef60ca985a6e3adcb179f2ab14a64a2dd641de613cac",
+    "results/phase2/extract__allenai__Llama-3.1-Tulu-3-8B-SFT__p2tpl@f2a0b46b0cfd__rest.json": "93a3e56f139d9b3af47709628f9a17e5c1771ecaf425b51091ad34d64e679b5f",
+    "results/phase2/extract__allenai__Llama-3.1-Tulu-3-8B-SFT__p2tpl@f2a0b46b0cfd__select.json": "912bfd74bcfaf085c734bc793bc36cd51a6413d24ab63ff25610feed2eb94330",
+    "results/phase2/extract__allenai__Llama-3.1-Tulu-3-8B__p2tpl@666943798adb__rest.json": "43e9541576b848e4d59c7e107ba877b2bf3a85e2607eb5217466cf528d32684e",
+    "results/phase2/extract__allenai__Llama-3.1-Tulu-3-8B__p2tpl@666943798adb__select.json": "d6372e54a1925a57db5140cf85142e4855fb97763678212ab58c215c2ff13c6f",
+    "results/phase2/extract__allenai__OLMo-2-1124-7B-DPO__p2tpl@e34ea60adff2__rest.json": "364427e24af69b87e44e8933bb965f1540521984d74b3d01ae74d6b86329f704",
+    "results/phase2/extract__allenai__OLMo-2-1124-7B-DPO__p2tpl@e34ea60adff2__select.json": "ccb30db8b3d15d528c4ed79bb24f3184a1cc24442b2cc796975b733bd69b76af",
+    "results/phase2/extract__allenai__OLMo-2-1124-7B-Instruct__p2tpl@470b1fba1ae0__rest.json": "1cf5a6ffbadbe31c4ad3031e424ed1663a1ab59f1c75397e01349e8797afa1f3",
+    "results/phase2/extract__allenai__OLMo-2-1124-7B-Instruct__p2tpl@470b1fba1ae0__select.json": "3399882bd6465236011fd52241753bffe07afb15247709139797bfe8058e922e",
+    "results/phase2/extract__allenai__OLMo-2-1124-7B-SFT__p2tpl@1de02c017511__rest.json": "24c87947517d57ae07d3d42677a72048aa166e906fc834b0f241d295087cef61",
+    "results/phase2/extract__allenai__OLMo-2-1124-7B-SFT__p2tpl@1de02c017511__select.json": "6508006f16e2c66f465d657672d51acb7cf50aa830d2fabd5025f0f7031a5fff",
+    "results/phase2/extract__allenai__OLMo-2-1124-7B__p2tpl@7df9a82518af__rest.json": "f235775bdfd8e95f2659777887f9f7c8be5ed52b48cdad3531dba15f05f2bed6",
+    "results/phase2/extract__allenai__OLMo-2-1124-7B__p2tpl@7df9a82518af__select.json": "25cdd283ed8f64bcbe745754c6133bff6697cd360c426621a324e03949004394",
+    "results/phase2/extract__meta-llama__Llama-3.1-8B-Instruct__p2tpl@0e9e39f249a1__rest.json": "6620d782eba3cd3e3946763c6f73e3545b05bc03f1b64c0235fd97da36df0728",
+    "results/phase2/extract__meta-llama__Llama-3.1-8B-Instruct__p2tpl@0e9e39f249a1__select.json": "b77bedcb02d76e01c537de138f3b2843f82e2e272b95e0ed349fe5e84810d70f",
+    "results/phase2/extract__meta-llama__Meta-Llama-3-8B-Instruct__p2tpl@8afb486c1db2__rest.json": "28308d0cb94334e640677a2370e53d06ae61c431284f21de5e91d592bb92038b",
+    "results/phase2/extract__meta-llama__Meta-Llama-3-8B-Instruct__p2tpl@8afb486c1db2__select.json": "3b3093db4deefcc63e70f0182f2433c81e1e930956cb626c851e8032e7e93bdb",
+    "results/phase2/extract__microsoft__Phi-3-mini-128k-instruct__p2tpl@f3c06aed622e__rest.json": "d8e76288b115f7cbf32c32bf6911e449abbd592b99dc2c01358e59c97884a2b4",
+    "results/phase2/extract__microsoft__Phi-3-mini-128k-instruct__p2tpl@f3c06aed622e__select.json": "60164fb51904d1eb0a7e1727cf099071c77a8b83ce6e6c8728d688e3ff6e7301",
+    "results/phase2/extract__microsoft__Phi-3-mini-4k-instruct__p2tpl@f39ac1d28e92__rest.json": "bcc520e3ccf16f33b2ddb4b0ed61d349e3f7c6e0262da9a4be686e5ba24175ae",
+    "results/phase2/extract__microsoft__Phi-3-mini-4k-instruct__p2tpl@f39ac1d28e92__select.json": "ac52da9fa9f76706386261c4cac9358996774dfc39f2d45b57d2ecbf83b1b67d",
+    "results/phase2/extract__microsoft__Phi-3.5-mini-instruct__p2tpl@2fe192450127__rest.json": "d53023d43e65dc4258862e54918c8428c9ffc62e65680fa6dab9956ff0a5a19a",
+    "results/phase2/extract__microsoft__Phi-3.5-mini-instruct__p2tpl@2fe192450127__select.json": "b90e8081350235832725e731189b1942db3c28553daf1f844d290ebd1d023862",
+    "results/phase2/extract__mistralai__Mistral-7B-Instruct-v0.1__p2tpl@ec5deb64f2c6__rest.json": "6d69627339e3cd5f4cb6ce13f135278ddcae56f3cf74718d43229d1a745374a7",
+    "results/phase2/extract__mistralai__Mistral-7B-Instruct-v0.1__p2tpl@ec5deb64f2c6__select.json": "79758dd654e9a6af7f12d083fc6d19dd7802186f24194d6edd7c31fef9bb921d",
+    "results/phase2/extract__mistralai__Mistral-7B-Instruct-v0.2__p2tpl@63a8b0818953__rest.json": "6e7722bd5594c452c81915801af5ac630467e0428f46f2c3812393191c87c1cd",
+    "results/phase2/extract__mistralai__Mistral-7B-Instruct-v0.2__p2tpl@63a8b0818953__select.json": "11bbf30d11eeab39ee918b1fb4a4e41335d8cb04f686aaebdaf6db728291775f",
+    "results/phase2/extract__mistralai__Mistral-7B-Instruct-v0.3__p2tpl@c170c708c41d__rest.json": "07d07337eebee91b47734fe1d9a4b3726d7b28702406e72c5516157afbcff9a9",
+    "results/phase2/extract__mistralai__Mistral-7B-Instruct-v0.3__p2tpl@c170c708c41d__select.json": "42225599f3d930f5a8ea098e2d9fb389fcbe28d7c977a806404c645d3885a41c"
+  },
+  "preconditions": {
+    "no_phase2_evaluation_result_read": "stated in D-320 (no Phase 2 result reads eval; the selection records read probe_train and calibration only)",
+    "caches_hold_every_item": {
+      "results/phase2/extract__Qwen__Qwen2-7B-Instruct__p2tpl@f2826a00ceef__rest.json": {
+        "repo": "Qwen/Qwen2-7B-Instruct",
+        "set_name": "rest",
+        "splits_checked": [
+          "eval/lastgen",
+          "eval/usermean",
+          "pool4d/lastgen",
+          "pool4d/usermean"
+        ]
+      },
+      "results/phase2/extract__Qwen__Qwen2-7B-Instruct__p2tpl@f2826a00ceef__select.json": {
+        "repo": "Qwen/Qwen2-7B-Instruct",
+        "set_name": "select",
+        "splits_checked": [
+          "calibration/lastgen",
+          "calibration/usermean"
+        ]
+      },
+      "results/phase2/extract__Qwen__Qwen2.5-7B-Instruct__p2tpl@a09a35458c70__rest.json": {
+        "repo": "Qwen/Qwen2.5-7B-Instruct",
+        "set_name": "rest",
+        "splits_checked": [
+          "eval/lastgen",
+          "eval/usermean",
+          "pool4d/lastgen",
+          "pool4d/usermean"
+        ]
+      },
+      "results/phase2/extract__Qwen__Qwen2.5-7B-Instruct__p2tpl@a09a35458c70__select.json": {
+        "repo": "Qwen/Qwen2.5-7B-Instruct",
+        "set_name": "select",
+        "splits_checked": [
+          "calibration/lastgen",
+          "calibration/usermean"
+        ]
+      },
+      "results/phase2/extract__allenai__Llama-3.1-Tulu-3-8B-DPO__p2tpl@a7beb67e33ff__rest.json": {
+        "repo": "allenai/Llama-3.1-Tulu-3-8B-DPO",
+        "set_name": "rest",
+        "splits_checked": [
+          "eval/lastgen",
+          "eval/usermean",
+          "pool4d/lastgen",
+          "pool4d/usermean"
+        ]
+      },
+      "results/phase2/extract__allenai__Llama-3.1-Tulu-3-8B-DPO__p2tpl@a7beb67e33ff__select.json": {
+        "repo": "allenai/Llama-3.1-Tulu-3-8B-DPO",
+        "set_name": "select",
+        "splits_checked": [
+          "calibration/lastgen",
+          "calibration/usermean"
+        ]
+      },
+      "results/phase2/extract__allenai__Llama-3.1-Tulu-3-8B-SFT__p2tpl@f2a0b46b0cfd__rest.json": {
+        "repo": "allenai/Llama-3.1-Tulu-3-8B-SFT",
+        "set_name": "rest",
+        "splits_checked": [
+          "eval/lastgen",
+          "eval/usermean",
+          "pool4d/lastgen",
+          "pool4d/usermean"
+        ]
+      },
+      "results/phase2/extract__allenai__Llama-3.1-Tulu-3-8B-SFT__p2tpl@f2a0b46b0cfd__select.json": {
+        "repo": "allenai/Llama-3.1-Tulu-3-8B-SFT",
+        "set_name": "select",
+        "splits_checked": [
+          "calibration/lastgen",
+          "calibration/usermean"
+        ]
+      },
+      "results/phase2/extract__allenai__Llama-3.1-Tulu-3-8B__p2tpl@666943798adb__rest.json": {
+        "repo": "allenai/Llama-3.1-Tulu-3-8B",
+        "set_name": "rest",
+        "splits_checked": [
+          "eval/lastgen",
+          "eval/usermean",
+          "pool4d/lastgen",
+          "pool4d/usermean"
+        ]
+      },
+      "results/phase2/extract__allenai__Llama-3.1-Tulu-3-8B__p2tpl@666943798adb__select.json": {
+        "repo": "allenai/Llama-3.1-Tulu-3-8B",
+        "set_name": "select",
+        "splits_checked": [
+          "calibration/lastgen",
+          "calibration/usermean"
+        ]
+      },
+      "results/phase2/extract__allenai__OLMo-2-1124-7B-DPO__p2tpl@e34ea60adff2__rest.json": {
+        "repo": "allenai/OLMo-2-1124-7B-DPO",
+        "set_name": "rest",
+        "splits_checked": [
+          "eval/lastgen",
+          "eval/usermean",
+          "pool4d/lastgen",
+          "pool4d/usermean"
+        ]
+      },
+      "results/phase2/extract__allenai__OLMo-2-1124-7B-DPO__p2tpl@e34ea60adff2__select.json": {
+        "repo": "allenai/OLMo-2-1124-7B-DPO",
+        "set_name": "select",
+        "splits_checked": [
+          "calibration/lastgen",
+          "calibration/usermean"
+        ]
+      },
+      "results/phase2/extract__allenai__OLMo-2-1124-7B-Instruct__p2tpl@470b1fba1ae0__rest.json": {
+        "repo": "allenai/OLMo-2-1124-7B-Instruct",
+        "set_name": "rest",
+        "splits_checked": [
+          "eval/lastgen",
+          "eval/usermean",
+          "pool4d/lastgen",
+          "pool4d/usermean"
+        ]
+      },
+      "results/phase2/extract__allenai__OLMo-2-1124-7B-Instruct__p2tpl@470b1fba1ae0__select.json": {
+        "repo": "allenai/OLMo-2-1124-7B-Instruct",
+        "set_name": "select",
+        "splits_checked": [
+          "calibration/lastgen",
+          "calibration/usermean"
+        ]
+      },
+      "results/phase2/extract__allenai__OLMo-2-1124-7B-SFT__p2tpl@1de02c017511__rest.json": {
+        "repo": "allenai/OLMo-2-1124-7B-SFT",
+        "set_name": "rest",
+        "splits_checked": [
+          "eval/lastgen",
+          "eval/usermean",
+          "pool4d/lastgen",
+          "pool4d/usermean"
+        ]
+      },
+      "results/phase2/extract__allenai__OLMo-2-1124-7B-SFT__p2tpl@1de02c017511__select.json": {
+        "repo": "allenai/OLMo-2-1124-7B-SFT",
+        "set_name": "select",
+        "splits_checked": [
+          "calibration/lastgen",
+          "calibration/usermean"
+        ]
+      },
+      "results/phase2/extract__allenai__OLMo-2-1124-7B__p2tpl@7df9a82518af__rest.json": {
+        "repo": "allenai/OLMo-2-1124-7B",
+        "set_name": "rest",
+        "splits_checked": [
+          "eval/lastgen",
+          "eval/usermean",
+          "pool4d/lastgen",
+          "pool4d/usermean"
+        ]
+      },
+      "results/phase2/extract__allenai__OLMo-2-1124-7B__p2tpl@7df9a82518af__select.json": {
+        "repo": "allenai/OLMo-2-1124-7B",
+        "set_name": "select",
+        "splits_checked": [
+          "calibration/lastgen",
+          "calibration/usermean"
+        ]
+      },
+      "results/phase2/extract__meta-llama__Llama-3.1-8B-Instruct__p2tpl@0e9e39f249a1__rest.json": {
+        "repo": "meta-llama/Llama-3.1-8B-Instruct",
+        "set_name": "rest",
+        "splits_checked": [
+          "eval/lastgen",
+          "eval/usermean",
+          "pool4d/lastgen",
+          "pool4d/usermean"
+        ]
+      },
+      "results/phase2/extract__meta-llama__Llama-3.1-8B-Instruct__p2tpl@0e9e39f249a1__select.json": {
+        "repo": "meta-llama/Llama-3.1-8B-Instruct",
+        "set_name": "select",
+        "splits_checked": [
+          "calibration/lastgen",
+          "calibration/usermean"
+        ]
+      },
+      "results/phase2/extract__meta-llama__Meta-Llama-3-8B-Instruct__p2tpl@8afb486c1db2__rest.json": {
+        "repo": "meta-llama/Meta-Llama-3-8B-Instruct",
+        "set_name": "rest",
+        "splits_checked": [
+          "eval/lastgen",
+          "eval/usermean",
+          "pool4d/lastgen",
+          "pool4d/usermean"
+        ]
+      },
+      "results/phase2/extract__meta-llama__Meta-Llama-3-8B-Instruct__p2tpl@8afb486c1db2__select.json": {
+        "repo": "meta-llama/Meta-Llama-3-8B-Instruct",
+        "set_name": "select",
+        "splits_checked": [
+          "calibration/lastgen",
+          "calibration/usermean"
+        ]
+      },
+      "results/phase2/extract__microsoft__Phi-3-mini-128k-instruct__p2tpl@f3c06aed622e__rest.json": {
+        "repo": "microsoft/Phi-3-mini-128k-instruct",
+        "set_name": "rest",
+        "splits_checked": [
+          "eval/lastgen",
+          "eval/usermean",
+          "pool4d/lastgen",
+          "pool4d/usermean"
+        ]
+      },
+      "results/phase2/extract__microsoft__Phi-3-mini-128k-instruct__p2tpl@f3c06aed622e__select.json": {
+        "repo": "microsoft/Phi-3-mini-128k-instruct",
+        "set_name": "select",
+        "splits_checked": [
+          "calibration/lastgen",
+          "calibration/usermean"
+        ]
+      },
+      "results/phase2/extract__microsoft__Phi-3-mini-4k-instruct__p2tpl@f39ac1d28e92__rest.json": {
+        "repo": "microsoft/Phi-3-mini-4k-instruct",
+        "set_name": "rest",
+        "splits_checked": [
+          "eval/lastgen",
+          "eval/usermean",
+          "pool4d/lastgen",
+          "pool4d/usermean"
+        ]
+      },
+      "results/phase2/extract__microsoft__Phi-3-mini-4k-instruct__p2tpl@f39ac1d28e92__select.json": {
+        "repo": "microsoft/Phi-3-mini-4k-instruct",
+        "set_name": "select",
+        "splits_checked": [
+          "calibration/lastgen",
+          "calibration/usermean"
+        ]
+      },
+      "results/phase2/extract__microsoft__Phi-3.5-mini-instruct__p2tpl@2fe192450127__rest.json": {
+        "repo": "microsoft/Phi-3.5-mini-instruct",
+        "set_name": "rest",
+        "splits_checked": [
+          "eval/lastgen",
+          "eval/usermean",
+          "pool4d/lastgen",
+          "pool4d/usermean"
+        ]
+      },
+      "results/phase2/extract__microsoft__Phi-3.5-mini-instruct__p2tpl@2fe192450127__select.json": {
+        "repo": "microsoft/Phi-3.5-mini-instruct",
+        "set_name": "select",
+        "splits_checked": [
+          "calibration/lastgen",
+          "calibration/usermean"
+        ]
+      },
+      "results/phase2/extract__mistralai__Mistral-7B-Instruct-v0.1__p2tpl@ec5deb64f2c6__rest.json": {
+        "repo": "mistralai/Mistral-7B-Instruct-v0.1",
+        "set_name": "rest",
+        "splits_checked": [
+          "eval/lastgen",
+          "eval/usermean",
+          "pool4d/lastgen",
+          "pool4d/usermean"
+        ]
+      },
+      "results/phase2/extract__mistralai__Mistral-7B-Instruct-v0.1__p2tpl@ec5deb64f2c6__select.json": {
+        "repo": "mistralai/Mistral-7B-Instruct-v0.1",
+        "set_name": "select",
+        "splits_checked": [
+          "calibration/lastgen",
+          "calibration/usermean"
+        ]
+      },
+      "results/phase2/extract__mistralai__Mistral-7B-Instruct-v0.2__p2tpl@63a8b0818953__rest.json": {
+        "repo": "mistralai/Mistral-7B-Instruct-v0.2",
+        "set_name": "rest",
+        "splits_checked": [
+          "eval/lastgen",
+          "eval/usermean",
+          "pool4d/lastgen",
+          "pool4d/usermean"
+        ]
+      },
+      "results/phase2/extract__mistralai__Mistral-7B-Instruct-v0.2__p2tpl@63a8b0818953__select.json": {
+        "repo": "mistralai/Mistral-7B-Instruct-v0.2",
+        "set_name": "select",
+        "splits_checked": [
+          "calibration/lastgen",
+          "calibration/usermean"
+        ]
+      },
+      "results/phase2/extract__mistralai__Mistral-7B-Instruct-v0.3__p2tpl@c170c708c41d__rest.json": {
+        "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+        "set_name": "rest",
+        "splits_checked": [
+          "eval/lastgen",
+          "eval/usermean",
+          "pool4d/lastgen",
+          "pool4d/usermean"
+        ]
+      },
+      "results/phase2/extract__mistralai__Mistral-7B-Instruct-v0.3__p2tpl@c170c708c41d__select.json": {
+        "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+        "set_name": "select",
+        "splits_checked": [
+          "calibration/lastgen",
+          "calibration/usermean"
+        ]
+      }
+    }
+  },
+  "v1": {
+    "record": "results/phase2/dataset_manifest_p2.json",
+    "record_sha256": "b51e8419ccbf035581d7f4960d422a7a1a9d46eca35b3c47cfe46e6507d1621e",
+    "partitions": {
+      "eval": {
+        "file": "data/frozen_p2/p2wg__eval.jsonl",
+        "sha256": "59719eaae7b7e2239ac2b66594e600d2f7019346f2b2c2c10fc11727f0a1e814",
+        "n": 12167,
+        "n_pos": 4000,
+        "n_neg": 8167
+      },
+      "calibration": {
+        "file": "data/frozen_p2/p2wg__calibration.jsonl",
+        "sha256": "6667eec613ba561b02ee6c04d79325508fd3cde6ece9654974fe5358721b7417",
+        "n": 8167,
+        "n_pos": 0,
+        "n_neg": 8167
+      },
+      "pool4d": {
+        "file": "data/frozen_p2/p2wg__pool4d.jsonl",
+        "sha256": "5950473f591fd329a4c999236639680b83107acf7f8de1dc48d8aee86d28682f",
+        "n": 2000,
+        "n_pos": 1000,
+        "n_neg": 1000
+      },
+      "probe_train": {
+        "file": "data/frozen_p2/p2wg__probe_train.jsonl",
+        "sha256": "ef4c947f0b5e415cabb4100a9b9cb2d5656c583e6d8cd953d15201ca2264f9c6",
+        "n": 4000,
+        "n_pos": 2000,
+        "n_neg": 2000
+      }
+    }
+  },
+  "checks": {
+    "items_exactly_v1_calibration_eval_pool4d_minus_excluded": true,
+    "no_item_in_two_splits": true,
+    "positives_unchanged_eval_pool4d": true,
+    "calibration_negatives_only": true,
+    "no_mixed_label_item_in_calibration": true,
+    "no_cluster_in_two_splits_including_probe_train": true,
+    "lines_byte_identical_to_v1": true,
+    "probe_train_untouched": true,
+    "every_target_exact": true,
+    "minimums_met": true
+  },
+  "plan": {
+    "targets": {
+      "calibration": 5000,
+      "eval": 6000,
+      "pool4d": 6332
+    },
+    "room": {
+      "eval": 6000,
+      "calibration": 5000,
+      "pool4d": 6332
+    },
+    "fixed_negatives": {
+      "eval": 0,
+      "calibration": 0,
+      "pool4d": 0
+    },
+    "fixed_positives": {
+      "eval": 4000,
+      "calibration": 0,
+      "pool4d": 1000
+    },
+    "movable": {
+      "units": 17189,
+      "items": 17332,
+      "multi_item_units": 116
+    },
+    "units_placed": {
+      "eval": {
+        "units": 5951,
+        "multi_item_units": 40,
+        "items": 6000
+      },
+      "calibration": {
+        "units": 4958,
+        "multi_item_units": 34,
+        "items": 5000
+      },
+      "pool4d": {
+        "units": 6280,
+        "multi_item_units": 42,
+        "items": 6332
+      }
+    },
+    "items_from_v1_to_v2": {
+      "calibration->calibration": 2367,
+      "calibration->eval": 2806,
+      "calibration->pool4d": 2993,
+      "eval->calibration": 2335,
+      "eval->eval": 2830,
+      "eval->pool4d": 3001,
+      "pool4d->calibration": 298,
+      "pool4d->eval": 364,
+      "pool4d->pool4d": 338
+    },
+    "excluded_items": [
+      {
+        "item_id": "ef72f52bd8c3ec85",
+        "v1_split": "eval",
+        "label": 0,
+        "cluster": "ef72f52bd8c3ec85",
+        "reason": "D-324 (5)(iii), D-323: its text begins with a literal '<s>[INST] <<SYS>>', which the Mistral and Phi-3 tokenizers read as a BOS id inside the user span (a second BOS for Mistral); excluded before any analysis"
+      },
+      {
+        "item_id": "52c52cdb43a59029",
+        "v1_split": "calibration",
+        "label": 0,
+        "cluster": "52c52cdb43a59029",
+        "reason": "D-329, D-357 (B)(3): its user text holds a literal '[/INST]', which Mistral-7B-Instruct-v0.3's tokenizer reads as a control token inside the user span (the extracted v0.3 caches hold it so); excluded from every v2 split before any analysis"
+      }
+    ],
+    "shortfall": []
+  },
+  "axes": {
+    "p2wg": {
+      "source": "allenai/wildguardmix",
+      "source_revision_sha": "d29c47f41c8b51348b5c8e8c81c039b3132b66d1",
+      "partitions": {
+        "eval": {
+          "file": "data/frozen_p2_v2/p2wg_v2__eval.jsonl",
+          "sha256": "e0fcf8a30de263e502d191c7df87e11d330362602670247bc7de8620cdd17a4c",
+          "n": 10000,
+          "n_pos": 4000,
+          "n_neg": 6000,
+          "target_neg": 6000,
+          "n_clusters": 9934,
+          "n_multi_item_clusters": 55,
+          "composition_by_class": {
+            "pos": {
+              "n": 4000,
+              "adversarial": 1934,
+              "in_multi_item_clusters": 32,
+              "median_chars": 382.5
+            },
+            "neg": {
+              "n": 6000,
+              "adversarial": 3145,
+              "in_multi_item_clusters": 89,
+              "median_chars": 460.5
+            }
+          },
+          "v1_composition_by_class": {
+            "pos": {
+              "n": 4000,
+              "adversarial": 1934,
+              "in_multi_item_clusters": 32,
+              "median_chars": 382.5
+            },
+            "neg": {
+              "n": 8167,
+              "adversarial": 4305,
+              "in_multi_item_clusters": 0,
+              "median_chars": 457.0
+            }
+          },
+          "n_from_mixed_label_clusters": {
+            "pos": 0,
+            "neg": 0
+          },
+          "index_manifest": {
+            "file": "manifests/splits_p2_v2/p2wg_v2__eval__manifest.json",
+            "sha256": "7c9069bfb2e46317c0ff7ff42e163508b09726554267db7d8a184623a0adab94"
+          }
+        },
+        "calibration": {
+          "file": "data/frozen_p2_v2/p2wg_v2__calibration.jsonl",
+          "sha256": "98bc80c966349bc5e03c5cdeab97d035d40447b34c5337d72e2f9062841393e5",
+          "n": 5000,
+          "n_pos": 0,
+          "n_neg": 5000,
+          "target_neg": 5000,
+          "n_clusters": 4958,
+          "n_multi_item_clusters": 34,
+          "composition_by_class": {
+            "pos": {
+              "n": 0,
+              "adversarial": 0,
+              "in_multi_item_clusters": 0,
+              "median_chars": null
+            },
+            "neg": {
+              "n": 5000,
+              "adversarial": 2603,
+              "in_multi_item_clusters": 76,
+              "median_chars": 426.0
+            }
+          },
+          "v1_composition_by_class": {
+            "pos": {
+              "n": 0,
+              "adversarial": 0,
+              "in_multi_item_clusters": 0,
+              "median_chars": null
+            },
+            "neg": {
+              "n": 8167,
+              "adversarial": 4311,
+              "in_multi_item_clusters": 0,
+              "median_chars": 462.0
+            }
+          },
+          "n_from_mixed_label_clusters": {
+            "pos": 0,
+            "neg": 0
+          },
+          "index_manifest": {
+            "file": "manifests/splits_p2_v2/p2wg_v2__calibration__manifest.json",
+            "sha256": "0b5ea1dc9568a5bb4d107473b8d69ccf4370f50e2a7b57c542b4c355f9e8bd5d"
+          }
+        },
+        "pool4d": {
+          "file": "data/frozen_p2_v2/p2wg_v2__pool4d.jsonl",
+          "sha256": "da6a37b8e78c8811d470498ff86b775c99e876859c6cf0ffe95b61e969fd79ff",
+          "n": 7332,
+          "n_pos": 1000,
+          "n_neg": 6332,
+          "target_neg": 6332,
+          "n_clusters": 7208,
+          "n_multi_item_clusters": 91,
+          "composition_by_class": {
+            "pos": {
+              "n": 1000,
+              "adversarial": 432,
+              "in_multi_item_clusters": 121,
+              "median_chars": 455.0
+            },
+            "neg": {
+              "n": 6332,
+              "adversarial": 3259,
+              "in_multi_item_clusters": 94,
+              "median_chars": 419.0
+            }
+          },
+          "v1_composition_by_class": {
+            "pos": {
+              "n": 1000,
+              "adversarial": 432,
+              "in_multi_item_clusters": 121,
+              "median_chars": 455.0
+            },
+            "neg": {
+              "n": 1000,
+              "adversarial": 391,
+              "in_multi_item_clusters": 259,
+              "median_chars": 78.5
+            }
+          },
+          "n_from_mixed_label_clusters": {
+            "pos": 0,
+            "neg": 0
+          },
+          "index_manifest": {
+            "file": "manifests/splits_p2_v2/p2wg_v2__pool4d__manifest.json",
+            "sha256": "90dfc80aea765b2a6b17c434682291994c7de39d9b76884c1d8e0f4f0234a740"
+          }
+        },
+        "probe_train": {
+          "file": "data/frozen_p2/p2wg__probe_train.jsonl",
+          "sha256": "ef4c947f0b5e415cabb4100a9b9cb2d5656c583e6d8cd953d15201ca2264f9c6",
+          "n": 4000,
+          "n_pos": 2000,
+          "n_neg": 2000,
+          "note": "v1's file, unchanged (no copy is written)"
+        }
+      }
+    }
+  }
+}

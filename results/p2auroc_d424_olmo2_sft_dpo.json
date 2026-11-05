@@ -1,0 +1,2599 @@
+{
+  "schema_version": 1,
+  "run_kind": "p2auroc_d424_pair",
+  "utc": "2026-10-09T06:24:37+00:00",
+  "git": {
+    "commit": null,
+    "branch": null,
+    "dirty": null,
+    "dirty_file_count": null,
+    "dirty_files": []
+  },
+  "env": {
+    "python": "3.10.12",
+    "platform": "Linux-3.10.0-1160.119.1.el7.x86_64-x86_64-with-glibc2.35",
+    "machine": "x86_64",
+    "blas_threads": {
+      "OMP_NUM_THREADS": "6",
+      "OPENBLAS_NUM_THREADS": "6",
+      "MKL_NUM_THREADS": "6",
+      "NUMEXPR_NUM_THREADS": null
+    },
+    "cpu_count": 12,
+    "libraries": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.7.2",
+      "torch": "2.7.0+cu126",
+      "transformers": "4.56.1"
+    }
+  },
+  "preregistration": "D-424 (the author's item 3 of 2026-10-08: Phase 2 AUROC, pre and post per Phase 2 pair at L* and GRID6, with intervals, from existing caches; DESCRIPTIVE, no prediction; registered by the coordinator); details by the closest D-entries (D-181): D-361 (2) (the 63 headline cells), D-152 P5 and D-180 (the item bootstrap, B = 5000, its seeds), D-156 (AUROC is threshold-free and not re-partitioned), D-419 (3) (Duan's big-drop line: post AUROC of the frozen probe minus pre, mean over the seeds), D-382 CHOICES (n) and D-418 (the Phase 2 binding and anchor), D-419 (6) (a missing cell is kept out of n and the share, its count stated), D-412 (1) (no predicted-against-realised table, so no D-177 line)",
+  "code": {
+    "sha256": {
+      "src/p2auroc_d424.py": "1e5651bfdce3ca7c5e4fb02c2d1c9a6b72b2e93ec869c494437bd56e11b402f6",
+      "src/depth_d156.py": "a1f7b50ce70395f290b681f336e5a5e95e1428a2ca7c5915818644ad70f26734",
+      "src/input_registry.py": "e05d1fba11a4db8c46d0e7231fa7b804fbd8101017fda1c0889070c193684fbf",
+      "src/paired.py": "80429fa57f0267236a2af1670c74ef327802598257ab75834fddf64a70d97195",
+      "src/populations.py": "0c9e944f70e1d580474218bd9e35f8e7d447e8b26e0f316bfbe399133498cba6",
+      "src/provenance.py": "3cef96e8ede12af7dc920409cc9bd7e072cdedc579e9211604cf481084e9aa47",
+      "src/superseded_provenance.py": "6613f47f086958ef424f1be1263afc4a5918f17a50b24d025baad69aeb0738b8",
+      "src/metrics.py": "f7aac316793d69097939ecbeb1de0719534d0bb0cdff04534a2d7de0a454b9ed",
+      "src/repdist.py": "b98ae6bdeb4c7597188524f114a910c766f0af8c954b8e328333727bccefc855",
+      "src/refsize_d382.py": "36d1a7709904b21cfdc522aa1feb61f151a0d0d10b14a57b99bbfb3ec507e81a",
+      "src/twomoment_p2_d361.py": "843a6c13316545b550c3c1850840707a45a409bb8cdb63d5b8d4b863339ddea1",
+      "src/twomoment_cells.py": "14b28c91e7f2267a752f51a925e2bb875a834a52556e21b0c620ad30c18eeafe",
+      "src/twomoment_fit.py": "1a1c57668068c4e86dfb08bc61c141d9c921d92a04da3b620ec7781ae9713b26",
+      "src/float16_check_d364.py": "6027c597844e4c684a530c15af3fd40d06bbd218275ee50ee7f00e4a2fa356b7",
+      "src/selection_tpr_v2.py": "e928a44e969e8fc1ec87a2e9bb93f3c9ddd11f06778dd3066b1d9d0905c3746d",
+      "src/phase2_resplit_v2.py": "8929519b4618119693038f5b123a4d980f0063591e64f741bbbdfebeb40966bc",
+      "src/selection_p2.py": "a79bb1b8a635c15190bad181e29c1ecd885ef01a71fda26e1101339f3bc59e97",
+      "src/regularisation_sweep.py": "8c475baf246c9cc59459555832ed644d9d30e692579752dc0f83b059ab0cf269",
+      "src/subset_p2.py": "fc81a30170b0047c4d4606cd5f700001b2f7e2afb45b1e7d130f8269155576c5",
+      "src/safe_outputs.py": "e0c7a4bcb969de9a0c5c1b97377e8f38f5257672a869036eb8d6c9c642b40639",
+      "src/healthcheck_d156.py": "0ec2687ecdd887a28d4b8fb7a4db4b9081b69ea3fcf2b175c345279b4ed74de7",
+      "src/healthcheck_summary_d156.py": "b149b66181fe1c2d953d255355e44e2d15651bff9ccf8a456819092db526ccf5"
+    },
+    "commit": "44ee6302d4122c7a7b9d3ff9ca383efdeb15d262",
+    "commit_source": "SYNC_COMMIT",
+    "libraries": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.7.2"
+    }
+  },
+  "reused_files_sha256": {
+    "src/refsize_d382.py": "36d1a7709904b21cfdc522aa1feb61f151a0d0d10b14a57b99bbfb3ec507e81a",
+    "src/twomoment_p2_d361.py": "843a6c13316545b550c3c1850840707a45a409bb8cdb63d5b8d4b863339ddea1",
+    "src/depth_d156.py": "a1f7b50ce70395f290b681f336e5a5e95e1428a2ca7c5915818644ad70f26734",
+    "src/paired.py": "80429fa57f0267236a2af1670c74ef327802598257ab75834fddf64a70d97195",
+    "src/metrics.py": "f7aac316793d69097939ecbeb1de0719534d0bb0cdff04534a2d7de0a454b9ed",
+    "src/selection_tpr_v2.py": "e928a44e969e8fc1ec87a2e9bb93f3c9ddd11f06778dd3066b1d9d0905c3746d",
+    "src/selection_p2.py": "a79bb1b8a635c15190bad181e29c1ecd885ef01a71fda26e1101339f3bc59e97",
+    "src/float16_check_d364.py": "6027c597844e4c684a530c15af3fd40d06bbd218275ee50ee7f00e4a2fa356b7"
+  },
+  "registered_parameters": true,
+  "status": {
+    "status": "FINAL",
+    "d_entries": [],
+    "rule": "CLAUDE.md evidence standard: FINAL, FLAGGED (with the D-entry) or PROVISIONAL (not the registered parameters {'n_boot': 5000, 'seeds': [0, 1, 2, 3, 4], 'anchor_draws': 1000})"
+  },
+  "elapsed_s": 414.8,
+  "implementation_choices": [
+    "(a) CELLS: D-361 (2)'s headline, bound by refsize_d382.p2_bind unchanged (records only; its own predictions record and final gates are not this item's, as realign_d418 calls it): the nine pairs x every layer both sides hold (GRID6 plus the pre side's L*, D-325 (2); seven per pair, 63), user-span mean, split v2, the selection's C (D-117), seeds 0-4. No C=1, last-token, cluster-level or 5% row (no such row was asked; D-361 (4)'s beside lines are not this item's).",
+    "(b) AUROC: depth_d156's block, its lines repeated (D-152 P5, D-180): metrics.auroc per seed, checked bit for bit against depth_d156.weighted_auroc with unit weights; on the v2 frozen evaluation split, not re-partitioned (D-156 keeps the item bootstrap for threshold-free quantities). pre = pre activations, pre probe; frozen = post activations, the SAME pre probe (the post AUROC); change = frozen - pre per seed, the cell's value the seed mean (D-419 (3)). No post-refit arm (not asked).",
+    "(c) INTERVALS: the D-152 P5 item bootstrap, B = 5000, eval negatives and eval positives resampled separately by paired.counts_matrix at depth_d156.ITEM_BOOT_SEED (D-180's seeds, reused as mlp_probe_d383 and hh_sensitivity_d363 reuse them; at Phase 2's sizes, 6,000 and 4,000); every seed recomputed per resample and the replicate's seed mean taken (depth_d156's expression); the same resamples for pre and frozen and at every layer, so the change's interval is paired; percentile 95% by paired.ci; per-seed intervals beside.",
+    "(d) DUAN'S FLAGS on the seed means (point estimates, D-419 (3) and realign_d418's constants): big_drop = change <= -0.05, operational_failure = frozen < 0.70, eligible = pre >= 0.75; beside, whether the change's interval lies wholly at or below -0.05 or wholly above it. Descriptive: no verdict, no prediction (D-424).",
+    "(e) ANCHOR (D-382 CHOICES (n), refsize_d382.run_p2's lines): twomoment_p2_d361.passing_anchor; at L* the probes are the selection's own fit bit for bit (selection_tpr_v2.seed_probes) and reproduce its ho20 TPRs (anchor_diffs); at EVERY computed layer the realised operating point at 1% over D-361's 1000 draws (paired.repartition_estimate, seed twomoment_p2_d361.P2_DRAW_SEED) equals the pair's D-361 record as canonical JSON. Every layer, not L* alone as realign_d418.run_p2: the AUROC is read at every layer, and that report holds the post positives' TPR, so it ties the post eval positives' scores at each layer to a committed record. Nothing is written unless all pass.",
+    "(f) MISSING (the author's 'if post-update harmful activations are missing, report it; no GPU work'): before any cache is opened, each of the seven cache files of the cell set (refsize_d382.run_p2's keys) is checked for presence in data/hidden (a regular file) and for each layer in its record's layers_resolved. A POST-side absence goes into 'missing' per (layer, cache) with the v2 items it supplies (from the v2 plan: calibration, eval negatives, eval POSITIVES); those cells are not filled (no value, no imputation) and the record is written FLAGGED (D-424). A PRE-side absence refuses: the selection's and D-361's own inputs are not this item's question, and pre and post caches share data/hidden, so a fault of the store refuses here rather than being reported as missing. SCOPE (review S2): only a POST cache FILE absent from data/hidden while its extraction record and ingest index are present reaches 'missing'; an absent post record or ingest index, or a post record whose layers_resolved lacks a required layer, already refuses inside refsize_d382.p2_bind, before this check (the layers_lacking branch is then unreachable for post caches and is kept for the pre side's report).",
+    "(g) EVIDENCE (the evidence standard: aggregates recomputable from per-item values): per filled cell the four score matrices of the v2 frozen evaluation split (negatives and positives, pre and post, one column per seed) and the seed-mean replicate arrays, in the record's npz; their sha256 in the record; the bootstrap counts are re-derivable from the seeds (their sha256 recorded). The summary recomputes every point AUROC from the stored scores and every seed-mean interval from the stored replicates before it writes.",
+    "(h) SUMMARY: the 63-cell table; the share of cells with change <= -0.05 overall, by pair, by layer number and by grid position (L* and GRID6's six positions; GRID6 differs by depth, so position is the comparable unit across pairs); a missing cell is kept out of n and the share, its count stated (D-419 (6), CHOICE 17's convention); the per-pair list with Mistral v0.1 -> v0.2 FIRST (the author: its AUROC change beside its delta TPR), each pair's L* cell beside its D-156 delta TPR from the same job. No predicted-against-realised table, so no D-177 line (D-412 (1)).",
+    "(i) LANE: one CPU list on lane C (preflight, the nine pair jobs with Mistral first, the summary), run through scripts/detach.sh with the 6-thread BLAS pin of scripts/project_env.sh as every CPU list. The preflight exits 1 on a failed record check or an absent PRE-side cache; an absent POST-side cache is printed and left to the pair job's 'missing' list (CHOICES (f)), so the author's report is written either way. No manifest job: the summary binds each pair record by its sha256 and its npz by the sha256 the record names.",
+    "(j) POPULATION GROUP: none until the pull (src/populations.py validate() needs every declared file on disk; REFSIZE_D382's and REALIGN's precedent, D-411 (4))."
+  ],
+  "config": {
+    "item": "D-424 (the author's item 3): Phase 2 AUROC, descriptive",
+    "population": "phase2_headline",
+    "pair": "olmo2_sft_dpo",
+    "pair_group": "post-training series step",
+    "pair_note": "",
+    "pre_repo": "allenai/OLMo-2-1124-7B-SFT",
+    "pre_rev": "1de02c0175118a9de5854aec80a1f970e701e928",
+    "post_repo": "allenai/OLMo-2-1124-7B-DPO",
+    "post_rev": "e34ea60adff2e575f4fe7569eaffd1b28509b6fd",
+    "pooling": "usermean",
+    "axis": "p2wg",
+    "split_version": 2,
+    "selection_record": {
+      "file": "results/phase2/selection_p2__allenai__OLMo-2-1124-7B-SFT@1de02c017511__usermean.json",
+      "sha256": "b9adabf6157d399b84acd1cfc524d3f015d04886eb7fc264b52dd047fca193b3"
+    },
+    "selected_arm": "C=0.001",
+    "selected_C": 0.001,
+    "selected_layer": 16,
+    "probe_set": "selected",
+    "n_model_layers": 32,
+    "grid6": [
+      0,
+      6,
+      12,
+      20,
+      26,
+      32
+    ],
+    "grid6_plus_pre_lstar": [
+      0,
+      6,
+      12,
+      16,
+      20,
+      26,
+      32
+    ],
+    "layers": [
+      0,
+      6,
+      12,
+      16,
+      20,
+      26,
+      32
+    ],
+    "layers_beyond_grid6_plus_pre_lstar": [],
+    "computed_layers": [
+      0,
+      6,
+      12,
+      16,
+      20,
+      26,
+      32
+    ],
+    "missing_layers": [],
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "holdout": 0.2,
+    "eval_split": "the v2 frozen evaluation split: its negatives against its positives (not re-partitioned, D-156)",
+    "n_eval_negatives": 6000,
+    "n_eval_positives": 4000,
+    "n_calibration": 5000,
+    "item_bootstrap": {
+      "n_boot": 5000,
+      "seeds": {
+        "eval_negatives": 20260929,
+        "eval_positives": 20260930
+      },
+      "counts": "paired.counts_matrix(n, B, seed)",
+      "counts_sha256": {
+        "eval_negatives": "54181ffad0b1f58877a1a7827a9a8c9b6c8a590d01b5e68f6dcc27d5e3b073b0",
+        "eval_positives": "42cffddc24536aeaff98eba83b0f162b7189012bc11982544b74d6732b6b368b"
+      },
+      "rule": "(c) INTERVALS: the D-152 P5 item bootstrap, B = 5000, eval negatives and eval positives resampled separately by paired.counts_matrix at depth_d156.ITEM_BOOT_SEED (D-180's seeds, reused as mlp_probe_d383 and hh_sensitivity_d363 reuse them; at Phase 2's sizes, 6,000 and 4,000); every seed recomputed per resample and the replicate's seed mean taken (depth_d156's expression); the same resamples for pre and frozen and at every layer, so the change's interval is paired; percentile 95% by paired.ci; per-seed intervals beside."
+    },
+    "anchor_operating_point": {
+      "target_fpr": 0.01,
+      "n_draws": 1000,
+      "draw_seed": 20261006
+    },
+    "duan_criteria": {
+      "big_drop": -0.05,
+      "operational_failure": 0.7,
+      "eligible": 0.75,
+      "note": "Duan (arXiv:2606.15980v2, 'Benchmark Cells'): big_drop(c) = 1[dAUC(c) <= -0.05]; operational_failure(c) = 1[A_post(c) < 0.70]; eligible(c) = 1[A_base(c) >= 0.75]; read here on the seed means of the cell (change, frozen, pre); point estimates. Beside: whether the change's 95% interval lies wholly at or below -0.05, or wholly above it"
+    },
+    "pooled_negatives": {
+      "n_calibration": 5000,
+      "n_evaluation": 6000,
+      "item_ids_sha256": "49ae56826be8d141483e450f8b78d866dade15fbb731883a2df4d3fba7d30dbc"
+    },
+    "join_rule": "A v2 split's caches are its items gathered by item_id from the model's v1 caches, each item from the cache of the split v1 put it in (v1 calibration: the select record's p2wg/calibration cache; v1 eval or pool4d: the rest record's p2wg/eval or p2wg/pool4d cache), whichever v2 split it is now in; plan.items_from_v1_to_v2 counts the moved negatives by v1 and v2 split (positives stay in their v1 split). A cache keyed 'p2wg/<split>' is a v1 cache and is never read as a v2 split. Under D-307 (1) a result reads only ingested caches, so a v2 reader needs the rest caches (or their durable layer subsets) ingested and indexed first.",
+    "post_select_set": "p2tpl",
+    "blas_threads": {
+      "OMP_NUM_THREADS": "6",
+      "OPENBLAS_NUM_THREADS": "6",
+      "MKL_NUM_THREADS": "6"
+    }
+  },
+  "config_hash": "db42ef77f8f66a659af280b0c53e6df7004f86fb6e859af475946bafc671c69c",
+  "anchor": {
+    "kind": "(e) ANCHOR (D-382 CHOICES (n), refsize_d382.run_p2's lines): twomoment_p2_d361.passing_anchor; at L* the probes are the selection's own fit bit for bit (selection_tpr_v2.seed_probes) and reproduce its ho20 TPRs (anchor_diffs); at EVERY computed layer the realised operating point at 1% over D-361's 1000 draws (paired.repartition_estimate, seed twomoment_p2_d361.P2_DRAW_SEED) equals the pair's D-361 record as canonical JSON. Every layer, not L* alone as realign_d418.run_p2: the AUROC is read at every layer, and that report holds the post positives' TPR, so it ties the post eval positives' scores at each layer to a committed record. Nothing is written unless all pass.",
+    "checked": true,
+    "why_not": null,
+    "d361_anchor_record": {
+      "file": "results/twomoment_p2_d361_anchor_repair_WG_mistral_base2instruct.json",
+      "sha256": "6b861e289c3e1544a658a40da19db8d53c6c26439532256947eb1ee31fe4a18f",
+      "exact_equal": true,
+      "n_cells_compared": 34,
+      "records": {
+        "0.01": {
+          "file": "results/twomoment_repair_WG_mistral_base2instruct.json",
+          "sha256": "fe885cdf6b421decadb46cc17eec1252d2162448bddc8687dc6a6e4010dfcdaf",
+          "draw_arrays": {
+            "file": "results/twomoment_repair_WG_mistral_base2instruct_draws.npz",
+            "sha256": "cd0ccd6e8d9221bf5f012e215ceffe5cff9e0a69866a38f15757428f612cf4fa"
+          },
+          "named_by": {
+            "file": "results/twomoment_fit_r2.json",
+            "sha256": "5522bc8d0faf6790c19ab025d82dd444e7c85d03bf78e880c5383053203a8709",
+            "bound_by": {
+              "file": "logs/reissue_d305_20261001.sha256",
+              "sha256": "10f8e9d40e640584c19a34063f041f3c3895c7d36f3025dd1ba9b0ccdab702c6"
+            }
+          }
+        },
+        "0.05": {
+          "file": "results/twomoment_repair_WG_mistral_base2instruct_fpr5.json",
+          "sha256": "968f8545ea9443d3e764b34429cc6b40a55674686061a05a4e7953b631572722",
+          "draw_arrays": {
+            "file": "results/twomoment_repair_WG_mistral_base2instruct_fpr5_draws.npz",
+            "sha256": "579614e59ce6552778e28ae03cd6a295ba96b22b22a1e594d085348da7de43f5"
+          },
+          "named_by": {
+            "file": "results/twomoment_fit_fpr5.json",
+            "sha256": "001db8b9553d0ef6f5d60f38ad7cc767f5630b3e915e90288e57d4d55980659c"
+          }
+        }
+      }
+    },
+    "d361_pair_record": {
+      "file": "results/twomoment_p2_d361_olmo2_sft_dpo_usermean.json",
+      "sha256": "34d74d82ca32b5b0770df0aa94b3c62063c09d2c32614a2f0cb629ffed364d8e"
+    },
+    "probe_anchor_at_L_star": {
+      "selection_record": {
+        "file": "results/phase2/selection_p2__allenai__OLMo-2-1124-7B-SFT@1de02c017511__usermean.json",
+        "sha256": "b9adabf6157d399b84acd1cfc524d3f015d04886eb7fc264b52dd047fca193b3"
+      },
+      "layer": 16,
+      "probes_equal_to_selection_fit_bit_for_bit": true,
+      "ho20_tpr_per_seed_recorded": [
+        0.7697841726618705,
+        0.8553615960099751,
+        0.8025641025641026,
+        0.8495145631067961,
+        0.8418367346938775
+      ],
+      "ho20_tpr_per_seed_recomputed": [
+        0.7697841726618705,
+        0.8553615960099751,
+        0.8025641025641026,
+        0.8495145631067961,
+        0.8418367346938775
+      ],
+      "values_compared": 8,
+      "values_differing": 0,
+      "exact_equal": true
+    },
+    "operating_point_layers_equal": [
+      0,
+      6,
+      12,
+      16,
+      20,
+      26,
+      32
+    ],
+    "manifests": {
+      "logs/twomoment_p2_d361.sha256": "0edd7976e42b984a265cdd9dda20203ca3d78fa1f32ec7e5eea4928d68a7d6cc"
+    }
+  },
+  "input_verification": {
+    "flag": null,
+    "pin_only_inputs": [],
+    "rule": "D-170/D-172 on Phase 2 inputs: every cache is read from data/hidden at its record's sha256, listed in its ingest index (D-307 (1)); no input is vouched for by a pin alone, so no cell carries the flag"
+  },
+  "bos_check": {
+    "file": "results/phase2/bos_check_p2.json",
+    "sha256": "4aa34e43484e892be7c76e3cf367b84f95646abb0a3888f301af3200fa17b5cd",
+    "rule": "(y) BOS check (D-361 (5), D-318 (6)): step 1 reads results/phase2/bos_check_p2.json and refuses unless both sides' models are 'ok' there: listed at the side's revision, cache_tie status 'ok', prompts_tie and plain_path ok, not in ties_failed, cache_tie_skipped or cache_tie_incomplete, and no tokenizer left unloaded; its sha256 is recorded. The LoRA line requires the base's line; the adapters are not in the scan and use the base's tokenizer (D-343).",
+    "models": {
+      "pre": {
+        "repo": "allenai/OLMo-2-1124-7B-SFT",
+        "revision": "1de02c0175118a9de5854aec80a1f970e701e928",
+        "ok": true
+      },
+      "post": {
+        "repo": "allenai/OLMo-2-1124-7B-DPO",
+        "revision": "e34ea60adff2e575f4fe7569eaffd1b28509b6fd",
+        "ok": true
+      }
+    }
+  },
+  "layer_plans": {
+    "pre_all_pre_entries": {
+      "full_grid_reason": null,
+      "pre_entries": 1,
+      "pairs": [
+        [
+          "allenai/OLMo-2-1124-7B-SFT",
+          "allenai/OLMo-2-1124-7B-DPO"
+        ]
+      ]
+    },
+    "pre_this_pair": {
+      "record": "results/phase2/extract__allenai__OLMo-2-1124-7B-SFT__p2sub@1de02c017511__rest.json",
+      "full_grid_reason": null,
+      "entries": 1
+    },
+    "post_rest": {
+      "record": "results/phase2/extract__allenai__OLMo-2-1124-7B-DPO__p2sub@e34ea60adff2__rest.json",
+      "full_grid_reason": null,
+      "entries": 1
+    }
+  },
+  "v1_keyed_caches": {
+    "rule": "D-320 (4)",
+    "split_files": {
+      "pre/p2wg/probe_train/usermean": {
+        "file": "data/frozen_p2/p2wg__probe_train.jsonl",
+        "sha256": "ef4c947f0b5e415cabb4100a9b9cb2d5656c583e6d8cd953d15201ca2264f9c6"
+      },
+      "pre/p2wg/calibration/usermean": {
+        "file": "data/frozen_p2/p2wg__calibration.jsonl",
+        "sha256": "6667eec613ba561b02ee6c04d79325508fd3cde6ece9654974fe5358721b7417"
+      },
+      "pre/p2sub/p2wg/eval/usermean": {
+        "file": "data/frozen_p2/p2wg__eval.jsonl",
+        "sha256": "59719eaae7b7e2239ac2b66594e600d2f7019346f2b2c2c10fc11727f0a1e814"
+      },
+      "pre/p2sub/p2wg/pool4d/usermean": {
+        "file": "data/frozen_p2/p2wg__pool4d.jsonl",
+        "sha256": "5950473f591fd329a4c999236639680b83107acf7f8de1dc48d8aee86d28682f"
+      },
+      "post/p2sub/p2wg/eval/usermean": {
+        "file": "data/frozen_p2/p2wg__eval.jsonl",
+        "sha256": "59719eaae7b7e2239ac2b66594e600d2f7019346f2b2c2c10fc11727f0a1e814"
+      },
+      "post/p2sub/p2wg/pool4d/usermean": {
+        "file": "data/frozen_p2/p2wg__pool4d.jsonl",
+        "sha256": "5950473f591fd329a4c999236639680b83107acf7f8de1dc48d8aee86d28682f"
+      },
+      "post/p2wg/calibration/usermean": {
+        "file": "data/frozen_p2/p2wg__calibration.jsonl",
+        "sha256": "6667eec613ba561b02ee6c04d79325508fd3cde6ece9654974fe5358721b7417"
+      }
+    }
+  },
+  "split_files": {
+    "v2/calibration": {
+      "file": "data/frozen_p2_v2/p2wg_v2__calibration.jsonl",
+      "sha256": "98bc80c966349bc5e03c5cdeab97d035d40447b34c5337d72e2f9062841393e5"
+    },
+    "v2/eval": {
+      "file": "data/frozen_p2_v2/p2wg_v2__eval.jsonl",
+      "sha256": "e0fcf8a30de263e502d191c7df87e11d330362602670247bc7de8620cdd17a4c"
+    }
+  },
+  "v2_gather": {
+    "per_side_at_every_layer": {
+      "pre": {
+        "calibration": {
+          "calibration": 2367,
+          "eval": 2335,
+          "pool4d": 298
+        },
+        "eval_negatives": {
+          "calibration": 2806,
+          "eval": 2830,
+          "pool4d": 364
+        },
+        "eval_positives": {
+          "calibration": 0,
+          "eval": 4000,
+          "pool4d": 0
+        }
+      },
+      "post": {
+        "calibration": {
+          "calibration": 2367,
+          "eval": 2335,
+          "pool4d": 298
+        },
+        "eval_negatives": {
+          "calibration": 2806,
+          "eval": 2830,
+          "pool4d": 364
+        },
+        "eval_positives": {
+          "calibration": 0,
+          "eval": 4000,
+          "pool4d": 0
+        }
+      }
+    },
+    "expected_from_the_v2_plan": {
+      "calibration": {
+        "calibration": 2367,
+        "eval": 2335,
+        "pool4d": 298
+      },
+      "eval_negatives": {
+        "calibration": 2806,
+        "eval": 2830,
+        "pool4d": 364
+      },
+      "eval_positives": {
+        "calibration": 0,
+        "eval": 4000,
+        "pool4d": 0
+      }
+    }
+  },
+  "cache_presence": {
+    "pre/p2wg/probe_train/usermean": {
+      "file": "allenai__OLMo-2-1124-7B-SFT__p2tpl@1de02c017511__p2wg__probe_train__usermean.npz",
+      "side": "pre",
+      "v1_split": "probe_train",
+      "present": true,
+      "layers_lacking": [],
+      "supplies": {
+        "probe_fit_rows": "the probes' D-117 fit rows (pre side only)"
+      }
+    },
+    "pre/p2wg/calibration/usermean": {
+      "file": "allenai__OLMo-2-1124-7B-SFT__p2tpl@1de02c017511__p2wg__calibration__usermean.npz",
+      "side": "pre",
+      "v1_split": "calibration",
+      "present": true,
+      "layers_lacking": [],
+      "supplies": {
+        "v2_calibration": 2367,
+        "v2_eval_negatives": 2806,
+        "v2_eval_positives": 0
+      }
+    },
+    "post/p2wg/calibration/usermean": {
+      "file": "allenai__OLMo-2-1124-7B-DPO__p2tpl@e34ea60adff2__p2wg__calibration__usermean.npz",
+      "side": "post",
+      "v1_split": "calibration",
+      "present": true,
+      "layers_lacking": [],
+      "supplies": {
+        "v2_calibration": 2367,
+        "v2_eval_negatives": 2806,
+        "v2_eval_positives": 0
+      }
+    },
+    "pre/p2sub/p2wg/eval/usermean": {
+      "file": "allenai__OLMo-2-1124-7B-SFT__p2sub@1de02c017511__p2wg__eval__usermean.npz",
+      "side": "pre",
+      "v1_split": "eval",
+      "present": true,
+      "layers_lacking": [],
+      "supplies": {
+        "v2_calibration": 2335,
+        "v2_eval_negatives": 2830,
+        "v2_eval_positives": 4000
+      }
+    },
+    "pre/p2sub/p2wg/pool4d/usermean": {
+      "file": "allenai__OLMo-2-1124-7B-SFT__p2sub@1de02c017511__p2wg__pool4d__usermean.npz",
+      "side": "pre",
+      "v1_split": "pool4d",
+      "present": true,
+      "layers_lacking": [],
+      "supplies": {
+        "v2_calibration": 298,
+        "v2_eval_negatives": 364,
+        "v2_eval_positives": 0
+      }
+    },
+    "post/p2sub/p2wg/eval/usermean": {
+      "file": "allenai__OLMo-2-1124-7B-DPO__p2sub@e34ea60adff2__p2wg__eval__usermean.npz",
+      "side": "post",
+      "v1_split": "eval",
+      "present": true,
+      "layers_lacking": [],
+      "supplies": {
+        "v2_calibration": 2335,
+        "v2_eval_negatives": 2830,
+        "v2_eval_positives": 4000
+      }
+    },
+    "post/p2sub/p2wg/pool4d/usermean": {
+      "file": "allenai__OLMo-2-1124-7B-DPO__p2sub@e34ea60adff2__p2wg__pool4d__usermean.npz",
+      "side": "post",
+      "v1_split": "pool4d",
+      "present": true,
+      "layers_lacking": [],
+      "supplies": {
+        "v2_calibration": 298,
+        "v2_eval_negatives": 364,
+        "v2_eval_positives": 0
+      }
+    }
+  },
+  "missing": [],
+  "post_eval_positives_present": {
+    "0": true,
+    "6": true,
+    "12": true,
+    "16": true,
+    "20": true,
+    "26": true,
+    "32": true
+  },
+  "inputs": {
+    "results/phase2/extract__allenai__OLMo-2-1124-7B-SFT__p2tpl@1de02c017511__select.json": "6508006f16e2c66f465d657672d51acb7cf50aa830d2fabd5025f0f7031a5fff",
+    "results/phase2/selection_p2__allenai__OLMo-2-1124-7B-SFT@1de02c017511__usermean.json": "b9adabf6157d399b84acd1cfc524d3f015d04886eb7fc264b52dd047fca193b3",
+    "results/phase2/dataset_manifest_p2_v2.json": "48594df0622e614327d3d9f564b05ce83d0cb64dd82a2adf19f526e3d930266d",
+    "results/phase2/extract__allenai__OLMo-2-1124-7B-SFT__p2sub@1de02c017511__rest.json": "e26c43f62f69cfcd35ace6839bec403a0fad0493d4c230c8557420979abbf76b",
+    "results/phase2/extract__allenai__OLMo-2-1124-7B-SFT__p2tpl@1de02c017511__rest.json": "24c87947517d57ae07d3d42677a72048aa166e906fc834b0f241d295087cef61",
+    "results/phase2/extract__allenai__OLMo-2-1124-7B-DPO__p2tpl@e34ea60adff2__select.json": "ccb30db8b3d15d528c4ed79bb24f3184a1cc24442b2cc796975b733bd69b76af",
+    "results/phase2/bos_check_p2.json": "4aa34e43484e892be7c76e3cf367b84f95646abb0a3888f301af3200fa17b5cd",
+    "results/phase2/extract__allenai__OLMo-2-1124-7B-DPO__p2sub@e34ea60adff2__rest.json": "2921ab9d942efcde31b556eb0d06729d26f408d1992ab5db0dbb1e09f8782c87",
+    "results/phase2/extract__allenai__OLMo-2-1124-7B-DPO__p2tpl@e34ea60adff2__rest.json": "364427e24af69b87e44e8933bb965f1540521984d74b3d01ae74d6b86329f704",
+    "results/phase2/dataset_manifest_p2.json": "b51e8419ccbf035581d7f4960d422a7a1a9d46eca35b3c47cfe46e6507d1621e",
+    "manifests/phase2_pool_clusters.json": "6c206f5b6e0d3d9a2f071eb7255b5ffe54b45ccad10a8f0119f58938a5282d57",
+    "results/twomoment_p2_d361_olmo2_sft_dpo_usermean.json": "34d74d82ca32b5b0770df0aa94b3c62063c09d2c32614a2f0cb629ffed364d8e",
+    "results/twomoment_p2_d361_anchor_repair_WG_mistral_base2instruct.json": "6b861e289c3e1544a658a40da19db8d53c6c26439532256947eb1ee31fe4a18f"
+  },
+  "input_files_sha256": {
+    "data/frozen_p2_v2/p2wg_v2__calibration.jsonl": "98bc80c966349bc5e03c5cdeab97d035d40447b34c5337d72e2f9062841393e5",
+    "data/frozen_p2_v2/p2wg_v2__eval.jsonl": "e0fcf8a30de263e502d191c7df87e11d330362602670247bc7de8620cdd17a4c",
+    "manifests/ingest_p2/extract__allenai__OLMo-2-1124-7B-SFT__p2tpl@1de02c017511__select.sha256": "956fd36438841258b50c54e7e1470b5cbd6f891249e3aa51fdb7464ea9df89c9",
+    "manifests/ingest_p2/extract__allenai__OLMo-2-1124-7B-SFT__p2sub@1de02c017511__rest.sha256": "a57bcf0ddd91519293d00eba8979fd83abf3f669d0657faad3074081aaeb7ffb",
+    "manifests/ingest_p2/extract__allenai__OLMo-2-1124-7B-DPO__p2sub@e34ea60adff2__rest.sha256": "f9a8495b6e855579243d4f07a0baffff99a25deb460bb8803f28e0becb276ae5",
+    "manifests/ingest_p2/extract__allenai__OLMo-2-1124-7B-DPO__p2tpl@e34ea60adff2__select.sha256": "106758148276c49674001e592aca5a19165caafc37249c8b80cceb44cf089170",
+    "results/phase2/extract__allenai__OLMo-2-1124-7B-SFT__p2tpl@1de02c017511__select.json": "6508006f16e2c66f465d657672d51acb7cf50aa830d2fabd5025f0f7031a5fff",
+    "results/phase2/selection_p2__allenai__OLMo-2-1124-7B-SFT@1de02c017511__usermean.json": "b9adabf6157d399b84acd1cfc524d3f015d04886eb7fc264b52dd047fca193b3",
+    "results/phase2/dataset_manifest_p2_v2.json": "48594df0622e614327d3d9f564b05ce83d0cb64dd82a2adf19f526e3d930266d",
+    "results/phase2/extract__allenai__OLMo-2-1124-7B-SFT__p2sub@1de02c017511__rest.json": "e26c43f62f69cfcd35ace6839bec403a0fad0493d4c230c8557420979abbf76b",
+    "results/phase2/extract__allenai__OLMo-2-1124-7B-SFT__p2tpl@1de02c017511__rest.json": "24c87947517d57ae07d3d42677a72048aa166e906fc834b0f241d295087cef61",
+    "results/phase2/extract__allenai__OLMo-2-1124-7B-DPO__p2tpl@e34ea60adff2__select.json": "ccb30db8b3d15d528c4ed79bb24f3184a1cc24442b2cc796975b733bd69b76af",
+    "results/phase2/bos_check_p2.json": "4aa34e43484e892be7c76e3cf367b84f95646abb0a3888f301af3200fa17b5cd",
+    "results/phase2/extract__allenai__OLMo-2-1124-7B-DPO__p2sub@e34ea60adff2__rest.json": "2921ab9d942efcde31b556eb0d06729d26f408d1992ab5db0dbb1e09f8782c87",
+    "results/phase2/extract__allenai__OLMo-2-1124-7B-DPO__p2tpl@e34ea60adff2__rest.json": "364427e24af69b87e44e8933bb965f1540521984d74b3d01ae74d6b86329f704",
+    "results/phase2/dataset_manifest_p2.json": "b51e8419ccbf035581d7f4960d422a7a1a9d46eca35b3c47cfe46e6507d1621e",
+    "manifests/phase2_pool_clusters.json": "6c206f5b6e0d3d9a2f071eb7255b5ffe54b45ccad10a8f0119f58938a5282d57",
+    "results/twomoment_p2_d361_olmo2_sft_dpo_usermean.json": "34d74d82ca32b5b0770df0aa94b3c62063c09d2c32614a2f0cb629ffed364d8e",
+    "results/twomoment_p2_d361_anchor_repair_WG_mistral_base2instruct.json": "6b861e289c3e1544a658a40da19db8d53c6c26439532256947eb1ee31fe4a18f"
+  },
+  "ingest_indexes_sha256": {
+    "at_read": {
+      "manifests/ingest_p2/extract__allenai__OLMo-2-1124-7B-SFT__p2tpl@1de02c017511__select.sha256": "956fd36438841258b50c54e7e1470b5cbd6f891249e3aa51fdb7464ea9df89c9",
+      "manifests/ingest_p2/extract__allenai__OLMo-2-1124-7B-SFT__p2sub@1de02c017511__rest.sha256": "a57bcf0ddd91519293d00eba8979fd83abf3f669d0657faad3074081aaeb7ffb",
+      "manifests/ingest_p2/extract__allenai__OLMo-2-1124-7B-DPO__p2sub@e34ea60adff2__rest.sha256": "f9a8495b6e855579243d4f07a0baffff99a25deb460bb8803f28e0becb276ae5",
+      "manifests/ingest_p2/extract__allenai__OLMo-2-1124-7B-DPO__p2tpl@e34ea60adff2__select.sha256": "106758148276c49674001e592aca5a19165caafc37249c8b80cceb44cf089170"
+    },
+    "unchanged_at_end": true
+  },
+  "input_cache_sha256": {
+    "pre/p2wg/probe_train/usermean": "98987f883f52a735e2cccf33a22d7273b41d58aae8c6a2f865daac0761d3914e",
+    "pre/p2wg/calibration/usermean": "ea6495a551b0998823a59f1efe8a076f873db4f7e7f18e7246150bda443e7571",
+    "post/p2wg/calibration/usermean": "54193b3fcd8233779cab1bf72befde57f061a25122ccdec519c13f16dd383cf3",
+    "pre/p2sub/p2wg/eval/usermean": "42071bddb4626d816e32ad15aa962cc81b27c01a657213a0d0e80df74ed5453f",
+    "pre/p2sub/p2wg/pool4d/usermean": "37428aaa9a517f5f5292b94f9ef95cafdb65874bf850c6ddbf91855942dbb3e4",
+    "post/p2sub/p2wg/eval/usermean": "434c254837722ba78d71f65423da979f30dbbf1735b2b609baa233f097630971",
+    "post/p2sub/p2wg/pool4d/usermean": "e83ee470da8d2ef545605bd1067924e12c67c315662cbbcd2071eed8b3ca0a36"
+  },
+  "input_cache_source": {
+    "pre/p2wg/probe_train/usermean": "data/hidden/allenai__OLMo-2-1124-7B-SFT__p2tpl@1de02c017511__p2wg__probe_train__usermean.npz (expected bytes from results/phase2/extract__allenai__OLMo-2-1124-7B-SFT__p2tpl@1de02c017511__select.json)",
+    "pre/p2wg/calibration/usermean": "data/hidden/allenai__OLMo-2-1124-7B-SFT__p2tpl@1de02c017511__p2wg__calibration__usermean.npz (expected bytes from results/phase2/extract__allenai__OLMo-2-1124-7B-SFT__p2tpl@1de02c017511__select.json)",
+    "post/p2wg/calibration/usermean": "data/hidden/allenai__OLMo-2-1124-7B-DPO__p2tpl@e34ea60adff2__p2wg__calibration__usermean.npz (expected bytes from results/phase2/extract__allenai__OLMo-2-1124-7B-DPO__p2tpl@e34ea60adff2__select.json)",
+    "pre/p2sub/p2wg/eval/usermean": "data/hidden/allenai__OLMo-2-1124-7B-SFT__p2sub@1de02c017511__p2wg__eval__usermean.npz (expected bytes from results/phase2/extract__allenai__OLMo-2-1124-7B-SFT__p2sub@1de02c017511__rest.json)",
+    "pre/p2sub/p2wg/pool4d/usermean": "data/hidden/allenai__OLMo-2-1124-7B-SFT__p2sub@1de02c017511__p2wg__pool4d__usermean.npz (expected bytes from results/phase2/extract__allenai__OLMo-2-1124-7B-SFT__p2sub@1de02c017511__rest.json)",
+    "post/p2sub/p2wg/eval/usermean": "data/hidden/allenai__OLMo-2-1124-7B-DPO__p2sub@e34ea60adff2__p2wg__eval__usermean.npz (expected bytes from results/phase2/extract__allenai__OLMo-2-1124-7B-DPO__p2sub@e34ea60adff2__rest.json)",
+    "post/p2sub/p2wg/pool4d/usermean": "data/hidden/allenai__OLMo-2-1124-7B-DPO__p2sub@e34ea60adff2__p2wg__pool4d__usermean.npz (expected bytes from results/phase2/extract__allenai__OLMo-2-1124-7B-DPO__p2sub@e34ea60adff2__rest.json)"
+  },
+  "caches_rehashed_at_end": true,
+  "scores_npz": {
+    "file": "results/p2auroc_d424_olmo2_sft_dpo_scores.npz",
+    "sha256": "82015a784ee6cde406f411f62aa52e15755a80977c058f346bcba52bcbbce00c",
+    "size": 6065093,
+    "keys": "L<layer>|scores|<ev_pre|pos_pre|ev_post|pos_post>: (n, 5) float64 scores of the v2 frozen evaluation split's negatives and positives, pre and post, one column per seed; L<layer>|auroc|<pre|frozen|change>: (1 + B,) float64, column 0 the seed-mean point, then the B item-bootstrap replicates of the seed mean; cell_layer: the layers in the order of 'cells'"
+  },
+  "population_group": {
+    "declared_in": null,
+    "note": "(j) POPULATION GROUP: none until the pull (src/populations.py validate() needs every declared file on disk; REFSIZE_D382's and REALIGN's precedent, D-411 (4))."
+  },
+  "cells": [
+    {
+      "pair": "olmo2_sft_dpo",
+      "layer": 0,
+      "grid_position": "grid6[0]",
+      "is_selected_layer": false,
+      "probe_set": "selected",
+      "probe_C": 0.001,
+      "filled": true,
+      "n_eval_negatives": 6000,
+      "n_eval_positives": 4000,
+      "auroc": {
+        "note": "the v2 frozen evaluation split (its negatives against its positives), per seed and the mean over the seeds: 'pre' = the pre model's activations scored by the pre probe; 'frozen' = the POST model's activations of the same items scored by the SAME pre probe (the post AUROC); 'change' = frozen - pre per seed (D-419 (3)'s dAUROC; depth_d156's drop_frozen with the sign reversed). 95% interval of the seed mean by the D-152 P5 item bootstrap (B = 5000, eval negatives and positives resampled separately, all seeds recomputed per resample, the same resamples for pre and frozen and at every layer, so the change's interval is paired); per-seed intervals beside; not re-partitioned (D-156)",
+        "depth_d156_note": "frozen eval split; 95% interval by the D-152 P5 item bootstrap (B = 5000, eval negatives and positives resampled separately, all seeds recomputed per resample); not re-partitioned (D-156 keeps the item bootstrap for threshold-free quantities)",
+        "pre": {
+          "mean_over_seeds": 0.8971611333333334,
+          "per_seed": [
+            0.8990870833333333,
+            0.89546625,
+            0.8976562083333334,
+            0.8986213333333334,
+            0.8949747916666667
+          ],
+          "range_over_seeds": [
+            0.8949747916666667,
+            0.8990870833333333
+          ],
+          "ci95": [
+            0.8910891410416666,
+            0.9031983616666667
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.8928993833333333,
+              0.9050298718750001
+            ],
+            [
+              0.88921401875,
+              0.9017242572916666
+            ],
+            [
+              0.891450459375,
+              0.9037331718749999
+            ],
+            [
+              0.892517653125,
+              0.9048123625
+            ],
+            [
+              0.8888084354166667,
+              0.9012540114583334
+            ]
+          ]
+        },
+        "frozen": {
+          "mean_over_seeds": 0.8971612583333334,
+          "per_seed": [
+            0.8990859166666667,
+            0.8954675416666666,
+            0.8976567083333333,
+            0.8986207083333333,
+            0.8949754166666667
+          ],
+          "range_over_seeds": [
+            0.8949754166666667,
+            0.8990859166666667
+          ],
+          "ci95": [
+            0.8910878302083334,
+            0.9031993652083333
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.8928971260416666,
+              0.9050267854166667
+            ],
+            [
+              0.889215653125,
+              0.9017272666666667
+            ],
+            [
+              0.8914505302083333,
+              0.9037323447916666
+            ],
+            [
+              0.8925158166666667,
+              0.9048095375
+            ],
+            [
+              0.8888067177083333,
+              0.9012551239583333
+            ]
+          ]
+        },
+        "change": {
+          "mean_over_seeds": 1.2499999997306331e-07,
+          "per_seed": [
+            -1.1666666666076964e-06,
+            1.2916666666251686e-06,
+            4.999999999588667e-07,
+            -6.250000000873612e-07,
+            6.249999999763389e-07
+          ],
+          "range_over_seeds": [
+            -1.1666666666076964e-06,
+            1.2916666666251686e-06
+          ],
+          "ci95": [
+            -1.883333333174697e-06,
+            2.075208333265907e-06
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              -4.66666666665283e-06,
+              2.333333333326415e-06
+            ],
+            [
+              -2.124999999966737e-06,
+              4.708333333436343e-06
+            ],
+            [
+              -3.124999999992717e-06,
+              4.083333333240735e-06
+            ],
+            [
+              -4.416666666620661e-06,
+              3.124999999992717e-06
+            ],
+            [
+              -3.29166666668268e-06,
+              4.500000000073889e-06
+            ]
+          ]
+        }
+      },
+      "duan_flags": {
+        "defined": true,
+        "big_drop": false,
+        "operational_failure": false,
+        "eligible": true,
+        "criteria": {
+          "big_drop": -0.05,
+          "operational": 0.7,
+          "eligible": 0.75
+        },
+        "beside_change_ci95_wholly_at_or_below_big_drop": false,
+        "beside_change_ci95_wholly_above_big_drop": true
+      },
+      "beside_d156_at_1pct": {
+        "source": "this job's realised D-156 report at 1% over D-361's draws, equal to the pair's D-361 record (the anchor)",
+        "delta_tpr": {
+          "mean": 1.4399999999999413e-05,
+          "band95": [
+            -5.000000000000559e-05,
+            0.00010000000000000009
+          ],
+          "frozen": 9.999999999998899e-05,
+          "frozen_percentile": 92.45,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 4.375562311925818e-05
+        },
+        "tpr_pre": {
+          "mean": 0.34935475,
+          "band95": [
+            0.32634874999999997,
+            0.37015875000000004
+          ],
+          "frozen": 0.34354999999999997,
+          "frozen_percentile": 28.7,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.011342932030323756
+        },
+        "tpr_post": {
+          "mean": 0.34936915,
+          "band95": [
+            0.32639874999999996,
+            0.37016000000000004
+          ],
+          "frozen": 0.34364999999999996,
+          "frozen_percentile": 29.15,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.011343759591033266
+        },
+        "paired_ratio": {
+          "mean": 1.0000794161415067,
+          "band95": [
+            0.9999382716049383,
+            1.0032258064516129
+          ],
+          "frozen": 1.0,
+          "frozen_percentile": 48.7,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.0008214948847210742
+        },
+        "ratio_to_target": {
+          "mean": 0.99203,
+          "band95": [
+            0.6866666666666666,
+            1.34
+          ],
+          "frozen": 0.8933333333333333,
+          "frozen_percentile": 29.75,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.1741044460224708
+        }
+      },
+      "scores_sha256": {
+        "ev_pre": "c49f2f2e0bb0881dd7d3131a9993202aa6d8ad9c9b3b4be3a657e50c21f96c31",
+        "pos_pre": "f1bc78f9a90d072ae25e8ce0c1d1797950cc156ce72ad8e337d87a5408ca65b9",
+        "ev_post": "6fb94a4b9d87dd5d89f0a371bbe33b750055663edd117a78ac11bf60870d022b",
+        "pos_post": "57e9ef536f2b1d4a0664b6f8d4b44e41dff4fd7356063493f1f8a86642003c44"
+      },
+      "missing": [],
+      "probe_fit_diagnostics": [
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 26,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.0020863995112626248,
+          "grad_max_abs": 0.0001188147988614198,
+          "w_norm": 0.6897798805596774
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 27,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.0024207494553409427,
+          "grad_max_abs": 0.00013884779914068862,
+          "w_norm": 0.6870365217181167
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 26,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.004631631478352501,
+          "grad_max_abs": 0.00023214433353353943,
+          "w_norm": 0.6865168666084002
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 26,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.0021155124917662184,
+          "grad_max_abs": 0.00011481060736861191,
+          "w_norm": 0.6868762093477409
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 26,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.002722728437791806,
+          "grad_max_abs": 0.000165593615560497,
+          "w_norm": 0.695385955787433
+        }
+      ]
+    },
+    {
+      "pair": "olmo2_sft_dpo",
+      "layer": 6,
+      "grid_position": "grid6[1]",
+      "is_selected_layer": false,
+      "probe_set": "selected",
+      "probe_C": 0.001,
+      "filled": true,
+      "n_eval_negatives": 6000,
+      "n_eval_positives": 4000,
+      "auroc": {
+        "note": "the v2 frozen evaluation split (its negatives against its positives), per seed and the mean over the seeds: 'pre' = the pre model's activations scored by the pre probe; 'frozen' = the POST model's activations of the same items scored by the SAME pre probe (the post AUROC); 'change' = frozen - pre per seed (D-419 (3)'s dAUROC; depth_d156's drop_frozen with the sign reversed). 95% interval of the seed mean by the D-152 P5 item bootstrap (B = 5000, eval negatives and positives resampled separately, all seeds recomputed per resample, the same resamples for pre and frozen and at every layer, so the change's interval is paired); per-seed intervals beside; not re-partitioned (D-156)",
+        "depth_d156_note": "frozen eval split; 95% interval by the D-152 P5 item bootstrap (B = 5000, eval negatives and positives resampled separately, all seeds recomputed per resample); not re-partitioned (D-156 keeps the item bootstrap for threshold-free quantities)",
+        "pre": {
+          "mean_over_seeds": 0.9523934333333333,
+          "per_seed": [
+            0.9532027916666667,
+            0.953185875,
+            0.950961625,
+            0.9525513333333333,
+            0.9520655416666667
+          ],
+          "range_over_seeds": [
+            0.950961625,
+            0.9532027916666667
+          ],
+          "ci95": [
+            0.9486165781249999,
+            0.9560371445833334
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.9493256354166667,
+              0.9568140447916667
+            ],
+            [
+              0.9493997145833334,
+              0.9567833489583333
+            ],
+            [
+              0.9470859875,
+              0.9546907760416666
+            ],
+            [
+              0.94873070625,
+              0.9562533375
+            ],
+            [
+              0.9482120802083333,
+              0.9558065645833334
+            ]
+          ]
+        },
+        "frozen": {
+          "mean_over_seeds": 0.9522606166666667,
+          "per_seed": [
+            0.95304325,
+            0.9530926666666667,
+            0.9508110416666666,
+            0.9524107916666666,
+            0.9519453333333333
+          ],
+          "range_over_seeds": [
+            0.9508110416666666,
+            0.9530926666666667
+          ],
+          "ci95": [
+            0.9484571391666667,
+            0.9559211583333334
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.9491632281250001,
+              0.9566463968750001
+            ],
+            [
+              0.9493028572916667,
+              0.95667771875
+            ],
+            [
+              0.946929853125,
+              0.9545642854166666
+            ],
+            [
+              0.9485736260416666,
+              0.9561391802083333
+            ],
+            [
+              0.9480896604166666,
+              0.9557208416666667
+            ]
+          ]
+        },
+        "change": {
+          "mean_over_seeds": -0.00013281666666666858,
+          "per_seed": [
+            -0.0001595416666666516,
+            -9.320833333326117e-05,
+            -0.00015058333333339835,
+            -0.00014054166666666035,
+            -0.00012020833333337144
+          ],
+          "range_over_seeds": [
+            -0.0001595416666666516,
+            -9.320833333326117e-05
+          ],
+          "ci95": [
+            -0.00021317749999995306,
+            -5.330729166672378e-05
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              -0.00024362604166674461,
+              -7.945729166667083e-05
+            ],
+            [
+              -0.00017442083333339686,
+              -1.3164583333286104e-05
+            ],
+            [
+              -0.00024366874999997567,
+              -6.291562500002347e-05
+            ],
+            [
+              -0.0002297135416666901,
+              -5.0122916666678374e-05
+            ],
+            [
+              -0.00020651666666666457,
+              -3.3996874999978104e-05
+            ]
+          ]
+        }
+      },
+      "duan_flags": {
+        "defined": true,
+        "big_drop": false,
+        "operational_failure": false,
+        "eligible": true,
+        "criteria": {
+          "big_drop": -0.05,
+          "operational": 0.7,
+          "eligible": 0.75
+        },
+        "beside_change_ci95_wholly_at_or_below_big_drop": false,
+        "beside_change_ci95_wholly_above_big_drop": true
+      },
+      "beside_d156_at_1pct": {
+        "source": "this job's realised D-156 report at 1% over D-361's draws, equal to the pair's D-361 record (the anchor)",
+        "delta_tpr": {
+          "mean": 0.0008284500000000022,
+          "band95": [
+            -4.999999999999449e-05,
+            0.0016999999999999904
+          ],
+          "frozen": 0.0008499999999999952,
+          "frozen_percentile": 48.95,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.0004564278956460968
+        },
+        "tpr_pre": {
+          "mean": 0.5618531499999999,
+          "band95": [
+            0.5337900000000001,
+            0.58815
+          ],
+          "frozen": 0.54925,
+          "frozen_percentile": 19.75,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.01431861709009892
+        },
+        "tpr_post": {
+          "mean": 0.5626816000000001,
+          "band95": [
+            0.53339875,
+            0.5893062499999999
+          ],
+          "frozen": 0.5500999999999999,
+          "frozen_percentile": 19.55,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.014541931240526627
+        },
+        "paired_ratio": {
+          "mean": 1.0185604365363918,
+          "band95": [
+            0.9999767274382992,
+            1.0380874183767166
+          ],
+          "frozen": 1.0085034013605443,
+          "frozen_percentile": 16.3,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.00989040171237428
+        },
+        "ratio_to_target": {
+          "mean": 1.0172266666666667,
+          "band95": [
+            0.6799166666666667,
+            1.4000833333333333
+          ],
+          "frozen": 0.8466666666666667,
+          "frozen_percentile": 18.85,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.1881595108215998
+        }
+      },
+      "scores_sha256": {
+        "ev_pre": "ec9ee1c7c1128e244c80d63c3b56d0d14ed35ef88a40dc45197aa831ef3f1076",
+        "pos_pre": "f054b205fedd5af35e73311b7d069bcba69e4d512bd0922ba9a1496bce4a7163",
+        "ev_post": "4b670bb76aeb1a1e0a8627ac7cfabd9aff5c3b02ffddc0f73e4ae960c57e158f",
+        "pos_post": "a5714b43bafc5f52aec22ec419c77fd556f1b5533c0ccea6ddddebc0ec56203b"
+      },
+      "missing": [],
+      "probe_fit_diagnostics": [
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 27,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.005444059742810222,
+          "grad_max_abs": 0.00030706034649617426,
+          "w_norm": 0.6586158271714049
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 28,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.0055903162486669366,
+          "grad_max_abs": 0.0002971883960506006,
+          "w_norm": 0.6629709992658673
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 31,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.00274918868055595,
+          "grad_max_abs": 0.0001580601733916706,
+          "w_norm": 0.6583154729718824
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 27,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.005262358835799997,
+          "grad_max_abs": 0.0002833525865214648,
+          "w_norm": 0.6582423560827559
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 30,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.00611442045971107,
+          "grad_max_abs": 0.00031816832787854676,
+          "w_norm": 0.6610700189239833
+        }
+      ]
+    },
+    {
+      "pair": "olmo2_sft_dpo",
+      "layer": 12,
+      "grid_position": "grid6[2]",
+      "is_selected_layer": false,
+      "probe_set": "selected",
+      "probe_C": 0.001,
+      "filled": true,
+      "n_eval_negatives": 6000,
+      "n_eval_positives": 4000,
+      "auroc": {
+        "note": "the v2 frozen evaluation split (its negatives against its positives), per seed and the mean over the seeds: 'pre' = the pre model's activations scored by the pre probe; 'frozen' = the POST model's activations of the same items scored by the SAME pre probe (the post AUROC); 'change' = frozen - pre per seed (D-419 (3)'s dAUROC; depth_d156's drop_frozen with the sign reversed). 95% interval of the seed mean by the D-152 P5 item bootstrap (B = 5000, eval negatives and positives resampled separately, all seeds recomputed per resample, the same resamples for pre and frozen and at every layer, so the change's interval is paired); per-seed intervals beside; not re-partitioned (D-156)",
+        "depth_d156_note": "frozen eval split; 95% interval by the D-152 P5 item bootstrap (B = 5000, eval negatives and positives resampled separately, all seeds recomputed per resample); not re-partitioned (D-156 keeps the item bootstrap for threshold-free quantities)",
+        "pre": {
+          "mean_over_seeds": 0.9826177666666667,
+          "per_seed": [
+            0.9827129583333334,
+            0.983026875,
+            0.9821736666666666,
+            0.9828583333333333,
+            0.982317
+          ],
+          "range_over_seeds": [
+            0.9821736666666666,
+            0.983026875
+          ],
+          "ci95": [
+            0.9804984289583335,
+            0.9846597260416666
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.9805324,
+              0.9847649760416667
+            ],
+            [
+              0.98097809375,
+              0.9850506989583333
+            ],
+            [
+              0.9799799802083333,
+              0.9842722260416666
+            ],
+            [
+              0.9806871947916667,
+              0.9849146041666667
+            ],
+            [
+              0.980133796875,
+              0.98440581875
+            ]
+          ]
+        },
+        "frozen": {
+          "mean_over_seeds": 0.98284325,
+          "per_seed": [
+            0.9829465833333333,
+            0.9832379583333334,
+            0.98242625,
+            0.9830683333333333,
+            0.982537125
+          ],
+          "range_over_seeds": [
+            0.98242625,
+            0.9832379583333334
+          ],
+          "ci95": [
+            0.9807387654166667,
+            0.9848582468749999
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.9808000697916667,
+              0.984963215625
+            ],
+            [
+              0.9811884322916667,
+              0.9852304020833333
+            ],
+            [
+              0.9802708322916667,
+              0.9844982375
+            ],
+            [
+              0.98091239375,
+              0.98509004375
+            ],
+            [
+              0.9803609666666666,
+              0.9846009552083334
+            ]
+          ]
+        },
+        "change": {
+          "mean_over_seeds": 0.00022548333333334282,
+          "per_seed": [
+            0.00023362499999990405,
+            0.00021108333333341722,
+            0.0002525833333333338,
+            0.00021000000000004349,
+            0.00022012500000001545
+          ],
+          "range_over_seeds": [
+            0.00021000000000004349,
+            0.0002525833333333338
+          ],
+          "ci95": [
+            0.00011777312499977599,
+            0.0003358283333331824
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.00012116562500005812,
+              0.0003493843749999863
+            ],
+            [
+              0.00010504166666669423,
+              0.0003196666666666098
+            ],
+            [
+              0.00014165729166670528,
+              0.0003688374999999327
+            ],
+            [
+              9.58281250000692e-05,
+              0.00032559062499999116
+            ],
+            [
+              0.00010904166666669546,
+              0.0003330500000000318
+            ]
+          ]
+        }
+      },
+      "duan_flags": {
+        "defined": true,
+        "big_drop": false,
+        "operational_failure": false,
+        "eligible": true,
+        "criteria": {
+          "big_drop": -0.05,
+          "operational": 0.7,
+          "eligible": 0.75
+        },
+        "beside_change_ci95_wholly_at_or_below_big_drop": false,
+        "beside_change_ci95_wholly_above_big_drop": true
+      },
+      "beside_d156_at_1pct": {
+        "source": "this job's realised D-156 report at 1% over D-361's draws, equal to the pair's D-361 record (the anchor)",
+        "delta_tpr": {
+          "mean": 0.006187649999999998,
+          "band95": [
+            0.004249999999999999,
+            0.007550000000000012
+          ],
+          "frozen": 0.006499999999999973,
+          "frozen_percentile": 60.9,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.000819418344878808
+        },
+        "tpr_pre": {
+          "mean": 0.7697896,
+          "band95": [
+            0.7489937500000001,
+            0.7942512500000001
+          ],
+          "frozen": 0.75415,
+          "frozen_percentile": 7.3,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.01103587796427826
+        },
+        "tpr_post": {
+          "mean": 0.7759772500000001,
+          "band95": [
+            0.75504625,
+            0.79811
+          ],
+          "frozen": 0.76065,
+          "frozen_percentile": 8.15,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.010750105101681428
+        },
+        "paired_ratio": {
+          "mean": 1.0234528130521063,
+          "band95": [
+            0.9904103361005944,
+            1.0648226653866917
+          ],
+          "frozen": 1.0434851006861954,
+          "frozen_percentile": 86.0,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.01886355316572678
+        },
+        "ratio_to_target": {
+          "mean": 1.0283033333333333,
+          "band95": [
+            0.7165833333333332,
+            1.4200000000000002
+          ],
+          "frozen": 0.7833333333333332,
+          "frozen_percentile": 7.0,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.17565695425085737
+        }
+      },
+      "scores_sha256": {
+        "ev_pre": "690b52d0ec5b2dc0f16eef93a2ef7314eefbc6c35c732fe351044e277bced27d",
+        "pos_pre": "a06129ace9d4e53360389bb25264e752a54703ead0abd25924c72af7ac0b42a5",
+        "ev_post": "00590bdb23f2e723c3b3a1b16be67c590761f4425ee4d45c16d0a0ac431d50aa",
+        "pos_post": "1df8bf494833005c654179a95584c3da0765ed86189d7023bd3c631c46208ddf"
+      },
+      "missing": [],
+      "probe_fit_diagnostics": [
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 32,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.004671860792933327,
+          "grad_max_abs": 0.00026885563114869074,
+          "w_norm": 0.6233941740116662
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 34,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.003757121182319818,
+          "grad_max_abs": 0.00022598090645371653,
+          "w_norm": 0.6285717168755472
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 35,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.004534982185581847,
+          "grad_max_abs": 0.0002694678153206242,
+          "w_norm": 0.6269623569837229
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 35,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.003324842410815708,
+          "grad_max_abs": 0.00025785198031616784,
+          "w_norm": 0.6256187368650488
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 34,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.004324831094512089,
+          "grad_max_abs": 0.0002407595220053644,
+          "w_norm": 0.6284978193488443
+        }
+      ]
+    },
+    {
+      "pair": "olmo2_sft_dpo",
+      "layer": 16,
+      "grid_position": "L*",
+      "is_selected_layer": true,
+      "probe_set": "selected",
+      "probe_C": 0.001,
+      "filled": true,
+      "n_eval_negatives": 6000,
+      "n_eval_positives": 4000,
+      "auroc": {
+        "note": "the v2 frozen evaluation split (its negatives against its positives), per seed and the mean over the seeds: 'pre' = the pre model's activations scored by the pre probe; 'frozen' = the POST model's activations of the same items scored by the SAME pre probe (the post AUROC); 'change' = frozen - pre per seed (D-419 (3)'s dAUROC; depth_d156's drop_frozen with the sign reversed). 95% interval of the seed mean by the D-152 P5 item bootstrap (B = 5000, eval negatives and positives resampled separately, all seeds recomputed per resample, the same resamples for pre and frozen and at every layer, so the change's interval is paired); per-seed intervals beside; not re-partitioned (D-156)",
+        "depth_d156_note": "frozen eval split; 95% interval by the D-152 P5 item bootstrap (B = 5000, eval negatives and positives resampled separately, all seeds recomputed per resample); not re-partitioned (D-156 keeps the item bootstrap for threshold-free quantities)",
+        "pre": {
+          "mean_over_seeds": 0.9860422416666665,
+          "per_seed": [
+            0.9859564166666667,
+            0.9862875416666667,
+            0.9858936666666667,
+            0.9863239583333333,
+            0.985749625
+          ],
+          "range_over_seeds": [
+            0.985749625,
+            0.9863239583333333
+          ],
+          "ci95": [
+            0.9841090275,
+            0.9878831552083335
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.9840170427083333,
+              0.98780259375
+            ],
+            [
+              0.9843872208333334,
+              0.988116528125
+            ],
+            [
+              0.9839331541666666,
+              0.9877698635416666
+            ],
+            [
+              0.984391603125,
+              0.988163246875
+            ],
+            [
+              0.9837904458333333,
+              0.9876300020833333
+            ]
+          ]
+        },
+        "frozen": {
+          "mean_over_seeds": 0.9863534666666667,
+          "per_seed": [
+            0.9862527916666667,
+            0.9865251666666667,
+            0.9862801666666666,
+            0.9865955833333333,
+            0.986113625
+          ],
+          "range_over_seeds": [
+            0.986113625,
+            0.9865955833333333
+          ],
+          "ci95": [
+            0.984443854375,
+            0.988169049375
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.9843400177083333,
+              0.9880795885416667
+            ],
+            [
+              0.9846415333333333,
+              0.9883319822916666
+            ],
+            [
+              0.984350803125,
+              0.9881144135416666
+            ],
+            [
+              0.984689621875,
+              0.988403134375
+            ],
+            [
+              0.984173803125,
+              0.9879775427083333
+            ]
+          ]
+        },
+        "change": {
+          "mean_over_seeds": 0.00031122500000000384,
+          "per_seed": [
+            0.0002963750000000154,
+            0.00023762500000001907,
+            0.0003864999999999563,
+            0.00027162499999999756,
+            0.00036400000000003097
+          ],
+          "range_over_seeds": [
+            0.00023762500000001907,
+            0.0003864999999999563
+          ],
+          "ci95": [
+            0.0001629279166667219,
+            0.0004635087499999718
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.0001421979166666726,
+              0.00045055312500002484
+            ],
+            [
+              8.670312500002053e-05,
+              0.0003898343749999783
+            ],
+            [
+              0.00023529062500002307,
+              0.0005417510416666743
+            ],
+            [
+              0.0001195822916667283,
+              0.0004271374999999742
+            ],
+            [
+              0.00021154062500003678,
+              0.0005214593750000551
+            ]
+          ]
+        }
+      },
+      "duan_flags": {
+        "defined": true,
+        "big_drop": false,
+        "operational_failure": false,
+        "eligible": true,
+        "criteria": {
+          "big_drop": -0.05,
+          "operational": 0.7,
+          "eligible": 0.75
+        },
+        "beside_change_ci95_wholly_at_or_below_big_drop": false,
+        "beside_change_ci95_wholly_above_big_drop": true
+      },
+      "beside_d156_at_1pct": {
+        "source": "this job's realised D-156 report at 1% over D-361's draws, equal to the pair's D-361 record (the anchor)",
+        "delta_tpr": {
+          "mean": 0.00787135,
+          "band95": [
+            0.006598749999999984,
+            0.009200000000000009
+          ],
+          "frozen": 0.007599999999999984,
+          "frozen_percentile": 33.55,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.0006777765550375447
+        },
+        "tpr_pre": {
+          "mean": 0.8289312999999999,
+          "band95": [
+            0.8100425,
+            0.8448512499999998
+          ],
+          "frozen": 0.8244,
+          "frozen_percentile": 27.55,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.008700822640683161
+        },
+        "tpr_post": {
+          "mean": 0.8368026500000001,
+          "band95": [
+            0.8189462500000001,
+            0.8514999999999999
+          ],
+          "frozen": 0.8320000000000001,
+          "frozen_percentile": 26.2,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.008226413517253842
+        },
+        "paired_ratio": {
+          "mean": 1.0503516969004671,
+          "band95": [
+            1.0016974127376568,
+            1.1002337033523952
+          ],
+          "frozen": 1.0806162843004947,
+          "frozen_percentile": 87.6,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.025302663314825884
+        },
+        "ratio_to_target": {
+          "mean": 1.0615066666666666,
+          "band95": [
+            0.7066666666666667,
+            1.4366666666666665
+          ],
+          "frozen": 0.9866666666666666,
+          "frozen_percentile": 33.9,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.18039137668446195
+        }
+      },
+      "scores_sha256": {
+        "ev_pre": "8305c965b1eb7e1458f1ddf922183da500f04232dc66ae719b4765aba8f33928",
+        "pos_pre": "ca95fe3e11167012a86877b9f6d5ff36e6120c0596f45fa59e9dc191b6aeabcb",
+        "ev_post": "b58f303b5fe73bdc638653fbf5d43576aedee08240bd1f69426e91d171d6ecec",
+        "pos_post": "46e144fb9c20c8186ed70a9b56a446cd161c17c961adbf8acaadd472a54fd839"
+      },
+      "missing": [],
+      "probe_fit_diagnostics": [
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 33,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.006251172969231855,
+          "grad_max_abs": 0.0003085440244062383,
+          "w_norm": 0.6167904765624708
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 33,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.005678459116800806,
+          "grad_max_abs": 0.0003021647107674004,
+          "w_norm": 0.6220527102518688
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 36,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.004483209501807383,
+          "grad_max_abs": 0.00029570694119415014,
+          "w_norm": 0.6180217337861064
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 36,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.0031909771730192415,
+          "grad_max_abs": 0.0002025305685399068,
+          "w_norm": 0.6209336770949884
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 34,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.004247308999585376,
+          "grad_max_abs": 0.00025669387643243867,
+          "w_norm": 0.6193887509681992
+        }
+      ]
+    },
+    {
+      "pair": "olmo2_sft_dpo",
+      "layer": 20,
+      "grid_position": "grid6[3]",
+      "is_selected_layer": false,
+      "probe_set": "selected",
+      "probe_C": 0.001,
+      "filled": true,
+      "n_eval_negatives": 6000,
+      "n_eval_positives": 4000,
+      "auroc": {
+        "note": "the v2 frozen evaluation split (its negatives against its positives), per seed and the mean over the seeds: 'pre' = the pre model's activations scored by the pre probe; 'frozen' = the POST model's activations of the same items scored by the SAME pre probe (the post AUROC); 'change' = frozen - pre per seed (D-419 (3)'s dAUROC; depth_d156's drop_frozen with the sign reversed). 95% interval of the seed mean by the D-152 P5 item bootstrap (B = 5000, eval negatives and positives resampled separately, all seeds recomputed per resample, the same resamples for pre and frozen and at every layer, so the change's interval is paired); per-seed intervals beside; not re-partitioned (D-156)",
+        "depth_d156_note": "frozen eval split; 95% interval by the D-152 P5 item bootstrap (B = 5000, eval negatives and positives resampled separately, all seeds recomputed per resample); not re-partitioned (D-156 keeps the item bootstrap for threshold-free quantities)",
+        "pre": {
+          "mean_over_seeds": 0.9832298083333335,
+          "per_seed": [
+            0.9831604583333333,
+            0.983427,
+            0.982668,
+            0.9838255833333334,
+            0.983068
+          ],
+          "range_over_seeds": [
+            0.982668,
+            0.9838255833333334
+          ],
+          "ci95": [
+            0.9810390235416667,
+            0.9852782745833334
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.9809159729166667,
+              0.985244671875
+            ],
+            [
+              0.9812738114583333,
+              0.9854849614583333
+            ],
+            [
+              0.9804189906249999,
+              0.9847829645833333
+            ],
+            [
+              0.9816584354166666,
+              0.9858699239583333
+            ],
+            [
+              0.98081161875,
+              0.9851425479166667
+            ]
+          ]
+        },
+        "frozen": {
+          "mean_over_seeds": 0.9835873916666668,
+          "per_seed": [
+            0.9835284583333334,
+            0.9836978333333334,
+            0.9830664583333333,
+            0.9841254166666666,
+            0.9835187916666667
+          ],
+          "range_over_seeds": [
+            0.9830664583333333,
+            0.9841254166666666
+          ],
+          "ci95": [
+            0.981403165625,
+            0.9856167360416667
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.9812853989583333,
+              0.9856142177083334
+            ],
+            [
+              0.9815611291666666,
+              0.9857303927083334
+            ],
+            [
+              0.9808273083333333,
+              0.9851724625
+            ],
+            [
+              0.98197449375,
+              0.9861414916666666
+            ],
+            [
+              0.981299609375,
+              0.9855845989583333
+            ]
+          ]
+        },
+        "change": {
+          "mean_over_seeds": 0.00035758333333331117,
+          "per_seed": [
+            0.00036800000000003497,
+            0.00027083333333333126,
+            0.00039845833333329583,
+            0.000299833333333277,
+            0.00045079166666661674
+          ],
+          "range_over_seeds": [
+            0.00027083333333333126,
+            0.00045079166666661674
+          ],
+          "ci95": [
+            0.00016952791666660638,
+            0.0005513210416666939
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.0001673239583332986,
+              0.0005731520833333944
+            ],
+            [
+              8.104062499989518e-05,
+              0.0004686739583333404
+            ],
+            [
+              0.00019661770833339365,
+              0.0006106395833333081
+            ],
+            [
+              0.00011441354166667194,
+              0.000490335416666704
+            ],
+            [
+              0.0002607072916666925,
+              0.0006492333333332625
+            ]
+          ]
+        }
+      },
+      "duan_flags": {
+        "defined": true,
+        "big_drop": false,
+        "operational_failure": false,
+        "eligible": true,
+        "criteria": {
+          "big_drop": -0.05,
+          "operational": 0.7,
+          "eligible": 0.75
+        },
+        "beside_change_ci95_wholly_at_or_below_big_drop": false,
+        "beside_change_ci95_wholly_above_big_drop": true
+      },
+      "beside_d156_at_1pct": {
+        "source": "this job's realised D-156 report at 1% over D-361's draws, equal to the pair's D-361 record (the anchor)",
+        "delta_tpr": {
+          "mean": -0.008235549999999998,
+          "band95": [
+            -0.009351250000000014,
+            -0.007300000000000039
+          ],
+          "frozen": -0.008150000000000036,
+          "frozen_percentile": 51.9,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.0005085836753719643
+        },
+        "tpr_pre": {
+          "mean": 0.7839377500000001,
+          "band95": [
+            0.763795,
+            0.8041512500000001
+          ],
+          "frozen": 0.7762499999999999,
+          "frozen_percentile": 21.95,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.010433373026505393
+        },
+        "tpr_post": {
+          "mean": 0.7757021999999999,
+          "band95": [
+            0.7559425,
+            0.79505
+          ],
+          "frozen": 0.7681,
+          "frozen_percentile": 21.55,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.010267181218336913
+        },
+        "paired_ratio": {
+          "mean": 0.8799695771591455,
+          "band95": [
+            0.8356870127228782,
+            0.927778179855869
+          ],
+          "frozen": 0.8912130185407495,
+          "frozen_percentile": 69.6,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.023229454694537757
+        },
+        "ratio_to_target": {
+          "mean": 0.8865,
+          "band95": [
+            0.6065833333333333,
+            1.21675
+          ],
+          "frozen": 0.7666666666666667,
+          "frozen_percentile": 21.55,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.15631188575361143
+        }
+      },
+      "scores_sha256": {
+        "ev_pre": "7e6fb8b07eee636ac485b1db8aff6afce29f439b003142c910592a03524ed401",
+        "pos_pre": "1cfb1f1cd7ec9c4277895b17a3f598b3f971fea25d1cab570c1be29f9100b920",
+        "ev_post": "dfddfe3730dca689be4aae3ddaae952c8589ec9870596d9ba5e4fe43e22deefe",
+        "pos_post": "655029219f5fa7558011d9c0f015b891c05def214ad29d67c8cf6872327d65c0"
+      },
+      "missing": [],
+      "probe_fit_diagnostics": [
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 26,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.0036807932534473576,
+          "grad_max_abs": 0.00019792117647597033,
+          "w_norm": 0.6476681162557968
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 29,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.004420662947636332,
+          "grad_max_abs": 0.0002335186153149258,
+          "w_norm": 0.6534918006460152
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 29,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.004385703947626269,
+          "grad_max_abs": 0.0002748991886669782,
+          "w_norm": 0.6493312801969415
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 29,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.00497206438020598,
+          "grad_max_abs": 0.00031941837579696724,
+          "w_norm": 0.6508891615081244
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 26,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.005310152861240781,
+          "grad_max_abs": 0.0003128744068004105,
+          "w_norm": 0.6516720756644027
+        }
+      ]
+    },
+    {
+      "pair": "olmo2_sft_dpo",
+      "layer": 26,
+      "grid_position": "grid6[4]",
+      "is_selected_layer": false,
+      "probe_set": "selected",
+      "probe_C": 0.001,
+      "filled": true,
+      "n_eval_negatives": 6000,
+      "n_eval_positives": 4000,
+      "auroc": {
+        "note": "the v2 frozen evaluation split (its negatives against its positives), per seed and the mean over the seeds: 'pre' = the pre model's activations scored by the pre probe; 'frozen' = the POST model's activations of the same items scored by the SAME pre probe (the post AUROC); 'change' = frozen - pre per seed (D-419 (3)'s dAUROC; depth_d156's drop_frozen with the sign reversed). 95% interval of the seed mean by the D-152 P5 item bootstrap (B = 5000, eval negatives and positives resampled separately, all seeds recomputed per resample, the same resamples for pre and frozen and at every layer, so the change's interval is paired); per-seed intervals beside; not re-partitioned (D-156)",
+        "depth_d156_note": "frozen eval split; 95% interval by the D-152 P5 item bootstrap (B = 5000, eval negatives and positives resampled separately, all seeds recomputed per resample); not re-partitioned (D-156 keeps the item bootstrap for threshold-free quantities)",
+        "pre": {
+          "mean_over_seeds": 0.9759479166666667,
+          "per_seed": [
+            0.975858875,
+            0.97624725,
+            0.9754928333333334,
+            0.9764325,
+            0.975708125
+          ],
+          "range_over_seeds": [
+            0.9754928333333334,
+            0.9764325
+          ],
+          "ci95": [
+            0.9732678122916666,
+            0.9785239220833332
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.9731108572916666,
+              0.9784516677083334
+            ],
+            [
+              0.973533153125,
+              0.9788284135416666
+            ],
+            [
+              0.9727613385416667,
+              0.9781375447916667
+            ],
+            [
+              0.9737182364583333,
+              0.9790110604166666
+            ],
+            [
+              0.972901875,
+              0.9782639645833333
+            ]
+          ]
+        },
+        "frozen": {
+          "mean_over_seeds": 0.9766616916666667,
+          "per_seed": [
+            0.9765167916666667,
+            0.976844,
+            0.976282375,
+            0.97719025,
+            0.9764750416666667
+          ],
+          "range_over_seeds": [
+            0.976282375,
+            0.97719025
+          ],
+          "ci95": [
+            0.9740285785416667,
+            0.9791795606250001
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.9737962020833334,
+              0.9790375104166666
+            ],
+            [
+              0.9741789072916667,
+              0.9793940552083333
+            ],
+            [
+              0.9736107479166667,
+              0.9788629114583334
+            ],
+            [
+              0.97452320625,
+              0.9796974895833332
+            ],
+            [
+              0.97375515625,
+              0.9790107291666666
+            ]
+          ]
+        },
+        "change": {
+          "mean_over_seeds": 0.0007137750000000054,
+          "per_seed": [
+            0.0006579166666667025,
+            0.0005967500000000348,
+            0.000789541666666671,
+            0.0007577500000000015,
+            0.0007669166666666172
+          ],
+          "range_over_seeds": [
+            0.0005967500000000348,
+            0.000789541666666671
+          ],
+          "ci95": [
+            0.00042099479166656515,
+            0.0009980675000000189
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.00034228020833343696,
+              0.0009552624999999646
+            ],
+            [
+              0.00029391145833333743,
+              0.0008908385416667274
+            ],
+            [
+              0.0004940187499999999,
+              0.0010849083333333198
+            ],
+            [
+              0.00046665520833339135,
+              0.0010512333333333843
+            ],
+            [
+              0.0004802479166667345,
+              0.0010479416666667042
+            ]
+          ]
+        }
+      },
+      "duan_flags": {
+        "defined": true,
+        "big_drop": false,
+        "operational_failure": false,
+        "eligible": true,
+        "criteria": {
+          "big_drop": -0.05,
+          "operational": 0.7,
+          "eligible": 0.75
+        },
+        "beside_change_ci95_wholly_at_or_below_big_drop": false,
+        "beside_change_ci95_wholly_above_big_drop": true
+      },
+      "beside_d156_at_1pct": {
+        "source": "this job's realised D-156 report at 1% over D-361's draws, equal to the pair's D-361 record (the anchor)",
+        "delta_tpr": {
+          "mean": -0.005395100000000002,
+          "band95": [
+            -0.006351250000000032,
+            -0.004449999999999998
+          ],
+          "frozen": -0.005350000000000033,
+          "frozen_percentile": 50.4,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.000478351136519826
+        },
+        "tpr_pre": {
+          "mean": 0.7289112,
+          "band95": [
+            0.70559625,
+            0.75085125
+          ],
+          "frozen": 0.7128500000000001,
+          "frozen_percentile": 7.7,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.010886540834045097
+        },
+        "tpr_post": {
+          "mean": 0.7235161000000001,
+          "band95": [
+            0.6999462500000001,
+            0.744575
+          ],
+          "frozen": 0.7075,
+          "frozen_percentile": 7.75,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.010772350687260854
+        },
+        "paired_ratio": {
+          "mean": 0.9283197370726411,
+          "band95": [
+            0.8785084927848104,
+            0.9739718702616003
+          ],
+          "frozen": 0.8803843671856095,
+          "frozen_percentile": 3.1,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.024482109625814156
+        },
+        "ratio_to_target": {
+          "mean": 0.9298099999999999,
+          "band95": [
+            0.6166666666666666,
+            1.29
+          ],
+          "frozen": 0.6733333333333332,
+          "frozen_percentile": 6.15,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.17140400263999056
+        }
+      },
+      "scores_sha256": {
+        "ev_pre": "e7e2a105a79557efd3281bdd2cf0c354be89f0cf0fd5f3d5dd37d669cca83631",
+        "pos_pre": "b77bafb98841b2dab739a0ed552da11ac6d7d4a39e1eae3668f5255cb0384c30",
+        "ev_post": "29a8e4228a8574a22ab1c15afc601f869254e7e7bfd64ed7481b49842b377d8c",
+        "pos_post": "a45a9b04e2ac8e9f28bd5d8a5685c6ed4ceb6b836ecef0a09c34fcd753a409c0"
+      },
+      "missing": [],
+      "probe_fit_diagnostics": [
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 26,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.003604194991357747,
+          "grad_max_abs": 0.00021604858666358397,
+          "w_norm": 0.6647781719548207
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 26,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.00504114256351687,
+          "grad_max_abs": 0.0002913612659166181,
+          "w_norm": 0.6678332607805616
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 25,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.004541520669592452,
+          "grad_max_abs": 0.0002730969181879324,
+          "w_norm": 0.6650191932736409
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 27,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.004820938579917046,
+          "grad_max_abs": 0.0002838054375835612,
+          "w_norm": 0.6668674406547608
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 28,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.005308587191568429,
+          "grad_max_abs": 0.00030934885856402985,
+          "w_norm": 0.6695760946260758
+        }
+      ]
+    },
+    {
+      "pair": "olmo2_sft_dpo",
+      "layer": 32,
+      "grid_position": "grid6[5]",
+      "is_selected_layer": false,
+      "probe_set": "selected",
+      "probe_C": 0.001,
+      "filled": true,
+      "n_eval_negatives": 6000,
+      "n_eval_positives": 4000,
+      "auroc": {
+        "note": "the v2 frozen evaluation split (its negatives against its positives), per seed and the mean over the seeds: 'pre' = the pre model's activations scored by the pre probe; 'frozen' = the POST model's activations of the same items scored by the SAME pre probe (the post AUROC); 'change' = frozen - pre per seed (D-419 (3)'s dAUROC; depth_d156's drop_frozen with the sign reversed). 95% interval of the seed mean by the D-152 P5 item bootstrap (B = 5000, eval negatives and positives resampled separately, all seeds recomputed per resample, the same resamples for pre and frozen and at every layer, so the change's interval is paired); per-seed intervals beside; not re-partitioned (D-156)",
+        "depth_d156_note": "frozen eval split; 95% interval by the D-152 P5 item bootstrap (B = 5000, eval negatives and positives resampled separately, all seeds recomputed per resample); not re-partitioned (D-156 keeps the item bootstrap for threshold-free quantities)",
+        "pre": {
+          "mean_over_seeds": 0.9725469833333333,
+          "per_seed": [
+            0.9718969166666667,
+            0.9730205,
+            0.972166875,
+            0.9732527916666667,
+            0.9723978333333333
+          ],
+          "range_over_seeds": [
+            0.9718969166666667,
+            0.9732527916666667
+          ],
+          "ci95": [
+            0.969613343125,
+            0.9752434622916667
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.9688522197916667,
+              0.974704271875
+            ],
+            [
+              0.9700455270833334,
+              0.9757015270833334
+            ],
+            [
+              0.9692131958333333,
+              0.9749149916666667
+            ],
+            [
+              0.9703583927083334,
+              0.9759408416666666
+            ],
+            [
+              0.9694133885416667,
+              0.9751510812499999
+            ]
+          ]
+        },
+        "frozen": {
+          "mean_over_seeds": 0.9736343,
+          "per_seed": [
+            0.9727835416666667,
+            0.9740408333333334,
+            0.9732697083333334,
+            0.9745374166666667,
+            0.97354
+          ],
+          "range_over_seeds": [
+            0.9727835416666667,
+            0.9745374166666667
+          ],
+          "ci95": [
+            0.9707666391666665,
+            0.9763010210416666
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.9698025270833334,
+              0.9755303958333333
+            ],
+            [
+              0.9711233416666667,
+              0.97672863125
+            ],
+            [
+              0.9703830531250001,
+              0.9759798177083334
+            ],
+            [
+              0.9716743541666667,
+              0.9771634322916667
+            ],
+            [
+              0.9705796125,
+              0.976247953125
+            ]
+          ]
+        },
+        "change": {
+          "mean_over_seeds": 0.0010873166666667045,
+          "per_seed": [
+            0.0008866250000000298,
+            0.0010203333333334008,
+            0.0011028333333333862,
+            0.0012846250000000392,
+            0.0011421666666666663
+          ],
+          "range_over_seeds": [
+            0.0008866250000000298,
+            0.0012846250000000392
+          ],
+          "ci95": [
+            0.0006543287500000216,
+            0.0015208014583335148
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.0003938437499999892,
+              0.001382179166666686
+            ],
+            [
+              0.0005887906249999242,
+              0.0014579229166666152
+            ],
+            [
+              0.0006645343750000726,
+              0.0015341447916666108
+            ],
+            [
+              0.0008561343750001005,
+              0.0017144645833332805
+            ],
+            [
+              0.000710458333333383,
+              0.0015613833333334157
+            ]
+          ]
+        }
+      },
+      "duan_flags": {
+        "defined": true,
+        "big_drop": false,
+        "operational_failure": false,
+        "eligible": true,
+        "criteria": {
+          "big_drop": -0.05,
+          "operational": 0.7,
+          "eligible": 0.75
+        },
+        "beside_change_ci95_wholly_at_or_below_big_drop": false,
+        "beside_change_ci95_wholly_above_big_drop": true
+      },
+      "beside_d156_at_1pct": {
+        "source": "this job's realised D-156 report at 1% over D-361's draws, equal to the pair's D-361 record (the anchor)",
+        "delta_tpr": {
+          "mean": 0.03915004999999999,
+          "band95": [
+            0.0363,
+            0.040999999999999995
+          ],
+          "frozen": 0.03930000000000002,
+          "frozen_percentile": 50.3,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.0010820227681388077
+        },
+        "tpr_pre": {
+          "mean": 0.703772,
+          "band95": [
+            0.68234875,
+            0.7277662500000001
+          ],
+          "frozen": 0.69775,
+          "frozen_percentile": 30.75,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.01154480331073178
+        },
+        "tpr_post": {
+          "mean": 0.74292205,
+          "band95": [
+            0.7226975,
+            0.76402
+          ],
+          "frozen": 0.7370500000000002,
+          "frozen_percentile": 29.8,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.010604554817642291
+        },
+        "paired_ratio": {
+          "mean": 1.355203699328022,
+          "band95": [
+            1.2369831808508664,
+            1.5043885943337538
+          ],
+          "frozen": 1.348147714354611,
+          "frozen_percentile": 48.9,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.06729689456624242
+        },
+        "ratio_to_target": {
+          "mean": 1.3458299999999999,
+          "band95": [
+            0.9932499999999999,
+            1.7501666666666662
+          ],
+          "frozen": 1.24,
+          "frozen_percentile": 30.1,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.19339165870294947
+        }
+      },
+      "scores_sha256": {
+        "ev_pre": "6af0fcb2dc49e86d1f5fdbfaaf7697fa2fcd78789987b8d21a30a37fa1ad592e",
+        "pos_pre": "6318416cd95f0cabfa079abe038de40ee796451286a09b257fc8cdb76972ba08",
+        "ev_post": "859e8924fc1e3e53a09526764d5cf7e226acdf5499afbe335eda4d5921880f1a",
+        "pos_post": "243abce7e5ea0934a7a60e729013d9feeb10e2b78bbb86143e1144134aedf5ac"
+      },
+      "missing": [],
+      "probe_fit_diagnostics": [
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 29,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.004955904779729264,
+          "grad_max_abs": 0.0002873397496901929,
+          "w_norm": 0.6588255879172885
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 33,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.0026924348833002004,
+          "grad_max_abs": 0.0001565250929325716,
+          "w_norm": 0.6634113068426026
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 30,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.005423839551854071,
+          "grad_max_abs": 0.0003163340055938411,
+          "w_norm": 0.6575857149310159
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 29,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.004278301115283992,
+          "grad_max_abs": 0.000251243747991344,
+          "w_norm": 0.661280803170698
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 29,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.0038204970400214804,
+          "grad_max_abs": 0.00023336943028073182,
+          "w_norm": 0.6636529779956467
+        }
+      ]
+    }
+  ]
+}

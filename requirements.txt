@@ -1,0 +1,27 @@
+# Re-running the experiments (README, "Re-running the experiments").
+#
+# Python 3.10.12 on Linux, as the compute node's records name it. Every version below is one that the result records,
+# or the node's environment script, name; none is a guess.
+#
+# torch is the CUDA 12.6 build (the records name 2.7.0+cu126). Install that wheel from PyTorch's own package index for
+# CUDA 12.6 before the rest of this file; the default package index does not carry the +cu126 build.
+torch==2.7.0+cu126
+transformers==4.56.1
+tokenizers==0.22.2
+peft==0.17.1
+safetensors==0.8.0
+huggingface_hub==0.36.2
+numpy==2.2.6
+scipy==1.15.3
+scikit-learn==1.7.2
+datasets==5.0.1
+pyarrow==25.0.1
+requests==2.34.2
+
+# The legacy figure writers (src/figures.py, src/figure_overrefusal_d156.py; their figures are not in the paper).
+# The records that name this version were written on the workstation, with Python 3.12.10.
+matplotlib==3.11.2
+
+# Imported, but no record names the version that ran, so they are not pinned here:
+#   urllib3   (src/fetch_dataset_snapshot.py, src/phase2_tokenizer_check.py; requests depends on it)
+#   PyYAML    (src/train_lora_p2.py, as `import yaml`)

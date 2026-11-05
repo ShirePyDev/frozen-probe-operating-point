@@ -1,0 +1,30 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# The Hub token for gated checkpoints. src/fetch_weights.py reads it from .env at the repository root.
+.env
+*.token
+hf_token*
+
+# Output of the table and figure writers (README, "Reproducing the tables and figures"), and of the
+# legacy writers, which put their files under paper/ at the root. (docs/paper/ is tracked.)
+/build/
+/paper/
+
+# Frozen splits, hidden-state caches, adapters and weights. None of them belongs in this repository
+# (README, "What is not here").
+/data/
+*.npz
+*.npy
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.gguf
+
+# Staged writes (src/provenance.py) and partial transfers.
+*.partial
+*.partial.*
+*.part

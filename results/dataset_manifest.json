@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "run_kind": "dataset_freeze",
+  "utc": "2026-09-14T12:58:22+00:00",
+  "git": {
+    "commit": "1c3032b6d024ef9dbba8ed2c4f158dbad1e95aea",
+    "branch": "master",
+    "dirty": false,
+    "dirty_file_count": 0,
+    "dirty_files": []
+  },
+  "env": {
+    "python": "3.10.12",
+    "platform": "Linux-5.14.0-687.46.1.el9_8.x86_64-x86_64-with-glibc2.35",
+    "machine": "x86_64"
+  },
+  "seed": 20260914,
+  "spec_hash": "964b6a8a299eed9f1bd209e72921449dac5225268d77e87395751ec93b5083c0",
+  "axes": {
+    "safety": {
+      "source": "nvidia/Aegis-AI-Content-Safety-Dataset-2.0",
+      "source_revision_sha": "d86bb8bedff51d25ac834ab7838f1cc61acb7a2c",
+      "config": null,
+      "split": "train",
+      "cleaning": {
+        "rows_in": 30007,
+        "dropped_placeholder": 912,
+        "dropped_unlabelled": 0,
+        "dropped_conflicting_label": 386,
+        "dropped_duplicate_text": 5798
+      },
+      "total_usable_rows": 22911,
+      "partitions": {
+        "probe_train": {
+          "file": "data/frozen/safety__probe_train.jsonl",
+          "sha256": "f8e1e412332f3c2b55a6764ede8df25c922e83019e1812a3ebd026cffc34ca27",
+          "n": 4000,
+          "n_pos": 2000,
+          "n_neg": 2000
+        },
+        "threshold_calib": {
+          "file": "data/frozen/safety__threshold_calib.jsonl",
+          "sha256": "eaddc8fd1af1c8ea91fab3a57f5baaf7a4778d0fea906c6183d781b1e1b678f7",
+          "n": 2000,
+          "n_pos": 1000,
+          "n_neg": 1000
+        },
+        "eval": {
+          "file": "data/frozen/safety__eval.jsonl",
+          "sha256": "742826782ab0cfc2da672cdb8d437ca508484b03d3701014c19209c7704f29da",
+          "n": 4000,
+          "n_pos": 2000,
+          "n_neg": 2000
+        }
+      }
+    },
+    "over_refusal": {
+      "source": "natolambert/xstest-v2-copy",
+      "source_revision_sha": "b71afe2a6d10e5a6254ea8bcb006c48b095a15d5",
+      "config": null,
+      "split": "prompts",
+      "cleaning": {
+        "rows_in": 450,
+        "dropped_placeholder": 0,
+        "dropped_unlabelled": 0,
+        "dropped_conflicting_label": 0,
+        "dropped_duplicate_text": 0
+      },
+      "total_usable_rows": 450,
+      "partitions": {
+        "eval": {
+          "file": "data/frozen/over_refusal__eval.jsonl",
+          "sha256": "1efd74eb103ec0d3e7ac5c6e9634ebbae6e75dec1a560d1611a04bf3175058d8",
+          "n": 450,
+          "n_pos": 200,
+          "n_neg": 250
+        }
+      }
+    }
+  }
+}

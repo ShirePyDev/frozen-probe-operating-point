@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "run_kind": "phase2_freeze_splits",
+  "utc": "2026-10-01T15:11:19+00:00",
+  "git": {
+    "commit": null,
+    "branch": null,
+    "dirty": null,
+    "dirty_file_count": null,
+    "dirty_files": []
+  },
+  "env": {
+    "python": "3.10.12",
+    "platform": "Linux-3.10.0-1160.119.1.el7.x86_64-x86_64-with-glibc2.35",
+    "machine": "x86_64",
+    "blas_threads": {
+      "OMP_NUM_THREADS": "6",
+      "OPENBLAS_NUM_THREADS": "6",
+      "MKL_NUM_THREADS": "6",
+      "NUMEXPR_NUM_THREADS": null
+    },
+    "cpu_count": 12,
+    "libraries": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.7.2",
+      "torch": "2.7.0+cu126",
+      "transformers": "4.56.1"
+    }
+  },
+  "decision": "D-303",
+  "code": {
+    "sha256": {
+      "src/phase2_freeze_splits.py": "f16621284cecdb1c33830eca339a181f087ece6eeb993af58a5e3000121c883c",
+      "src/phase2_pool_clusters.py": "c7704122f4f276113c38c74546bcaadcaa27e7198e664e8c6e1379b00121c4ca",
+      "src/freeze_splits.py": "75542eb8a041614a31f1fb838b1535de4bca744732683d65f8deafcb14a3c831",
+      "src/split_diagnostics.py": "46be71fb36aa8236d6f2591026e9087c51e240afb83f995499918a3e06c57dbe",
+      "src/paraphrase_overlap.py": "501ea12967d09d4e550e099b1522f53b9cb9c97194e1014c8f637b8918de8383",
+      "src/paired.py": "80429fa57f0267236a2af1670c74ef327802598257ab75834fddf64a70d97195",
+      "src/populations.py": "c31519368bb69dd253f6c586cb88e1d2a1cd7a82a5f8c29c1b74eb8df7784a36",
+      "src/provenance.py": "3cef96e8ede12af7dc920409cc9bd7e072cdedc579e9211604cf481084e9aa47",
+      "src/superseded_provenance.py": "6613f47f086958ef424f1be1263afc4a5918f17a50b24d025baad69aeb0738b8",
+      "src/hf_env_guard.py": "fc8f08625e84ef0b6d922708664e33b0c283aee9b5795763ab5862048c601af4",
+      "src/safe_outputs.py": "e0c7a4bcb969de9a0c5c1b97377e8f38f5257672a869036eb8d6c9c642b40639"
+    },
+    "commit": "a08abf68ffb1b3b3fe5f3156cb572562658dd3a2",
+    "commit_source": "SYNC_COMMIT",
+    "libraries": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.7.2"
+    }
+  },
+  "seed": 20261001,
+  "config": {
+    "fill_rule": "Units are the clusters holding at least one pool item. A unit is 'clean' when its cluster holds no Phase 1 item, and 'excluded' when it holds an XSTest item (no split). Units are sorted by their smallest pool item_id, then shuffled by random.Random(SPLIT_SEED) (as freeze_splits partitions). A fill walks that order and takes a whole unit only if it fits every remaining count of the split; a unit that would overflow is skipped and stays free. (1) eval positives first: clean ALL-POSITIVE units, until exactly eval_pos; clean mixed-label units only if those do not reach it. A mixed unit's negatives come with it (b) and are benign near-duplicates of harmful items that calibration can never hold (a D-283-kind confound), so each split row records 'mixed_label_cluster' and the record counts them. (2) pool4d (evaluation-like, D-303 (2); its negatives are 4d's recalibration traffic): clean all-positive units for its positives; clean mixed-label units only while those leave positives short (the same confound; each brings its negatives; counted in the record); then clean all-negative units, until exactly pool4d_pos and pool4d_neg. Each single-class pass takes multi-item units first, then singletons (as step (4)), so the singletons complete it exactly whenever enough remain. (3) probe_train: FIRST the units holding a WildGuardMix or Aegis Phase 1 item (never an XSTest one), in the shuffled order, each taken if it fits both classes' remaining counts; THEN free clean units, in the same order, to complete exactly probe_pos and probe_neg. Phase 1 units may enter probe_train only (D-303 (2)), so using them there first costs calibration and evaluation nothing (the coordinator's decision, 2026-10-01). (4) The remaining negatives (the clean all-negative units still free, N_R) are split equally between calibration and evaluation (D-303 (4)): each holds T = floor((N_R + b) / 2) negatives, and calibration holds negatives only. Multi-item units are placed first, then singletons, each in the shuffled order and each into whichever split has more room (ties to eval). The fill is exact, with at most one negative (the parity) unused, unless a multi-item unit had to be skipped for want of room; then a split falls short of T and the run exits 3. Clean mixed-label units left after (1)-(3) have no split left for their positives and are recorded as unused. A split not at its exact target, or T below either minimum, is a shortfall: exit 3.",
+    "sizes": {
+      "eval_pos": 4000,
+      "eval_neg_min": 5000,
+      "cal_neg_min": 5000,
+      "probe_pos": 2000,
+      "probe_neg": 2000,
+      "pool4d_pos": 1000,
+      "pool4d_neg": 1000
+    },
+    "sizes_registered": true,
+    "record_fields": "freeze_splits load_axis fields plus 'cluster' (the manifest's label) and 'mixed_label_cluster' (the cluster holds both classes in the pool; for an eval negative: it came with a positive of a mixed cluster)",
+    "split_dir": "data/frozen_p2/ (not data/frozen/: Phase 2 outputs never change a Phase 1 reader's inputs, D-303)",
+    "index_manifests": "manifests/splits_p2/, in src/write_split_manifests.py's format"
+  },
+  "inputs": {
+    "manifests/phase2_pool_clusters.json": "6c206f5b6e0d3d9a2f071eb7255b5ffe54b45ccad10a8f0119f58938a5282d57",
+    "results/phase2/pool_clusters.json": "f021b965b38dbfa11a846ef2944b9af51f669bc900ef729a3d8c22a4dd23a171"
+  },
+  "dataset_read": {
+    "source_was_local_snapshot": true,
+    "snapshot": "datasets--allenai--wildguardmix/snapshots/d29c47f41c8b51348b5c8e8c81c039b3132b66d1",
+    "local_snapshot_path": "<HOME>/.cache/gccf_scratch/p2_datasets/hub/datasets--allenai--wildguardmix/snapshots/d29c47f41c8b51348b5c8e8c81c039b3132b66d1",
+    "snapshot_files_sha256": {
+      ".gitattributes": "f4e703ea6e44bbebe53aceed2a89c11e40b88b7ae130c480c89860ab805ffc8f",
+      "README.md": "4cdee2c6fa839a2802237826a09f594522a31b2c33afe691f46be5ee98d66512",
+      "test/wildguard_test.parquet": "6ccc2909c1ae6d41424fac69f1fc32535b1de39cb8f80407d81e8bc64a0bebca",
+      "train/wildguard_train.parquet": "02ecea8a724a9146a1e473a95a7cdf262adfe9c7d5408953ca86d2fcfbdc8953"
+    },
+    "libraries": {
+      "datasets": "5.0.1",
+      "huggingface_hub": "0.36.2",
+      "pyarrow": "25.0.1",
+      "fsspec": "2026.6.0"
+    },
+    "offline_env": {
+      "HF_HUB_OFFLINE": "1",
+      "HF_DATASETS_OFFLINE": "1"
+    },
+    "datasets_cache": {
+      "dir": "<HOME>/.cache/hf/gccf_datasets_cache/phase2_freeze_splits.20261001T151112Z.1434541.1f45147e",
+      "root": "<HOME>/.cache/hf/gccf_datasets_cache",
+      "mount_point": "<HOME>/.cache",
+      "mount_source": "/dev/nvme1n1p1",
+      "test_standin_modules_present": [],
+      "note": "HF_DATASETS_CACHE is a fresh directory made for this run on NVMe before datasets is imported. Any cleanup the datasets library does of its own Arrow cache (on a failed load its builder removes its '.incomplete' directory, freeze_splits.load_axis -> load_dataset) is therefore confined to this run's directory. That library-internal cleanup is the one remaining deletion in this pipeline, and it is the author's to accept. The directory is left after the run; removal is a human's scripts/safe_rm.sh call.",
+      "library_reported": "<HOME>/.cache/hf/gccf_datasets_cache/phase2_freeze_splits.20261001T151112Z.1434541.1f45147e"
+    }
+  },
+  "notes": [
+    "HF_DATASETS_CACHE is a fresh directory made for this run on NVMe before datasets is imported. Any cleanup the datasets library does of its own Arrow cache (on a failed load its builder removes its '.incomplete' directory, freeze_splits.load_axis -> load_dataset) is therefore confined to this run's directory. That library-internal cleanup is the one remaining deletion in this pipeline, and it is the author's to accept. The directory is left after the run; removal is a human's scripts/safe_rm.sh call."
+  ],
+  "checks": {
+    "no_cluster_in_two_splits": true,
+    "whole_clusters_only": true,
+    "phase1_clusters_only_in_probe_train": true,
+    "xstest_clusters_in_no_split": true,
+    "every_split_at_its_exact_target": true,
+    "plan_equals_recorded_plan": true,
+    "assign_sha256_equals_recorded": "5d5ca8e5e40086430a5b18e0df3a64c8357684affbe2893d94d6cb63b442bfaf",
+    "pool_split_bytes_sha256_equals_recorded": "15be0a7cf61c19343a34e1e1b57746718999c7a720fe086575cc9c00d8f02341",
+    "phase2_pool_clusters_code_equals_recorded": "c7704122f4f276113c38c74546bcaadcaa27e7198e664e8c6e1379b00121c4ca"
+  },
+  "axes": {
+    "p2wg": {
+      "source": "allenai/wildguardmix",
+      "source_revision_sha": "d29c47f41c8b51348b5c8e8c81c039b3132b66d1",
+      "config": "wildguardtrain",
+      "split": "train",
+      "cleaning": {
+        "rows_in": 86759,
+        "dropped_placeholder": 14,
+        "dropped_unlabelled": 0,
+        "dropped_conflicting_label": 30,
+        "dropped_duplicate_text": 38879
+      },
+      "total_usable_rows": 47836,
+      "partitions": {
+        "eval": {
+          "file": "data/frozen_p2/p2wg__eval.jsonl",
+          "sha256": "59719eaae7b7e2239ac2b66594e600d2f7019346f2b2c2c10fc11727f0a1e814",
+          "n": 12167,
+          "n_pos": 4000,
+          "n_neg": 8167,
+          "target_pos": 4000,
+          "target_neg": 8167,
+          "n_clusters": 12150,
+          "n_multi_item_clusters": 15,
+          "n_items_in_multi_item_clusters": 32,
+          "n_clusters_holding_phase1": 0,
+          "n_phase1_items": 0,
+          "n_from_mixed_label_clusters": {
+            "pos": 0,
+            "neg": 0
+          },
+          "index_manifest": {
+            "file": "manifests/splits_p2/p2wg__eval__manifest.json",
+            "sha256": "e6064773f85eabfa387ab25014cfb00ca0500972ed02ae563c0625cc632b48ed"
+          }
+        },
+        "calibration": {
+          "file": "data/frozen_p2/p2wg__calibration.jsonl",
+          "sha256": "6667eec613ba561b02ee6c04d79325508fd3cde6ece9654974fe5358721b7417",
+          "n": 8167,
+          "n_pos": 0,
+          "n_neg": 8167,
+          "target_pos": 0,
+          "target_neg": 8167,
+          "n_clusters": 8167,
+          "n_multi_item_clusters": 0,
+          "n_items_in_multi_item_clusters": 0,
+          "n_clusters_holding_phase1": 0,
+          "n_phase1_items": 0,
+          "n_from_mixed_label_clusters": {
+            "pos": 0,
+            "neg": 0
+          },
+          "index_manifest": {
+            "file": "manifests/splits_p2/p2wg__calibration__manifest.json",
+            "sha256": "81b008c0bb409be5783d965e1213a905b55d539afb56bf361e01b8ca61edfdd3"
+          }
+        },
+        "pool4d": {
+          "file": "data/frozen_p2/p2wg__pool4d.jsonl",
+          "sha256": "5950473f591fd329a4c999236639680b83107acf7f8de1dc48d8aee86d28682f",
+          "n": 2000,
+          "n_pos": 1000,
+          "n_neg": 1000,
+          "target_pos": 1000,
+          "target_neg": 1000,
+          "n_clusters": 1785,
+          "n_multi_item_clusters": 165,
+          "n_items_in_multi_item_clusters": 380,
+          "n_clusters_holding_phase1": 0,
+          "n_phase1_items": 0,
+          "n_from_mixed_label_clusters": {
+            "pos": 0,
+            "neg": 0
+          },
+          "index_manifest": {
+            "file": "manifests/splits_p2/p2wg__pool4d__manifest.json",
+            "sha256": "452a2241b8e0b026a13674425ac27f8dcefbb1575ea567de601306a8104bd59c"
+          }
+        },
+        "probe_train": {
+          "file": "data/frozen_p2/p2wg__probe_train.jsonl",
+          "sha256": "ef4c947f0b5e415cabb4100a9b9cb2d5656c583e6d8cd953d15201ca2264f9c6",
+          "n": 4000,
+          "n_pos": 2000,
+          "n_neg": 2000,
+          "target_pos": 2000,
+          "target_neg": 2000,
+          "n_clusters": 3753,
+          "n_multi_item_clusters": 88,
+          "n_items_in_multi_item_clusters": 335,
+          "n_clusters_holding_phase1": 3753,
+          "n_phase1_items": 3755,
+          "n_from_mixed_label_clusters": {
+            "pos": 3,
+            "neg": 4
+          },
+          "index_manifest": {
+            "file": "manifests/splits_p2/p2wg__probe_train__manifest.json",
+            "sha256": "7a9a06c4085f1185d5ec0f10caa68fe5c9aa3f9ad5fe5a9aa50618d7739b897e"
+          }
+        }
+      }
+    }
+  },
+  "T": 8167,
+  "unused": {
+    "clean_mixed_label": {
+      "units": 1,
+      "pos": 1,
+      "neg": 1,
+      "multi_item_units": 1
+    },
+    "clean_all_negative_parity_or_packing": {
+      "units": 1,
+      "pos": 0,
+      "neg": 1,
+      "multi_item_units": 0
+    },
+    "clean_all_positive": {
+      "units": 13898,
+      "pos": 13898,
+      "neg": 0,
+      "multi_item_units": 0
+    },
+    "phase1_clusters_not_in_probe_train": {
+      "units": 7117,
+      "pos": 3852,
+      "neg": 3733,
+      "multi_item_units": 161
+    },
+    "excluded_xstest_clusters": {
+      "units": 11,
+      "pos": 7,
+      "neg": 9,
+      "multi_item_units": 4
+    }
+  }
+}

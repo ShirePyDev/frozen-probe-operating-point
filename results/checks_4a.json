@@ -1,0 +1,799 @@
+{
+  "schema_version": 1,
+  "run_kind": "checks_4a",
+  "utc": "2026-09-25T07:09:35+00:00",
+  "git": {
+    "commit": null,
+    "branch": null,
+    "dirty": null,
+    "dirty_file_count": null,
+    "dirty_files": []
+  },
+  "env": {
+    "python": "3.10.12",
+    "platform": "Linux-3.10.0-1160.119.1.el7.x86_64-x86_64-with-glibc2.35",
+    "machine": "x86_64",
+    "blas_threads": {
+      "OMP_NUM_THREADS": "6",
+      "OPENBLAS_NUM_THREADS": "6",
+      "MKL_NUM_THREADS": "6",
+      "NUMEXPR_NUM_THREADS": null
+    },
+    "cpu_count": 12,
+    "libraries": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.7.2",
+      "torch": "2.7.0+cu126",
+      "transformers": "4.56.1"
+    }
+  },
+  "code": {
+    "sha256": {
+      "src/checks_4a.py": "09cffbc4012d00b5171acc3c6dcfc92a1989c81acb425660c52bb15d56c49426",
+      "src/paired.py": "2633b0a6641242fd650fbc5edc5929d20e3ef3d22a44ea9295d53791b8373eba",
+      "src/populations.py": "54ccf95ab2a1a392685ce8713532fd08958293d62a750127f163fe6d5b30dedb",
+      "src/provenance.py": "dc0741614db20b9db0d249ca0f680ee3b6ab6539ca4b512d86b0ac6815a4945c"
+    },
+    "commit": "e18f39195f8b8a3891078f226436a70ee11b1e03",
+    "commit_source": "SYNC_COMMIT",
+    "libraries": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.7.2"
+    }
+  },
+  "config": {
+    "intent_file": "results/intent_selected.json",
+    "intent_sha256": "ed3e0736b961ceb4ae4477007d20d26368345a3d9bab093aa5b4ee1f1b662dd1",
+    "selected_C": 0.001,
+    "layer": 12,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_dirs": 10000,
+    "dir_seed": 20260925,
+    "tight_tol": 1e-06,
+    "max_iter": 2000,
+    "pre_repo": "mistralai/Mistral-7B-v0.1__a100",
+    "pre_rev": "27d67f1b5f57dc0953326b2601d68371d40ea8da",
+    "axis": "safety",
+    "loraA100_mistral_s25:post_repo": "lora/mistral7b-v01-alpaca-r16-s25__a100",
+    "loraA100_mistral_s100:post_repo": "lora/mistral7b-v01-alpaca-r16-s100",
+    "loraA100_mistral_s400:post_repo": "lora/mistral7b-v01-alpaca-r16-s400",
+    "lorasafe_mistral_s25:post_repo": "lora/mistral7b-v01-hhharmless-r16-s25",
+    "lorasafe_mistral_s100:post_repo": "lora/mistral7b-v01-hhharmless-r16-s100",
+    "lorasafe_mistral_s400:post_repo": "lora/mistral7b-v01-hhharmless-r16-s400",
+    "lorapku_mistral_s25:post_repo": "lora/mistral7b-v01-pkusafe-r16-s25",
+    "lorapku_mistral_s100:post_repo": "lora/mistral7b-v01-pkusafe-r16-s100",
+    "lorapku_mistral_s400:post_repo": "lora/mistral7b-v01-pkusafe-r16-s400",
+    "loraA100_mistral_s25:post_rev": "9fbdf29f9afcf08a8d1b13346edea35cec0a5eacd4fe22bace6282b100163168",
+    "loraA100_mistral_s100:post_rev": "76676cb005beaa86ff4d60874cdb033a1c6123b850bd34181a013193a0c1b306",
+    "loraA100_mistral_s400:post_rev": "a8a01d08d31b3bf986ac53f3656007186d4825faa41769d5ef7ca668ef5e5bee",
+    "lorasafe_mistral_s25:post_rev": "21ffe256c348f9ef6b27c47c9f9c0b86fe708219136560ba82f50700057ba8f3",
+    "lorasafe_mistral_s100:post_rev": "94fddba22d6cc0eae6bfb48fce1bc3c96087c22b0ce222bbd17d0dfcd19fe877",
+    "lorasafe_mistral_s400:post_rev": "a9e79db8ff5c04f298ecd4083a3442847037005c5d908260ec9d7c02d83eb212",
+    "lorapku_mistral_s25:post_rev": "76a9182977250c4bcba83636b56d842dbaef2a2547347555163ee6e4ea77555d",
+    "lorapku_mistral_s100:post_rev": "7dfcce45e7d700568ad40192602d3abbf72a5726790bab7916ca6b076f0ae739",
+    "lorapku_mistral_s400:post_rev": "ab87d663b385214f2ba015d6d26917fe8722b4dc5b464017e97e87484c4219ff"
+  },
+  "population": {
+    "declared_in": "src/populations.py",
+    "group": "LORA_ARMS"
+  },
+  "input_cache_sha256": {
+    "pre/probe_train": "6dfffd80382df71756fc515f05a11d01d1c5ed3f0eebf341f7cacbb3e07c144b",
+    "pre/threshold_calib": "abcb4c9ccc3cb6a63bf6da90763c6a0927c9527fbc5c38ccc77d2906fb83510d",
+    "pre/eval": "47849fcf9df324acdbc9e7f16fa2c0bf5f9a9aa4e04e14197652eeeb410192ab",
+    "loraA100_mistral_s25:post/eval": "b3285fd8e18b1d5a09621e9497bc9cc076ec07e908f4c945837a430695f2f579",
+    "loraA100_mistral_s100:post/eval": "323f8c2f6488e5041a5d2767223557e08a22bac26344c68f9bdf55739260ea8c",
+    "loraA100_mistral_s400:post/eval": "9763f13272763e2f1925f856727b8a05bab8f5d55210dd450ad91bb984873a7d",
+    "lorasafe_mistral_s25:post/eval": "741a99b46a425836568cd5583983ca52d60c9177671f94a05c851013052f5a16",
+    "lorasafe_mistral_s100:post/eval": "2a1519399c06e3848ce60feeea4cd2036686bb81d95f895fee24b822dc1241e9",
+    "lorasafe_mistral_s400:post/eval": "e2883fe273690fac705c665b5a07b9e90c6d42d035d3d1c36db528ab30041d47",
+    "lorapku_mistral_s25:post/eval": "e313f38ec66f110b33215abcd78fb695f9aa1ae7e9f363b8e24477bd323f9d67",
+    "lorapku_mistral_s100:post/eval": "710d6581247e825a1e1878817c5f52c89ab26441333f5a64ad625c5ec8a33e89",
+    "lorapku_mistral_s400:post/eval": "b6edeb733401b50da84a8245ebbb3832ff27a7336f5a6f08bc730b29ff3336bf"
+  },
+  "check2_random_direction_null": {
+    "per_seed": [
+      {
+        "seed": 0,
+        "mean": 0.012369934559802497,
+        "q2_5": 0.0004583948102238247,
+        "q97_5": 0.03474184430577139
+      },
+      {
+        "seed": 1,
+        "mean": 0.012341831603139721,
+        "q2_5": 0.0005135478550494366,
+        "q97_5": 0.03455201315056775
+      },
+      {
+        "seed": 2,
+        "mean": 0.012398243349885976,
+        "q2_5": 0.0004933409523325875,
+        "q97_5": 0.03487004506934229
+      },
+      {
+        "seed": 3,
+        "mean": 0.012423445296764177,
+        "q2_5": 0.0005275179092975922,
+        "q97_5": 0.035251037730837244
+      },
+      {
+        "seed": 4,
+        "mean": 0.012414242589971296,
+        "q2_5": 0.0004828819603959733,
+        "q97_5": 0.0349487498008866
+      }
+    ],
+    "pooled_mean": 0.012389539479912733,
+    "pooled_q2_5": 0.0004916814610656411,
+    "pooled_q97_5": 0.03489241328003004,
+    "analytic_mean_sqrt_2_over_pi_d": 0.012466946262544772,
+    "arms": [
+      {
+        "arm": "general (alpaca)",
+        "run": "loraA100_mistral_s25",
+        "dose": 25,
+        "abs_cos_per_seed": [
+          0.00021926678464480453,
+          0.0025203117223595852,
+          0.005211466724541303,
+          0.0004211068219839571,
+          0.00368478624574294
+        ],
+        "abs_cos_mean": 0.0024113876598545183,
+        "percentile_in_own_seed_null_per_seed": [
+          1.22,
+          12.94,
+          26.18,
+          1.94,
+          19.0
+        ],
+        "percentile_range": [
+          1.22,
+          26.18
+        ],
+        "d_norm_per_seed": [
+          28.916648864746094,
+          28.910058975219727,
+          28.873458862304688,
+          28.86389923095703,
+          28.83490753173828
+        ],
+        "d_norm_mean": 28.879794692993165,
+        "d_norm_range": [
+          28.83490753173828,
+          28.916648864746094
+        ]
+      },
+      {
+        "arm": "general (alpaca)",
+        "run": "loraA100_mistral_s100",
+        "dose": 100,
+        "abs_cos_per_seed": [
+          0.0017783707002362189,
+          0.0015314687583513724,
+          0.005131187741212795,
+          0.008504204187407723,
+          0.003204714475650437
+        ],
+        "abs_cos_mean": 0.00402998917257171,
+        "percentile_in_own_seed_null_per_seed": [
+          9.09,
+          7.74,
+          25.81,
+          41.6,
+          16.61
+        ],
+        "percentile_range": [
+          7.74,
+          41.6
+        ],
+        "d_norm_per_seed": [
+          17.51468849182129,
+          17.511594772338867,
+          17.48661231994629,
+          17.479684829711914,
+          17.461835861206055
+        ],
+        "d_norm_mean": 17.49088325500488,
+        "d_norm_range": [
+          17.461835861206055,
+          17.51468849182129
+        ]
+      },
+      {
+        "arm": "general (alpaca)",
+        "run": "loraA100_mistral_s400",
+        "dose": 400,
+        "abs_cos_per_seed": [
+          0.0022341062298264053,
+          0.0020798184554775734,
+          0.006810209193579799,
+          0.009058365980406179,
+          0.000848238151646836
+        ],
+        "abs_cos_mean": 0.0042061476021873585,
+        "percentile_in_own_seed_null_per_seed": [
+          11.34,
+          10.66,
+          33.96,
+          43.7,
+          4.53
+        ],
+        "percentile_range": [
+          4.53,
+          43.7
+        ],
+        "d_norm_per_seed": [
+          16.15278434753418,
+          16.15235710144043,
+          16.132314682006836,
+          16.127750396728516,
+          16.112030029296875
+        ],
+        "d_norm_mean": 16.135447311401368,
+        "d_norm_range": [
+          16.112030029296875,
+          16.15278434753418
+        ]
+      },
+      {
+        "arm": "safety (hh-harmless)",
+        "run": "lorasafe_mistral_s25",
+        "dose": 25,
+        "abs_cos_per_seed": [
+          0.06895319408096907,
+          0.0590626803502544,
+          0.05780397182643811,
+          0.049023849059535135,
+          0.06134954458687698
+        ],
+        "abs_cos_mean": 0.05923864798081474,
+        "percentile_in_own_seed_null_per_seed": [
+          100.0,
+          99.99,
+          99.96,
+          99.84,
+          99.99
+        ],
+        "percentile_range": [
+          99.84,
+          100.0
+        ],
+        "d_norm_per_seed": [
+          59.10429763793945,
+          59.071205139160156,
+          58.993507385253906,
+          58.99925231933594,
+          58.932830810546875
+        ],
+        "d_norm_mean": 59.02021865844726,
+        "d_norm_range": [
+          58.932830810546875,
+          59.10429763793945
+        ]
+      },
+      {
+        "arm": "safety (hh-harmless)",
+        "run": "lorasafe_mistral_s100",
+        "dose": 100,
+        "abs_cos_per_seed": [
+          0.060042626746832486,
+          0.05459890525485062,
+          0.03833410794277734,
+          0.0348898887101021,
+          0.055210709655558896
+        ],
+        "abs_cos_mean": 0.04861524766202428,
+        "percentile_in_own_seed_null_per_seed": [
+          99.99,
+          99.95,
+          98.61,
+          97.38,
+          99.96
+        ],
+        "percentile_range": [
+          97.38,
+          99.99
+        ],
+        "d_norm_per_seed": [
+          27.22254753112793,
+          27.206802368164062,
+          27.171064376831055,
+          27.176441192626953,
+          27.143489837646484
+        ],
+        "d_norm_mean": 27.184069061279295,
+        "d_norm_range": [
+          27.143489837646484,
+          27.22254753112793
+        ]
+      },
+      {
+        "arm": "safety (hh-harmless)",
+        "run": "lorasafe_mistral_s400",
+        "dose": 400,
+        "abs_cos_per_seed": [
+          0.06999030783692377,
+          0.05570340900009861,
+          0.052049619846013785,
+          0.045343928634615435,
+          0.05944059647225803
+        ],
+        "abs_cos_mean": 0.056505572357981926,
+        "percentile_in_own_seed_null_per_seed": [
+          100.0,
+          99.96,
+          99.88,
+          99.63,
+          99.96
+        ],
+        "percentile_range": [
+          99.63,
+          100.0
+        ],
+        "d_norm_per_seed": [
+          23.339603424072266,
+          23.341354370117188,
+          23.30195426940918,
+          23.306991577148438,
+          23.278852462768555
+        ],
+        "d_norm_mean": 23.313751220703125,
+        "d_norm_range": [
+          23.278852462768555,
+          23.341354370117188
+        ]
+      },
+      {
+        "arm": "safety (pku-saferlhf)",
+        "run": "lorapku_mistral_s25",
+        "dose": 25,
+        "abs_cos_per_seed": [
+          0.04525529643746303,
+          0.043093662629095086,
+          0.03827976368049332,
+          0.034416637069696804,
+          0.04282024999787349
+        ],
+        "abs_cos_mean": 0.04077312196292435,
+        "percentile_in_own_seed_null_per_seed": [
+          99.68,
+          99.35,
+          98.6,
+          97.19,
+          99.4
+        ],
+        "percentile_range": [
+          97.19,
+          99.68
+        ],
+        "d_norm_per_seed": [
+          51.25324249267578,
+          51.233978271484375,
+          51.15922164916992,
+          51.163795471191406,
+          51.10755157470703
+        ],
+        "d_norm_mean": 51.1835578918457,
+        "d_norm_range": [
+          51.10755157470703,
+          51.25324249267578
+        ]
+      },
+      {
+        "arm": "safety (pku-saferlhf)",
+        "run": "lorapku_mistral_s100",
+        "dose": 100,
+        "abs_cos_per_seed": [
+          0.038884987437736114,
+          0.04439782311820514,
+          0.0284774952795227,
+          0.028611036965686218,
+          0.035801837812154666
+        ],
+        "abs_cos_mean": 0.035234636122660964,
+        "percentile_in_own_seed_null_per_seed": [
+          98.78,
+          99.43,
+          93.33,
+          93.53,
+          97.82
+        ],
+        "percentile_range": [
+          93.33,
+          99.43
+        ],
+        "d_norm_per_seed": [
+          22.304555892944336,
+          22.29457664489746,
+          22.264434814453125,
+          22.26127815246582,
+          22.236473083496094
+        ],
+        "d_norm_mean": 22.272263717651366,
+        "d_norm_range": [
+          22.236473083496094,
+          22.304555892944336
+        ]
+      },
+      {
+        "arm": "safety (pku-saferlhf)",
+        "run": "lorapku_mistral_s400",
+        "dose": 400,
+        "abs_cos_per_seed": [
+          0.050863088085469285,
+          0.05705260722201719,
+          0.0351167508799975,
+          0.037153320620626595,
+          0.04995878120328649
+        ],
+        "abs_cos_mean": 0.046028909602279414,
+        "percentile_in_own_seed_null_per_seed": [
+          99.87,
+          99.97,
+          97.6,
+          98.15,
+          99.83
+        ],
+        "percentile_range": [
+          97.6,
+          99.97
+        ],
+        "d_norm_per_seed": [
+          25.14282989501953,
+          25.139663696289062,
+          25.09712791442871,
+          25.098167419433594,
+          25.072847366333008
+        ],
+        "d_norm_mean": 25.110127258300782,
+        "d_norm_range": [
+          25.072847366333008,
+          25.14282989501953
+        ]
+      }
+    ]
+  },
+  "check5_tolerance": {
+    "summary": {
+      "cos_tight_file_vs_tight_reversed_per_seed": [
+        0.9999999117473567,
+        0.9999999700113926,
+        0.9999999649662832,
+        0.999999635837994,
+        0.9999997560139674
+      ],
+      "cos_default_file_vs_tight_file_per_seed": [
+        0.9887900014126205,
+        0.9875736229414229,
+        0.9903968434736188,
+        0.9917594390049196,
+        0.9886398034673106
+      ],
+      "max_abs_ratio_diff_between_orders_tight": 0.033333333333333215,
+      "max_abs_ratio_diff_default_vs_tight": 4.760538350538347
+    },
+    "fit_diagnostics": {
+      "default_file": [
+        {
+          "C": 1.0,
+          "row_order": "file_order",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 61,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 5.547220162010918,
+          "grad_max_abs": 0.31812914244454527,
+          "w_norm": 6.882697777246244
+        },
+        {
+          "C": 1.0,
+          "row_order": "file_order",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 64,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 5.201572999145239,
+          "grad_max_abs": 0.31351824724753774,
+          "w_norm": 7.080161046016655
+        },
+        {
+          "C": 1.0,
+          "row_order": "file_order",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 63,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 5.419826706356088,
+          "grad_max_abs": 0.309280922706082,
+          "w_norm": 6.854583991671198
+        },
+        {
+          "C": 1.0,
+          "row_order": "file_order",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 62,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 5.589736120268732,
+          "grad_max_abs": 0.292554640950661,
+          "w_norm": 6.9496169783417185
+        },
+        {
+          "C": 1.0,
+          "row_order": "file_order",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 66,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 5.2553516618173655,
+          "grad_max_abs": 0.31795880798331333,
+          "w_norm": 6.985160567174143
+        }
+      ],
+      "tight_file": [
+        {
+          "C": 1.0,
+          "row_order": "file_order",
+          "tol": 1e-06,
+          "n_fit": 3200,
+          "n_iter": 194,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.04797947144985518,
+          "grad_max_abs": 0.0031944945750982945,
+          "w_norm": 6.722596276493167
+        },
+        {
+          "C": 1.0,
+          "row_order": "file_order",
+          "tol": 1e-06,
+          "n_fit": 3200,
+          "n_iter": 198,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.03116826956661617,
+          "grad_max_abs": 0.0029028304373299174,
+          "w_norm": 6.963429492105863
+        },
+        {
+          "C": 1.0,
+          "row_order": "file_order",
+          "tol": 1e-06,
+          "n_fit": 3200,
+          "n_iter": 185,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.037307601177894514,
+          "grad_max_abs": 0.0030256598081680186,
+          "w_norm": 6.7709045924430145
+        },
+        {
+          "C": 1.0,
+          "row_order": "file_order",
+          "tol": 1e-06,
+          "n_fit": 3200,
+          "n_iter": 167,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.050406356276716954,
+          "grad_max_abs": 0.002933573462447215,
+          "w_norm": 6.885733285397603
+        },
+        {
+          "C": 1.0,
+          "row_order": "file_order",
+          "tol": 1e-06,
+          "n_fit": 3200,
+          "n_iter": 196,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.04869886922060918,
+          "grad_max_abs": 0.0031203146934604964,
+          "w_norm": 7.037749115544009
+        }
+      ],
+      "tight_reversed": [
+        {
+          "C": 1.0,
+          "row_order": "reversed_file_order",
+          "tol": 1e-06,
+          "n_fit": 3200,
+          "n_iter": 189,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.04747296932658481,
+          "grad_max_abs": 0.0028605994834518533,
+          "w_norm": 6.722710042409716
+        },
+        {
+          "C": 1.0,
+          "row_order": "reversed_file_order",
+          "tol": 1e-06,
+          "n_fit": 3200,
+          "n_iter": 200,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.02931613057156971,
+          "grad_max_abs": 0.0031181912837006526,
+          "w_norm": 6.96369460716257
+        },
+        {
+          "C": 1.0,
+          "row_order": "reversed_file_order",
+          "tol": 1e-06,
+          "n_fit": 3200,
+          "n_iter": 188,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.03177595672483402,
+          "grad_max_abs": 0.0028436438234468175,
+          "w_norm": 6.771070287936744
+        },
+        {
+          "C": 1.0,
+          "row_order": "reversed_file_order",
+          "tol": 1e-06,
+          "n_fit": 3200,
+          "n_iter": 173,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.05563292374938906,
+          "grad_max_abs": 0.002705610799301844,
+          "w_norm": 6.885787966194879
+        },
+        {
+          "C": 1.0,
+          "row_order": "reversed_file_order",
+          "tol": 1e-06,
+          "n_fit": 3200,
+          "n_iter": 188,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.0558228725117108,
+          "grad_max_abs": 0.003197729511954045,
+          "w_norm": 7.037786946170686
+        }
+      ]
+    },
+    "runs": [
+      {
+        "arm": "general (alpaca)",
+        "run": "loraA100_mistral_s25",
+        "dose": 25,
+        "ratio": {
+          "default_file": 2.5371428571428565,
+          "tight_file": 2.9407925407925406,
+          "tight_reversed": 2.9407925407925406
+        },
+        "tight_file_minus_tight_reversed": 0.0,
+        "default_file_minus_tight_file": -0.4036496836496841
+      },
+      {
+        "arm": "general (alpaca)",
+        "run": "loraA100_mistral_s100",
+        "dose": 100,
+        "ratio": {
+          "default_file": 0.9447619047619048,
+          "tight_file": 1.046293706293706,
+          "tight_reversed": 1.046293706293706
+        },
+        "tight_file_minus_tight_reversed": 0.0,
+        "default_file_minus_tight_file": -0.1015318015318013
+      },
+      {
+        "arm": "general (alpaca)",
+        "run": "loraA100_mistral_s400",
+        "dose": 400,
+        "ratio": {
+          "default_file": 1.1333333333333333,
+          "tight_file": 1.3226573426573427,
+          "tight_reversed": 1.3226573426573427
+        },
+        "tight_file_minus_tight_reversed": 0.0,
+        "default_file_minus_tight_file": -0.1893240093240094
+      },
+      {
+        "arm": "safety (hh-harmless)",
+        "run": "lorasafe_mistral_s25",
+        "dose": 25,
+        "ratio": {
+          "default_file": 24.088412698412704,
+          "tight_file": 28.84895104895105,
+          "tight_reversed": 28.84895104895105
+        },
+        "tight_file_minus_tight_reversed": 0.0,
+        "default_file_minus_tight_file": -4.760538350538347
+      },
+      {
+        "arm": "safety (hh-harmless)",
+        "run": "lorasafe_mistral_s100",
+        "dose": 100,
+        "ratio": {
+          "default_file": 2.8064285714285715,
+          "tight_file": 3.544102564102564,
+          "tight_reversed": 3.544102564102564
+        },
+        "tight_file_minus_tight_reversed": 0.0,
+        "default_file_minus_tight_file": -0.7376739926739924
+      },
+      {
+        "arm": "safety (hh-harmless)",
+        "run": "lorasafe_mistral_s400",
+        "dose": 400,
+        "ratio": {
+          "default_file": 5.348174603174603,
+          "tight_file": 7.173006993006993,
+          "tight_reversed": 7.173006993006993
+        },
+        "tight_file_minus_tight_reversed": 0.0,
+        "default_file_minus_tight_file": -1.8248323898323902
+      },
+      {
+        "arm": "safety (pku-saferlhf)",
+        "run": "lorapku_mistral_s25",
+        "dose": 25,
+        "ratio": {
+          "default_file": 13.10404761904762,
+          "tight_file": 9.876736596736595,
+          "tight_reversed": 9.910069930069929
+        },
+        "tight_file_minus_tight_reversed": -0.033333333333333215,
+        "default_file_minus_tight_file": 3.2273110223110244
+      },
+      {
+        "arm": "safety (pku-saferlhf)",
+        "run": "lorapku_mistral_s100",
+        "dose": 100,
+        "ratio": {
+          "default_file": 1.7944444444444443,
+          "tight_file": 1.594871794871795,
+          "tight_reversed": 1.594871794871795
+        },
+        "tight_file_minus_tight_reversed": 0.0,
+        "default_file_minus_tight_file": 0.1995726495726493
+      },
+      {
+        "arm": "safety (pku-saferlhf)",
+        "run": "lorapku_mistral_s400",
+        "dose": 400,
+        "ratio": {
+          "default_file": 5.406507936507937,
+          "tight_file": 5.5181818181818185,
+          "tight_reversed": 5.487412587412588
+        },
+        "tight_file_minus_tight_reversed": 0.03076923076923066,
+        "default_file_minus_tight_file": -0.11167388167388115
+      }
+    ]
+  }
+}
