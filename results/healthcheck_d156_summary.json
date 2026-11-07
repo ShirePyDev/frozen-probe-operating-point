@@ -1,0 +1,5393 @@
+{
+  "schema_version": 1,
+  "run_kind": "healthcheck_d156_summary",
+  "utc": "2026-09-28T02:15:12+00:00",
+  "git": {
+    "commit": null,
+    "branch": null,
+    "dirty": null,
+    "dirty_file_count": null,
+    "dirty_files": []
+  },
+  "env": {
+    "python": "3.10.12",
+    "platform": "Linux-3.10.0-1160.119.1.el7.x86_64-x86_64-with-glibc2.35",
+    "machine": "x86_64",
+    "blas_threads": {
+      "OMP_NUM_THREADS": "6",
+      "OPENBLAS_NUM_THREADS": "6",
+      "MKL_NUM_THREADS": "6",
+      "NUMEXPR_NUM_THREADS": null
+    },
+    "cpu_count": 12,
+    "libraries": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.7.2",
+      "torch": "2.7.0+cu126",
+      "transformers": "4.56.1"
+    }
+  },
+  "code": {
+    "sha256": {
+      "src/healthcheck_summary_d156.py": "ea1a72e6d195f3c8a04b859847da1ba69eee46e64d66113cfce9bf5009365c38",
+      "src/metrics.py": "f7aac316793d69097939ecbeb1de0719534d0bb0cdff04534a2d7de0a454b9ed",
+      "src/paired.py": "0099491a6aa1c28ea09cbfffde1ee5b88baad63d24ff1bd3a853bdcd3b44ab60",
+      "src/populations.py": "ccc7b9e5d3b6313c20b48498b66a13349a15b0c92b464b2e216173cd91b4fbf8",
+      "src/provenance.py": "d04b59417297c98aae4afaa0191b53abb6269c6301fbe93f2105d10394a16741",
+      "src/superseded_provenance.py": "6613f47f086958ef424f1be1263afc4a5918f17a50b24d025baad69aeb0738b8"
+    },
+    "commit": "2ce18f8d54576ecfeb1cb330c2b82088b755db8a",
+    "commit_source": "SYNC_COMMIT",
+    "libraries": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.7.2"
+    }
+  },
+  "preregistration": "D-152 4c, D-241",
+  "primary": {
+    "probe_set": "selected",
+    "level": "item_level_D156",
+    "class": "two_sided_2x",
+    "detector": "gaussian"
+  },
+  "band_note": "per-draw bands cover partitions only; pooled intervals cover pairs only (D-166)",
+  "input_files_sha256": {
+    "logs/healthcheck_d156.sha256": "fe1e2bb3350a68b492bf9ca9ca6519db124196535a6f7885ffc942136b522612",
+    "results/healthcheck_d156_mistral_base2instruct.json": "f118d15b7e4b3644ad5f92c1f9d66f08c22246792d8784444833f324f0e5a367",
+    "results/healthcheck_d156_mistral_base2instruct_draws.npz": "265b522bdc95a3bc1637ce1045449d0791219a63d1647f3ddff83a968b7ecc06",
+    "results/healthcheck_d156_gemma2_base2instruct.json": "c1f4bd8c3f5819304873379e51d6d749221f9b54fac41e6a21275cf4f63c437e",
+    "results/healthcheck_d156_gemma2_base2instruct_draws.npz": "08166d8b830ae215ccce42bb15fbcf123a0025649c22391d4086a7717510b17e",
+    "results/healthcheck_d156_llama3_base2instruct.json": "dcd3fd017638b1000d66eb97d2b5356c8fde305d2352221351eeee645b376263",
+    "results/healthcheck_d156_llama3_base2instruct_draws.npz": "32939f47101d1fbc0267c1351e48e6a256042c6a56e8bcad2344e624bd932565",
+    "results/healthcheck_d156_llama31_base2instruct.json": "1d3994d2e74df607ea29a7706bf25c109b1bac9e10e8c93c1537b61eb46d31bf",
+    "results/healthcheck_d156_llama31_base2instruct_draws.npz": "d8e9e12c4f5c02154bbf2ec84098efde0d6502387ef15f84b629190d52c5b050",
+    "results/healthcheck_d156_qwen_base2instruct.json": "c077fa293a060d5446ef87331ff0872b0ff174e939ebc5202cebd56571a102de",
+    "results/healthcheck_d156_qwen_base2instruct_draws.npz": "4e069b09f5403f58c0f06dc1656c81a375ee38ed2293ec53a43af3e66759f9df",
+    "results/healthcheck_d156_olmo_base2instruct.json": "ba621e1aae09ef178f32ab9bfb8d94f2c969e1ede7ffda83b106230f6461c75c",
+    "results/healthcheck_d156_olmo_base2instruct_draws.npz": "e6baba68b4b08ad63c4f78a0ce2fc3fdc14898fdc22e8696e4ca6aa8f481b3b0",
+    "results/healthcheck_d156_llama3_to_31.json": "c2d7c869f95e6a1512fe3017671be3b7cd4472db9a4541dc2d20f73d71936060",
+    "results/healthcheck_d156_llama3_to_31_draws.npz": "ee89305285b826d9194afef94df26acd68705afc2eb89f71fe91fdd970492c6a",
+    "results/healthcheck_d156_WG_mistral_base2instruct.json": "34115cbba5727c8d3473ff3ac04a7e04af89c79ff61ab722307bd85de4874ec8",
+    "results/healthcheck_d156_WG_mistral_base2instruct_draws.npz": "ea12236c5713ecff98b1c799804153097ffaf0a56a181dfd19f88bb34bc046bc",
+    "results/healthcheck_d156_WG_llama3_base2instruct.json": "bb4b22ee06637aa0e2aee42f19953005609ce9e79e9a84fc182d4e0d475f2f77",
+    "results/healthcheck_d156_WG_llama3_base2instruct_draws.npz": "f449ae05a1777b7311c106e2162aa15d35c22a9bbaa4c29c3ba785733bf5bd0e",
+    "results/healthcheck_d156_hw_v100_a100.json": "989dcaaa783241b769ea9dc15b9fb95835842c13f7b40d33dd1772aaf576dd53",
+    "results/healthcheck_d156_hw_v100_a100_draws.npz": "2a350b7b68b22a9bb133d7f4450712ce96382bf647fecc0699ba135333d82825"
+  },
+  "rows": {
+    "selected|item_level_D156": {
+      "released_pairs": {
+        "pairs": [
+          "mistral_base2instruct",
+          "gemma2_base2instruct",
+          "llama3_base2instruct",
+          "llama31_base2instruct",
+          "qwen_base2instruct",
+          "olmo_base2instruct",
+          "llama3_to_31",
+          "WG_mistral_base2instruct",
+          "WG_llama3_base2instruct"
+        ],
+        "n_pairs": 9,
+        "interval": "pair-cluster bootstrap B=5000, seed 520260925",
+        "gaussian|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.918354526818375,
+            "band95": [
+              0.8785046728971962,
+              0.9509803921568627
+            ],
+            "frozen": 0.8818181818181818,
+            "frozen_percentile": 3.3,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.019340272380751828
+          },
+          "per_draw_specificity": {
+            "mean": 0.8993931313446942,
+            "band95": [
+              0.8392857142857143,
+              0.9574468085106383
+            ],
+            "frozen": 0.9130434782608695,
+            "frozen_percentile": 65.8,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.029917713845145442
+          },
+          "mean_counts_over_draws": {
+            "tp": 94.555,
+            "fn": 8.459999999999999,
+            "fp": 5.381,
+            "tn": 47.604
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9178760374702714,
+            "specificity": 0.8984429555534585,
+            "sensitivity_ci": {
+              "ci95": [
+                0.8238201206761497,
+                0.9753763979879345
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.7724660716469006,
+                0.9819753513200606
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9367920485861473,
+            "band95": [
+              0.8378009828009828,
+              0.9901960784313726
+            ],
+            "frozen": 0.8272727272727273,
+            "frozen_percentile": 1.4,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.04024156870669245
+          },
+          "per_draw_specificity": {
+            "mean": 0.8884448955385703,
+            "band95": [
+              0.771828007518797,
+              0.98
+            ],
+            "frozen": 0.9130434782608695,
+            "frozen_percentile": 63.85,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.05579443391068216
+          },
+          "mean_counts_over_draws": {
+            "tp": 96.392,
+            "fn": 6.623,
+            "fp": 6.057,
+            "tn": 46.928
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9357083919817502,
+            "specificity": 0.8856846277248277,
+            "sensitivity_ci": {
+              "ci95": [
+                0.8804901892790313,
+                0.9743884587575962
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8096414755055515,
+                0.9483031584914924
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.019437186692882108,
+            "band95": [
+              0.018018018018018018,
+              0.020623926116838484
+            ],
+            "frozen": 0.01818181818181818,
+            "frozen_percentile": 3.25,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0006615538156142551
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 2.0,
+            "fn": 101.01499999999999,
+            "fp": 0.0,
+            "tn": 52.985
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.019414648352181724,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.040461668720220494
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "gaussian|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.8260708635427975,
+            "band95": [
+              0.7391304347826086,
+              0.9142857142857143
+            ],
+            "frozen": 0.7857142857142857,
+            "frozen_percentile": 18.25,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.04605305066227797
+          },
+          "per_draw_specificity": {
+            "mean": 0.9405274280809531,
+            "band95": [
+              0.9016190218127625,
+              0.9732142857142857
+            ],
+            "frozen": 0.96,
+            "frozen_percentile": 84.25,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.018915347807388478
+          },
+          "mean_counts_over_draws": {
+            "tp": 36.425,
+            "fn": 7.848999999999999,
+            "fp": 6.702,
+            "tn": 105.024
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.8227176220806794,
+            "specificity": 0.9400139627302508,
+            "sensitivity_ci": {
+              "ci95": [
+                0.585899778595304,
+                0.9377251180977298
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8797342396903676,
+                0.9849263535349702
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.8422204147201681,
+            "band95": [
+              0.6530612244897959,
+              1.0
+            ],
+            "frozen": 0.7142857142857143,
+            "frozen_percentile": 8.7,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.08809151590945519
+          },
+          "per_draw_specificity": {
+            "mean": 0.9382736111019262,
+            "band95": [
+              0.8558809917355372,
+              0.9907407407407407
+            ],
+            "frozen": 0.98,
+            "frozen_percentile": 84.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.037029926180518
+          },
+          "mean_counts_over_draws": {
+            "tp": 36.885999999999996,
+            "fn": 7.388,
+            "fp": 7.063000000000001,
+            "tn": 104.66300000000001
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.8331300537561549,
+            "specificity": 0.9367828437427277,
+            "sensitivity_ci": {
+              "ci95": [
+                0.6063354522343499,
+                0.9353044760342599
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.881288560235336,
+                0.9755598342784031
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.0460070886883162,
+            "band95": [
+              0.03571428571428571,
+              0.06060606060606061
+            ],
+            "frozen": 0.03571428571428571,
+            "frozen_percentile": 2.2,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.006448654341205303
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 2.0,
+            "fn": 42.274,
+            "fp": 0.0,
+            "tn": 111.726
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.04517323937299544,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.06793872921205693
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "gaussian|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9065557056856532,
+            "band95": [
+              0.8635971786833856,
+              0.9487179487179487
+            ],
+            "frozen": 0.8666666666666667,
+            "frozen_percentile": 4.3,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.02144169858724527
+          },
+          "per_draw_specificity": {
+            "mean": 0.9670743913338662,
+            "band95": [
+              0.9342105263157895,
+              0.9855072463768116
+            ],
+            "frozen": 0.9848484848484849,
+            "frozen_percentile": 93.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.011815328447777442
+          },
+          "mean_counts_over_draws": {
+            "tp": 75.402,
+            "fn": 7.822000000000001,
+            "fp": 2.4150000000000005,
+            "tn": 70.36099999999999
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9060126886475055,
+            "specificity": 0.9668159832911948,
+            "sensitivity_ci": {
+              "ci95": [
+                0.757368784015638,
+                0.975982793990035
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8846892025092861,
+                0.9986682909557535
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9415263297292445,
+            "band95": [
+              0.8314606741573034,
+              1.0
+            ],
+            "frozen": 0.8111111111111111,
+            "frozen_percentile": 1.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.044073139285701016
+          },
+          "per_draw_specificity": {
+            "mean": 0.962798329621623,
+            "band95": [
+              0.8961038961038961,
+              1.0
+            ],
+            "frozen": 0.9848484848484849,
+            "frozen_percentile": 63.6,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.030130655855967498
+          },
+          "mean_counts_over_draws": {
+            "tp": 78.264,
+            "fn": 4.96,
+            "fp": 2.77,
+            "tn": 70.006
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9404018071710084,
+            "specificity": 0.9619380015389689,
+            "sensitivity_ci": {
+              "ci95": [
+                0.8667852632940094,
+                0.979817528338402
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.9413555270749171,
+                0.9839824765555479
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.02405501545593552,
+            "band95": [
+              0.02247191011235955,
+              0.02531645569620253
+            ],
+            "frozen": 0.022222222222222223,
+            "frozen_percentile": 0.8,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0007507506271087421
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 2.0,
+            "fn": 81.22399999999999,
+            "fp": 0.0,
+            "tn": 72.77600000000001
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.02403152936652889,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.048078321508979165
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "n_cells": 156,
+        "roc_auc|abs_log_gaussian_ratio|two_sided_2x": {
+          "mean": 0.9516909454470664,
+          "band95": [
+            0.9191974011826953,
+            0.9736757229644533
+          ],
+          "frozen": 0.9229249011857708,
+          "frozen_percentile": 4.2,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.01489359631510033
+        },
+        "roc_auc|abs_log_direct_ratio|two_sided_2x": {
+          "mean": 0.9773833105620459,
+          "band95": [
+            0.9467855549506725,
+            0.992438827787032
+          ],
+          "frozen": 0.966106719367589,
+          "frozen_percentile": 13.8,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.0112978177535158
+        },
+        "roc_auc|abs_z_mean|two_sided_2x": {
+          "mean": 0.7702571972065023,
+          "band95": [
+            0.7402769699883984,
+            0.8011254414617187
+          ],
+          "frozen": 0.7839920948616601,
+          "frozen_percentile": 82.3,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.015707330021596883
+        },
+        "roc_auc|abs_log_gaussian_ratio|two_sided_5x": {
+          "mean": 0.9627242513820915,
+          "band95": [
+            0.9411284729705782,
+            0.9826277203436959
+          ],
+          "frozen": 0.9633928571428572,
+          "frozen_percentile": 51.2,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.01076558699785444
+        },
+        "roc_auc|abs_log_direct_ratio|two_sided_5x": {
+          "mean": 0.9721918927448548,
+          "band95": [
+            0.9416305610674807,
+            0.990066627972277
+          ],
+          "frozen": 0.9638392857142857,
+          "frozen_percentile": 21.2,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.013097966504731762
+        },
+        "roc_auc|abs_z_mean|two_sided_5x": {
+          "mean": 0.8115906385104631,
+          "band95": [
+            0.7433145646305666,
+            0.8768599917579969
+          ],
+          "frozen": 0.7605357142857143,
+          "frozen_percentile": 6.9,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.03449315397141616
+        },
+        "roc_auc|abs_log_gaussian_ratio|high_side_2x": {
+          "mean": 0.8107185791372079,
+          "band95": [
+            0.776607771914814,
+            0.8425995607266623
+          ],
+          "frozen": 0.7865319865319865,
+          "frozen_percentile": 8.1,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.016464126159851232
+        },
+        "roc_auc|abs_log_direct_ratio|high_side_2x": {
+          "mean": 0.8501847261716512,
+          "band95": [
+            0.7864338554528577,
+            0.9039345748187212
+          ],
+          "frozen": 0.786952861952862,
+          "frozen_percentile": 2.6,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.03100160988784996
+        },
+        "roc_auc|abs_z_mean|high_side_2x": {
+          "mean": 0.8130553184094269,
+          "band95": [
+            0.792044434050771,
+            0.8325685439586905
+          ],
+          "frozen": 0.8143097643097643,
+          "frozen_percentile": 54.1,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.009918182803963815
+        }
+      },
+      "unflagged_pairs": {
+        "pairs": [
+          "gemma2_base2instruct",
+          "llama31_base2instruct",
+          "olmo_base2instruct",
+          "WG_mistral_base2instruct",
+          "WG_llama3_base2instruct"
+        ],
+        "n_pairs": 5,
+        "interval": "pair-cluster bootstrap B=5000, seed 520260925",
+        "gaussian|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9164251864881235,
+            "band95": [
+              0.8688524590163934,
+              0.9642857142857143
+            ],
+            "frozen": 0.8870967741935484,
+            "frozen_percentile": 12.8,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.023413314647377642
+          },
+          "per_draw_specificity": {
+            "mean": 0.9034278156090465,
+            "band95": [
+              0.8125,
+              1.0
+            ],
+            "frozen": 0.8928571428571429,
+            "frozen_percentile": 37.95,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.045493530245161444
+          },
+          "mean_counts_over_draws": {
+            "tp": 54.002,
+            "fn": 4.955,
+            "fp": 3.048,
+            "tn": 27.994999999999997
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9159556965245857,
+            "specificity": 0.9018136133749959,
+            "sensitivity_ci": {
+              "ci95": [
+                0.7985612936467045,
+                0.990156862209723
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8125378076347545,
+                0.9950347110477679
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9253506862382868,
+            "band95": [
+              0.8195969945355192,
+              1.0
+            ],
+            "frozen": 0.8064516129032258,
+            "frozen_percentile": 1.8,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.04730012050868953
+          },
+          "per_draw_specificity": {
+            "mean": 0.8712925412972266,
+            "band95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "frozen": 0.9285714285714286,
+            "frozen_percentile": 73.55,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.06934118169523047
+          },
+          "mean_counts_over_draws": {
+            "tp": 54.482,
+            "fn": 4.475,
+            "fp": 4.118,
+            "tn": 26.924999999999997
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9240972234001051,
+            "specificity": 0.8673452952356409,
+            "sensitivity_ci": {
+              "ci95": [
+                0.8338826362811602,
+                0.9817198869609142
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.7722645729675446,
+                0.9690588938439613
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.01698561962035677,
+            "band95": [
+              0.015873015873015872,
+              0.018518518518518517
+            ],
+            "frozen": 0.016129032258064516,
+            "frozen_percentile": 8.75,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0006426788927493025
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 1.0,
+            "fn": 57.957,
+            "fp": 0.0,
+            "tn": 31.043
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.016961514323998846,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.044911524297134645
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "gaussian|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.7871277192557806,
+            "band95": [
+              0.6774193548387096,
+              0.8928571428571429
+            ],
+            "frozen": 0.8285714285714286,
+            "frozen_percentile": 77.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.05674730589058589
+          },
+          "per_draw_specificity": {
+            "mean": 0.9001815450623357,
+            "band95": [
+              0.8382253577106519,
+              0.9531430288461539
+            ],
+            "frozen": 0.9454545454545454,
+            "frozen_percentile": 92.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.030269327642115432
+          },
+          "mean_counts_over_draws": {
+            "tp": 21.084999999999997,
+            "fn": 5.739,
+            "fp": 6.391,
+            "tn": 56.785
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.7860498061437519,
+            "specificity": 0.8988381663923009,
+            "sensitivity_ci": {
+              "ci95": [
+                0.6601824754690997,
+                0.8653225806451613
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8074848198950093,
+                0.9686457464553794
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.7819711159074931,
+            "band95": [
+              0.5482488479262673,
+              1.0
+            ],
+            "frozen": 0.6285714285714286,
+            "frozen_percentile": 10.55,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.1176790150400285
+          },
+          "per_draw_specificity": {
+            "mean": 0.9116689538140745,
+            "band95": [
+              0.797227878563495,
+              1.0
+            ],
+            "frozen": 0.9636363636363636,
+            "frozen_percentile": 78.2,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.05341318232285633
+          },
+          "mean_counts_over_draws": {
+            "tp": 20.586999999999996,
+            "fn": 6.237,
+            "fp": 5.775,
+            "tn": 57.401
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.7674843423799581,
+            "specificity": 0.9085887045713562,
+            "sensitivity_ci": {
+              "ci95": [
+                0.56263000813964,
+                0.8426028640580879
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8179003837916923,
+                0.9637437951263538
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.0384041451301999,
+            "band95": [
+              0.02857142857142857,
+              0.05555555555555555
+            ],
+            "frozen": 0.02857142857142857,
+            "frozen_percentile": 2.05,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.007159660391508261
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 1.0,
+            "fn": 25.823999999999998,
+            "fp": 0.0,
+            "tn": 63.176
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.03728004771846108,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.0744158356898348
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "gaussian|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.8961058063681073,
+            "band95": [
+              0.8399183673469387,
+              0.9545454545454546
+            ],
+            "frozen": 0.86,
+            "frozen_percentile": 12.85,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.028569792958982834
+          },
+          "per_draw_specificity": {
+            "mean": 0.9919137026790594,
+            "band95": [
+              0.9555555555555556,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 64.15,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.014226881041487364
+          },
+          "mean_counts_over_draws": {
+            "tp": 41.459,
+            "fn": 4.844,
+            "fp": 0.365,
+            "tn": 43.331999999999994
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.8953847482884478,
+            "specificity": 0.9916470238231457,
+            "sensitivity_ci": {
+              "ci95": [
+                0.6189970411956605,
+                0.9896168787095471
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.9816754410270621,
+                0.9998968327659136
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9288828211603494,
+            "band95": [
+              0.8125,
+              1.0
+            ],
+            "frozen": 0.78,
+            "frozen_percentile": 0.75,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.05213410544795528
+          },
+          "per_draw_specificity": {
+            "mean": 0.9556076288330182,
+            "band95": [
+              0.8722710453283997,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 89.35,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.03774836663518597
+          },
+          "mean_counts_over_draws": {
+            "tp": 42.943999999999996,
+            "fn": 3.359,
+            "fp": 1.9929999999999999,
+            "tn": 41.704
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9274561043560892,
+            "specificity": 0.954390461587752,
+            "sensitivity_ci": {
+              "ci95": [
+                0.7852230300648457,
+                0.9819853713414911
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.9303898487690037,
+                0.9837387625594923
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.021625696722497492,
+            "band95": [
+              0.02040816326530612,
+              0.023255813953488372
+            ],
+            "frozen": 0.02,
+            "frozen_percentile": 1.4,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0007932856594289763
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 1.0,
+            "fn": 45.303,
+            "fp": 0.0,
+            "tn": 43.697
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.021596872772822497,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.0534292685533135
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "n_cells": 90,
+        "roc_auc|abs_log_gaussian_ratio|two_sided_2x": {
+          "mean": 0.9557759702920721,
+          "band95": [
+            0.9048272000187635,
+            0.9872222222222222
+          ],
+          "frozen": 0.9233870967741935,
+          "frozen_percentile": 10.2,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.02260087333969314
+        },
+        "roc_auc|abs_log_direct_ratio|two_sided_2x": {
+          "mean": 0.9725764661826962,
+          "band95": [
+            0.9334544390406758,
+            0.9926545414462081
+          ],
+          "frozen": 0.972926267281106,
+          "frozen_percentile": 41.4,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.014954588828955478
+        },
+        "roc_auc|abs_z_mean|two_sided_2x": {
+          "mean": 0.8337910537036126,
+          "band95": [
+            0.7942857142857143,
+            0.8709748535017352
+          ],
+          "frozen": 0.8237327188940092,
+          "frozen_percentile": 31.9,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.02013049611887898
+        },
+        "roc_auc|abs_log_gaussian_ratio|two_sided_5x": {
+          "mean": 0.9369406203017818,
+          "band95": [
+            0.9013005638684987,
+            0.971737645113177
+          ],
+          "frozen": 0.9563636363636364,
+          "frozen_percentile": 85.0,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.01828134016297501
+        },
+        "roc_auc|abs_log_direct_ratio|two_sided_5x": {
+          "mean": 0.9547852871439602,
+          "band95": [
+            0.9061101190476191,
+            0.9847036809554579
+          ],
+          "frozen": 0.9537662337662338,
+          "frozen_percentile": 42.4,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.019939808449364632
+        },
+        "roc_auc|abs_z_mean|two_sided_5x": {
+          "mean": 0.75385784597712,
+          "band95": [
+            0.6824860037021802,
+            0.8239182692307693
+          ],
+          "frozen": 0.7464935064935065,
+          "frozen_percentile": 41.1,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.035204416454584664
+        },
+        "roc_auc|abs_log_gaussian_ratio|high_side_2x": {
+          "mean": 0.7485500878111297,
+          "band95": [
+            0.7079953708312593,
+            0.7900197628458498
+          ],
+          "frozen": 0.72,
+          "frozen_percentile": 9.2,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.02078930760672143
+        },
+        "roc_auc|abs_log_direct_ratio|high_side_2x": {
+          "mean": 0.8251894381560457,
+          "band95": [
+            0.7583876419474246,
+            0.8854175686541316
+          ],
+          "frozen": 0.773,
+          "frozen_percentile": 6.7,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.03311400037437569
+        },
+        "roc_auc|abs_z_mean|high_side_2x": {
+          "mean": 0.8486808995880263,
+          "band95": [
+            0.8221343873517787,
+            0.8700608927438638
+          ],
+          "frozen": 0.832,
+          "frozen_percentile": 10.2,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.012326203601812679
+        }
+      },
+      "gpu_control": {
+        "gaussian|two_sided_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "direct|two_sided_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "auc_rule|two_sided_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "share_of_draws_with_a_control_cell_in_class|two_sided_2x": 0.0,
+        "gaussian|two_sided_5x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "direct|two_sided_5x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "auc_rule|two_sided_5x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "share_of_draws_with_a_control_cell_in_class|two_sided_5x": 0.0,
+        "gaussian|high_side_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "direct|high_side_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "auc_rule|high_side_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "share_of_draws_with_a_control_cell_in_class|high_side_2x": 0.0
+      }
+    },
+    "selected|cluster_level_D164": {
+      "released_pairs": {
+        "pairs": [
+          "mistral_base2instruct",
+          "gemma2_base2instruct",
+          "llama3_base2instruct",
+          "llama31_base2instruct",
+          "qwen_base2instruct",
+          "olmo_base2instruct",
+          "llama3_to_31",
+          "WG_mistral_base2instruct",
+          "WG_llama3_base2instruct"
+        ],
+        "n_pairs": 9,
+        "interval": "pair-cluster bootstrap B=5000, seed 520260925",
+        "gaussian|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9188533867226873,
+            "band95": [
+              0.8761883691529709,
+              0.9583333333333334
+            ],
+            "frozen": 0.8818181818181818,
+            "frozen_percentile": 4.45,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.020379687304840372
+          },
+          "per_draw_specificity": {
+            "mean": 0.898105072410669,
+            "band95": [
+              0.8392857142857143,
+              0.9535400516795866
+            ],
+            "frozen": 0.9130434782608695,
+            "frozen_percentile": 67.95,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.029838054491638726
+          },
+          "mean_counts_over_draws": {
+            "tp": 94.526,
+            "fn": 8.407,
+            "fp": 5.459,
+            "tn": 47.608000000000004
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9183255127121526,
+            "specificity": 0.8971300431529953,
+            "sensitivity_ci": {
+              "ci95": [
+                0.8249736813819115,
+                0.9752131804712001
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.7710298551006516,
+                0.9814621645914858
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9365589443236368,
+            "band95": [
+              0.8425925925925926,
+              0.9902912621359223
+            ],
+            "frozen": 0.8272727272727273,
+            "frozen_percentile": 1.65,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.04097811777134871
+          },
+          "per_draw_specificity": {
+            "mean": 0.8852432276977585,
+            "band95": [
+              0.7586206896551724,
+              0.98
+            ],
+            "frozen": 0.9130434782608695,
+            "frozen_percentile": 66.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.056854288544648704
+          },
+          "mean_counts_over_draws": {
+            "tp": 96.288,
+            "fn": 6.645,
+            "fp": 6.241,
+            "tn": 46.82600000000001
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9354434437935356,
+            "specificity": 0.8823939548118417,
+            "sensitivity_ci": {
+              "ci95": [
+                0.8794645315318814,
+                0.9743871929988547
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8017414828247664,
+                0.9484633585061165
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.01945348077303162,
+            "band95": [
+              0.01818181818181818,
+              0.020833333333333332
+            ],
+            "frozen": 0.01818181818181818,
+            "frozen_percentile": 2.7,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0006756176604096414
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 2.0,
+            "fn": 100.93299999999999,
+            "fp": 0.0,
+            "tn": 53.067
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.01943011473482751,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.0405217027752584
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "gaussian|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.8284984091811614,
+            "band95": [
+              0.7307291666666667,
+              0.9211032388663967
+            ],
+            "frozen": 0.7857142857142857,
+            "frozen_percentile": 17.2,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.04809316526798104
+          },
+          "per_draw_specificity": {
+            "mean": 0.940436235940167,
+            "band95": [
+              0.8983050847457628,
+              0.972972972972973
+            ],
+            "frozen": 0.96,
+            "frozen_percentile": 83.7,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.01973066155773288
+          },
+          "mean_counts_over_draws": {
+            "tp": 36.525999999999996,
+            "fn": 7.753,
+            "fp": 6.718,
+            "tn": 105.003
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.8249057115111,
+            "specificity": 0.9398680641956302,
+            "sensitivity_ci": {
+              "ci95": [
+                0.5921301334555243,
+                0.9389406436543305
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8794936501685972,
+                0.9848737559609341
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.84492123151429,
+            "band95": [
+              0.6470281862745099,
+              1.0
+            ],
+            "frozen": 0.7142857142857143,
+            "frozen_percentile": 8.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.08853202949798174
+          },
+          "per_draw_specificity": {
+            "mean": 0.9377979993611278,
+            "band95": [
+              0.8455284552845529,
+              0.9912946428571426
+            ],
+            "frozen": 0.98,
+            "frozen_percentile": 85.75,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.03853130209971574
+          },
+          "mean_counts_over_draws": {
+            "tp": 36.998,
+            "fn": 7.2810000000000015,
+            "fp": 7.128,
+            "tn": 104.59299999999999
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.8355653921723616,
+            "specificity": 0.9361982080360899,
+            "sensitivity_ci": {
+              "ci95": [
+                0.6091914709157894,
+                0.9351791492528174
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8809204406152149,
+                0.9752239212614515
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.046035261231181374,
+            "band95": [
+              0.03508771929824561,
+              0.06060606060606061
+            ],
+            "frozen": 0.03571428571428571,
+            "frozen_percentile": 3.05,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.006566450756018684
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 2.0,
+            "fn": 42.279,
+            "fp": 0.0,
+            "tn": 111.721
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.04516813839517604,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.06806320065861737
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "gaussian|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9067189408215702,
+            "band95": [
+              0.8620689655172413,
+              0.9493670886075949
+            ],
+            "frozen": 0.8666666666666667,
+            "frozen_percentile": 4.65,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.02229142620525603
+          },
+          "per_draw_specificity": {
+            "mean": 0.9663157618767102,
+            "band95": [
+              0.9342105263157895,
+              0.9855124223602485
+            ],
+            "frozen": 0.9848484848484849,
+            "frozen_percentile": 93.55,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.012284392060978618
+          },
+          "mean_counts_over_draws": {
+            "tp": 75.41499999999999,
+            "fn": 7.814,
+            "fp": 2.473,
+            "tn": 70.298
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9061144552980333,
+            "specificity": 0.9660166824696651,
+            "sensitivity_ci": {
+              "ci95": [
+                0.7584493168837868,
+                0.9756621392919427
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.883444776672245,
+                0.9985991792084614
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9404614545977523,
+            "band95": [
+              0.8332865168539326,
+              1.0
+            ],
+            "frozen": 0.8111111111111111,
+            "frozen_percentile": 1.4,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.04595110472778419
+          },
+          "per_draw_specificity": {
+            "mean": 0.9606741792479716,
+            "band95": [
+              0.881578947368421,
+              1.0
+            ],
+            "frozen": 0.9848484848484849,
+            "frozen_percentile": 65.85,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.032271981952050575
+          },
+          "mean_counts_over_draws": {
+            "tp": 78.17,
+            "fn": 5.059,
+            "fp": 2.934,
+            "tn": 69.837
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9392158983046774,
+            "specificity": 0.9596817413530115,
+            "sensitivity_ci": {
+              "ci95": [
+                0.8635128717834364,
+                0.9794503307446508
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.9372453285328256,
+                0.9834418457121381
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.024056229590885728,
+            "band95": [
+              0.02247191011235955,
+              0.02564102564102564
+            ],
+            "frozen": 0.022222222222222223,
+            "frozen_percentile": 1.05,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0007942493693208767
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 2.0,
+            "fn": 81.229,
+            "fp": 0.0,
+            "tn": 72.771
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.024030085667255403,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.04805248099937735
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "n_cells": 156,
+        "roc_auc|abs_log_gaussian_ratio|two_sided_2x": {
+          "mean": 0.9514008034924936,
+          "band95": [
+            0.9184472798241363,
+            0.9744385491180697
+          ],
+          "frozen": 0.9229249011857708,
+          "frozen_percentile": 4.6,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.015086470254456736
+        },
+        "roc_auc|abs_log_direct_ratio|two_sided_2x": {
+          "mean": 0.9766509365772373,
+          "band95": [
+            0.9498585046666888,
+            0.9923925294592999
+          ],
+          "frozen": 0.966106719367589,
+          "frozen_percentile": 16.5,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.011291710056794222
+        },
+        "roc_auc|abs_z_mean|two_sided_2x": {
+          "mean": 0.7693426555723165,
+          "band95": [
+            0.7409208579881656,
+            0.8041822819620299
+          ],
+          "frozen": 0.7839920948616601,
+          "frozen_percentile": 84.6,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.015562479640372792
+        },
+        "roc_auc|abs_log_gaussian_ratio|two_sided_5x": {
+          "mean": 0.9631659750430213,
+          "band95": [
+            0.9395694633152174,
+            0.9820715642798326
+          ],
+          "frozen": 0.9633928571428572,
+          "frozen_percentile": 48.4,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.010848279279454481
+        },
+        "roc_auc|abs_log_direct_ratio|two_sided_5x": {
+          "mean": 0.9721748347836816,
+          "band95": [
+            0.939055373331184,
+            0.9909338858315863
+          ],
+          "frozen": 0.9638392857142857,
+          "frozen_percentile": 21.1,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.0140948082906295
+        },
+        "roc_auc|abs_z_mean|two_sided_5x": {
+          "mean": 0.8120092819482259,
+          "band95": [
+            0.741547127622979,
+            0.8808021038790269
+          ],
+          "frozen": 0.7605357142857143,
+          "frozen_percentile": 7.5,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.03568868593997947
+        },
+        "roc_auc|abs_log_gaussian_ratio|high_side_2x": {
+          "mean": 0.8100976586475312,
+          "band95": [
+            0.7771284545259276,
+            0.8403754709803881
+          ],
+          "frozen": 0.7865319865319865,
+          "frozen_percentile": 7.5,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.016412323464612685
+        },
+        "roc_auc|abs_log_direct_ratio|high_side_2x": {
+          "mean": 0.848711430142623,
+          "band95": [
+            0.7812727824210818,
+            0.9073213635680067
+          ],
+          "frozen": 0.786952861952862,
+          "frozen_percentile": 4.2,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.032746405096515496
+        },
+        "roc_auc|abs_z_mean|high_side_2x": {
+          "mean": 0.8120953445909362,
+          "band95": [
+            0.7897895126510819,
+            0.8319191035795234
+          ],
+          "frozen": 0.8143097643097643,
+          "frozen_percentile": 57.8,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.010469376868645774
+        }
+      },
+      "unflagged_pairs": {
+        "pairs": [
+          "gemma2_base2instruct",
+          "llama31_base2instruct",
+          "olmo_base2instruct",
+          "WG_mistral_base2instruct",
+          "WG_llama3_base2instruct"
+        ],
+        "n_pairs": 5,
+        "interval": "pair-cluster bootstrap B=5000, seed 520260925",
+        "gaussian|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9169993774146296,
+            "band95": [
+              0.8687978142076502,
+              0.9649122807017544
+            ],
+            "frozen": 0.8870967741935484,
+            "frozen_percentile": 12.65,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.025224766521978758
+          },
+          "per_draw_specificity": {
+            "mean": 0.9018841269725721,
+            "band95": [
+              0.8125,
+              1.0
+            ],
+            "frozen": 0.8928571428571429,
+            "frozen_percentile": 39.1,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.04569727367907776
+          },
+          "mean_counts_over_draws": {
+            "tp": 53.986999999999995,
+            "fn": 4.925,
+            "fp": 3.1029999999999998,
+            "tn": 27.985
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9164007332971211,
+            "specificity": 0.9001865671641791,
+            "sensitivity_ci": {
+              "ci95": [
+                0.7998410648654017,
+                0.9894477088985535
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8097675006317918,
+                0.9957045863932382
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9244045454100888,
+            "band95": [
+              0.8095238095238095,
+              1.0
+            ],
+            "frozen": 0.8064516129032258,
+            "frozen_percentile": 2.05,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.04927526797528753
+          },
+          "per_draw_specificity": {
+            "mean": 0.8672388121755562,
+            "band95": [
+              0.7142857142857143,
+              1.0
+            ],
+            "frozen": 0.9285714285714286,
+            "frozen_percentile": 75.55,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.07110767044632184
+          },
+          "mean_counts_over_draws": {
+            "tp": 54.37800000000001,
+            "fn": 4.534,
+            "fp": 4.260999999999999,
+            "tn": 26.826999999999998
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9230377512221619,
+            "specificity": 0.8629374678332475,
+            "sensitivity_ci": {
+              "ci95": [
+                0.831813255507502,
+                0.9809404354524262
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.7636083192357449,
+                0.9690083598909981
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.017001674288274423,
+            "band95": [
+              0.015873015873015872,
+              0.018518518518518517
+            ],
+            "frozen": 0.016129032258064516,
+            "frozen_percentile": 9.2,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0006865343399389873
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 1.0,
+            "fn": 57.912,
+            "fp": 0.0,
+            "tn": 31.088
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.01697447039652363,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.044989652379952616
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "gaussian|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.7910167677921334,
+            "band95": [
+              0.6666666666666666,
+              0.9
+            ],
+            "frozen": 0.8285714285714286,
+            "frozen_percentile": 76.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.057427579058927314
+          },
+          "per_draw_specificity": {
+            "mean": 0.9000439194232551,
+            "band95": [
+              0.8333333333333334,
+              0.9545454545454546
+            ],
+            "frozen": 0.9454545454545454,
+            "frozen_percentile": 92.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.031104119591501802
+          },
+          "mean_counts_over_draws": {
+            "tp": 21.126,
+            "fn": 5.627,
+            "fp": 6.412,
+            "tn": 56.834999999999994
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.7896684483983105,
+            "specificity": 0.8986196973769507,
+            "sensitivity_ci": {
+              "ci95": [
+                0.679699773084308,
+                0.8673639630390143
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8057783755223594,
+                0.9681639902316288
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.7877948577396585,
+            "band95": [
+              0.5499596774193549,
+              1.0
+            ],
+            "frozen": 0.6285714285714286,
+            "frozen_percentile": 9.5,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.11678238051155919
+          },
+          "per_draw_specificity": {
+            "mean": 0.912054551011418,
+            "band95": [
+              0.7915933098591549,
+              1.0
+            ],
+            "frozen": 0.9636363636363636,
+            "frozen_percentile": 78.7,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.05484119112946371
+          },
+          "mean_counts_over_draws": {
+            "tp": 20.686,
+            "fn": 6.067,
+            "fp": 5.769,
+            "tn": 57.477999999999994
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.7732216947632041,
+            "specificity": 0.9087861874871536,
+            "sensitivity_ci": {
+              "ci95": [
+                0.5691920100773799,
+                0.8477009307869842
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8146984924623115,
+                0.962997394182689
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.0385512629196779,
+            "band95": [
+              0.02857142857142857,
+              0.05555555555555555
+            ],
+            "frozen": 0.02857142857142857,
+            "frozen_percentile": 2.55,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0073275363582968045
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 1.0,
+            "fn": 25.753,
+            "fp": 0.0,
+            "tn": 63.247
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.037378985534332596,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.07485870419583038
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "gaussian|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.8967286012889031,
+            "band95": [
+              0.8367346938775511,
+              0.9545454545454546
+            ],
+            "frozen": 0.86,
+            "frozen_percentile": 13.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.030622197609798566
+          },
+          "per_draw_specificity": {
+            "mean": 0.9909950727023177,
+            "band95": [
+              0.9555555555555556,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 65.3,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.01503677073662057
+          },
+          "mean_counts_over_draws": {
+            "tp": 41.496,
+            "fn": 4.826,
+            "fp": 0.40900000000000003,
+            "tn": 43.269
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.8958162428219852,
+            "specificity": 0.9906360181326984,
+            "sensitivity_ci": {
+              "ci95": [
+                0.6215619888157645,
+                0.9888533194901079
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.9789742073756559,
+                0.999974226139849
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9272875324907632,
+            "band95": [
+              0.8038235294117647,
+              1.0
+            ],
+            "frozen": 0.78,
+            "frozen_percentile": 1.25,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.055305391673161945
+          },
+          "per_draw_specificity": {
+            "mean": 0.9536137284436902,
+            "band95": [
+              0.8541666666666666,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 89.1,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.040862205856233465
+          },
+          "mean_counts_over_draws": {
+            "tp": 42.875,
+            "fn": 3.447,
+            "fp": 2.091,
+            "tn": 41.587
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.92558611458918,
+            "specificity": 0.9521269288886853,
+            "sensitivity_ci": {
+              "ci95": [
+                0.7798289933929266,
+                0.9820298867360812
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.9258498654172066,
+                0.9830693429450084
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.021623289541641465,
+            "band95": [
+              0.02,
+              0.023809523809523808
+            ],
+            "frozen": 0.02,
+            "frozen_percentile": 1.9,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.000881875516083851
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 1.0,
+            "fn": 45.322,
+            "fp": 0.0,
+            "tn": 43.678
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.021588014334441515,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.05349119178375294
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "n_cells": 90,
+        "roc_auc|abs_log_gaussian_ratio|two_sided_2x": {
+          "mean": 0.9548967905534335,
+          "band95": [
+            0.9035775465600028,
+            0.9868810811679551
+          ],
+          "frozen": 0.9233870967741935,
+          "frozen_percentile": 10.7,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.022976674378225932
+        },
+        "roc_auc|abs_log_direct_ratio|two_sided_2x": {
+          "mean": 0.9718270700748707,
+          "band95": [
+            0.9369417862838916,
+            0.9925029729360306
+          ],
+          "frozen": 0.972926267281106,
+          "frozen_percentile": 46.0,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.014596883636529707
+        },
+        "roc_auc|abs_z_mean|two_sided_2x": {
+          "mean": 0.832174835227122,
+          "band95": [
+            0.7941810344827587,
+            0.8683962773617512
+          ],
+          "frozen": 0.8237327188940092,
+          "frozen_percentile": 31.7,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.01962965112090455
+        },
+        "roc_auc|abs_log_gaussian_ratio|two_sided_5x": {
+          "mean": 0.9372656800253619,
+          "band95": [
+            0.8996345486111111,
+            0.9725387480321827
+          ],
+          "frozen": 0.9563636363636364,
+          "frozen_percentile": 85.3,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.018508768930004225
+        },
+        "roc_auc|abs_log_direct_ratio|two_sided_5x": {
+          "mean": 0.9557641893781713,
+          "band95": [
+            0.9040672015182885,
+            0.9884366246498599
+          ],
+          "frozen": 0.9537662337662338,
+          "frozen_percentile": 39.85,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.02174061832130303
+        },
+        "roc_auc|abs_z_mean|two_sided_5x": {
+          "mean": 0.7559733329893337,
+          "band95": [
+            0.6871458708348855,
+            0.8201059036128481
+          ],
+          "frozen": 0.7464935064935065,
+          "frozen_percentile": 37.7,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.03533780049197054
+        },
+        "roc_auc|abs_log_gaussian_ratio|high_side_2x": {
+          "mean": 0.7477325903708189,
+          "band95": [
+            0.7058697838109603,
+            0.7915252780472065
+          ],
+          "frozen": 0.72,
+          "frozen_percentile": 9.4,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.02120501145060092
+        },
+        "roc_auc|abs_log_direct_ratio|high_side_2x": {
+          "mean": 0.8240856628805946,
+          "band95": [
+            0.7534639737305179,
+            0.8866126490769841
+          ],
+          "frozen": 0.773,
+          "frozen_percentile": 8.8,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.035189148456969785
+        },
+        "roc_auc|abs_z_mean|high_side_2x": {
+          "mean": 0.8473853628555706,
+          "band95": [
+            0.8208750376481725,
+            0.867887184562098
+          ],
+          "frozen": 0.832,
+          "frozen_percentile": 11.2,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.012426279772995765
+        }
+      },
+      "gpu_control": {
+        "gaussian|two_sided_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "direct|two_sided_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "auc_rule|two_sided_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "share_of_draws_with_a_control_cell_in_class|two_sided_2x": 0.0,
+        "gaussian|two_sided_5x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "direct|two_sided_5x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "auc_rule|two_sided_5x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "share_of_draws_with_a_control_cell_in_class|two_sided_5x": 0.0,
+        "gaussian|high_side_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "direct|high_side_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "auc_rule|high_side_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "share_of_draws_with_a_control_cell_in_class|high_side_2x": 0.0
+      }
+    },
+    "C=1|item_level_D156": {
+      "released_pairs": {
+        "pairs": [
+          "mistral_base2instruct",
+          "gemma2_base2instruct",
+          "llama3_base2instruct",
+          "llama31_base2instruct",
+          "qwen_base2instruct",
+          "olmo_base2instruct",
+          "llama3_to_31",
+          "WG_mistral_base2instruct",
+          "WG_llama3_base2instruct"
+        ],
+        "n_pairs": 9,
+        "interval": "pair-cluster bootstrap B=5000, seed 520260925",
+        "gaussian|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9183864144035697,
+            "band95": [
+              0.8899082568807339,
+              0.9428571428571428
+            ],
+            "frozen": 0.9158878504672897,
+            "frozen_percentile": 41.55,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.013890613052532965
+          },
+          "per_draw_specificity": {
+            "mean": 0.8992615366113558,
+            "band95": [
+              0.8333333333333334,
+              0.9583333333333334
+            ],
+            "frozen": 0.8979591836734694,
+            "frozen_percentile": 46.6,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.03269895868633832
+          },
+          "mean_counts_over_draws": {
+            "tp": 97.881,
+            "fn": 8.722999999999999,
+            "fp": 5.034,
+            "tn": 44.361999999999995
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9181738021087389,
+            "specificity": 0.8980889140821119,
+            "sensitivity_ci": {
+              "ci95": [
+                0.8063880489923791,
+                0.9802339648066904
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.7514131386605961,
+                0.967510168262453
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.946789114962524,
+            "band95": [
+              0.8990825688073395,
+              0.9902912621359223
+            ],
+            "frozen": 0.9439252336448598,
+            "frozen_percentile": 43.85,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.024476838389525298
+          },
+          "per_draw_specificity": {
+            "mean": 0.8903721269857053,
+            "band95": [
+              0.7884615384615384,
+              0.9777777777777777
+            ],
+            "frozen": 0.8163265306122449,
+            "frozen_percentile": 7.8,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.04841603761363558
+          },
+          "mean_counts_over_draws": {
+            "tp": 100.885,
+            "fn": 5.718999999999999,
+            "fp": 5.499,
+            "tn": 43.897000000000006
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9463528573036659,
+            "specificity": 0.8886751963721758,
+            "sensitivity_ci": {
+              "ci95": [
+                0.9133291112959268,
+                0.9717691807381672
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8177361223476856,
+                0.9418349632218874
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.028158567086438026,
+            "band95": [
+              0.02702702702702703,
+              0.029411764705882353
+            ],
+            "frozen": 0.028037383177570093,
+            "frozen_percentile": 43.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.000693050027873711
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 3.0,
+            "fn": 103.604,
+            "fp": 0.0,
+            "tn": 49.396
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.028141533150726053,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.06301537575168341
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "gaussian|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.7985313416694259,
+            "band95": [
+              0.74,
+              0.8571428571428571
+            ],
+            "frozen": 0.7868852459016393,
+            "frozen_percentile": 33.9,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0292758011428929
+          },
+          "per_draw_specificity": {
+            "mean": 0.8657731665424155,
+            "band95": [
+              0.8125,
+              0.9239334969611968
+            ],
+            "frozen": 0.9052631578947369,
+            "frozen_percentile": 90.3,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.029245889583257485
+          },
+          "mean_counts_over_draws": {
+            "tp": 41.729,
+            "fn": 10.506,
+            "fp": 14.042,
+            "tn": 89.723
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.798870489135637,
+            "specificity": 0.8646749867489038,
+            "sensitivity_ci": {
+              "ci95": [
+                0.5385660108002784,
+                0.9540489447186454
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.778467180146806,
+                0.9343452908055003
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.8397779548435718,
+            "band95": [
+              0.6896551724137931,
+              0.9756242740998838
+            ],
+            "frozen": 0.7540983606557377,
+            "frozen_percentile": 13.05,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.07333765625369007
+          },
+          "per_draw_specificity": {
+            "mean": 0.9390236212713784,
+            "band95": [
+              0.8749718468468468,
+              0.9897959183673469
+            ],
+            "frozen": 0.9578947368421052,
+            "frozen_percentile": 68.45,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.03047724836320959
+          },
+          "mean_counts_over_draws": {
+            "tp": 43.559,
+            "fn": 8.676,
+            "fp": 6.4399999999999995,
+            "tn": 97.325
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.8339044701828275,
+            "specificity": 0.9379366838529369,
+            "sensitivity_ci": {
+              "ci95": [
+                0.6529634867575212,
+                0.9081988925626955
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8905018968317996,
+                0.9699960552741977
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.05796690282106597,
+            "band95": [
+              0.04838709677419355,
+              0.06976744186046512
+            ],
+            "frozen": 0.04918032786885246,
+            "frozen_percentile": 4.35,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.005614228281371556
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 3.0,
+            "fn": 49.23500000000001,
+            "fp": 0.0,
+            "tn": 103.765
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.057432755815066516,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.10516046440458261
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "gaussian|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9253339088571567,
+            "band95": [
+              0.8958333333333334,
+              0.9468225083986562
+            ],
+            "frozen": 0.9166666666666666,
+            "frozen_percentile": 30.8,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.013632501383349618
+          },
+          "per_draw_specificity": {
+            "mean": 0.948463254999851,
+            "band95": [
+              0.9076923076923077,
+              0.9838709677419355
+            ],
+            "frozen": 0.9833333333333333,
+            "frozen_percentile": 92.45,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.021245741597589688
+          },
+          "mean_counts_over_draws": {
+            "tp": 85.69399999999999,
+            "fn": 6.933999999999999,
+            "fp": 3.299,
+            "tn": 60.07299999999999
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9251414259187287,
+            "specificity": 0.9479423089061415,
+            "sensitivity_ci": {
+              "ci95": [
+                0.807734973574011,
+                0.985955898381878
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8300631713549083,
+                0.9947513626166262
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9536097339919561,
+            "band95": [
+              0.9052631578947369,
+              0.989247311827957
+            ],
+            "frozen": 0.9375,
+            "frozen_percentile": 28.25,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.023895493099557658
+          },
+          "per_draw_specificity": {
+            "mean": 0.9625972727233156,
+            "band95": [
+              0.9090909090909091,
+              1.0
+            ],
+            "frozen": 0.9833333333333333,
+            "frozen_percentile": 67.8,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.025705849144566247
+          },
+          "mean_counts_over_draws": {
+            "tp": 88.29299999999999,
+            "fn": 4.335,
+            "fp": 2.411,
+            "tn": 60.961
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9531998963596321,
+            "specificity": 0.9619548065391655,
+            "sensitivity_ci": {
+              "ci95": [
+                0.9200853940855338,
+                0.9776838670222396
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.9216572046769442,
+                0.9799624478597809
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.03240472168992047,
+            "band95": [
+              0.030927835051546393,
+              0.033707865168539325
+            ],
+            "frozen": 0.03125,
+            "frozen_percentile": 6.25,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0007452367079896381
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 3.0,
+            "fn": 89.628,
+            "fp": 0.0,
+            "tn": 63.372
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.032387614976033166,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.07142333987918223
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "n_cells": 156,
+        "roc_auc|abs_log_gaussian_ratio|two_sided_2x": {
+          "mean": 0.9538946938357581,
+          "band95": [
+            0.935779589875621,
+            0.9701008354730781
+          ],
+          "frozen": 0.9572763684913218,
+          "frozen_percentile": 63.9,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.008786015168933754
+        },
+        "roc_auc|abs_log_direct_ratio|two_sided_2x": {
+          "mean": 0.9812671406360142,
+          "band95": [
+            0.9626412346583624,
+            0.9937554974780883
+          ],
+          "frozen": 0.9629029181766164,
+          "frozen_percentile": 2.8,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.00807247831201272
+        },
+        "roc_auc|abs_z_mean|two_sided_2x": {
+          "mean": 0.8247284475915305,
+          "band95": [
+            0.7979205440556878,
+            0.8503150768693222
+          ],
+          "frozen": 0.8107953461758535,
+          "frozen_percentile": 16.6,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.013642929241888261
+        },
+        "roc_auc|abs_log_gaussian_ratio|two_sided_5x": {
+          "mean": 0.9254189314854643,
+          "band95": [
+            0.8990840459823478,
+            0.9498390496991808
+          ],
+          "frozen": 0.9364969801553062,
+          "frozen_percentile": 78.7,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.013337660300004734
+        },
+        "roc_auc|abs_log_direct_ratio|two_sided_5x": {
+          "mean": 0.9736065943887608,
+          "band95": [
+            0.9540603860180829,
+            0.9880402908711924
+          ],
+          "frozen": 0.9679033649698016,
+          "frozen_percentile": 24.7,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.008750961682307315
+        },
+        "roc_auc|abs_z_mean|two_sided_5x": {
+          "mean": 0.850376541959047,
+          "band95": [
+            0.8044572321237207,
+            0.8970124715648884
+          ],
+          "frozen": 0.8624676445211389,
+          "frozen_percentile": 71.25,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.02292509246045484
+        },
+        "roc_auc|abs_log_gaussian_ratio|high_side_2x": {
+          "mean": 0.8696718776145693,
+          "band95": [
+            0.847331550155244,
+            0.8912963425463426
+          ],
+          "frozen": 0.8652777777777778,
+          "frozen_percentile": 33.2,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.011304906713675086
+        },
+        "roc_auc|abs_log_direct_ratio|high_side_2x": {
+          "mean": 0.9130123016934373,
+          "band95": [
+            0.878411873522902,
+            0.9427670118504418
+          ],
+          "frozen": 0.8900173611111111,
+          "frozen_percentile": 9.8,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.016921082699955584
+        },
+        "roc_auc|abs_z_mean|high_side_2x": {
+          "mean": 0.7956255450037191,
+          "band95": [
+            0.7774356724605777,
+            0.812426122931442
+          ],
+          "frozen": 0.7847222222222222,
+          "frozen_percentile": 12.2,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.00905763221518676
+        }
+      },
+      "unflagged_pairs": {
+        "pairs": [
+          "gemma2_base2instruct",
+          "llama31_base2instruct",
+          "olmo_base2instruct",
+          "WG_mistral_base2instruct",
+          "WG_llama3_base2instruct"
+        ],
+        "n_pairs": 5,
+        "interval": "pair-cluster bootstrap B=5000, seed 520260925",
+        "gaussian|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9237648936910514,
+            "band95": [
+              0.8870505023796933,
+              0.9508196721311475
+            ],
+            "frozen": 0.9,
+            "frozen_percentile": 8.6,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.018776292182405133
+          },
+          "per_draw_specificity": {
+            "mean": 0.9351334542379539,
+            "band95": [
+              0.8666666666666667,
+              1.0
+            ],
+            "frozen": 0.9,
+            "frozen_percentile": 14.3,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.03508314153922923
+          },
+          "mean_counts_over_draws": {
+            "tp": 55.394999999999996,
+            "fn": 4.596,
+            "fp": 1.972,
+            "tn": 28.037
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9233885082762414,
+            "specificity": 0.9342863807524409,
+            "sensitivity_ci": {
+              "ci95": [
+                0.8005569661724957,
+                0.9826097367515226
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8892053545998291,
+                0.9754585087191823
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9541835610888667,
+            "band95": [
+              0.8888888888888888,
+              1.0
+            ],
+            "frozen": 0.95,
+            "frozen_percentile": 40.2,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.02819170639712673
+          },
+          "per_draw_specificity": {
+            "mean": 0.8991528008508676,
+            "band95": [
+              0.7878246753246753,
+              1.0
+            ],
+            "frozen": 0.8333333333333334,
+            "frozen_percentile": 11.6,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.054853345816780405
+          },
+          "mean_counts_over_draws": {
+            "tp": 57.208,
+            "fn": 2.783,
+            "fp": 3.072,
+            "tn": 26.936999999999998
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.953609708122885,
+            "specificity": 0.897630710786764,
+            "sensitivity_ci": {
+              "ci95": [
+                0.8980661994167903,
+                0.9832579707174606
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8271541805164919,
+                0.9747638151934774
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.03336248940658426,
+            "band95": [
+              0.031746031746031744,
+              0.03508771929824561
+            ],
+            "frozen": 0.03333333333333333,
+            "frozen_percentile": 47.35,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0008961175129078727
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 2.0,
+            "fn": 57.991,
+            "fp": 0.0,
+            "tn": 30.009
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.03333833408344585,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.09226652724169217
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "gaussian|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.7693720054150167,
+            "band95": [
+              0.6875,
+              0.8485690235690235
+            ],
+            "frozen": 0.7692307692307693,
+            "frozen_percentile": 49.8,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.04352967845070565
+          },
+          "per_draw_specificity": {
+            "mean": 0.8651947422655775,
+            "band95": [
+              0.7936507936507936,
+              0.94
+            ],
+            "frozen": 0.9019607843137255,
+            "frozen_percentile": 81.7,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.038155747855202926
+          },
+          "mean_counts_over_draws": {
+            "tp": 24.784,
+            "fn": 7.413,
+            "fp": 7.9,
+            "tn": 49.90299999999999
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.7697611578718513,
+            "specificity": 0.863328892964033,
+            "sensitivity_ci": {
+              "ci95": [
+                0.5667311411992262,
+                0.971750525754104
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.7971767028627837,
+                0.9149116324896853
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.8275630813028373,
+            "band95": [
+              0.65852053915276,
+              0.9666935483870968
+            ],
+            "frozen": 0.717948717948718,
+            "frozen_percentile": 10.3,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.08381210950411563
+          },
+          "per_draw_specificity": {
+            "mean": 0.9113516031943104,
+            "band95": [
+              0.819672131147541,
+              0.9821428571428571
+            ],
+            "frozen": 0.9411764705882353,
+            "frozen_percentile": 68.75,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.045128746536239536
+          },
+          "mean_counts_over_draws": {
+            "tp": 26.427999999999997,
+            "fn": 5.769,
+            "fp": 5.247,
+            "tn": 52.556000000000004
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.8208218156971147,
+            "specificity": 0.9092261647319343,
+            "sensitivity_ci": {
+              "ci95": [
+                0.5531937506642577,
+                0.8836914453489924
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8231129061118069,
+                0.9553873730332604
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.06287697504551816,
+            "band95": [
+              0.05128205128205128,
+              0.07692307692307693
+            ],
+            "frozen": 0.05128205128205128,
+            "frozen_percentile": 1.95,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.007078963679360428
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 2.0,
+            "fn": 30.197000000000003,
+            "fp": 0.0,
+            "tn": 57.803000000000004
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.06211758859521073,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.13345789403443215
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "gaussian|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9154478211795994,
+            "band95": [
+              0.8703092243186583,
+              0.9574468085106383
+            ],
+            "frozen": 0.8846153846153846,
+            "frozen_percentile": 7.15,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.01933368580278383
+          },
+          "per_draw_specificity": {
+            "mean": 0.9820184220988509,
+            "band95": [
+              0.9487179487179487,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 78.4,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.018018013816142833
+          },
+          "mean_counts_over_draws": {
+            "tp": 45.902,
+            "fn": 4.261,
+            "fp": 0.723,
+            "tn": 39.114
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9150569144588641,
+            "specificity": 0.981851043000226,
+            "sensitivity_ci": {
+              "ci95": [
+                0.7311249418334108,
+                0.9836110246029275
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.9422930903568717,
+                0.9998343587316612
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9599456125759448,
+            "band95": [
+              0.9016339869281046,
+              1.0
+            ],
+            "frozen": 0.9423076923076923,
+            "frozen_percentile": 32.05,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.028117969817456494
+          },
+          "per_draw_specificity": {
+            "mean": 0.9750882277694275,
+            "band95": [
+              0.926829268292683,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 82.65,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.023203884240854837
+          },
+          "mean_counts_over_draws": {
+            "tp": 48.127,
+            "fn": 2.036,
+            "fp": 1.009,
+            "tn": 38.828
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9594123158503279,
+            "specificity": 0.9746717875342019,
+            "sensitivity_ci": {
+              "ci95": [
+                0.8950162116705451,
+                0.9865254186423384
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.9673081209599524,
+                0.9830311820159536
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.039893797275394174,
+            "band95": [
+              0.03773584905660377,
+              0.041666666666666664
+            ],
+            "frozen": 0.038461538461538464,
+            "frozen_percentile": 7.9,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0009714229627043132
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 2.0,
+            "fn": 48.163,
+            "fp": 0.0,
+            "tn": 39.836999999999996
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.03987002372266412,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.10639052415064898
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "n_cells": 90,
+        "roc_auc|abs_log_gaussian_ratio|two_sided_2x": {
+          "mean": 0.9682188082044554,
+          "band95": [
+            0.9452695852534562,
+            0.9847154302543412
+          ],
+          "frozen": 0.9583333333333334,
+          "frozen_percentile": 18.1,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.010609742325059011
+        },
+        "roc_auc|abs_log_direct_ratio|two_sided_2x": {
+          "mean": 0.9844770860421997,
+          "band95": [
+            0.9627777777777777,
+            0.9978448275862069
+          ],
+          "frozen": 0.9605555555555556,
+          "frozen_percentile": 1.7,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.009333153999209242
+        },
+        "roc_auc|abs_z_mean|two_sided_2x": {
+          "mean": 0.8744380751646127,
+          "band95": [
+            0.850191361399672,
+            0.896664844177146
+          ],
+          "frozen": 0.8716666666666667,
+          "frozen_percentile": 40.15,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.011851833661412868
+        },
+        "roc_auc|abs_log_gaussian_ratio|two_sided_5x": {
+          "mean": 0.9144070499064505,
+          "band95": [
+            0.8736935298283404,
+            0.9498924049804551
+          ],
+          "frozen": 0.930115635997989,
+          "frozen_percentile": 76.5,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.02089027286430698
+        },
+        "roc_auc|abs_log_direct_ratio|two_sided_5x": {
+          "mean": 0.9627903478306422,
+          "band95": [
+            0.9375,
+            0.98559670781893
+          ],
+          "frozen": 0.9622926093514329,
+          "frozen_percentile": 46.7,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.01271639518666706
+        },
+        "roc_auc|abs_z_mean|two_sided_5x": {
+          "mean": 0.8291309628595218,
+          "band95": [
+            0.779820025653359,
+            0.8851877977817699
+          ],
+          "frozen": 0.8567119155354449,
+          "frozen_percentile": 82.4,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.027408699975149754
+        },
+        "roc_auc|abs_log_gaussian_ratio|high_side_2x": {
+          "mean": 0.823271025088545,
+          "band95": [
+            0.7933383609854198,
+            0.848505257936508
+          ],
+          "frozen": 0.8142712550607287,
+          "frozen_percentile": 24.7,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.014468020413948984
+        },
+        "roc_auc|abs_log_direct_ratio|high_side_2x": {
+          "mean": 0.8988953573305809,
+          "band95": [
+            0.8557063851181498,
+            0.9375373320059731
+          ],
+          "frozen": 0.8577935222672065,
+          "frozen_percentile": 3.3,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.020991163249154166
+        },
+        "roc_auc|abs_z_mean|high_side_2x": {
+          "mean": 0.8232521384707704,
+          "band95": [
+            0.800411189769494,
+            0.840716774514684
+          ],
+          "frozen": 0.8026315789473685,
+          "frozen_percentile": 3.8,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.010347729340847739
+        }
+      },
+      "gpu_control": {
+        "gaussian|two_sided_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "direct|two_sided_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "auc_rule|two_sided_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "share_of_draws_with_a_control_cell_in_class|two_sided_2x": 0.0,
+        "gaussian|two_sided_5x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "direct|two_sided_5x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "auc_rule|two_sided_5x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "share_of_draws_with_a_control_cell_in_class|two_sided_5x": 0.0,
+        "gaussian|high_side_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "direct|high_side_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "auc_rule|high_side_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "share_of_draws_with_a_control_cell_in_class|high_side_2x": 0.0
+      }
+    },
+    "C=1|cluster_level_D164": {
+      "released_pairs": {
+        "pairs": [
+          "mistral_base2instruct",
+          "gemma2_base2instruct",
+          "llama3_base2instruct",
+          "llama31_base2instruct",
+          "qwen_base2instruct",
+          "olmo_base2instruct",
+          "llama3_to_31",
+          "WG_mistral_base2instruct",
+          "WG_llama3_base2instruct"
+        ],
+        "n_pairs": 9,
+        "interval": "pair-cluster bootstrap B=5000, seed 520260925",
+        "gaussian|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9181275162137411,
+            "band95": [
+              0.8867924528301887,
+              0.9433962264150944
+            ],
+            "frozen": 0.9158878504672897,
+            "frozen_percentile": 42.25,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.014620388793346985
+          },
+          "per_draw_specificity": {
+            "mean": 0.8986395320512939,
+            "band95": [
+              0.8301886792452831,
+              0.9574468085106383
+            ],
+            "frozen": 0.8979591836734694,
+            "frozen_percentile": 48.3,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.033401832260131395
+          },
+          "mean_counts_over_draws": {
+            "tp": 97.86299999999999,
+            "fn": 8.753,
+            "fp": 5.0680000000000005,
+            "tn": 44.315999999999995
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9179016282734299,
+            "specificity": 0.8973756682326259,
+            "sensitivity_ci": {
+              "ci95": [
+                0.8064147450472879,
+                0.9799876049545857
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.7511592160794183,
+                0.9657080581186916
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9464559105488056,
+            "band95": [
+              0.8918918918918919,
+              0.9901960784313726
+            ],
+            "frozen": 0.9439252336448598,
+            "frozen_percentile": 43.35,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.025196798433767976
+          },
+          "per_draw_specificity": {
+            "mean": 0.8870002199881244,
+            "band95": [
+              0.792433176100629,
+              0.9782608695652174
+            ],
+            "frozen": 0.8163265306122449,
+            "frozen_percentile": 8.2,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.04878840972359949
+          },
+          "mean_counts_over_draws": {
+            "tp": 100.85700000000001,
+            "fn": 5.759,
+            "fp": 5.665000000000001,
+            "tn": 43.718999999999994
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9459837172657012,
+            "specificity": 0.8852867325449538,
+            "sensitivity_ci": {
+              "ci95": [
+                0.9126371533974604,
+                0.9715607393707588
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8140385529057216,
+                0.9391303669938343
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.02815630858585105,
+            "band95": [
+              0.026785714285714284,
+              0.029411764705882353
+            ],
+            "frozen": 0.028037383177570093,
+            "frozen_percentile": 44.45,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0007108364003746042
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 3.0,
+            "fn": 103.616,
+            "fp": 0.0,
+            "tn": 49.384
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.028138365723718767,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.06298985863276012
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "gaussian|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.7983334117482437,
+            "band95": [
+              0.74,
+              0.8541761363636363
+            ],
+            "frozen": 0.7868852459016393,
+            "frozen_percentile": 34.65,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.029069399853369312
+          },
+          "per_draw_specificity": {
+            "mean": 0.8662220235538218,
+            "band95": [
+              0.8107678132678133,
+              0.9263157894736842
+            ],
+            "frozen": 0.9052631578947369,
+            "frozen_percentile": 90.15,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.03098602297475095
+          },
+          "mean_counts_over_draws": {
+            "tp": 41.806,
+            "fn": 10.552000000000001,
+            "fp": 13.995,
+            "tn": 89.64699999999999
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.7984644180449979,
+            "specificity": 0.8649678701684644,
+            "sensitivity_ci": {
+              "ci95": [
+                0.5437076158554449,
+                0.9520133831479398
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.779726368159204,
+                0.9341701985653568
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.8369564238674065,
+            "band95": [
+              0.6875,
+              0.9583333333333334
+            ],
+            "frozen": 0.7540983606557377,
+            "frozen_percentile": 14.5,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.07419517223811084
+          },
+          "per_draw_specificity": {
+            "mean": 0.9388137110550476,
+            "band95": [
+              0.8672566371681416,
+              0.989798495155638
+            ],
+            "frozen": 0.9578947368421052,
+            "frozen_percentile": 69.15,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.031664991381001456
+          },
+          "mean_counts_over_draws": {
+            "tp": 43.494,
+            "fn": 8.863999999999999,
+            "fp": 6.465,
+            "tn": 97.177
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.8307039993888231,
+            "specificity": 0.9376218135504911,
+            "sensitivity_ci": {
+              "ci95": [
+                0.6445418307687786,
+                0.9069291352941962
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8895358590193634,
+                0.9701656324688229
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.057877908742631684,
+            "band95": [
+              0.0483678955453149,
+              0.07142857142857142
+            ],
+            "frozen": 0.04918032786885246,
+            "frozen_percentile": 5.5,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.005857698464165838
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 3.0,
+            "fn": 49.358,
+            "fp": 0.0,
+            "tn": 103.64200000000001
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.05729783414186944,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.10493665214383902
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "gaussian|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9249500926313438,
+            "band95": [
+              0.8958333333333334,
+              0.9550561797752809
+            ],
+            "frozen": 0.9166666666666666,
+            "frozen_percentile": 31.15,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.014151553361567138
+          },
+          "per_draw_specificity": {
+            "mean": 0.9489593248573904,
+            "band95": [
+              0.90625,
+              0.9838709677419355
+            ],
+            "frozen": 0.9833333333333333,
+            "frozen_percentile": 92.9,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.02195051131223516
+          },
+          "mean_counts_over_draws": {
+            "tp": 85.72199999999998,
+            "fn": 6.976,
+            "fp": 3.268,
+            "tn": 60.034000000000006
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9247448704394917,
+            "specificity": 0.9483744589428454,
+            "sensitivity_ci": {
+              "ci95": [
+                0.8078536627099758,
+                0.985390312323877
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8319122541399785,
+                0.9946634352369326
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9533871664762391,
+            "band95": [
+              0.8979591836734694,
+              0.9891304347826086
+            ],
+            "frozen": 0.9375,
+            "frozen_percentile": 27.45,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.024652870193302246
+          },
+          "per_draw_specificity": {
+            "mean": 0.9613062736696406,
+            "band95": [
+              0.90625,
+              1.0
+            ],
+            "frozen": 0.9833333333333333,
+            "frozen_percentile": 67.95,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.027025248389358564
+          },
+          "mean_counts_over_draws": {
+            "tp": 88.336,
+            "fn": 4.362,
+            "fp": 2.4939999999999998,
+            "tn": 60.808
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9529439685861616,
+            "specificity": 0.9606015607721715,
+            "sensitivity_ci": {
+              "ci95": [
+                0.9203157032384526,
+                0.9774207076596202
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.9208433287364803,
+                0.9781741144785303
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.03238152932671278,
+            "band95": [
+              0.030927835051546393,
+              0.033707865168539325
+            ],
+            "frozen": 0.03125,
+            "frozen_percentile": 7.25,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0007713064982325871
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 3.0,
+            "fn": 89.698,
+            "fp": 0.0,
+            "tn": 63.30200000000001
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.03236315778118191,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.07136665161752762
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "n_cells": 156,
+        "roc_auc|abs_log_gaussian_ratio|two_sided_2x": {
+          "mean": 0.9538967612101631,
+          "band95": [
+            0.9347345246503901,
+            0.9706011099240266
+          ],
+          "frozen": 0.9572763684913218,
+          "frozen_percentile": 63.7,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.009280508352296577
+        },
+        "roc_auc|abs_log_direct_ratio|two_sided_2x": {
+          "mean": 0.9805046335807168,
+          "band95": [
+            0.9604462242313068,
+            0.9938274198568315
+          ],
+          "frozen": 0.9629029181766164,
+          "frozen_percentile": 4.1,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.008440980239219737
+        },
+        "roc_auc|abs_z_mean|two_sided_2x": {
+          "mean": 0.8240580370028847,
+          "band95": [
+            0.7981273849162307,
+            0.8514257104711043
+          ],
+          "frozen": 0.8107953461758535,
+          "frozen_percentile": 17.6,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.013507573329190047
+        },
+        "roc_auc|abs_log_gaussian_ratio|two_sided_5x": {
+          "mean": 0.9252785651112901,
+          "band95": [
+            0.8996528570725866,
+            0.9508452168746286
+          ],
+          "frozen": 0.9364969801553062,
+          "frozen_percentile": 79.1,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.013185740161894877
+        },
+        "roc_auc|abs_log_direct_ratio|two_sided_5x": {
+          "mean": 0.9732100167513834,
+          "band95": [
+            0.9545198483938113,
+            0.9872254041803636
+          ],
+          "frozen": 0.9679033649698016,
+          "frozen_percentile": 26.1,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.008522720702165537
+        },
+        "roc_auc|abs_z_mean|two_sided_5x": {
+          "mean": 0.8503638129380993,
+          "band95": [
+            0.8043899156780075,
+            0.8944141060602254
+          ],
+          "frozen": 0.8624676445211389,
+          "frozen_percentile": 71.3,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.02213588544265781
+        },
+        "roc_auc|abs_log_gaussian_ratio|high_side_2x": {
+          "mean": 0.868926444158629,
+          "band95": [
+            0.8465277777777778,
+            0.8903261957012775
+          ],
+          "frozen": 0.8652777777777778,
+          "frozen_percentile": 36.6,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.01108120308591291
+        },
+        "roc_auc|abs_log_direct_ratio|high_side_2x": {
+          "mean": 0.9117209739201783,
+          "band95": [
+            0.8757762787154875,
+            0.9452472531016501
+          ],
+          "frozen": 0.8900173611111111,
+          "frozen_percentile": 9.7,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.01672984239077693
+        },
+        "roc_auc|abs_z_mean|high_side_2x": {
+          "mean": 0.7950059435023784,
+          "band95": [
+            0.7773456816620878,
+            0.8136717763256752
+          ],
+          "frozen": 0.7847222222222222,
+          "frozen_percentile": 12.1,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.00916359047303941
+        }
+      },
+      "unflagged_pairs": {
+        "pairs": [
+          "gemma2_base2instruct",
+          "llama31_base2instruct",
+          "olmo_base2instruct",
+          "WG_mistral_base2instruct",
+          "WG_llama3_base2instruct"
+        ],
+        "n_pairs": 5,
+        "interval": "pair-cluster bootstrap B=5000, seed 520260925",
+        "gaussian|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9226495110431276,
+            "band95": [
+              0.876875,
+              0.95
+            ],
+            "frozen": 0.9,
+            "frozen_percentile": 9.3,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.019714646330724214
+          },
+          "per_draw_specificity": {
+            "mean": 0.9354642339592856,
+            "band95": [
+              0.8666666666666667,
+              1.0
+            ],
+            "frozen": 0.9,
+            "frozen_percentile": 14.75,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0363473766096658
+          },
+          "mean_counts_over_draws": {
+            "tp": 55.381,
+            "fn": 4.67,
+            "fp": 1.962,
+            "tn": 27.987
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9222327688131754,
+            "specificity": 0.9344886306721426,
+            "sensitivity_ci": {
+              "ci95": [
+                0.7988119781991876,
+                0.9821225540063432
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8911783644558917,
+                0.9745603487148655
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9536837371043705,
+            "band95": [
+              0.8888888888888888,
+              1.0
+            ],
+            "frozen": 0.95,
+            "frozen_percentile": 40.8,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.029313050799664443
+          },
+          "per_draw_specificity": {
+            "mean": 0.8976474090991458,
+            "band95": [
+              0.78125,
+              1.0
+            ],
+            "frozen": 0.8333333333333334,
+            "frozen_percentile": 13.8,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.056752301235251164
+          },
+          "mean_counts_over_draws": {
+            "tp": 57.231,
+            "fn": 2.8200000000000003,
+            "fp": 3.117,
+            "tn": 26.832
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9530399160713393,
+            "specificity": 0.8959230692176701,
+            "sensitivity_ci": {
+              "ci95": [
+                0.8980598905581126,
+                0.9829338864136836
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8234167517875383,
+                0.9738728623250993
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|two_sided_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.033332175381019874,
+            "band95": [
+              0.03125,
+              0.03508771929824561
+            ],
+            "frozen": 0.03333333333333333,
+            "frozen_percentile": 49.05,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0009489262111398286
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 2.0,
+            "fn": 58.051,
+            "fp": 0.0,
+            "tn": 29.948999999999998
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.033305024062879884,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.09221264235326662
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "gaussian|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.7671353625966442,
+            "band95": [
+              0.6828536585365854,
+              0.8484848484848485
+            ],
+            "frozen": 0.7692307692307693,
+            "frozen_percentile": 51.2,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.04332183725738663
+          },
+          "per_draw_specificity": {
+            "mean": 0.8642755385518792,
+            "band95": [
+              0.7846153846153846,
+              0.94
+            ],
+            "frozen": 0.9019607843137255,
+            "frozen_percentile": 82.55,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.03915649403361576
+          },
+          "mean_counts_over_draws": {
+            "tp": 24.701,
+            "fn": 7.494,
+            "fp": 7.961,
+            "tn": 49.844
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.76723093648082,
+            "specificity": 0.862278349623735,
+            "sensitivity_ci": {
+              "ci95": [
+                0.566111319106452,
+                0.9665718349928876
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.7957674253481124,
+                0.9142324520860295
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.8264019663972966,
+            "band95": [
+              0.6666666666666666,
+              0.9655172413793104
+            ],
+            "frozen": 0.717948717948718,
+            "frozen_percentile": 11.25,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.08282967501674537
+          },
+          "per_draw_specificity": {
+            "mean": 0.9107539039066391,
+            "band95": [
+              0.8095238095238095,
+              0.9821428571428571
+            ],
+            "frozen": 0.9411764705882353,
+            "frozen_percentile": 69.95,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.046398114403790644
+          },
+          "mean_counts_over_draws": {
+            "tp": 26.385,
+            "fn": 5.8100000000000005,
+            "fp": 5.29,
+            "tn": 52.515
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.8195371952166486,
+            "specificity": 0.9084854251362339,
+            "sensitivity_ci": {
+              "ci95": [
+                0.5427610842613995,
+                0.8835294902885621
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.8220855765060088,
+                0.9550672211461775
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|two_sided_5x": {
+          "per_draw_sensitivity": {
+            "mean": 0.06293788118070544,
+            "band95": [
+              0.05128205128205128,
+              0.08
+            ],
+            "frozen": 0.05128205128205128,
+            "frozen_percentile": 2.65,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.007386300139585828
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 2.0,
+            "fn": 30.195,
+            "fp": 0.0,
+            "tn": 57.805
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.06212144742972511,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.1333926189417519
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "gaussian|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9142886662240617,
+            "band95": [
+              0.8679245283018868,
+              0.9415601023017899
+            ],
+            "frozen": 0.8846153846153846,
+            "frozen_percentile": 8.3,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.020037230698711717
+          },
+          "per_draw_specificity": {
+            "mean": 0.9821893893471243,
+            "band95": [
+              0.9487179487179487,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 78.3,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.017999830536721054
+          },
+          "mean_counts_over_draws": {
+            "tp": 45.900999999999996,
+            "fn": 4.326,
+            "fp": 0.716,
+            "tn": 39.057
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9138710255440301,
+            "specificity": 0.9819978377291126,
+            "sensitivity_ci": {
+              "ci95": [
+                0.72930629297589,
+                0.9830976601248711
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.9426508923200321,
+                0.9998815362380647
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "direct|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.9602290059830915,
+            "band95": [
+              0.8888888888888888,
+              1.0
+            ],
+            "frozen": 0.9423076923076923,
+            "frozen_percentile": 30.6,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.02837898591654685
+          },
+          "per_draw_specificity": {
+            "mean": 0.9738031229506853,
+            "band95": [
+              0.925,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 82.55,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.024792307028645783
+          },
+          "mean_counts_over_draws": {
+            "tp": 48.202,
+            "fn": 2.0250000000000004,
+            "fp": 1.0619999999999998,
+            "tn": 38.711
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.9596830390029267,
+            "specificity": 0.9732984688104996,
+            "sensitivity_ci": {
+              "ci95": [
+                0.8990140310959424,
+                0.9861226150515134
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                0.9658904488995889,
+                0.9808056373580144
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "auc_rule|high_side_2x": {
+          "per_draw_sensitivity": {
+            "mean": 0.03984513070691416,
+            "band95": [
+              0.03773584905660377,
+              0.041666666666666664
+            ],
+            "frozen": 0.038461538461538464,
+            "frozen_percentile": 9.95,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0010120252905759827
+          },
+          "per_draw_specificity": {
+            "mean": 1.0,
+            "band95": [
+              1.0,
+              1.0
+            ],
+            "frozen": 1.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          },
+          "mean_counts_over_draws": {
+            "tp": 2.0,
+            "fn": 48.227,
+            "fp": 0.0,
+            "tn": 39.772999999999996
+          },
+          "pooled_from_mean_counts": {
+            "sensitivity": 0.039819220737850165,
+            "specificity": 1.0,
+            "sensitivity_ci": {
+              "ci95": [
+                0.0,
+                0.10636411983690834
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            },
+            "specificity_ci": {
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_replicates": 5000,
+              "n_nonfinite": 0
+            }
+          }
+        },
+        "n_cells": 90,
+        "roc_auc|abs_log_gaussian_ratio|two_sided_2x": {
+          "mean": 0.9679515131212204,
+          "band95": [
+            0.9431185972290304,
+            0.985
+          ],
+          "frozen": 0.9583333333333334,
+          "frozen_percentile": 18.3,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.011169710874431985
+        },
+        "roc_auc|abs_log_direct_ratio|two_sided_2x": {
+          "mean": 0.9840837767327105,
+          "band95": [
+            0.9618336851681741,
+            0.9978492439231204
+          ],
+          "frozen": 0.9605555555555556,
+          "frozen_percentile": 2.0,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.009962519857030151
+        },
+        "roc_auc|abs_z_mean|two_sided_2x": {
+          "mean": 0.8743418312342649,
+          "band95": [
+            0.84943501507443,
+            0.8971170152628604
+          ],
+          "frozen": 0.8716666666666667,
+          "frozen_percentile": 39.2,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.011990845359236552
+        },
+        "roc_auc|abs_log_gaussian_ratio|two_sided_5x": {
+          "mean": 0.9135111489613673,
+          "band95": [
+            0.8730078725038403,
+            0.9524455500684399
+          ],
+          "frozen": 0.930115635997989,
+          "frozen_percentile": 77.95,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.020343682693631588
+        },
+        "roc_auc|abs_log_direct_ratio|two_sided_5x": {
+          "mean": 0.9623559412833781,
+          "band95": [
+            0.9356625559092757,
+            0.9844211987692836
+          ],
+          "frozen": 0.9622926093514329,
+          "frozen_percentile": 47.6,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.012978587839076424
+        },
+        "roc_auc|abs_z_mean|two_sided_5x": {
+          "mean": 0.8308158601472453,
+          "band95": [
+            0.7807155204941664,
+            0.885117881400209
+          ],
+          "frozen": 0.8567119155354449,
+          "frozen_percentile": 82.9,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.02670980216562177
+        },
+        "roc_auc|abs_log_gaussian_ratio|high_side_2x": {
+          "mean": 0.8216999042980837,
+          "band95": [
+            0.7913474340353425,
+            0.8475170793927327
+          ],
+          "frozen": 0.8142712550607287,
+          "frozen_percentile": 28.6,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.0147783199973344
+        },
+        "roc_auc|abs_log_direct_ratio|high_side_2x": {
+          "mean": 0.8975933481289983,
+          "band95": [
+            0.8534907038051388,
+            0.9360378297660528
+          ],
+          "frozen": 0.8577935222672065,
+          "frozen_percentile": 3.9,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.021045875816924055
+        },
+        "roc_auc|abs_z_mean|high_side_2x": {
+          "mean": 0.822573770605376,
+          "band95": [
+            0.8014903340080971,
+            0.8412145345943255
+          ],
+          "frozen": 0.8026315789473685,
+          "frozen_percentile": 3.05,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.010717090049102365
+        }
+      },
+      "gpu_control": {
+        "gaussian|two_sided_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "direct|two_sided_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "auc_rule|two_sided_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "share_of_draws_with_a_control_cell_in_class|two_sided_2x": 0.0,
+        "gaussian|two_sided_5x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "direct|two_sided_5x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "auc_rule|two_sided_5x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "share_of_draws_with_a_control_cell_in_class|two_sided_5x": 0.0,
+        "gaussian|high_side_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "direct|high_side_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "auc_rule|high_side_2x": {
+          "false_alarm_rate": {
+            "mean": 0.0,
+            "band95": [
+              0.0,
+              0.0
+            ],
+            "frozen": 0.0,
+            "frozen_percentile": 50.0,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.0
+          }
+        },
+        "share_of_draws_with_a_control_cell_in_class|high_side_2x": 0.0
+      }
+    }
+  },
+  "listed_llama3_to_31_every_layer": [
+    {
+      "layer": 0,
+      "probe_set": "selected",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 2.736724929177962,
+      "direct_ratio": 4.387199999999999,
+      "realised_paired_ratio": 4.700900353646223,
+      "z_mean": 0.2348078920269707
+    },
+    {
+      "layer": 0,
+      "probe_set": "C=1",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 2.287104340401858,
+      "direct_ratio": 2.30566,
+      "realised_paired_ratio": 2.484791326401372,
+      "z_mean": 0.040844769517208
+    },
+    {
+      "layer": 2,
+      "probe_set": "selected",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 2.4394072120001113,
+      "direct_ratio": 1.16754,
+      "realised_paired_ratio": 1.238401643340048,
+      "z_mean": -0.5203128131999532
+    },
+    {
+      "layer": 2,
+      "probe_set": "C=1",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 8.805111330553785,
+      "direct_ratio": 12.69182,
+      "realised_paired_ratio": 14.704500924076365,
+      "z_mean": 0.5261751688243778
+    },
+    {
+      "layer": 4,
+      "probe_set": "selected",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 2.562338976265196,
+      "direct_ratio": 1.5281,
+      "realised_paired_ratio": 1.6252713042763294,
+      "z_mean": -0.34041078729747515
+    },
+    {
+      "layer": 4,
+      "probe_set": "C=1",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 3.3799527082182608,
+      "direct_ratio": 1.68344,
+      "realised_paired_ratio": 1.7407990345406805,
+      "z_mean": -0.285291035472329
+    },
+    {
+      "layer": 6,
+      "probe_set": "selected",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 3.026056102669408,
+      "direct_ratio": 2.8642,
+      "realised_paired_ratio": 3.0382395732661376,
+      "z_mean": -0.01776168900071953
+    },
+    {
+      "layer": 6,
+      "probe_set": "C=1",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 6.139169439294376,
+      "direct_ratio": 5.140020000000001,
+      "realised_paired_ratio": 5.546187852931826,
+      "z_mean": 0.41403633734637185
+    },
+    {
+      "layer": 8,
+      "probe_set": "selected",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 2.7885174721508754,
+      "direct_ratio": 2.43238,
+      "realised_paired_ratio": 2.5037107024855443,
+      "z_mean": -0.15588714596346234
+    },
+    {
+      "layer": 8,
+      "probe_set": "C=1",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 3.490603589466272,
+      "direct_ratio": 2.9831999999999996,
+      "realised_paired_ratio": 3.1680366182354773,
+      "z_mean": -0.09477562233161901
+    },
+    {
+      "layer": 10,
+      "probe_set": "selected",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 3.0873731227624086,
+      "direct_ratio": 2.30752,
+      "realised_paired_ratio": 2.4704095589345902,
+      "z_mean": -0.18754833637212057
+    },
+    {
+      "layer": 10,
+      "probe_set": "C=1",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 2.682852060150129,
+      "direct_ratio": 1.8840599999999998,
+      "realised_paired_ratio": 2.013143217861493,
+      "z_mean": -0.25171043027543505
+    },
+    {
+      "layer": 12,
+      "probe_set": "selected",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 3.861579453817002,
+      "direct_ratio": 2.6868999999999996,
+      "realised_paired_ratio": 2.8472612625271223,
+      "z_mean": -0.14291896747155425
+    },
+    {
+      "layer": 12,
+      "probe_set": "C=1",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 3.0372942123898894,
+      "direct_ratio": 2.0058399999999996,
+      "realised_paired_ratio": 2.1761710233672167,
+      "z_mean": -0.3342886032584415
+    },
+    {
+      "layer": 14,
+      "probe_set": "selected",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 3.6496504831645904,
+      "direct_ratio": 3.03018,
+      "realised_paired_ratio": 3.2242430815570997,
+      "z_mean": -0.12062874371854045
+    },
+    {
+      "layer": 14,
+      "probe_set": "C=1",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 4.731165639487385,
+      "direct_ratio": 3.7038,
+      "realised_paired_ratio": 3.977631689445677,
+      "z_mean": -0.06532410061968676
+    },
+    {
+      "layer": 16,
+      "probe_set": "selected",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 4.48039306422399,
+      "direct_ratio": 3.46982,
+      "realised_paired_ratio": 3.5488539842952824,
+      "z_mean": -0.0025660946216162135
+    },
+    {
+      "layer": 16,
+      "probe_set": "C=1",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 5.784249169628148,
+      "direct_ratio": 4.24858,
+      "realised_paired_ratio": 4.6239093360684755,
+      "z_mean": 0.05906916995456491
+    },
+    {
+      "layer": 18,
+      "probe_set": "selected",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 4.057011443554366,
+      "direct_ratio": 3.6540199999999996,
+      "realised_paired_ratio": 3.861630475789804,
+      "z_mean": -0.01041453486299931
+    },
+    {
+      "layer": 18,
+      "probe_set": "C=1",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 6.939847423169852,
+      "direct_ratio": 4.522139999999999,
+      "realised_paired_ratio": 4.957442313050474,
+      "z_mean": 0.22480122482837758
+    },
+    {
+      "layer": 20,
+      "probe_set": "selected",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 3.774667633281949,
+      "direct_ratio": 3.13692,
+      "realised_paired_ratio": 3.330583943636324,
+      "z_mean": -0.0830413842142969
+    },
+    {
+      "layer": 20,
+      "probe_set": "C=1",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 4.997623388570069,
+      "direct_ratio": 3.1014,
+      "realised_paired_ratio": 3.341482410728655,
+      "z_mean": 0.01460805230788675
+    },
+    {
+      "layer": 22,
+      "probe_set": "selected",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 4.216655950746057,
+      "direct_ratio": 3.39026,
+      "realised_paired_ratio": 3.588442208622504,
+      "z_mean": -0.042576482355870554
+    },
+    {
+      "layer": 22,
+      "probe_set": "C=1",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 5.379541388121832,
+      "direct_ratio": 3.69866,
+      "realised_paired_ratio": 3.999862056014519,
+      "z_mean": 0.06324164392876605
+    },
+    {
+      "layer": 24,
+      "probe_set": "selected",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 4.134297337130302,
+      "direct_ratio": 3.2462199999999997,
+      "realised_paired_ratio": 3.377288111901241,
+      "z_mean": -0.04047316015580031
+    },
+    {
+      "layer": 24,
+      "probe_set": "C=1",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 6.430292405142369,
+      "direct_ratio": 4.03758,
+      "realised_paired_ratio": 4.380325447649161,
+      "z_mean": 0.16754743965554755
+    },
+    {
+      "layer": 26,
+      "probe_set": "selected",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 3.932574445913684,
+      "direct_ratio": 3.30418,
+      "realised_paired_ratio": 3.3988276352810978,
+      "z_mean": -0.049565841163896195
+    },
+    {
+      "layer": 26,
+      "probe_set": "C=1",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 6.023839518358016,
+      "direct_ratio": 4.48764,
+      "realised_paired_ratio": 4.834784794618685,
+      "z_mean": 0.1642653777682243
+    },
+    {
+      "layer": 28,
+      "probe_set": "selected",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 3.771069205353526,
+      "direct_ratio": 3.45656,
+      "realised_paired_ratio": 3.598612560926017,
+      "z_mean": -0.041672147194811035
+    },
+    {
+      "layer": 28,
+      "probe_set": "C=1",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 5.183489434026156,
+      "direct_ratio": 4.09114,
+      "realised_paired_ratio": 4.407075355012157,
+      "z_mean": 0.11189456216762664
+    },
+    {
+      "layer": 30,
+      "probe_set": "selected",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 3.0632428753357246,
+      "direct_ratio": 2.9701999999999997,
+      "realised_paired_ratio": 3.093421692446572,
+      "z_mean": -0.12629233674952817
+    },
+    {
+      "layer": 30,
+      "probe_set": "C=1",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 4.022414707785318,
+      "direct_ratio": 3.4081599999999996,
+      "realised_paired_ratio": 3.6625788994222392,
+      "z_mean": -0.05000016240963686
+    },
+    {
+      "layer": 32,
+      "probe_set": "selected",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 1.373083821374957,
+      "direct_ratio": 1.0076599999999998,
+      "realised_paired_ratio": 1.0612130661960253,
+      "z_mean": 0.11407975607732186
+    },
+    {
+      "layer": 32,
+      "probe_set": "C=1",
+      "auc_rule_flag": false,
+      "gaussian_ratio": 3.1189890240098506,
+      "direct_ratio": 2.00922,
+      "realised_paired_ratio": 2.159705807007146,
+      "z_mean": 0.001156499976052954
+    }
+  ],
+  "replaces": [
+    "auc_criterion_audit",
+    "auc_criterion_audit_lora"
+  ]
+}

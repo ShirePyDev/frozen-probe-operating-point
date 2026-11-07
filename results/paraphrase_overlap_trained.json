@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "run_kind": "paraphrase_overlap_trained",
+  "utc": "2026-09-18T13:32:36+00:00",
+  "git": {
+    "commit": null,
+    "branch": null,
+    "dirty": null,
+    "dirty_file_count": null,
+    "dirty_files": []
+  },
+  "env": {
+    "python": "3.10.12",
+    "platform": "Linux-3.10.0-1160.119.1.el7.x86_64-x86_64-with-glibc2.35",
+    "machine": "x86_64"
+  },
+  "preregistration": "D-107",
+  "arms": {
+    "mistral7b-v01-alpaca-r16": {
+      "n_trained_prompts": 6400,
+      "dataset": "yahma/alpaca-cleaned",
+      "n_examples_used_recorded": 6400,
+      "over_refusal": {
+        "n_frozen_prompts": 450,
+        "exact_normalised_matches": 0,
+        "frac_jaccard_ge_0.5": 0.0,
+        "frac_jaccard_ge_0.8": 0.0,
+        "frac_benign_jaccard_ge_0.5": 0.0,
+        "p95_max_jaccard": 0.0625
+      },
+      "safety": {
+        "n_frozen_prompts": 10000,
+        "exact_normalised_matches": 0,
+        "frac_jaccard_ge_0.5": 0.0,
+        "frac_jaccard_ge_0.8": 0.0,
+        "frac_benign_jaccard_ge_0.5": 0.0,
+        "p95_max_jaccard": 0.0
+      },
+      "safety_wildguard": {
+        "n_frozen_prompts": 10000,
+        "exact_normalised_matches": 0,
+        "frac_jaccard_ge_0.5": 0.0,
+        "frac_jaccard_ge_0.8": 0.0,
+        "frac_benign_jaccard_ge_0.5": 0.0,
+        "p95_max_jaccard": 0.0
+      }
+    },
+    "mistral7b-v01-hhharmless-r16": {
+      "n_trained_prompts": 6400,
+      "dataset": "Anthropic/hh-rlhf",
+      "n_examples_used_recorded": 6400,
+      "over_refusal": {
+        "n_frozen_prompts": 450,
+        "exact_normalised_matches": 0,
+        "frac_jaccard_ge_0.5": 0.017777777777777778,
+        "frac_jaccard_ge_0.8": 0.0,
+        "frac_benign_jaccard_ge_0.5": 0.004,
+        "p95_max_jaccard": 0.3183333333333318
+      },
+      "safety": {
+        "n_frozen_prompts": 10000,
+        "exact_normalised_matches": 40,
+        "frac_jaccard_ge_0.5": 0.0217,
+        "frac_jaccard_ge_0.8": 0.0047,
+        "frac_benign_jaccard_ge_0.5": 0.0086,
+        "p95_max_jaccard": 0.26666666666666666
+      },
+      "safety_wildguard": {
+        "n_frozen_prompts": 10000,
+        "exact_normalised_matches": 3,
+        "frac_jaccard_ge_0.5": 0.0017,
+        "frac_jaccard_ge_0.8": 0.0003,
+        "frac_benign_jaccard_ge_0.5": 0.0016,
+        "p95_max_jaccard": 0.00813341330134608
+      }
+    },
+    "mistral7b-v01-pkusafe-r16": {
+      "n_trained_prompts": 6400,
+      "dataset": "PKU-Alignment/PKU-SafeRLHF",
+      "n_examples_used_recorded": 6400,
+      "over_refusal": {
+        "n_frozen_prompts": 450,
+        "exact_normalised_matches": 0,
+        "frac_jaccard_ge_0.5": 0.0044444444444444444,
+        "frac_jaccard_ge_0.8": 0.0,
+        "frac_benign_jaccard_ge_0.5": 0.0,
+        "p95_max_jaccard": 0.2122222222222212
+      },
+      "safety": {
+        "n_frozen_prompts": 10000,
+        "exact_normalised_matches": 4,
+        "frac_jaccard_ge_0.5": 0.0096,
+        "frac_jaccard_ge_0.8": 0.0005,
+        "frac_benign_jaccard_ge_0.5": 0.0044,
+        "p95_max_jaccard": 0.1111111111111111
+      },
+      "safety_wildguard": {
+        "n_frozen_prompts": 10000,
+        "exact_normalised_matches": 0,
+        "frac_jaccard_ge_0.5": 0.0008,
+        "frac_jaccard_ge_0.8": 0.0,
+        "frac_benign_jaccard_ge_0.5": 0.0002,
+        "p95_max_jaccard": 0.016666666666666666
+      }
+    }
+  },
+  "verdict": "CONFOUND REMOVED BY EXCLUSION: all arms within 5 points of the general arm",
+  "note": "overlap measured against the examples actually consumed by each run, replayed from its recorded seed, filter and dose"
+}

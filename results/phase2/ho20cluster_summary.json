@@ -1,0 +1,926 @@
+{
+  "schema_version": 1,
+  "run_kind": "selection_ho20_cluster_summary",
+  "utc": "2026-10-03T13:39:43+00:00",
+  "git": {
+    "commit": null,
+    "branch": null,
+    "dirty": null,
+    "dirty_file_count": null,
+    "dirty_files": []
+  },
+  "env": {
+    "python": "3.10.12",
+    "platform": "Linux-3.10.0-1160.119.1.el7.x86_64-x86_64-with-glibc2.35",
+    "machine": "x86_64",
+    "blas_threads": {
+      "OMP_NUM_THREADS": "6",
+      "OPENBLAS_NUM_THREADS": "6",
+      "MKL_NUM_THREADS": "6",
+      "NUMEXPR_NUM_THREADS": null
+    },
+    "cpu_count": 12,
+    "libraries": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.7.2",
+      "torch": "2.7.0+cu126",
+      "transformers": "4.56.1"
+    }
+  },
+  "preregistration": "D-337 (3) summary: in how many of the records the selected cell is unchanged; D-337 (4) a record whose grouped selection differs is reported with both cells and the margin",
+  "rule": "D-337 (2): per seed, the ho20 part is whole clusters. The cluster ids of probe_train's items are read from the split file rows (the 'cluster' field), joined by item id, every item matched. Rule: rng = np.random.default_rng(seed); the unique cluster ids in sorted order are permuted by rng; clusters are taken in that order into ho20 while the ho20 item count stays at most int(holdout * n); a cluster that would exceed it is skipped and the next tried, until no cluster fits. The realised ho20 size and its label counts are recorded per seed; a seed whose ho20 holds no item of either label refuses.",
+  "implementation_choices": {
+    "sorted_order": "Python's sorted() over the cluster id strings (code-point order); the permutation is rng.permutation(number of clusters) applied to that sorted list",
+    "item_order_within_parts": "ho20 = the taken clusters in the order taken, fit = the clusters not taken in the permuted order; within a cluster, ascending probe_train position. With every item its own cluster, numbered in item order, this is selection_p2.sweep's item split exactly (order included); row order can move lbfgs fits and float sums in the last bits",
+    "fit_part_labels": "a seed whose fit part lacks either label also refuses (D-337 names ho20 only; the logistic fit cannot run on one class)",
+    "leakage_gap_max_tie_rule": "the first maximum in the record's arm then layer order (the selection's own tie rule)",
+    "margin": "margin_under_grouping = grouped ho20 AUROC of the grouped cell minus that of the recorded cell; margin_under_item_split = recorded ho20 AUROC of the recorded cell minus that of the grouped cell; both 0 when the cell is unchanged",
+    "record_equalities": "a record is used only if its numpy, scipy and scikit-learn versions, BLAS threads, host facts (python, platform, machine, cpu_count) and the sha256 of src/selection_p2.py, src/regularisation_sweep.py and src/paired.py equal this run's, its composition recomputed from the split rows equals its own, and its extraction record and ingest index are the files and sha256 it names",
+    "anchor_equality": "selection_p2.compare finds no difference and the whole model block (runner-up and per-seed TPRs included) equals the record's after the JSON round trip",
+    "summary_coverage": "the summary refuses unless every selection record on disk has exactly one output naming it with its current sha256, all outputs and the summary share one code block, and all outputs name one anchor that is on disk with the sha256 they give",
+    "anchor_record_bytes": "a grouped run uses an anchor only if the selection record the anchor was run on still hashes to the sha256 the anchor names"
+  },
+  "code": {
+    "sha256": {
+      "src/selection_ho20_cluster.py": "bdb6ea6bbfa3b58f6daa885c8f5eb4a4fdae00bd3a2be83a1dcbc63ede4e726d",
+      "src/selection_p2.py": "a79bb1b8a635c15190bad181e29c1ecd885ef01a71fda26e1101339f3bc59e97",
+      "src/regularisation_sweep.py": "8c475baf246c9cc59459555832ed644d9d30e692579752dc0f83b059ab0cf269",
+      "src/input_registry.py": "e05d1fba11a4db8c46d0e7231fa7b804fbd8101017fda1c0889070c193684fbf",
+      "src/paired.py": "80429fa57f0267236a2af1670c74ef327802598257ab75834fddf64a70d97195",
+      "src/populations.py": "c31519368bb69dd253f6c586cb88e1d2a1cd7a82a5f8c29c1b74eb8df7784a36",
+      "src/provenance.py": "3cef96e8ede12af7dc920409cc9bd7e072cdedc579e9211604cf481084e9aa47",
+      "src/superseded_provenance.py": "6613f47f086958ef424f1be1263afc4a5918f17a50b24d025baad69aeb0738b8"
+    },
+    "commit": "aec19951fe70b10464cb60988bd690324d685050",
+    "commit_source": "SYNC_COMMIT",
+    "libraries": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.7.2"
+    }
+  },
+  "config": {
+    "reads": "the per-record outputs ho20cluster__*.json only, each listed with its sha256",
+    "coverage": "every selection record on disk has exactly one output naming it with its current sha256 (the selection records are hashed for that, not read)",
+    "definitions": {
+      "leakage_gap": "the record's item-split ho20 AUROC minus the grouped ho20 AUROC, each the mean over seeds, per (arm, layer) cell; the two splits are independent draws per seed; gaps and cell changes include resampling variation as well as leakage; the recorded runner-up margin is the scale to compare a cell change against; the maximum over cells is biased upward",
+      "resampling": "the two splits are independent draws per seed; gaps and cell changes include resampling variation as well as leakage; the recorded runner-up margin is the scale to compare a cell change against; the maximum over cells is biased upward",
+      "margin": "margin_under_grouping = grouped ho20 AUROC of the grouped cell minus that of the recorded cell; margin_under_item_split = recorded ho20 AUROC of the recorded cell minus that of the grouped cell; both 0 when the cell is unchanged",
+      "recorded_runner_up": "the selection record's own runner-up cell and margin, copied: the scale a cell change is read against"
+    }
+  },
+  "inputs": [
+    {
+      "file": "results/phase2/ho20cluster__Qwen__Qwen2-7B-Instruct@f2826a00ceef__lastgen.json",
+      "sha256": "c0db52be92cac4fabf3219001e9cb0101a3fd7a349de434b1c438792ff2722bb"
+    },
+    {
+      "file": "results/phase2/ho20cluster__Qwen__Qwen2-7B-Instruct@f2826a00ceef__usermean.json",
+      "sha256": "b80070411fc9f96d3d51bc3c85bb0d581f23723174ebbc13c632bba2ce28b337"
+    },
+    {
+      "file": "results/phase2/ho20cluster__allenai__Llama-3.1-Tulu-3-8B-DPO@a7beb67e33ff__lastgen.json",
+      "sha256": "aac0c5bdc8bf1fb6e15167be6652787b5f44cbb79959cb0f753fbf337aeadf3a"
+    },
+    {
+      "file": "results/phase2/ho20cluster__allenai__Llama-3.1-Tulu-3-8B-DPO@a7beb67e33ff__usermean.json",
+      "sha256": "f1afae0bbd2df3a398ceed338ebf668bf55cfc11a45987324f9c96395566110b"
+    },
+    {
+      "file": "results/phase2/ho20cluster__allenai__Llama-3.1-Tulu-3-8B-SFT@f2a0b46b0cfd__lastgen.json",
+      "sha256": "0b0d6fc67e8c3f051f1e4964582ec5f53b281f7792bde04bfa2da2c17c74bc06"
+    },
+    {
+      "file": "results/phase2/ho20cluster__allenai__Llama-3.1-Tulu-3-8B-SFT@f2a0b46b0cfd__usermean.json",
+      "sha256": "4027c3eb1276be2a77860b20357069787ec04938541e728d7f78081cccf24837"
+    },
+    {
+      "file": "results/phase2/ho20cluster__allenai__OLMo-2-1124-7B-DPO@e34ea60adff2__lastgen.json",
+      "sha256": "f3d962cad15997027ab78cc325dd1ac76859bffb59942319cd57a0e6b6e11db2"
+    },
+    {
+      "file": "results/phase2/ho20cluster__allenai__OLMo-2-1124-7B-DPO@e34ea60adff2__usermean.json",
+      "sha256": "549dd4c73d0f195694bded30c65f84076272602518199e20fd83e3b5d8dfac2b"
+    },
+    {
+      "file": "results/phase2/ho20cluster__allenai__OLMo-2-1124-7B-SFT@1de02c017511__lastgen.json",
+      "sha256": "4aa21ef7d6a9d7adae50d8d9b84115c8a956b42aef6afafaddcd083a131e9c36"
+    },
+    {
+      "file": "results/phase2/ho20cluster__allenai__OLMo-2-1124-7B-SFT@1de02c017511__usermean.json",
+      "sha256": "80b01298bf79f0e0ad3a99f3f5b1eddf359463435cedeb6fab705bba5839eb29"
+    },
+    {
+      "file": "results/phase2/ho20cluster__allenai__OLMo-2-1124-7B@7df9a82518af__lastgen.json",
+      "sha256": "34fd6865c339eb3830cb8f41c55c5bb1f5c33cad7e3aeaf24f89ac90c6656089"
+    },
+    {
+      "file": "results/phase2/ho20cluster__allenai__OLMo-2-1124-7B@7df9a82518af__usermean.json",
+      "sha256": "0a03bbdc0ba9122c771a063f6ea65a3b6d9aa1c658d647f66dc1cf8413064f69"
+    },
+    {
+      "file": "results/phase2/ho20cluster__meta-llama__Meta-Llama-3-8B-Instruct@8afb486c1db2__lastgen.json",
+      "sha256": "bdd615b654a39158de3afb7801b51df28551d0660d6392d818bee5e1251d9e1c"
+    },
+    {
+      "file": "results/phase2/ho20cluster__meta-llama__Meta-Llama-3-8B-Instruct@8afb486c1db2__usermean.json",
+      "sha256": "47ea68e53e61c078116160aba46a8decee796c71c0fbe94f84b8e3e7027e4c5a"
+    },
+    {
+      "file": "results/phase2/ho20cluster__microsoft__Phi-3-mini-128k-instruct@f3c06aed622e__lastgen.json",
+      "sha256": "bb698c76875a5ed28ecaa6be95429f6cee9b660546d25fbc609f2167f309d791"
+    },
+    {
+      "file": "results/phase2/ho20cluster__microsoft__Phi-3-mini-128k-instruct@f3c06aed622e__usermean.json",
+      "sha256": "549e2f2d2cce4ca91f0344f2ff6463e3f7281f32578bde768c4c5c7d3018bc15"
+    },
+    {
+      "file": "results/phase2/ho20cluster__mistralai__Mistral-7B-Instruct-v0.1@ec5deb64f2c6__lastgen.json",
+      "sha256": "945f4326adb6a3340225a2e37f4dc48e7635579e36c342b710ba5ce81d9cafd9"
+    },
+    {
+      "file": "results/phase2/ho20cluster__mistralai__Mistral-7B-Instruct-v0.1@ec5deb64f2c6__usermean.json",
+      "sha256": "9a459e5b58407caa75cf34d2a26fcb081bc3d89e7197e1d9c18bbee90df56838"
+    },
+    {
+      "file": "results/phase2/ho20cluster__mistralai__Mistral-7B-Instruct-v0.2@63a8b0818953__lastgen.json",
+      "sha256": "acf684c5eb2d323a7a88eb3890ce2808964c0ea9540533c385dd8072d1069290"
+    },
+    {
+      "file": "results/phase2/ho20cluster__mistralai__Mistral-7B-Instruct-v0.2@63a8b0818953__usermean.json",
+      "sha256": "165fada345808149443cf3c806e967ef891750cb9b2d78ce8f83d9b83c9ddd73"
+    }
+  ],
+  "selection_records_covered": [
+    {
+      "file": "results/phase2/selection_p2__Qwen__Qwen2-7B-Instruct@f2826a00ceef__lastgen.json",
+      "sha256": "96db0a7574f6603336443ebf9c8ac938c89956e7827fed50bbf150a723c45247"
+    },
+    {
+      "file": "results/phase2/selection_p2__Qwen__Qwen2-7B-Instruct@f2826a00ceef__usermean.json",
+      "sha256": "a088d66176b675f9b98228ff44b71aacc59e3fa99f96d8d6c13b27647d8fdb76"
+    },
+    {
+      "file": "results/phase2/selection_p2__allenai__Llama-3.1-Tulu-3-8B-DPO@a7beb67e33ff__lastgen.json",
+      "sha256": "6b62241fea9f51d2fd2b948a6dc7bfc1a5652e53a90a3effefb6e1d892874f22"
+    },
+    {
+      "file": "results/phase2/selection_p2__allenai__Llama-3.1-Tulu-3-8B-DPO@a7beb67e33ff__usermean.json",
+      "sha256": "ad42360e26eb5eefdffbb2357f6dff8ea33129832a90f5a877516006491d55b3"
+    },
+    {
+      "file": "results/phase2/selection_p2__allenai__Llama-3.1-Tulu-3-8B-SFT@f2a0b46b0cfd__lastgen.json",
+      "sha256": "46a20605feb0f6ad3ba99bc9b6af091d381995395eb2b2cf298106ec49c48a11"
+    },
+    {
+      "file": "results/phase2/selection_p2__allenai__Llama-3.1-Tulu-3-8B-SFT@f2a0b46b0cfd__usermean.json",
+      "sha256": "32b0ab5ade2e0e000af2cc868999e67e1b5909511bafc464758708cff8c53e92"
+    },
+    {
+      "file": "results/phase2/selection_p2__allenai__OLMo-2-1124-7B-DPO@e34ea60adff2__lastgen.json",
+      "sha256": "12a6a86273446f1a33e3898b34ee9b68df9b419526df6c5d9721b86a59c8b767"
+    },
+    {
+      "file": "results/phase2/selection_p2__allenai__OLMo-2-1124-7B-DPO@e34ea60adff2__usermean.json",
+      "sha256": "658aecde9b165ef4e962e50f9d050e170e8b2b872a7b13a9669629bb0a1ad833"
+    },
+    {
+      "file": "results/phase2/selection_p2__allenai__OLMo-2-1124-7B-SFT@1de02c017511__lastgen.json",
+      "sha256": "66d95433e0e3c2f85213aa6cc95d3421dfe51e60da22c2be2142fce5245a9a14"
+    },
+    {
+      "file": "results/phase2/selection_p2__allenai__OLMo-2-1124-7B-SFT@1de02c017511__usermean.json",
+      "sha256": "b9adabf6157d399b84acd1cfc524d3f015d04886eb7fc264b52dd047fca193b3"
+    },
+    {
+      "file": "results/phase2/selection_p2__allenai__OLMo-2-1124-7B@7df9a82518af__lastgen.json",
+      "sha256": "cd19cec41ebaa0c14831507006c64d93e157e24b571b84e2e3e5e02547331a11"
+    },
+    {
+      "file": "results/phase2/selection_p2__allenai__OLMo-2-1124-7B@7df9a82518af__usermean.json",
+      "sha256": "9618c1331c20080e1235bf90e2bb5eff67329a3c7f72051988a0c549a0f9b163"
+    },
+    {
+      "file": "results/phase2/selection_p2__meta-llama__Meta-Llama-3-8B-Instruct@8afb486c1db2__lastgen.json",
+      "sha256": "b4dacededdfeec3f2c6696aaaa07cafd44cd9da6509757a460c960fe9a9451e4"
+    },
+    {
+      "file": "results/phase2/selection_p2__meta-llama__Meta-Llama-3-8B-Instruct@8afb486c1db2__usermean.json",
+      "sha256": "95f970399fe592493aebeeda7db70282b5f865293999025654c9d4c1ac839b47"
+    },
+    {
+      "file": "results/phase2/selection_p2__microsoft__Phi-3-mini-128k-instruct@f3c06aed622e__lastgen.json",
+      "sha256": "2625bf93846143a56a772695b56bf5f0dbfee29375191f86e4137e5ff69275b0"
+    },
+    {
+      "file": "results/phase2/selection_p2__microsoft__Phi-3-mini-128k-instruct@f3c06aed622e__usermean.json",
+      "sha256": "e4aa7cdc02400e74ad4d26a062308deb5488ddfcc68c380726eff370587de2c2"
+    },
+    {
+      "file": "results/phase2/selection_p2__mistralai__Mistral-7B-Instruct-v0.1@ec5deb64f2c6__lastgen.json",
+      "sha256": "46854ceb9252e4a80ccced953076279f27caf994f1f42c8635431be70161fc90"
+    },
+    {
+      "file": "results/phase2/selection_p2__mistralai__Mistral-7B-Instruct-v0.1@ec5deb64f2c6__usermean.json",
+      "sha256": "4966000b2d75c3534ccedd8eab464e7650e1397c68938a82ce2a57cbb4b1aede"
+    },
+    {
+      "file": "results/phase2/selection_p2__mistralai__Mistral-7B-Instruct-v0.2@63a8b0818953__lastgen.json",
+      "sha256": "466fb4eb65d7fb2f903e35c7ec4b63edf2c6290a58c873a1cd242da130a6cb0f"
+    },
+    {
+      "file": "results/phase2/selection_p2__mistralai__Mistral-7B-Instruct-v0.2@63a8b0818953__usermean.json",
+      "sha256": "bf934170b0d2d993a14abf9ff41e018fc068aadcc302449f71ef418883cbc3ee"
+    }
+  ],
+  "anchor": {
+    "file": "results/phase2/ho20cluster_anchor__Qwen__Qwen2-7B-Instruct@f2826a00ceef__usermean.json",
+    "sha256": "2bcab6febb363e70eea32610e9762567a6ddf733ea816bac04ca13b83a575852"
+  },
+  "n_records": 20,
+  "n_selected_cell_unchanged": 10,
+  "n_selected_cell_changed": 10,
+  "records": [
+    {
+      "output": "results/phase2/ho20cluster__Qwen__Qwen2-7B-Instruct@f2826a00ceef__lastgen.json",
+      "selection_record": "results/phase2/selection_p2__Qwen__Qwen2-7B-Instruct@f2826a00ceef__lastgen.json",
+      "repo": "Qwen/Qwen2-7B-Instruct",
+      "revision": "f2826a00ceef68f0f2b946d945ecc0477ce4450c",
+      "pooling": "lastgen",
+      "selected_recorded": {
+        "arm": "C=0.003",
+        "layer": 20
+      },
+      "selected_grouped": {
+        "arm": "C=0.003",
+        "layer": 18
+      },
+      "selected_cell_unchanged": false,
+      "margin_under_grouping": 0.000688792376373093,
+      "margin_under_item_split": 0.0013117995979475827,
+      "recorded_runner_up": {
+        "arm": "C=0.001",
+        "layer": 20,
+        "auroc_ho20": 0.9778786869138628,
+        "margin": 0.0004140259061049534
+      },
+      "leakage_gap_max": 0.009483843198324404,
+      "leakage_gap_max_cell": {
+        "arm": "mean_diff",
+        "layer": 2
+      },
+      "grouped_selection_ho20_tpr_mean": 0.7769447375111649,
+      "realised_ho20_size_range": [
+        800,
+        800
+      ]
+    },
+    {
+      "output": "results/phase2/ho20cluster__Qwen__Qwen2-7B-Instruct@f2826a00ceef__usermean.json",
+      "selection_record": "results/phase2/selection_p2__Qwen__Qwen2-7B-Instruct@f2826a00ceef__usermean.json",
+      "repo": "Qwen/Qwen2-7B-Instruct",
+      "revision": "f2826a00ceef68f0f2b946d945ecc0477ce4450c",
+      "pooling": "usermean",
+      "selected_recorded": {
+        "arm": "C=0.003",
+        "layer": 18
+      },
+      "selected_grouped": {
+        "arm": "C=0.003",
+        "layer": 18
+      },
+      "selected_cell_unchanged": true,
+      "margin_under_grouping": 0.0,
+      "margin_under_item_split": 0.0,
+      "recorded_runner_up": {
+        "arm": "C=0.001",
+        "layer": 18,
+        "auroc_ho20": 0.9782210414678184,
+        "margin": 0.0007008612234010725
+      },
+      "leakage_gap_max": 0.007986916903744201,
+      "leakage_gap_max_cell": {
+        "arm": "C=1",
+        "layer": 24
+      },
+      "grouped_selection_ho20_tpr_mean": 0.7626371492035595,
+      "realised_ho20_size_range": [
+        800,
+        800
+      ]
+    },
+    {
+      "output": "results/phase2/ho20cluster__allenai__Llama-3.1-Tulu-3-8B-DPO@a7beb67e33ff__lastgen.json",
+      "selection_record": "results/phase2/selection_p2__allenai__Llama-3.1-Tulu-3-8B-DPO@a7beb67e33ff__lastgen.json",
+      "repo": "allenai/Llama-3.1-Tulu-3-8B-DPO",
+      "revision": "a7beb67e33ffd01cc87ac3b46cadc1000985b8db",
+      "pooling": "lastgen",
+      "selected_recorded": {
+        "arm": "C=0.001",
+        "layer": 14
+      },
+      "selected_grouped": {
+        "arm": "C=0.003",
+        "layer": 14
+      },
+      "selected_cell_unchanged": false,
+      "margin_under_grouping": 9.380606668196734e-05,
+      "margin_under_item_split": 0.00017015618946358835,
+      "recorded_runner_up": {
+        "arm": "C=0.001",
+        "layer": 16,
+        "auroc_ho20": 0.9922125211153732,
+        "margin": 3.625929744899281e-05
+      },
+      "leakage_gap_max": 0.011446273458165956,
+      "leakage_gap_max_cell": {
+        "arm": "mean_diff",
+        "layer": 4
+      },
+      "grouped_selection_ho20_tpr_mean": 0.8791490841017489,
+      "realised_ho20_size_range": [
+        800,
+        800
+      ]
+    },
+    {
+      "output": "results/phase2/ho20cluster__allenai__Llama-3.1-Tulu-3-8B-DPO@a7beb67e33ff__usermean.json",
+      "selection_record": "results/phase2/selection_p2__allenai__Llama-3.1-Tulu-3-8B-DPO@a7beb67e33ff__usermean.json",
+      "repo": "allenai/Llama-3.1-Tulu-3-8B-DPO",
+      "revision": "a7beb67e33ffd01cc87ac3b46cadc1000985b8db",
+      "pooling": "usermean",
+      "selected_recorded": {
+        "arm": "C=0.001",
+        "layer": 14
+      },
+      "selected_grouped": {
+        "arm": "C=0.001",
+        "layer": 14
+      },
+      "selected_cell_unchanged": true,
+      "margin_under_grouping": 0.0,
+      "margin_under_item_split": 0.0,
+      "recorded_runner_up": {
+        "arm": "C=0.003",
+        "layer": 14,
+        "auroc_ho20": 0.9831854136248209,
+        "margin": 0.0002887572367568092
+      },
+      "leakage_gap_max": 0.011450865786290065,
+      "leakage_gap_max_cell": {
+        "arm": "C=1",
+        "layer": 0
+      },
+      "grouped_selection_ho20_tpr_mean": 0.8051221743479331,
+      "realised_ho20_size_range": [
+        800,
+        800
+      ]
+    },
+    {
+      "output": "results/phase2/ho20cluster__allenai__Llama-3.1-Tulu-3-8B-SFT@f2a0b46b0cfd__lastgen.json",
+      "selection_record": "results/phase2/selection_p2__allenai__Llama-3.1-Tulu-3-8B-SFT@f2a0b46b0cfd__lastgen.json",
+      "repo": "allenai/Llama-3.1-Tulu-3-8B-SFT",
+      "revision": "f2a0b46b0cfda21003c6141b1ff837b7e165524d",
+      "pooling": "lastgen",
+      "selected_recorded": {
+        "arm": "C=0.001",
+        "layer": 14
+      },
+      "selected_grouped": {
+        "arm": "C=0.001",
+        "layer": 14
+      },
+      "selected_cell_unchanged": true,
+      "margin_under_grouping": 0.0,
+      "margin_under_item_split": 0.0,
+      "recorded_runner_up": {
+        "arm": "C=0.001",
+        "layer": 16,
+        "auroc_ho20": 0.9922839212053125,
+        "margin": 4.2389083904637026e-05
+      },
+      "leakage_gap_max": 0.010829507383556036,
+      "leakage_gap_max_cell": {
+        "arm": "mean_diff",
+        "layer": 4
+      },
+      "grouped_selection_ho20_tpr_mean": 0.8825480480664971,
+      "realised_ho20_size_range": [
+        800,
+        800
+      ]
+    },
+    {
+      "output": "results/phase2/ho20cluster__allenai__Llama-3.1-Tulu-3-8B-SFT@f2a0b46b0cfd__usermean.json",
+      "selection_record": "results/phase2/selection_p2__allenai__Llama-3.1-Tulu-3-8B-SFT@f2a0b46b0cfd__usermean.json",
+      "repo": "allenai/Llama-3.1-Tulu-3-8B-SFT",
+      "revision": "f2a0b46b0cfda21003c6141b1ff837b7e165524d",
+      "pooling": "usermean",
+      "selected_recorded": {
+        "arm": "C=0.001",
+        "layer": 14
+      },
+      "selected_grouped": {
+        "arm": "C=0.001",
+        "layer": 14
+      },
+      "selected_cell_unchanged": true,
+      "margin_under_grouping": 0.0,
+      "margin_under_item_split": 0.0,
+      "recorded_runner_up": {
+        "arm": "C=0.003",
+        "layer": 14,
+        "auroc_ho20": 0.983180492065127,
+        "margin": 0.00010477807171693776
+      },
+      "leakage_gap_max": 0.011127451315289916,
+      "leakage_gap_max_cell": {
+        "arm": "C=1",
+        "layer": 0
+      },
+      "grouped_selection_ho20_tpr_mean": 0.8000517456740492,
+      "realised_ho20_size_range": [
+        800,
+        800
+      ]
+    },
+    {
+      "output": "results/phase2/ho20cluster__allenai__OLMo-2-1124-7B-DPO@e34ea60adff2__lastgen.json",
+      "selection_record": "results/phase2/selection_p2__allenai__OLMo-2-1124-7B-DPO@e34ea60adff2__lastgen.json",
+      "repo": "allenai/OLMo-2-1124-7B-DPO",
+      "revision": "e34ea60adff2e575f4fe7569eaffd1b28509b6fd",
+      "pooling": "lastgen",
+      "selected_recorded": {
+        "arm": "C=0.001",
+        "layer": 18
+      },
+      "selected_grouped": {
+        "arm": "C=0.003",
+        "layer": 18
+      },
+      "selected_cell_unchanged": false,
+      "margin_under_grouping": 1.4944764023416823e-05,
+      "margin_under_item_split": 0.00012377236021088311,
+      "recorded_runner_up": {
+        "arm": "C=0.003",
+        "layer": 18,
+        "auroc_ho20": 0.9924391900708198,
+        "margin": 0.00012377236021088311
+      },
+      "leakage_gap_max": 0.005789028248339156,
+      "leakage_gap_max_cell": {
+        "arm": "mean_diff",
+        "layer": 2
+      },
+      "grouped_selection_ho20_tpr_mean": 0.895029172954823,
+      "realised_ho20_size_range": [
+        800,
+        800
+      ]
+    },
+    {
+      "output": "results/phase2/ho20cluster__allenai__OLMo-2-1124-7B-DPO@e34ea60adff2__usermean.json",
+      "selection_record": "results/phase2/selection_p2__allenai__OLMo-2-1124-7B-DPO@e34ea60adff2__usermean.json",
+      "repo": "allenai/OLMo-2-1124-7B-DPO",
+      "revision": "e34ea60adff2e575f4fe7569eaffd1b28509b6fd",
+      "pooling": "usermean",
+      "selected_recorded": {
+        "arm": "C=0.001",
+        "layer": 16
+      },
+      "selected_grouped": {
+        "arm": "C=0.001",
+        "layer": 16
+      },
+      "selected_cell_unchanged": true,
+      "margin_under_grouping": 0.0,
+      "margin_under_item_split": 0.0,
+      "recorded_runner_up": {
+        "arm": "C=0.003",
+        "layer": 16,
+        "auroc_ho20": 0.9839267209938555,
+        "margin": 2.8497031725138733e-05
+      },
+      "leakage_gap_max": 0.008611192703479431,
+      "leakage_gap_max_cell": {
+        "arm": "mean_diff",
+        "layer": 20
+      },
+      "grouped_selection_ho20_tpr_mean": 0.8156177702713613,
+      "realised_ho20_size_range": [
+        800,
+        800
+      ]
+    },
+    {
+      "output": "results/phase2/ho20cluster__allenai__OLMo-2-1124-7B-SFT@1de02c017511__lastgen.json",
+      "selection_record": "results/phase2/selection_p2__allenai__OLMo-2-1124-7B-SFT@1de02c017511__lastgen.json",
+      "repo": "allenai/OLMo-2-1124-7B-SFT",
+      "revision": "1de02c0175118a9de5854aec80a1f970e701e928",
+      "pooling": "lastgen",
+      "selected_recorded": {
+        "arm": "C=0.001",
+        "layer": 18
+      },
+      "selected_grouped": {
+        "arm": "C=0.003",
+        "layer": 18
+      },
+      "selected_cell_unchanged": false,
+      "margin_under_grouping": 0.00010759404671079054,
+      "margin_under_item_split": 0.00012513470365205226,
+      "recorded_runner_up": {
+        "arm": "C=0.003",
+        "layer": 18,
+        "auroc_ho20": 0.9923866411522066,
+        "margin": 0.00012513470365205226
+      },
+      "leakage_gap_max": 0.005717787776704619,
+      "leakage_gap_max_cell": {
+        "arm": "mean_diff",
+        "layer": 2
+      },
+      "grouped_selection_ho20_tpr_mean": 0.8935608918758515,
+      "realised_ho20_size_range": [
+        800,
+        800
+      ]
+    },
+    {
+      "output": "results/phase2/ho20cluster__allenai__OLMo-2-1124-7B-SFT@1de02c017511__usermean.json",
+      "selection_record": "results/phase2/selection_p2__allenai__OLMo-2-1124-7B-SFT@1de02c017511__usermean.json",
+      "repo": "allenai/OLMo-2-1124-7B-SFT",
+      "revision": "1de02c0175118a9de5854aec80a1f970e701e928",
+      "pooling": "usermean",
+      "selected_recorded": {
+        "arm": "C=0.001",
+        "layer": 16
+      },
+      "selected_grouped": {
+        "arm": "C=0.001",
+        "layer": 16
+      },
+      "selected_cell_unchanged": true,
+      "margin_under_grouping": 0.0,
+      "margin_under_item_split": 0.0,
+      "recorded_runner_up": {
+        "arm": "C=0.003",
+        "layer": 16,
+        "auroc_ho20": 0.983707772289063,
+        "margin": 5.946077200391642e-06
+      },
+      "leakage_gap_max": 0.008645017670099064,
+      "leakage_gap_max_cell": {
+        "arm": "mean_diff",
+        "layer": 20
+      },
+      "grouped_selection_ho20_tpr_mean": 0.8155896232265079,
+      "realised_ho20_size_range": [
+        800,
+        800
+      ]
+    },
+    {
+      "output": "results/phase2/ho20cluster__allenai__OLMo-2-1124-7B@7df9a82518af__lastgen.json",
+      "selection_record": "results/phase2/selection_p2__allenai__OLMo-2-1124-7B@7df9a82518af__lastgen.json",
+      "repo": "allenai/OLMo-2-1124-7B",
+      "revision": "7df9a82518afdecae4e8c026b27adccc8c1f0032",
+      "pooling": "lastgen",
+      "selected_recorded": {
+        "arm": "C=0.003",
+        "layer": 18
+      },
+      "selected_grouped": {
+        "arm": "C=0.001",
+        "layer": 30
+      },
+      "selected_cell_unchanged": false,
+      "margin_under_grouping": 0.0017270790362207133,
+      "margin_under_item_split": 0.0031891306274793862,
+      "recorded_runner_up": {
+        "arm": "C=0.001",
+        "layer": 18,
+        "auroc_ho20": 0.9545680241607796,
+        "margin": 0.0007939528701002008
+      },
+      "leakage_gap_max": 0.016479636304533973,
+      "leakage_gap_max_cell": {
+        "arm": "C=0.01",
+        "layer": 0
+      },
+      "grouped_selection_ho20_tpr_mean": 0.5978874363927585,
+      "realised_ho20_size_range": [
+        800,
+        800
+      ]
+    },
+    {
+      "output": "results/phase2/ho20cluster__allenai__OLMo-2-1124-7B@7df9a82518af__usermean.json",
+      "selection_record": "results/phase2/selection_p2__allenai__OLMo-2-1124-7B@7df9a82518af__usermean.json",
+      "repo": "allenai/OLMo-2-1124-7B",
+      "revision": "7df9a82518afdecae4e8c026b27adccc8c1f0032",
+      "pooling": "usermean",
+      "selected_recorded": {
+        "arm": "C=0.003",
+        "layer": 14
+      },
+      "selected_grouped": {
+        "arm": "C=0.003",
+        "layer": 16
+      },
+      "selected_cell_unchanged": false,
+      "margin_under_grouping": 0.0006051886520251903,
+      "margin_under_item_split": 0.00040910917361691723,
+      "recorded_runner_up": {
+        "arm": "C=0.003",
+        "layer": 16,
+        "auroc_ho20": 0.9712767852193919,
+        "margin": 0.00040910917361691723
+      },
+      "leakage_gap_max": 0.005536743511755815,
+      "leakage_gap_max_cell": {
+        "arm": "mean_diff",
+        "layer": 14
+      },
+      "grouped_selection_ho20_tpr_mean": 0.7107048557894311,
+      "realised_ho20_size_range": [
+        800,
+        800
+      ]
+    },
+    {
+      "output": "results/phase2/ho20cluster__meta-llama__Meta-Llama-3-8B-Instruct@8afb486c1db2__lastgen.json",
+      "selection_record": "results/phase2/selection_p2__meta-llama__Meta-Llama-3-8B-Instruct@8afb486c1db2__lastgen.json",
+      "repo": "meta-llama/Meta-Llama-3-8B-Instruct",
+      "revision": "8afb486c1db24fe5011ec46dfbe5b5dccdb575c2",
+      "pooling": "lastgen",
+      "selected_recorded": {
+        "arm": "C=0.003",
+        "layer": 14
+      },
+      "selected_grouped": {
+        "arm": "C=0.003",
+        "layer": 14
+      },
+      "selected_cell_unchanged": true,
+      "margin_under_grouping": 0.0,
+      "margin_under_item_split": 0.0,
+      "recorded_runner_up": {
+        "arm": "C=0.001",
+        "layer": 16,
+        "auroc_ho20": 0.9821512004671469,
+        "margin": 0.0002723549731827868
+      },
+      "leakage_gap_max": 0.013401864811069197,
+      "leakage_gap_max_cell": {
+        "arm": "mean_diff",
+        "layer": 24
+      },
+      "grouped_selection_ho20_tpr_mean": 0.7797367502761336,
+      "realised_ho20_size_range": [
+        800,
+        800
+      ]
+    },
+    {
+      "output": "results/phase2/ho20cluster__meta-llama__Meta-Llama-3-8B-Instruct@8afb486c1db2__usermean.json",
+      "selection_record": "results/phase2/selection_p2__meta-llama__Meta-Llama-3-8B-Instruct@8afb486c1db2__usermean.json",
+      "repo": "meta-llama/Meta-Llama-3-8B-Instruct",
+      "revision": "8afb486c1db24fe5011ec46dfbe5b5dccdb575c2",
+      "pooling": "usermean",
+      "selected_recorded": {
+        "arm": "C=0.003",
+        "layer": 14
+      },
+      "selected_grouped": {
+        "arm": "C=0.003",
+        "layer": 14
+      },
+      "selected_cell_unchanged": true,
+      "margin_under_grouping": 0.0,
+      "margin_under_item_split": 0.0,
+      "recorded_runner_up": {
+        "arm": "C=0.001",
+        "layer": 14,
+        "auroc_ho20": 0.9788109313662442,
+        "margin": 0.00045927956205982223
+      },
+      "leakage_gap_max": 0.012280116820224007,
+      "leakage_gap_max_cell": {
+        "arm": "C=1",
+        "layer": 0
+      },
+      "grouped_selection_ho20_tpr_mean": 0.7805560228957604,
+      "realised_ho20_size_range": [
+        800,
+        800
+      ]
+    },
+    {
+      "output": "results/phase2/ho20cluster__microsoft__Phi-3-mini-128k-instruct@f3c06aed622e__lastgen.json",
+      "selection_record": "results/phase2/selection_p2__microsoft__Phi-3-mini-128k-instruct@f3c06aed622e__lastgen.json",
+      "repo": "microsoft/Phi-3-mini-128k-instruct",
+      "revision": "f3c06aed622e14ca0abf5115094e4fc9a9948f36",
+      "pooling": "lastgen",
+      "selected_recorded": {
+        "arm": "C=0.003",
+        "layer": 18
+      },
+      "selected_grouped": {
+        "arm": "C=0.01",
+        "layer": 18
+      },
+      "selected_cell_unchanged": false,
+      "margin_under_grouping": 4.359518321661593e-05,
+      "margin_under_item_split": 0.0005440037580080048,
+      "recorded_runner_up": {
+        "arm": "C=0.01",
+        "layer": 18,
+        "auroc_ho20": 0.9780808134958325,
+        "margin": 0.0005440037580080048
+      },
+      "leakage_gap_max": 0.005768337459001516,
+      "leakage_gap_max_cell": {
+        "arm": "C=0.0001",
+        "layer": 10
+      },
+      "grouped_selection_ho20_tpr_mean": 0.7485508821783524,
+      "realised_ho20_size_range": [
+        800,
+        800
+      ]
+    },
+    {
+      "output": "results/phase2/ho20cluster__microsoft__Phi-3-mini-128k-instruct@f3c06aed622e__usermean.json",
+      "selection_record": "results/phase2/selection_p2__microsoft__Phi-3-mini-128k-instruct@f3c06aed622e__usermean.json",
+      "repo": "microsoft/Phi-3-mini-128k-instruct",
+      "revision": "f3c06aed622e14ca0abf5115094e4fc9a9948f36",
+      "pooling": "usermean",
+      "selected_recorded": {
+        "arm": "C=0.003",
+        "layer": 18
+      },
+      "selected_grouped": {
+        "arm": "C=0.001",
+        "layer": 18
+      },
+      "selected_cell_unchanged": false,
+      "margin_under_grouping": 0.0004903526332616925,
+      "margin_under_item_split": 0.0003766328700286481,
+      "recorded_runner_up": {
+        "arm": "C=0.001",
+        "layer": 18,
+        "auroc_ho20": 0.9756147563887266,
+        "margin": 0.0003766328700286481
+      },
+      "leakage_gap_max": 0.015249854201507262,
+      "leakage_gap_max_cell": {
+        "arm": "C=1",
+        "layer": 6
+      },
+      "grouped_selection_ho20_tpr_mean": 0.7473633903711276,
+      "realised_ho20_size_range": [
+        800,
+        800
+      ]
+    },
+    {
+      "output": "results/phase2/ho20cluster__mistralai__Mistral-7B-Instruct-v0.1@ec5deb64f2c6__lastgen.json",
+      "selection_record": "results/phase2/selection_p2__mistralai__Mistral-7B-Instruct-v0.1@ec5deb64f2c6__lastgen.json",
+      "repo": "mistralai/Mistral-7B-Instruct-v0.1",
+      "revision": "ec5deb64f2c6e6fa90c1abf74a91d5c93a9669ca",
+      "pooling": "lastgen",
+      "selected_recorded": {
+        "arm": "C=0.003",
+        "layer": 14
+      },
+      "selected_grouped": {
+        "arm": "C=0.003",
+        "layer": 16
+      },
+      "selected_cell_unchanged": false,
+      "margin_under_grouping": 0.0005837435021494031,
+      "margin_under_item_split": 0.00044667499677308875,
+      "recorded_runner_up": {
+        "arm": "C=0.001",
+        "layer": 14,
+        "auroc_ho20": 0.9763728953670929,
+        "margin": 0.00018015286998662727
+      },
+      "leakage_gap_max": 0.009649557631304484,
+      "leakage_gap_max_cell": {
+        "arm": "C=1",
+        "layer": 2
+      },
+      "grouped_selection_ho20_tpr_mean": 0.7357887558486671,
+      "realised_ho20_size_range": [
+        800,
+        800
+      ]
+    },
+    {
+      "output": "results/phase2/ho20cluster__mistralai__Mistral-7B-Instruct-v0.1@ec5deb64f2c6__usermean.json",
+      "selection_record": "results/phase2/selection_p2__mistralai__Mistral-7B-Instruct-v0.1@ec5deb64f2c6__usermean.json",
+      "repo": "mistralai/Mistral-7B-Instruct-v0.1",
+      "revision": "ec5deb64f2c6e6fa90c1abf74a91d5c93a9669ca",
+      "pooling": "usermean",
+      "selected_recorded": {
+        "arm": "C=0.003",
+        "layer": 16
+      },
+      "selected_grouped": {
+        "arm": "C=0.003",
+        "layer": 16
+      },
+      "selected_cell_unchanged": true,
+      "margin_under_grouping": 0.0,
+      "margin_under_item_split": 0.0,
+      "recorded_runner_up": {
+        "arm": "C=0.001",
+        "layer": 16,
+        "auroc_ho20": 0.9764715208731601,
+        "margin": 0.00034037417807053494
+      },
+      "leakage_gap_max": 0.01332685714144799,
+      "leakage_gap_max_cell": {
+        "arm": "C=1",
+        "layer": 0
+      },
+      "grouped_selection_ho20_tpr_mean": 0.7558205044934706,
+      "realised_ho20_size_range": [
+        800,
+        800
+      ]
+    },
+    {
+      "output": "results/phase2/ho20cluster__mistralai__Mistral-7B-Instruct-v0.2@63a8b0818953__lastgen.json",
+      "selection_record": "results/phase2/selection_p2__mistralai__Mistral-7B-Instruct-v0.2@63a8b0818953__lastgen.json",
+      "repo": "mistralai/Mistral-7B-Instruct-v0.2",
+      "revision": "63a8b081895390a26e140280378bc85ec8bce07a",
+      "pooling": "lastgen",
+      "selected_recorded": {
+        "arm": "C=0.003",
+        "layer": 16
+      },
+      "selected_grouped": {
+        "arm": "C=0.003",
+        "layer": 16
+      },
+      "selected_cell_unchanged": true,
+      "margin_under_grouping": 0.0,
+      "margin_under_item_split": 0.0,
+      "recorded_runner_up": {
+        "arm": "C=0.01",
+        "layer": 16,
+        "auroc_ho20": 0.9810567082142816,
+        "margin": 0.000731642090834761
+      },
+      "leakage_gap_max": 0.005527637198337598,
+      "leakage_gap_max_cell": {
+        "arm": "mean_diff",
+        "layer": 2
+      },
+      "grouped_selection_ho20_tpr_mean": 0.7797748887667346,
+      "realised_ho20_size_range": [
+        800,
+        800
+      ]
+    },
+    {
+      "output": "results/phase2/ho20cluster__mistralai__Mistral-7B-Instruct-v0.2@63a8b0818953__usermean.json",
+      "selection_record": "results/phase2/selection_p2__mistralai__Mistral-7B-Instruct-v0.2@63a8b0818953__usermean.json",
+      "repo": "mistralai/Mistral-7B-Instruct-v0.2",
+      "revision": "63a8b081895390a26e140280378bc85ec8bce07a",
+      "pooling": "usermean",
+      "selected_recorded": {
+        "arm": "C=0.003",
+        "layer": 16
+      },
+      "selected_grouped": {
+        "arm": "C=0.001",
+        "layer": 16
+      },
+      "selected_cell_unchanged": false,
+      "margin_under_grouping": 1.4836789701599962e-05,
+      "margin_under_item_split": 0.00041568884631026926,
+      "recorded_runner_up": {
+        "arm": "C=0.001",
+        "layer": 16,
+        "auroc_ho20": 0.9785861460555478,
+        "margin": 0.00041568884631026926
+      },
+      "leakage_gap_max": 0.015959511150611116,
+      "leakage_gap_max_cell": {
+        "arm": "C=1",
+        "layer": 0
+      },
+      "grouped_selection_ho20_tpr_mean": 0.7577782032929763,
+      "realised_ho20_size_range": [
+        800,
+        800
+      ]
+    }
+  ]
+}

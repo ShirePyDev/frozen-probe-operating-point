@@ -1,0 +1,3652 @@
+{
+  "schema_version": 1,
+  "run_kind": "twomoment_p2_d361_summary",
+  "utc": "2026-10-07T18:35:47+00:00",
+  "git": {
+    "commit": null,
+    "branch": null,
+    "dirty": null,
+    "dirty_file_count": null,
+    "dirty_files": []
+  },
+  "env": {
+    "python": "3.10.12",
+    "platform": "Linux-3.10.0-1160.119.1.el7.x86_64-x86_64-with-glibc2.35",
+    "machine": "x86_64",
+    "blas_threads": {
+      "OMP_NUM_THREADS": "6",
+      "OPENBLAS_NUM_THREADS": "6",
+      "MKL_NUM_THREADS": "6",
+      "NUMEXPR_NUM_THREADS": null
+    },
+    "cpu_count": 12,
+    "libraries": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.7.2",
+      "torch": "2.7.0+cu126",
+      "transformers": "4.56.1"
+    }
+  },
+  "preregistration": "D-361 (the pre-registration of the Phase 2 exit gate's mechanism test; details by the closest D-entries, D-181: D-152 4b, D-163, D-174, D-177, D-302, D-303, D-318 (7), D-320); D-156, D-164 (the estimator, both levels); D-117 (the selections of record); D-248 (5% beside); D-320 (4), D-362 (split v2 and its join rule); D-325 (the durable layer sets); D-307 (1) (durable caches only)",
+  "code": {
+    "sha256": {
+      "src/twomoment_p2_d361.py": "f4741f8f1d8d601ce630a9e63c917933e7b5f5533ed729680fdb36ffa58d8d5f",
+      "src/twomoment_cells.py": "14b28c91e7f2267a752f51a925e2bb875a834a52556e21b0c620ad30c18eeafe",
+      "src/input_registry.py": "e05d1fba11a4db8c46d0e7231fa7b804fbd8101017fda1c0889070c193684fbf",
+      "src/paired.py": "80429fa57f0267236a2af1670c74ef327802598257ab75834fddf64a70d97195",
+      "src/populations.py": "605badd21973b860cf52249f828519fe5a0a7a0b3ad6d85c1754b357b8852fff",
+      "src/provenance.py": "3cef96e8ede12af7dc920409cc9bd7e072cdedc579e9211604cf481084e9aa47",
+      "src/superseded_provenance.py": "6613f47f086958ef424f1be1263afc4a5918f17a50b24d025baad69aeb0738b8",
+      "src/twomoment_fit.py": "1a1c57668068c4e86dfb08bc61c141d9c921d92a04da3b620ec7781ae9713b26",
+      "src/float16_check_d364.py": "6027c597844e4c684a530c15af3fd40d06bbd218275ee50ee7f00e4a2fa356b7",
+      "src/selection_tpr_v2.py": "e928a44e969e8fc1ec87a2e9bb93f3c9ddd11f06778dd3066b1d9d0905c3746d",
+      "src/phase2_resplit_v2.py": "8929519b4618119693038f5b123a4d980f0063591e64f741bbbdfebeb40966bc",
+      "src/selection_p2.py": "a79bb1b8a635c15190bad181e29c1ecd885ef01a71fda26e1101339f3bc59e97",
+      "src/regularisation_sweep.py": "8c475baf246c9cc59459555832ed644d9d30e692579752dc0f83b059ab0cf269",
+      "src/subset_p2.py": "fc81a30170b0047c4d4606cd5f700001b2f7e2afb45b1e7d130f8269155576c5",
+      "src/safe_outputs.py": "e0c7a4bcb969de9a0c5c1b97377e8f38f5257672a869036eb8d6c9c642b40639"
+    },
+    "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+    "commit_source": "SYNC_COMMIT",
+    "libraries": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.7.2"
+    }
+  },
+  "choices": [
+    "(a) Probe set: the selected C only (D-361 (2) names it; D-361 (4)'s beside list has no C=1 row), so no C=1 cell and no reversed-order refit is computed on Phase 2 (they are twomoment_cells' sensitivity rows, D-163 (3)).",
+    "(b) Probe fit: per seed paired.fit_probe on the D-117 80% split in permutation order at the selected C, the fit twomoment_cells uses (D-152 P1); at L* it must equal the selection's own fit (selection_tpr_v2.seed_probes) bit for bit in mu, sd, w and b, and reproduce the selection record's ho20 TPRs exactly (D-117; float16_check_d364 step 4).",
+    "(c) Partition seeds on p2wg: item level 20261006, the seed of the first Phase 2 D-156 record on this axis (float16_check_d364.DRAW_SEED, same pooled negatives, same order), so draw r is the same item split everywhere on the axis (D-156); cluster level 20261007, a distinct fixed per-axis seed (D-164).",
+    "(d) Pool order: v2 calibration in its file's order, then the v2 evaluation negatives in theirs (D-156's 'calibration negatives then eval negatives' read through D-320 (4)'s join rule; as float16_check_d364).",
+    "(e) Cluster level: units are the cluster labels of manifests/phase2_pool_clusters.json (the D-164 rule: exact Jaccard >= 0.5, connected components) restricted to the 11,000 pooled negatives, each label with two or more pooled members one unit, every other negative its own unit; the manifest is bound through the v2 record's v1 record and that record's input sha256 (D-164, D-320).",
+    "(f) Layers: the cells are every layer both sides hold (D-361 (2): 'GRID6 plus the pre side's L*, D-325; every layer both sides hold', read operationally, so nothing is dropped, D-361 (5)): the layers that every cache of both sides holds, by the records. The job refuses unless GRID6(NL) (subset_p2.grid6) plus the pre side's L* for the pooling (D-325 (2)) are among them; held layers beyond that set (a subset that also carries another pair's L*) are cells too, listed per record as config.layers_beyond_grid6_plus_pre_lstar.",
+    "(g) The post side's v1 calibration cache comes from its durable select set: the p2tpl select record where that is ingested (its ingest index exists), else its p2sub select record (D-325 (1), (4); D-307 (1)); exactly one must be.",
+    "(h) 5% is computed in the same job on the same probes, items and draws (D-248: 'the same draws, seeds, probes and inputs as at 1%'), stored beside as cells_fpr5 and npz keys ending '__fpr5'; the anchor job proves the 5% path against the Phase 1 _fpr5 record (D-248's self-anchor purpose), so no separate 5% pipeline exists.",
+    "(i) P2-M.2's accuracy line (D-177, D-322 (4)): per cell e = |log realised - log predicted| from the per-cell D-156 estimates (twomoment_fit.d156_estimates, as twomoment_supplement); a cell whose e is not finite (a zero or undefined prediction) is a miss: outside x1.5 and +inf in the median; the share is over every cell; Phase 1's convention (defined cells only) is reported beside, as D-322 (4) asks for both.",
+    "(j) P2-M.1 is HELD iff the pair-cluster 95% interval exists and its ends bracket 1 (inclusive); an interval that cannot be formed is FAILED with its reason. The interval is twomoment_fit's pair bootstrap (its wols, the replicate multiplicities drawn as it draws them, paired.ci), anchored on twomoment_fit_r2.json's headline (D-305's re-issue of twomoment_fit.json; D-163, D-174).",
+    "(k) P2-M.3 compares the two shares of (i) over the same headline cells; 'strictly larger', so a tie is FAILED.",
+    "(l) The summary first anchors its scoring on Phase 1: on the nine Phase 1 records it must reproduce twomoment_fit_r2.json's headline (point, intervals, counts), twomoment_supplement_r4.json's all-cells accuracy lines for moment_full_in_sample and translation_in_sample, and its per-pair offset rows (mean offset, cell counts, D-156 partition band) at both levels exactly (D-361 (6); D-248's self-anchor); the re-issues of D-305 replace the superseded twomoment_fit.json and twomoment_supplement_r3.json (the same values, repo IDs named), bound through logs/reissue_d305_20261001.sha256 (pinned). twomoment_supplement is not imported: its accuracy and offset lines are repeated here (accuracy_line, within_draw_mean, offset_row) and this anchor is their check.",
+    "(m) Beside lines (D-361 (4)) carry quantities only, no HELD/FAILED: the other five predictors; last-token; the deployer's layer; 5%; the D-164 cluster level; per pair (D-177 (2a): the mean offset log(realised/predicted) with its D-156 partition band, and the accuracy line; no pair-cluster interval for one pair); the tokenizer-change pair (one pair: accuracy line, mean offset with partition band, the OLS point over its cells without an interval, D-177); the LoRA line (CHOICES (v)-(x)); Pearson r with its pair-cluster interval in every fit line (D-174).",
+    "(n) D-354 (3): the selections of record are used (D-361 (2)); the summary lists, beside, for every selection record the pairs use, whether D-354's cluster-grouped ho20 changes its cell, with both cells and the margins.",
+    "(o) Float16 cross-check: on D-364's cell (Mistral-7B-Instruct v0.1 -> v0.2, user-span mean, L*) the probes' fingerprints, the six score matrices' sha256 and the realised 1% and 5% D-156 reports must equal float16_check_d364.json's arm A, or the job refuses: a check of the v2 join path that the Phase 1 anchor cannot reach (as twomoment_cells checks damage_d156_r2, D-173).",
+    "(p) Anchor pair: repair_WG_mistral_base2instruct, the simplest Phase 1 inputs for this path: no input is pin-only (its D-170 block is unchanged since the record, so the comparison is value for value), it is on WildGuardMix, the dataset Phase 2's p2wg axis is drawn from, with 11 near-duplicate clusters so the cluster path is exercised, it has the plain 17-layer, 4096-wide grid and an ungated model (Mistral-7B v0.1 -> Instruct v0.1, whose post side is Phase 2's first pre side), and both its 1% record and its _fpr5 twin are named by the pinned fits.",
+    "(q) The anchor compares every value the Phase 2 path computes (the selected-C cells at every layer, both levels, 1% and 5%, and their per-draw rows); twomoment_cells' C=1 cells and reversed-order refit are outside that path (a) and are not recomputed; the npz keys the path does not form must be exactly the reversed-order columns, NaN on every selected row.",
+    "(r) The tokenizer-change pair runs both poolings, like every headline pair (D-361 (4)'s last-token line).",
+    "(s) The pair-cluster bootstrap resamples the nine pairs as clusters (D-163); pairs sharing a model (OLMo-2 SFT and DPO, Tulu-3 DPO are each one pair's post side and the next pair's pre side) are not modelled as dependent, as twomoment_fit's note says of Phase 1.",
+    "(t) Each Phase 2 cell's D-170 block says no input is pin-only (every cache read at its record's sha256 from its ingest index, D-307 (1)); Phase 1's registry block is kept in the anchor, where it must equal the record's.",
+    "(u) Final names need GUARDRAIL_CACHE_DIRS unset (hh_sensitivity_d363's rule: the anchor's Phase 1 caches come from the input registry's directory) and the reused files at their reviewed bytes (REUSED_SHA256).",
+    "(v) The LoRA line's arms are the 27 trained adapters of D-343 (alpaca, hh-harmless, pku-saferlhf x steps 25, 100, 400 x seeds 0, 1, 2) on Mistral-7B-Instruct-v0.2 (the base: the pre side, its D-117 selection of record); the step-0 checkpoints are D-343 (2)'s gate against the base, not arms, and are not read. Each adapter is one update (base -> adapter) through the same path as a pair (D-361 (2): 'their own line').",
+    "(w) The LoRA line's cells are the layers the storage decision keeps (D-361 (2); option C, D-365: L* alone, both poolings, float32) that the base also holds; one job per pooling loads the base's caches, fits its probes and gathers its v2 matrices once, then reads each adapter's durable p2sub caches (D-307 (1)); every adapter's caches name the base's selection record and L* in their layer plans (role 'post').",
+    "(x) In the LoRA line's fit each adapter is its own cluster in the bootstrap (D-163: an update is the cluster), B = 5000 with the same seed; the line is beside, never a verdict (D-361 (4)).",
+    "(y) BOS check (D-361 (5), D-318 (6)): step 1 reads results/phase2/bos_check_p2.json and refuses unless both sides' models are 'ok' there: listed at the side's revision, cache_tie status 'ok', prompts_tie and plain_path ok, not in ties_failed, cache_tie_skipped or cache_tie_incomplete, and no tokenizer left unloaded; its sha256 is recorded. The LoRA line requires the base's line; the adapters are not in the scan and use the base's tokenizer (D-343).",
+    "(z) Summary inputs and D-170: the summary binds the anchor record and the 22 records with their npz to their lines of logs/twomoment_p2_d361.sha256 (the list's manifest job; it must list exactly those 45 files) and records the manifest's sha256; every cell's input_verification flag must be None (twomoment_fit's rule: no cell may be vouched for by a pin alone), carried as 'D-170: 0 of n cells flagged' on the headline, each verdict and each beside line."
+  ],
+  "config": {
+    "headline": {
+      "pairs": [
+        "mistral_v01_v02",
+        "llama3_to_31",
+        "qwen2_to_25",
+        "phi3_128k_to_35",
+        "olmo2_base_sft",
+        "olmo2_sft_dpo",
+        "olmo2_dpo_instruct",
+        "tulu3_sft_dpo",
+        "tulu3_dpo_final"
+      ],
+      "pooling": "usermean",
+      "target_fpr": 0.01,
+      "level": "item_level_D156",
+      "probe_set": "selected",
+      "predictor": "moment_full_in_sample",
+      "comparator": "translation_in_sample",
+      "cells": "every layer both sides hold (GRID6 + L* at least; any layer beyond it listed per record, CHOICES (f))"
+    },
+    "bootstrap": {
+      "n_boot": 5000,
+      "boot_seed": 520260925
+    },
+    "factor": 1.5,
+    "share_min": 0.8,
+    "predictor_roles": {
+      "moment_full_in_sample": "PRIMARY (D-163): full-SD moment matching, in-sample - the mechanism decomposition (D-076)",
+      "moment_full_out_of_sample": "VARIANT (D-163): full-SD moment matching, out-of-sample - the health-check basis",
+      "moment_tail_in_sample": "SENSITIVITY (D-163): upper-decile SD, in-sample",
+      "moment_tail_out_of_sample": "SENSITIVITY (D-163): upper-decile SD, out-of-sample",
+      "translation_in_sample": "COMPARATOR (D-163): one-moment translation (D-121 form), in-sample",
+      "translation_out_of_sample": "COMPARATOR (D-163): one-moment translation (D-121 form), out-of-sample"
+    },
+    "d156_cell_estimate": "twomoment_fit.d156_estimates: log of the mean over the draws where realised and predicted are both defined",
+    "d170_rule": "(z) Summary inputs and D-170: the summary binds the anchor record and the 22 records with their npz to their lines of logs/twomoment_p2_d361.sha256 (the list's manifest job; it must list exactly those 45 files) and records the manifest's sha256; every cell's input_verification flag must be None (twomoment_fit's rule: no cell may be vouched for by a pin alone), carried as 'D-170: 0 of n cells flagged' on the headline, each verdict and each beside line.",
+    "tokenizer_pairs": [
+      "mistral_v02_v03"
+    ],
+    "poolings": [
+      "usermean",
+      "lastgen"
+    ],
+    "targets": [
+      0.01,
+      0.05
+    ]
+  },
+  "config_hash": "366ef78aecbf5784394e6d5fe9084b3c4ecf7fdd4b5bac80b229959e940ac755",
+  "anchor": {
+    "file": "results/twomoment_p2_d361_anchor_repair_WG_mistral_base2instruct.json",
+    "sha256": "519cb009a182f954557088eec393a2fe55f80e2fbe50fccd4ef584030b8c66f7",
+    "exact_equal": true,
+    "n_cells_compared": 34,
+    "records": {
+      "0.01": {
+        "file": "results/twomoment_repair_WG_mistral_base2instruct.json",
+        "sha256": "fe885cdf6b421decadb46cc17eec1252d2162448bddc8687dc6a6e4010dfcdaf",
+        "draw_arrays": {
+          "file": "results/twomoment_repair_WG_mistral_base2instruct_draws.npz",
+          "sha256": "cd0ccd6e8d9221bf5f012e215ceffe5cff9e0a69866a38f15757428f612cf4fa"
+        },
+        "named_by": {
+          "file": "results/twomoment_fit_r2.json",
+          "sha256": "5522bc8d0faf6790c19ab025d82dd444e7c85d03bf78e880c5383053203a8709",
+          "bound_by": {
+            "file": "logs/reissue_d305_20261001.sha256",
+            "sha256": "10f8e9d40e640584c19a34063f041f3c3895c7d36f3025dd1ba9b0ccdab702c6"
+          }
+        }
+      },
+      "0.05": {
+        "file": "results/twomoment_repair_WG_mistral_base2instruct_fpr5.json",
+        "sha256": "968f8545ea9443d3e764b34429cc6b40a55674686061a05a4e7953b631572722",
+        "draw_arrays": {
+          "file": "results/twomoment_repair_WG_mistral_base2instruct_fpr5_draws.npz",
+          "sha256": "579614e59ce6552778e28ae03cd6a295ba96b22b22a1e594d085348da7de43f5"
+        },
+        "named_by": {
+          "file": "results/twomoment_fit_fpr5.json",
+          "sha256": "001db8b9553d0ef6f5d60f38ad7cc767f5630b3e915e90288e57d4d55980659c"
+        }
+      }
+    }
+  },
+  "summary_anchor_phase1": {
+    "exact_equal": true,
+    "values_compared": 112,
+    "values_differing": 0,
+    "fit": {
+      "file": "results/twomoment_fit_r2.json",
+      "sha256": "5522bc8d0faf6790c19ab025d82dd444e7c85d03bf78e880c5383053203a8709"
+    },
+    "supplement": {
+      "file": "results/twomoment_supplement_r4.json",
+      "sha256": "9c28329481d327ee0f753f030e4d1324841ac3e897df95f0496c61c04c377dae"
+    },
+    "bound_by": {
+      "file": "logs/reissue_d305_20261001.sha256",
+      "sha256": "10f8e9d40e640584c19a34063f041f3c3895c7d36f3025dd1ba9b0ccdab702c6",
+      "note": "D-305's re-issues of twomoment_fit.json and twomoment_supplement_r3.json (SUPERSEDED, populations.D305_REISSUES): the same values, repo IDs named"
+    },
+    "pairs": [
+      "repair_mistral_base2instruct",
+      "repair_gemma2_base2instruct",
+      "repair_llama3_base2instruct",
+      "repair_llama31_base2instruct",
+      "repair_qwen_base2instruct",
+      "repair_olmo_base2instruct",
+      "repair_llama3_to_31",
+      "repair_WG_mistral_base2instruct",
+      "repair_WG_llama3_base2instruct"
+    ],
+    "n_cells": 156,
+    "compared": "fit headline ['n_cells_used', 'n_cells_kept', 'n_cells_kept_but_undefined', 'point', 'slope_ci95', 'intercept_ci95', 'pearson_r_ci95', 'n_replicates_undefined'] and accuracy ['n_cells', 'n_cells_undefined', 'median_abs_log_realised_over_predicted', 'share_within_factor_1_5'] for moment_full_in_sample and translation_in_sample; per-pair offsets of moment_full_in_sample (n_cells, n_cells_undefined, mean_log_realised_over_predicted, partition_band_D156 without its note); item and cluster level"
+  },
+  "run_manifest": {
+    "file": "logs/twomoment_p2_d361.sha256",
+    "sha256": "0edd7976e42b984a265cdd9dda20203ca3d78fa1f32ec7e5eea4928d68a7d6cc",
+    "n_files": 45,
+    "rule": "every record and npz read is the bytes of its line (CHOICES (z))"
+  },
+  "inputs": {
+    "results/twomoment_p2_d361_anchor_repair_WG_mistral_base2instruct.json": "519cb009a182f954557088eec393a2fe55f80e2fbe50fccd4ef584030b8c66f7",
+    "results/twomoment_fit_r2.json": "5522bc8d0faf6790c19ab025d82dd444e7c85d03bf78e880c5383053203a8709",
+    "results/twomoment_supplement_r4.json": "9c28329481d327ee0f753f030e4d1324841ac3e897df95f0496c61c04c377dae",
+    "results/twomoment_repair_mistral_base2instruct.json": "ce0ac4e4cbf8cca1909e5463d39598533d8e3b85b8a14ec17cae4d249df8d041",
+    "results/twomoment_repair_gemma2_base2instruct.json": "e3052e00ad27a77f2d7ca021e62d1c00582e0a9b25a5afd2f1325e85e2a54c52",
+    "results/twomoment_repair_llama3_base2instruct.json": "9c7d34185b50b5134b10a1b9e4eacfe36029fb6f37c779d2936b89bb6048ed18",
+    "results/twomoment_repair_llama31_base2instruct.json": "def23af477e46a24811065a1576dff3c6388d8cac07877120a6973c549883094",
+    "results/twomoment_repair_qwen_base2instruct.json": "97309dbcf7730301c30e3cf65ef507a5eac3d139a9821bc9448fba4c91b00e21",
+    "results/twomoment_repair_olmo_base2instruct.json": "e106ac2597c0fb1cbc393822c47dea206c30c205e829d322d947bb31181f59b7",
+    "results/twomoment_repair_llama3_to_31.json": "ccd09cd343c8d5cd7f51e172c5622ed93b27563d1a8547c0f57cf56d7d547d59",
+    "results/twomoment_repair_WG_mistral_base2instruct.json": "fe885cdf6b421decadb46cc17eec1252d2162448bddc8687dc6a6e4010dfcdaf",
+    "results/twomoment_repair_WG_llama3_base2instruct.json": "ad142c318011fc0b3b634ac900a0017fb7fa6cc865fb1329a5507b560e1ec4e5",
+    "results/twomoment_p2_d361_mistral_v01_v02_usermean.json": "1d9cfc51024f0de81d2e6f064112fd69e2d8e7ad36901bcada9b2cae783b5250",
+    "results/twomoment_p2_d361_mistral_v01_v02_lastgen.json": "efb67c2df5d31134a0f6be79f621c9d84b8377a3cefdf1e69829530e4deacaed",
+    "results/twomoment_p2_d361_llama3_to_31_usermean.json": "64a933ed496ec22780ef92c94ad0bf315c3a1bc48c472290006df0349761b5d2",
+    "results/twomoment_p2_d361_llama3_to_31_lastgen.json": "1fa80c8ec29bffb9804dd7c9485c7f2868ed539ded4c2fa62f832dc40469f0f7",
+    "results/twomoment_p2_d361_qwen2_to_25_usermean.json": "a52be592c50e6567cfb9915c8aec04bc136032827d43de8bf5ad02469282fb1b",
+    "results/twomoment_p2_d361_qwen2_to_25_lastgen.json": "aee7525785cf58e737712ad70b2d5016f3b9361833a5d17e41f79c7b26f5b584",
+    "results/twomoment_p2_d361_phi3_128k_to_35_usermean.json": "84341f8548cbe7ea43918ef95958f484f77a61c8e65614d500c04005412bc2ba",
+    "results/twomoment_p2_d361_phi3_128k_to_35_lastgen.json": "e00d73d1ed2e83bea4b776457a63c85a1a8b37dcefd9d68606bbbd1c721e6922",
+    "results/twomoment_p2_d361_olmo2_base_sft_usermean.json": "c33a33a94aa8c0c0edfa49f774e5624f0cf7bca5bba3afb36e1b7adee5a6edcd",
+    "results/twomoment_p2_d361_olmo2_base_sft_lastgen.json": "31fe92fd4c0224dede63926ab8221243bfa8a9b7ab1c4359e4169c36f1e0a345",
+    "results/twomoment_p2_d361_olmo2_sft_dpo_usermean.json": "34d74d82ca32b5b0770df0aa94b3c62063c09d2c32614a2f0cb629ffed364d8e",
+    "results/twomoment_p2_d361_olmo2_sft_dpo_lastgen.json": "bc1896802598eb9a11e407d09da6bb3ac8db3e1aa7b7cb829a660ed50f1f1e3b",
+    "results/twomoment_p2_d361_olmo2_dpo_instruct_usermean.json": "66fd4d92c3731865618455d245576081a6893c852832ca0911fc4f4a5f467b2e",
+    "results/twomoment_p2_d361_olmo2_dpo_instruct_lastgen.json": "b571e9275e7c3cf98c29dad003e44258379d9006d4f2bf6ad0cc0e4ad66a496b",
+    "results/twomoment_p2_d361_tulu3_sft_dpo_usermean.json": "8432e3988618b88ffb50f9f694213220a65ef6be083a188bd953b9657d7979f4",
+    "results/twomoment_p2_d361_tulu3_sft_dpo_lastgen.json": "5146ab1ff5d128fe17ce38a7872a59e399f12fd390de038f04148af23bbde226",
+    "results/twomoment_p2_d361_tulu3_dpo_final_usermean.json": "88bc83b986a4f0f620e74fc719aff0f5ceb50b638d3d4c23433ddbc91dea9f85",
+    "results/twomoment_p2_d361_tulu3_dpo_final_lastgen.json": "2f7ef8d3097e4b5b96627771b38ddae3f54f2aae650bbd7817157b8b1caf6f97",
+    "results/twomoment_p2_d361_mistral_v02_v03_usermean.json": "91738a8aa5e15cf7e847938abdd655c0cee08b16b0d0568e9c0598f2eadb9b08",
+    "results/twomoment_p2_d361_mistral_v02_v03_lastgen.json": "8cfd8a44d758aef1b9adeb888b6c252e5d7d86ecb0e81a1036c984a29fc709bf",
+    "results/twomoment_p2_d361_lora_usermean.json": "5c4d9cb54924a92c6f61f03c95f8ba2384b67d6de80f315cc6dd338876ada4de",
+    "results/twomoment_p2_d361_lora_lastgen.json": "dc741a121d5a69537bec5c34425d8221d125bf26780daa953b5384a9c5d9b9c6",
+    "results/phase2/ho20cluster_summary.json": "83617cddd7369c798f32b6b293a95dd2d555879f67cc8d3710bf37783a56cfd1",
+    "logs/twomoment_p2_d361.sha256": "0edd7976e42b984a265cdd9dda20203ca3d78fa1f32ec7e5eea4928d68a7d6cc"
+  },
+  "input_files_sha256": {
+    "logs/twomoment_p2_d361.sha256": "0edd7976e42b984a265cdd9dda20203ca3d78fa1f32ec7e5eea4928d68a7d6cc",
+    "results/twomoment_p2_d361_mistral_v01_v02_usermean.json": "1d9cfc51024f0de81d2e6f064112fd69e2d8e7ad36901bcada9b2cae783b5250",
+    "results/twomoment_p2_d361_mistral_v01_v02_usermean_draws.npz": "f4bca546982d02c0f25e11ad80f0ddf58f74f4d54fd864f3ec7bf9235405d8c9",
+    "results/twomoment_p2_d361_mistral_v01_v02_lastgen.json": "efb67c2df5d31134a0f6be79f621c9d84b8377a3cefdf1e69829530e4deacaed",
+    "results/twomoment_p2_d361_mistral_v01_v02_lastgen_draws.npz": "7582f6ae60599197920e93634e88597e5178821ab6934f457610c31f1ab854f7",
+    "results/twomoment_p2_d361_llama3_to_31_usermean.json": "64a933ed496ec22780ef92c94ad0bf315c3a1bc48c472290006df0349761b5d2",
+    "results/twomoment_p2_d361_llama3_to_31_usermean_draws.npz": "c2740ab91f91b1e70908e55bfffd589aa925a9debf7155f6d1c2efeeb1d63446",
+    "results/twomoment_p2_d361_llama3_to_31_lastgen.json": "1fa80c8ec29bffb9804dd7c9485c7f2868ed539ded4c2fa62f832dc40469f0f7",
+    "results/twomoment_p2_d361_llama3_to_31_lastgen_draws.npz": "eec92b88ef336f727547024374c900293a50d54291e743315f30467d2f0257b4",
+    "results/twomoment_p2_d361_qwen2_to_25_usermean.json": "a52be592c50e6567cfb9915c8aec04bc136032827d43de8bf5ad02469282fb1b",
+    "results/twomoment_p2_d361_qwen2_to_25_usermean_draws.npz": "8a91ea936c0b894e6719ad89acc51440d53ae941970f20c4fbf404c138d17d90",
+    "results/twomoment_p2_d361_qwen2_to_25_lastgen.json": "aee7525785cf58e737712ad70b2d5016f3b9361833a5d17e41f79c7b26f5b584",
+    "results/twomoment_p2_d361_qwen2_to_25_lastgen_draws.npz": "88a521aa5179cbabf990a3b97a0a29b480b24a6501641a91bf5eba79b4c76401",
+    "results/twomoment_p2_d361_phi3_128k_to_35_usermean.json": "84341f8548cbe7ea43918ef95958f484f77a61c8e65614d500c04005412bc2ba",
+    "results/twomoment_p2_d361_phi3_128k_to_35_usermean_draws.npz": "d6c8af4e0f8e7e905ed75c53cecacef52a04da65a31c92e45115df0a084caf8b",
+    "results/twomoment_p2_d361_phi3_128k_to_35_lastgen.json": "e00d73d1ed2e83bea4b776457a63c85a1a8b37dcefd9d68606bbbd1c721e6922",
+    "results/twomoment_p2_d361_phi3_128k_to_35_lastgen_draws.npz": "52593022ccb16fc0da01d7ac408f939b25d0c0cee664982d864ecdeb0d021ec8",
+    "results/twomoment_p2_d361_olmo2_base_sft_usermean.json": "c33a33a94aa8c0c0edfa49f774e5624f0cf7bca5bba3afb36e1b7adee5a6edcd",
+    "results/twomoment_p2_d361_olmo2_base_sft_usermean_draws.npz": "0bc9c2b0b4bf191ad7a8a7596e2fb9ff2f61650d265b1fdf501aa2ca6d520037",
+    "results/twomoment_p2_d361_olmo2_base_sft_lastgen.json": "31fe92fd4c0224dede63926ab8221243bfa8a9b7ab1c4359e4169c36f1e0a345",
+    "results/twomoment_p2_d361_olmo2_base_sft_lastgen_draws.npz": "b5e6e6cdee8b978677f3c2c25a34f9d02fefeec44947fcad3359443789b48337",
+    "results/twomoment_p2_d361_olmo2_sft_dpo_usermean.json": "34d74d82ca32b5b0770df0aa94b3c62063c09d2c32614a2f0cb629ffed364d8e",
+    "results/twomoment_p2_d361_olmo2_sft_dpo_usermean_draws.npz": "7303ab579edc0e969aef3d2c035db72b7cf6c175bd9d5849f4367e0885d3512a",
+    "results/twomoment_p2_d361_olmo2_sft_dpo_lastgen.json": "bc1896802598eb9a11e407d09da6bb3ac8db3e1aa7b7cb829a660ed50f1f1e3b",
+    "results/twomoment_p2_d361_olmo2_sft_dpo_lastgen_draws.npz": "ad9abdc0a8f3c6fb8b446ce9e968e97057e3dc20fafee4a4b7cbb60c7f8405cb",
+    "results/twomoment_p2_d361_olmo2_dpo_instruct_usermean.json": "66fd4d92c3731865618455d245576081a6893c852832ca0911fc4f4a5f467b2e",
+    "results/twomoment_p2_d361_olmo2_dpo_instruct_usermean_draws.npz": "6e20d38b612469cd30c7de289cea4bc3e22e5e19652fa73a04b996d180a4f49d",
+    "results/twomoment_p2_d361_olmo2_dpo_instruct_lastgen.json": "b571e9275e7c3cf98c29dad003e44258379d9006d4f2bf6ad0cc0e4ad66a496b",
+    "results/twomoment_p2_d361_olmo2_dpo_instruct_lastgen_draws.npz": "9af6172defb86b69d12f3a19737759857fbdc9e1d495944d66b3c27fc7702307",
+    "results/twomoment_p2_d361_tulu3_sft_dpo_usermean.json": "8432e3988618b88ffb50f9f694213220a65ef6be083a188bd953b9657d7979f4",
+    "results/twomoment_p2_d361_tulu3_sft_dpo_usermean_draws.npz": "52d4004b5a1edfa86e1ecbf92ae273addee09fac70452097c762c0b7b7b87dc3",
+    "results/twomoment_p2_d361_tulu3_sft_dpo_lastgen.json": "5146ab1ff5d128fe17ce38a7872a59e399f12fd390de038f04148af23bbde226",
+    "results/twomoment_p2_d361_tulu3_sft_dpo_lastgen_draws.npz": "6ebbe709937ed7fe59c970d353823cd9da01a56fafa12f79a3d865f63bfea1ec",
+    "results/twomoment_p2_d361_tulu3_dpo_final_usermean.json": "88bc83b986a4f0f620e74fc719aff0f5ceb50b638d3d4c23433ddbc91dea9f85",
+    "results/twomoment_p2_d361_tulu3_dpo_final_usermean_draws.npz": "ec1024ab6d5ff85772eac95055a4d67a529c81dc5e1c674b18c13d7a80ef2ef2",
+    "results/twomoment_p2_d361_tulu3_dpo_final_lastgen.json": "2f7ef8d3097e4b5b96627771b38ddae3f54f2aae650bbd7817157b8b1caf6f97",
+    "results/twomoment_p2_d361_tulu3_dpo_final_lastgen_draws.npz": "ed4452a8b578966dee132232bc1e5eace7dedcf144bb2a0cd17f8cb2cc0b9115",
+    "results/twomoment_p2_d361_mistral_v02_v03_usermean.json": "91738a8aa5e15cf7e847938abdd655c0cee08b16b0d0568e9c0598f2eadb9b08",
+    "results/twomoment_p2_d361_mistral_v02_v03_usermean_draws.npz": "4fc71d02487c3f56eb8c1d292b21f5fcaaa3497448596bf8e9f5086dee58da35",
+    "results/twomoment_p2_d361_mistral_v02_v03_lastgen.json": "8cfd8a44d758aef1b9adeb888b6c252e5d7d86ecb0e81a1036c984a29fc709bf",
+    "results/twomoment_p2_d361_mistral_v02_v03_lastgen_draws.npz": "87d3d8706e4d55b68af080b53e7926575f87537be055f06132b3b2a58f5ea3a1",
+    "results/twomoment_p2_d361_lora_usermean.json": "5c4d9cb54924a92c6f61f03c95f8ba2384b67d6de80f315cc6dd338876ada4de",
+    "results/twomoment_p2_d361_lora_usermean_draws.npz": "bf276dfaf01df93cc845620fffb8c46a0616320312a7b6910a84f64c0d1148d4",
+    "results/twomoment_p2_d361_lora_lastgen.json": "dc741a121d5a69537bec5c34425d8221d125bf26780daa953b5384a9c5d9b9c6",
+    "results/twomoment_p2_d361_lora_lastgen_draws.npz": "a531aa9c1106c0ff7aa458d2995a9f90a32d92168c999882c4c0de7a8556c850",
+    "results/twomoment_p2_d361_anchor_repair_WG_mistral_base2instruct.json": "519cb009a182f954557088eec393a2fe55f80e2fbe50fccd4ef584030b8c66f7",
+    "results/twomoment_fit_r2.json": "5522bc8d0faf6790c19ab025d82dd444e7c85d03bf78e880c5383053203a8709",
+    "results/twomoment_supplement_r4.json": "9c28329481d327ee0f753f030e4d1324841ac3e897df95f0496c61c04c377dae",
+    "results/twomoment_repair_mistral_base2instruct.json": "ce0ac4e4cbf8cca1909e5463d39598533d8e3b85b8a14ec17cae4d249df8d041",
+    "results/twomoment_repair_gemma2_base2instruct.json": "e3052e00ad27a77f2d7ca021e62d1c00582e0a9b25a5afd2f1325e85e2a54c52",
+    "results/twomoment_repair_llama3_base2instruct.json": "9c7d34185b50b5134b10a1b9e4eacfe36029fb6f37c779d2936b89bb6048ed18",
+    "results/twomoment_repair_llama31_base2instruct.json": "def23af477e46a24811065a1576dff3c6388d8cac07877120a6973c549883094",
+    "results/twomoment_repair_qwen_base2instruct.json": "97309dbcf7730301c30e3cf65ef507a5eac3d139a9821bc9448fba4c91b00e21",
+    "results/twomoment_repair_olmo_base2instruct.json": "e106ac2597c0fb1cbc393822c47dea206c30c205e829d322d947bb31181f59b7",
+    "results/twomoment_repair_llama3_to_31.json": "ccd09cd343c8d5cd7f51e172c5622ed93b27563d1a8547c0f57cf56d7d547d59",
+    "results/twomoment_repair_WG_mistral_base2instruct.json": "fe885cdf6b421decadb46cc17eec1252d2162448bddc8687dc6a6e4010dfcdaf",
+    "results/twomoment_repair_WG_llama3_base2instruct.json": "ad142c318011fc0b3b634ac900a0017fb7fa6cc865fb1329a5507b560e1ec4e5",
+    "results/phase2/ho20cluster_summary.json": "83617cddd7369c798f32b6b293a95dd2d555879f67cc8d3710bf37783a56cfd1"
+  },
+  "records": {
+    "mistral_v01_v02/usermean": {
+      "file": "results/twomoment_p2_d361_mistral_v01_v02_usermean.json",
+      "sha256": "1d9cfc51024f0de81d2e6f064112fd69e2d8e7ad36901bcada9b2cae783b5250",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_mistral_v01_v02_usermean_draws.npz",
+        "sha256": "f4bca546982d02c0f25e11ad80f0ddf58f74f4d54fd864f3ec7bf9235405d8c9"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        0,
+        6,
+        12,
+        16,
+        20,
+        26,
+        32
+      ],
+      "layers_beyond_grid6_plus_pre_lstar": [],
+      "selected_layer": 16,
+      "selected_C": 0.003
+    },
+    "mistral_v01_v02/lastgen": {
+      "file": "results/twomoment_p2_d361_mistral_v01_v02_lastgen.json",
+      "sha256": "efb67c2df5d31134a0f6be79f621c9d84b8377a3cefdf1e69829530e4deacaed",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_mistral_v01_v02_lastgen_draws.npz",
+        "sha256": "7582f6ae60599197920e93634e88597e5178821ab6934f457610c31f1ab854f7"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        0,
+        6,
+        12,
+        14,
+        20,
+        26,
+        32
+      ],
+      "layers_beyond_grid6_plus_pre_lstar": [],
+      "selected_layer": 14,
+      "selected_C": 0.003
+    },
+    "llama3_to_31/usermean": {
+      "file": "results/twomoment_p2_d361_llama3_to_31_usermean.json",
+      "sha256": "64a933ed496ec22780ef92c94ad0bf315c3a1bc48c472290006df0349761b5d2",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_llama3_to_31_usermean_draws.npz",
+        "sha256": "c2740ab91f91b1e70908e55bfffd589aa925a9debf7155f6d1c2efeeb1d63446"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        0,
+        6,
+        12,
+        14,
+        20,
+        26,
+        32
+      ],
+      "layers_beyond_grid6_plus_pre_lstar": [],
+      "selected_layer": 14,
+      "selected_C": 0.003
+    },
+    "llama3_to_31/lastgen": {
+      "file": "results/twomoment_p2_d361_llama3_to_31_lastgen.json",
+      "sha256": "1fa80c8ec29bffb9804dd7c9485c7f2868ed539ded4c2fa62f832dc40469f0f7",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_llama3_to_31_lastgen_draws.npz",
+        "sha256": "eec92b88ef336f727547024374c900293a50d54291e743315f30467d2f0257b4"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        0,
+        6,
+        12,
+        14,
+        20,
+        26,
+        32
+      ],
+      "layers_beyond_grid6_plus_pre_lstar": [],
+      "selected_layer": 14,
+      "selected_C": 0.003
+    },
+    "qwen2_to_25/usermean": {
+      "file": "results/twomoment_p2_d361_qwen2_to_25_usermean.json",
+      "sha256": "a52be592c50e6567cfb9915c8aec04bc136032827d43de8bf5ad02469282fb1b",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_qwen2_to_25_usermean_draws.npz",
+        "sha256": "8a91ea936c0b894e6719ad89acc51440d53ae941970f20c4fbf404c138d17d90"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        0,
+        6,
+        12,
+        16,
+        18,
+        22,
+        28
+      ],
+      "layers_beyond_grid6_plus_pre_lstar": [],
+      "selected_layer": 18,
+      "selected_C": 0.003
+    },
+    "qwen2_to_25/lastgen": {
+      "file": "results/twomoment_p2_d361_qwen2_to_25_lastgen.json",
+      "sha256": "aee7525785cf58e737712ad70b2d5016f3b9361833a5d17e41f79c7b26f5b584",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_qwen2_to_25_lastgen_draws.npz",
+        "sha256": "88a521aa5179cbabf990a3b97a0a29b480b24a6501641a91bf5eba79b4c76401"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        0,
+        6,
+        12,
+        16,
+        20,
+        22,
+        28
+      ],
+      "layers_beyond_grid6_plus_pre_lstar": [],
+      "selected_layer": 20,
+      "selected_C": 0.003
+    },
+    "phi3_128k_to_35/usermean": {
+      "file": "results/twomoment_p2_d361_phi3_128k_to_35_usermean.json",
+      "sha256": "84341f8548cbe7ea43918ef95958f484f77a61c8e65614d500c04005412bc2ba",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_phi3_128k_to_35_usermean_draws.npz",
+        "sha256": "d6c8af4e0f8e7e905ed75c53cecacef52a04da65a31c92e45115df0a084caf8b"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        0,
+        6,
+        12,
+        18,
+        20,
+        26,
+        32
+      ],
+      "layers_beyond_grid6_plus_pre_lstar": [],
+      "selected_layer": 18,
+      "selected_C": 0.003
+    },
+    "phi3_128k_to_35/lastgen": {
+      "file": "results/twomoment_p2_d361_phi3_128k_to_35_lastgen.json",
+      "sha256": "e00d73d1ed2e83bea4b776457a63c85a1a8b37dcefd9d68606bbbd1c721e6922",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_phi3_128k_to_35_lastgen_draws.npz",
+        "sha256": "52593022ccb16fc0da01d7ac408f939b25d0c0cee664982d864ecdeb0d021ec8"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        0,
+        6,
+        12,
+        18,
+        20,
+        26,
+        32
+      ],
+      "layers_beyond_grid6_plus_pre_lstar": [],
+      "selected_layer": 18,
+      "selected_C": 0.003
+    },
+    "olmo2_base_sft/usermean": {
+      "file": "results/twomoment_p2_d361_olmo2_base_sft_usermean.json",
+      "sha256": "c33a33a94aa8c0c0edfa49f774e5624f0cf7bca5bba3afb36e1b7adee5a6edcd",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_olmo2_base_sft_usermean_draws.npz",
+        "sha256": "0bc9c2b0b4bf191ad7a8a7596e2fb9ff2f61650d265b1fdf501aa2ca6d520037"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        0,
+        6,
+        12,
+        14,
+        20,
+        26,
+        32
+      ],
+      "layers_beyond_grid6_plus_pre_lstar": [],
+      "selected_layer": 14,
+      "selected_C": 0.003
+    },
+    "olmo2_base_sft/lastgen": {
+      "file": "results/twomoment_p2_d361_olmo2_base_sft_lastgen.json",
+      "sha256": "31fe92fd4c0224dede63926ab8221243bfa8a9b7ab1c4359e4169c36f1e0a345",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_olmo2_base_sft_lastgen_draws.npz",
+        "sha256": "b5e6e6cdee8b978677f3c2c25a34f9d02fefeec44947fcad3359443789b48337"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        0,
+        6,
+        12,
+        18,
+        20,
+        26,
+        32
+      ],
+      "layers_beyond_grid6_plus_pre_lstar": [],
+      "selected_layer": 18,
+      "selected_C": 0.003
+    },
+    "olmo2_sft_dpo/usermean": {
+      "file": "results/twomoment_p2_d361_olmo2_sft_dpo_usermean.json",
+      "sha256": "34d74d82ca32b5b0770df0aa94b3c62063c09d2c32614a2f0cb629ffed364d8e",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_olmo2_sft_dpo_usermean_draws.npz",
+        "sha256": "7303ab579edc0e969aef3d2c035db72b7cf6c175bd9d5849f4367e0885d3512a"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        0,
+        6,
+        12,
+        16,
+        20,
+        26,
+        32
+      ],
+      "layers_beyond_grid6_plus_pre_lstar": [],
+      "selected_layer": 16,
+      "selected_C": 0.001
+    },
+    "olmo2_sft_dpo/lastgen": {
+      "file": "results/twomoment_p2_d361_olmo2_sft_dpo_lastgen.json",
+      "sha256": "bc1896802598eb9a11e407d09da6bb3ac8db3e1aa7b7cb829a660ed50f1f1e3b",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_olmo2_sft_dpo_lastgen_draws.npz",
+        "sha256": "ad9abdc0a8f3c6fb8b446ce9e968e97057e3dc20fafee4a4b7cbb60c7f8405cb"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        0,
+        6,
+        12,
+        18,
+        20,
+        26,
+        32
+      ],
+      "layers_beyond_grid6_plus_pre_lstar": [],
+      "selected_layer": 18,
+      "selected_C": 0.001
+    },
+    "olmo2_dpo_instruct/usermean": {
+      "file": "results/twomoment_p2_d361_olmo2_dpo_instruct_usermean.json",
+      "sha256": "66fd4d92c3731865618455d245576081a6893c852832ca0911fc4f4a5f467b2e",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_olmo2_dpo_instruct_usermean_draws.npz",
+        "sha256": "6e20d38b612469cd30c7de289cea4bc3e22e5e19652fa73a04b996d180a4f49d"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        0,
+        6,
+        12,
+        16,
+        20,
+        26,
+        32
+      ],
+      "layers_beyond_grid6_plus_pre_lstar": [],
+      "selected_layer": 16,
+      "selected_C": 0.001
+    },
+    "olmo2_dpo_instruct/lastgen": {
+      "file": "results/twomoment_p2_d361_olmo2_dpo_instruct_lastgen.json",
+      "sha256": "b571e9275e7c3cf98c29dad003e44258379d9006d4f2bf6ad0cc0e4ad66a496b",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_olmo2_dpo_instruct_lastgen_draws.npz",
+        "sha256": "9af6172defb86b69d12f3a19737759857fbdc9e1d495944d66b3c27fc7702307"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        0,
+        6,
+        12,
+        18,
+        20,
+        26,
+        32
+      ],
+      "layers_beyond_grid6_plus_pre_lstar": [],
+      "selected_layer": 18,
+      "selected_C": 0.001
+    },
+    "tulu3_sft_dpo/usermean": {
+      "file": "results/twomoment_p2_d361_tulu3_sft_dpo_usermean.json",
+      "sha256": "8432e3988618b88ffb50f9f694213220a65ef6be083a188bd953b9657d7979f4",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_tulu3_sft_dpo_usermean_draws.npz",
+        "sha256": "52d4004b5a1edfa86e1ecbf92ae273addee09fac70452097c762c0b7b7b87dc3"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        0,
+        6,
+        12,
+        14,
+        20,
+        26,
+        32
+      ],
+      "layers_beyond_grid6_plus_pre_lstar": [],
+      "selected_layer": 14,
+      "selected_C": 0.001
+    },
+    "tulu3_sft_dpo/lastgen": {
+      "file": "results/twomoment_p2_d361_tulu3_sft_dpo_lastgen.json",
+      "sha256": "5146ab1ff5d128fe17ce38a7872a59e399f12fd390de038f04148af23bbde226",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_tulu3_sft_dpo_lastgen_draws.npz",
+        "sha256": "6ebbe709937ed7fe59c970d353823cd9da01a56fafa12f79a3d865f63bfea1ec"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        0,
+        6,
+        12,
+        14,
+        20,
+        26,
+        32
+      ],
+      "layers_beyond_grid6_plus_pre_lstar": [],
+      "selected_layer": 14,
+      "selected_C": 0.001
+    },
+    "tulu3_dpo_final/usermean": {
+      "file": "results/twomoment_p2_d361_tulu3_dpo_final_usermean.json",
+      "sha256": "88bc83b986a4f0f620e74fc719aff0f5ceb50b638d3d4c23433ddbc91dea9f85",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_tulu3_dpo_final_usermean_draws.npz",
+        "sha256": "ec1024ab6d5ff85772eac95055a4d67a529c81dc5e1c674b18c13d7a80ef2ef2"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        0,
+        6,
+        12,
+        14,
+        20,
+        26,
+        32
+      ],
+      "layers_beyond_grid6_plus_pre_lstar": [],
+      "selected_layer": 14,
+      "selected_C": 0.001
+    },
+    "tulu3_dpo_final/lastgen": {
+      "file": "results/twomoment_p2_d361_tulu3_dpo_final_lastgen.json",
+      "sha256": "2f7ef8d3097e4b5b96627771b38ddae3f54f2aae650bbd7817157b8b1caf6f97",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_tulu3_dpo_final_lastgen_draws.npz",
+        "sha256": "ed4452a8b578966dee132232bc1e5eace7dedcf144bb2a0cd17f8cb2cc0b9115"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        0,
+        6,
+        12,
+        14,
+        20,
+        26,
+        32
+      ],
+      "layers_beyond_grid6_plus_pre_lstar": [],
+      "selected_layer": 14,
+      "selected_C": 0.001
+    },
+    "mistral_v02_v03/usermean": {
+      "file": "results/twomoment_p2_d361_mistral_v02_v03_usermean.json",
+      "sha256": "91738a8aa5e15cf7e847938abdd655c0cee08b16b0d0568e9c0598f2eadb9b08",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_mistral_v02_v03_usermean_draws.npz",
+        "sha256": "4fc71d02487c3f56eb8c1d292b21f5fcaaa3497448596bf8e9f5086dee58da35"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        0,
+        6,
+        12,
+        16,
+        20,
+        26,
+        32
+      ],
+      "layers_beyond_grid6_plus_pre_lstar": [],
+      "selected_layer": 16,
+      "selected_C": 0.003
+    },
+    "mistral_v02_v03/lastgen": {
+      "file": "results/twomoment_p2_d361_mistral_v02_v03_lastgen.json",
+      "sha256": "8cfd8a44d758aef1b9adeb888b6c252e5d7d86ecb0e81a1036c984a29fc709bf",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_mistral_v02_v03_lastgen_draws.npz",
+        "sha256": "87d3d8706e4d55b68af080b53e7926575f87537be055f06132b3b2a58f5ea3a1"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        0,
+        6,
+        12,
+        16,
+        20,
+        26,
+        32
+      ],
+      "layers_beyond_grid6_plus_pre_lstar": [],
+      "selected_layer": 16,
+      "selected_C": 0.003
+    }
+  },
+  "lora_records": {
+    "usermean": {
+      "file": "results/twomoment_p2_d361_lora_usermean.json",
+      "sha256": "5c4d9cb54924a92c6f61f03c95f8ba2384b67d6de80f315cc6dd338876ada4de",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_lora_usermean_draws.npz",
+        "sha256": "bf276dfaf01df93cc845620fffb8c46a0616320312a7b6910a84f64c0d1148d4"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        16
+      ]
+    },
+    "lastgen": {
+      "file": "results/twomoment_p2_d361_lora_lastgen.json",
+      "sha256": "dc741a121d5a69537bec5c34425d8221d125bf26780daa953b5384a9c5d9b9c6",
+      "draw_arrays": {
+        "file": "results/twomoment_p2_d361_lora_lastgen_draws.npz",
+        "sha256": "a531aa9c1106c0ff7aa458d2995a9f90a32d92168c999882c4c0de7a8556c850"
+      },
+      "commit": "a1d796535ef79cdd9b8fa95f6607293ee5f99518",
+      "layers": [
+        16
+      ]
+    }
+  },
+  "headline": {
+    "line": "nine pairs, user-span mean, selected C, item level, 1%",
+    "d170": "D-170: 0 of 63 cells flagged",
+    "n_cells": 63,
+    "n_pairs": 9,
+    "P2-M.1_fit": {
+      "n_cells_used": 63,
+      "n_cells_kept": 63,
+      "n_cells_kept_but_undefined": 0,
+      "point": {
+        "slope": 0.9105432189883305,
+        "intercept": 0.11644115651606664,
+        "pearson_r": 0.9626891822960979
+      },
+      "slope_ci95": [
+        0.8059131184104489,
+        1.2918898145512785
+      ],
+      "intercept_ci95": [
+        0.012024305524717458,
+        0.17678676718407058
+      ],
+      "pearson_r_ci95": [
+        0.9364876615985682,
+        0.9884094468613578
+      ],
+      "n_replicates_undefined": 0,
+      "n_pairs_bootstrapped": 9,
+      "n_boot": 5000,
+      "boot_seed": 520260925
+    },
+    "P2-M.2_accuracy": {
+      "n_cells": 63,
+      "n_cells_miss_zero_or_undefined": 0,
+      "share_within_factor_1_5": 0.9047619047619048,
+      "median_abs_log_realised_over_predicted": 0.05755126398753774,
+      "median_is_a_miss": false,
+      "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+      "defined_cells_only_phase1_convention": {
+        "n_cells": 63,
+        "share_within_factor_1_5": 0.9047619047619048,
+        "median_abs_log_realised_over_predicted": 0.05755126398753774
+      }
+    },
+    "P2-M.3_shares": {
+      "two_moment": 0.9047619047619048,
+      "one_moment": 0.7301587301587301,
+      "one_moment_accuracy": {
+        "n_cells": 63,
+        "n_cells_miss_zero_or_undefined": 0,
+        "share_within_factor_1_5": 0.7301587301587301,
+        "median_abs_log_realised_over_predicted": 0.11058137127428491,
+        "median_is_a_miss": false,
+        "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+        "defined_cells_only_phase1_convention": {
+          "n_cells": 63,
+          "share_within_factor_1_5": 0.7301587301587301,
+          "median_abs_log_realised_over_predicted": 0.11058137127428491
+        }
+      }
+    }
+  },
+  "verdicts": {
+    "P2-M.1": {
+      "verdict": "HELD",
+      "rule": "the pair-cluster bootstrap 95% interval of the slope (B = 5000, seed 520260925) includes 1",
+      "slope": 0.9105432189883305,
+      "slope_ci95": [
+        0.8059131184104489,
+        1.2918898145512785
+      ],
+      "reason": null,
+      "d170": "D-170: 0 of 63 cells flagged"
+    },
+    "P2-M.2": {
+      "verdict": "HELD",
+      "rule": "share within x1.5 >= 0.80 over every headline cell, a zero or undefined prediction a miss",
+      "share_within_factor_1_5": 0.9047619047619048,
+      "median_abs_log_realised_over_predicted": 0.05755126398753774,
+      "n_cells": 63,
+      "n_cells_miss_zero_or_undefined": 0,
+      "d170": "D-170: 0 of 63 cells flagged"
+    },
+    "P2-M.3": {
+      "verdict": "HELD",
+      "rule": "moment_full_in_sample's share within x1.5 strictly larger than translation_in_sample's over the same cells",
+      "two_moment_share": 0.9047619047619048,
+      "one_moment_share": 0.7301587301587301,
+      "d170": "D-170: 0 of 63 cells flagged"
+    }
+  },
+  "gate_note": "D-361 (5): the gate is met when D-361 was committed before any Phase 2 evaluation number was read and the three predictions are reported against it; a FAILED prediction is a finding reported against D-361, not a reason to change the predictor",
+  "accuracy_line_D177": {
+    "line": "the headline",
+    "predictor": "moment_full_in_sample",
+    "n_cells": 63,
+    "n_cells_miss_zero_or_undefined": 0,
+    "share_within_factor_1_5": 0.9047619047619048,
+    "median_abs_log_realised_over_predicted": 0.05755126398753774,
+    "median_is_a_miss": false,
+    "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+    "defined_cells_only_phase1_convention": {
+      "n_cells": 63,
+      "share_within_factor_1_5": 0.9047619047619048,
+      "median_abs_log_realised_over_predicted": 0.05755126398753774
+    }
+  },
+  "beside": {
+    "beside_every_predictor": {
+      "role": "beside: not a verdict (D-361 (4))",
+      "label": "every predictor, the headline cells (out-of-sample and tail variants, translation comparator)",
+      "d170": "D-170: 0 of 63 cells flagged",
+      "n_cells": 63,
+      "n_pairs": 9,
+      "fit": {
+        "n_cells_used": 63,
+        "n_cells_kept": 63,
+        "n_cells_kept_but_undefined": 0,
+        "point": {
+          "slope": 0.9105432189883305,
+          "intercept": 0.11644115651606664,
+          "pearson_r": 0.9626891822960979
+        },
+        "slope_ci95": [
+          0.8059131184104489,
+          1.2918898145512785
+        ],
+        "intercept_ci95": [
+          0.012024305524717458,
+          0.17678676718407058
+        ],
+        "pearson_r_ci95": [
+          0.9364876615985682,
+          0.9884094468613578
+        ],
+        "n_replicates_undefined": 0,
+        "n_pairs_bootstrapped": 9,
+        "n_boot": 5000,
+        "boot_seed": 520260925
+      },
+      "accuracy": {
+        "n_cells": 63,
+        "n_cells_miss_zero_or_undefined": 0,
+        "share_within_factor_1_5": 0.9047619047619048,
+        "median_abs_log_realised_over_predicted": 0.05755126398753774,
+        "median_is_a_miss": false,
+        "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+        "defined_cells_only_phase1_convention": {
+          "n_cells": 63,
+          "share_within_factor_1_5": 0.9047619047619048,
+          "median_abs_log_realised_over_predicted": 0.05755126398753774
+        }
+      },
+      "two_vs_one_moment_shares": {
+        "two_moment": 0.9047619047619048,
+        "one_moment": 0.7301587301587301,
+        "one_moment_accuracy": {
+          "n_cells": 63,
+          "n_cells_miss_zero_or_undefined": 0,
+          "share_within_factor_1_5": 0.7301587301587301,
+          "median_abs_log_realised_over_predicted": 0.11058137127428491,
+          "median_is_a_miss": false,
+          "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+          "defined_cells_only_phase1_convention": {
+            "n_cells": 63,
+            "share_within_factor_1_5": 0.7301587301587301,
+            "median_abs_log_realised_over_predicted": 0.11058137127428491
+          }
+        }
+      },
+      "per_predictor": {
+        "translation_in_sample": {
+          "role": "COMPARATOR (D-163): one-moment translation (D-121 form), in-sample",
+          "fit": {
+            "n_cells_used": 63,
+            "n_cells_kept": 63,
+            "n_cells_kept_but_undefined": 0,
+            "point": {
+              "slope": 0.9871562409502088,
+              "intercept": -0.10322619113405243,
+              "pearson_r": 0.5773955494367128
+            },
+            "slope_ci95": [
+              0.18092669385712942,
+              1.175385019490154
+            ],
+            "intercept_ci95": [
+              -0.5673442714142088,
+              0.20216756235915564
+            ],
+            "pearson_r_ci95": [
+              0.05678359902187308,
+              0.9367470245859966
+            ],
+            "n_replicates_undefined": 0,
+            "n_pairs_bootstrapped": 9,
+            "n_boot": 5000,
+            "boot_seed": 520260925
+          },
+          "accuracy": {
+            "n_cells": 63,
+            "n_cells_miss_zero_or_undefined": 0,
+            "share_within_factor_1_5": 0.7301587301587301,
+            "median_abs_log_realised_over_predicted": 0.11058137127428491,
+            "median_is_a_miss": false,
+            "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+            "defined_cells_only_phase1_convention": {
+              "n_cells": 63,
+              "share_within_factor_1_5": 0.7301587301587301,
+              "median_abs_log_realised_over_predicted": 0.11058137127428491
+            }
+          }
+        },
+        "moment_full_in_sample": {
+          "role": "PRIMARY (D-163): full-SD moment matching, in-sample - the mechanism decomposition (D-076)",
+          "fit": {
+            "n_cells_used": 63,
+            "n_cells_kept": 63,
+            "n_cells_kept_but_undefined": 0,
+            "point": {
+              "slope": 0.9105432189883305,
+              "intercept": 0.11644115651606664,
+              "pearson_r": 0.9626891822960979
+            },
+            "slope_ci95": [
+              0.8059131184104489,
+              1.2918898145512785
+            ],
+            "intercept_ci95": [
+              0.012024305524717458,
+              0.17678676718407058
+            ],
+            "pearson_r_ci95": [
+              0.9364876615985682,
+              0.9884094468613578
+            ],
+            "n_replicates_undefined": 0,
+            "n_pairs_bootstrapped": 9,
+            "n_boot": 5000,
+            "boot_seed": 520260925
+          },
+          "accuracy": {
+            "n_cells": 63,
+            "n_cells_miss_zero_or_undefined": 0,
+            "share_within_factor_1_5": 0.9047619047619048,
+            "median_abs_log_realised_over_predicted": 0.05755126398753774,
+            "median_is_a_miss": false,
+            "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+            "defined_cells_only_phase1_convention": {
+              "n_cells": 63,
+              "share_within_factor_1_5": 0.9047619047619048,
+              "median_abs_log_realised_over_predicted": 0.05755126398753774
+            }
+          }
+        },
+        "moment_tail_in_sample": {
+          "role": "SENSITIVITY (D-163): upper-decile SD, in-sample",
+          "fit": {
+            "n_cells_used": 63,
+            "n_cells_kept": 63,
+            "n_cells_kept_but_undefined": 0,
+            "point": {
+              "slope": 0.8611706884898715,
+              "intercept": -0.10223505580402276,
+              "pearson_r": 0.9780151787059069
+            },
+            "slope_ci95": [
+              0.7068271766463253,
+              1.0286886636827686
+            ],
+            "intercept_ci95": [
+              -0.1876321646800103,
+              0.021465858661198798
+            ],
+            "pearson_r_ci95": [
+              0.9651796188382714,
+              0.9935745422174195
+            ],
+            "n_replicates_undefined": 0,
+            "n_pairs_bootstrapped": 9,
+            "n_boot": 5000,
+            "boot_seed": 520260925
+          },
+          "accuracy": {
+            "n_cells": 63,
+            "n_cells_miss_zero_or_undefined": 0,
+            "share_within_factor_1_5": 0.8888888888888888,
+            "median_abs_log_realised_over_predicted": 0.06750174355221183,
+            "median_is_a_miss": false,
+            "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+            "defined_cells_only_phase1_convention": {
+              "n_cells": 63,
+              "share_within_factor_1_5": 0.8888888888888888,
+              "median_abs_log_realised_over_predicted": 0.06750174355221183
+            }
+          }
+        },
+        "translation_out_of_sample": {
+          "role": "COMPARATOR (D-163): one-moment translation (D-121 form), out-of-sample",
+          "fit": {
+            "n_cells_used": 63,
+            "n_cells_kept": 63,
+            "n_cells_kept_but_undefined": 0,
+            "point": {
+              "slope": 0.9875693026429623,
+              "intercept": -0.1031333396470765,
+              "pearson_r": 0.5776158576122666
+            },
+            "slope_ci95": [
+              0.18371232481200916,
+              1.1754796765246602
+            ],
+            "intercept_ci95": [
+              -0.5672486594723294,
+              0.20226028835098525
+            ],
+            "pearson_r_ci95": [
+              0.05763490721721805,
+              0.9367809679557101
+            ],
+            "n_replicates_undefined": 0,
+            "n_pairs_bootstrapped": 9,
+            "n_boot": 5000,
+            "boot_seed": 520260925
+          },
+          "accuracy": {
+            "n_cells": 63,
+            "n_cells_miss_zero_or_undefined": 0,
+            "share_within_factor_1_5": 0.7301587301587301,
+            "median_abs_log_realised_over_predicted": 0.11029480435601358,
+            "median_is_a_miss": false,
+            "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+            "defined_cells_only_phase1_convention": {
+              "n_cells": 63,
+              "share_within_factor_1_5": 0.7301587301587301,
+              "median_abs_log_realised_over_predicted": 0.11029480435601358
+            }
+          }
+        },
+        "moment_full_out_of_sample": {
+          "role": "VARIANT (D-163): full-SD moment matching, out-of-sample - the health-check basis",
+          "fit": {
+            "n_cells_used": 63,
+            "n_cells_kept": 63,
+            "n_cells_kept_but_undefined": 0,
+            "point": {
+              "slope": 0.9103438331031055,
+              "intercept": 0.11678124580785597,
+              "pearson_r": 0.9625918428982985
+            },
+            "slope_ci95": [
+              0.8056631280007653,
+              1.292124673587222
+            ],
+            "intercept_ci95": [
+              0.012365698567931615,
+              0.17749860480512253
+            ],
+            "pearson_r_ci95": [
+              0.9362596958954799,
+              0.9884305943102838
+            ],
+            "n_replicates_undefined": 0,
+            "n_pairs_bootstrapped": 9,
+            "n_boot": 5000,
+            "boot_seed": 520260925
+          },
+          "accuracy": {
+            "n_cells": 63,
+            "n_cells_miss_zero_or_undefined": 0,
+            "share_within_factor_1_5": 0.9047619047619048,
+            "median_abs_log_realised_over_predicted": 0.05770297969397892,
+            "median_is_a_miss": false,
+            "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+            "defined_cells_only_phase1_convention": {
+              "n_cells": 63,
+              "share_within_factor_1_5": 0.9047619047619048,
+              "median_abs_log_realised_over_predicted": 0.05770297969397892
+            }
+          }
+        },
+        "moment_tail_out_of_sample": {
+          "role": "SENSITIVITY (D-163): upper-decile SD, out-of-sample",
+          "fit": {
+            "n_cells_used": 63,
+            "n_cells_kept": 63,
+            "n_cells_kept_but_undefined": 0,
+            "point": {
+              "slope": 0.869146691896347,
+              "intercept": -0.10373808013448535,
+              "pearson_r": 0.9784819182324933
+            },
+            "slope_ci95": [
+              0.7110016573821337,
+              1.0340758657770595
+            ],
+            "intercept_ci95": [
+              -0.1872149210786301,
+              0.020010396910395856
+            ],
+            "pearson_r_ci95": [
+              0.9654696494048483,
+              0.9937445892909654
+            ],
+            "n_replicates_undefined": 0,
+            "n_pairs_bootstrapped": 9,
+            "n_boot": 5000,
+            "boot_seed": 520260925
+          },
+          "accuracy": {
+            "n_cells": 63,
+            "n_cells_miss_zero_or_undefined": 0,
+            "share_within_factor_1_5": 0.9047619047619048,
+            "median_abs_log_realised_over_predicted": 0.06707039231822587,
+            "median_is_a_miss": false,
+            "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+            "defined_cells_only_phase1_convention": {
+              "n_cells": 63,
+              "share_within_factor_1_5": 0.9047619047619048,
+              "median_abs_log_realised_over_predicted": 0.06707039231822587
+            }
+          }
+        }
+      }
+    },
+    "beside_cluster_level_D164": {
+      "role": "beside: not a verdict (D-361 (4))",
+      "label": "the D-164 cluster level of the headline cells",
+      "d170": "D-170: 0 of 63 cells flagged",
+      "n_cells": 63,
+      "n_pairs": 9,
+      "fit": {
+        "n_cells_used": 63,
+        "n_cells_kept": 63,
+        "n_cells_kept_but_undefined": 0,
+        "point": {
+          "slope": 0.9117061846914454,
+          "intercept": 0.11568111600261782,
+          "pearson_r": 0.9627242825044509
+        },
+        "slope_ci95": [
+          0.807315911230175,
+          1.2908094092410078
+        ],
+        "intercept_ci95": [
+          0.012120898398201565,
+          0.17540913066594413
+        ],
+        "pearson_r_ci95": [
+          0.936568187422725,
+          0.9882249990508246
+        ],
+        "n_replicates_undefined": 0,
+        "n_pairs_bootstrapped": 9,
+        "n_boot": 5000,
+        "boot_seed": 520260925
+      },
+      "accuracy": {
+        "n_cells": 63,
+        "n_cells_miss_zero_or_undefined": 0,
+        "share_within_factor_1_5": 0.9047619047619048,
+        "median_abs_log_realised_over_predicted": 0.05955617097255789,
+        "median_is_a_miss": false,
+        "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+        "defined_cells_only_phase1_convention": {
+          "n_cells": 63,
+          "share_within_factor_1_5": 0.9047619047619048,
+          "median_abs_log_realised_over_predicted": 0.05955617097255789
+        }
+      },
+      "two_vs_one_moment_shares": {
+        "two_moment": 0.9047619047619048,
+        "one_moment": 0.7301587301587301,
+        "one_moment_accuracy": {
+          "n_cells": 63,
+          "n_cells_miss_zero_or_undefined": 0,
+          "share_within_factor_1_5": 0.7301587301587301,
+          "median_abs_log_realised_over_predicted": 0.11064995334569203,
+          "median_is_a_miss": false,
+          "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+          "defined_cells_only_phase1_convention": {
+            "n_cells": 63,
+            "share_within_factor_1_5": 0.7301587301587301,
+            "median_abs_log_realised_over_predicted": 0.11064995334569203
+          }
+        }
+      }
+    },
+    "beside_deployer_layer": {
+      "role": "beside: not a verdict (D-361 (4))",
+      "label": "the deployer's layer: L* cells only",
+      "d170": "D-170: 0 of 9 cells flagged",
+      "n_cells": 9,
+      "n_pairs": 9,
+      "fit": {
+        "n_cells_used": 9,
+        "n_cells_kept": 9,
+        "n_cells_kept_but_undefined": 0,
+        "point": {
+          "slope": 0.8216064457632408,
+          "intercept": 0.1791655654478246,
+          "pearson_r": 0.9909027438721084
+        },
+        "slope_ci95": [
+          0.7050926489065471,
+          1.0990083300962614
+        ],
+        "intercept_ci95": [
+          0.04240900334702591,
+          0.2914200855340078
+        ],
+        "pearson_r_ci95": [
+          0.9485277663839833,
+          0.999139823600526
+        ],
+        "n_replicates_undefined": 0,
+        "n_pairs_bootstrapped": 9,
+        "n_boot": 5000,
+        "boot_seed": 520260925
+      },
+      "accuracy": {
+        "n_cells": 9,
+        "n_cells_miss_zero_or_undefined": 0,
+        "share_within_factor_1_5": 0.8888888888888888,
+        "median_abs_log_realised_over_predicted": 0.10966226838165602,
+        "median_is_a_miss": false,
+        "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+        "defined_cells_only_phase1_convention": {
+          "n_cells": 9,
+          "share_within_factor_1_5": 0.8888888888888888,
+          "median_abs_log_realised_over_predicted": 0.10966226838165602
+        }
+      },
+      "two_vs_one_moment_shares": {
+        "two_moment": 0.8888888888888888,
+        "one_moment": 0.6666666666666666,
+        "one_moment_accuracy": {
+          "n_cells": 9,
+          "n_cells_miss_zero_or_undefined": 0,
+          "share_within_factor_1_5": 0.6666666666666666,
+          "median_abs_log_realised_over_predicted": 0.22695738782372077,
+          "median_is_a_miss": false,
+          "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+          "defined_cells_only_phase1_convention": {
+            "n_cells": 9,
+            "share_within_factor_1_5": 0.6666666666666666,
+            "median_abs_log_realised_over_predicted": 0.22695738782372077
+          }
+        }
+      }
+    },
+    "beside_5pct_D248": {
+      "role": "beside: not a verdict (D-361 (4))",
+      "label": "the 5% target (D-248)",
+      "d170": "D-170: 0 of 63 cells flagged",
+      "n_cells": 63,
+      "n_pairs": 9,
+      "fit": {
+        "n_cells_used": 63,
+        "n_cells_kept": 63,
+        "n_cells_kept_but_undefined": 0,
+        "point": {
+          "slope": 0.9193681361159218,
+          "intercept": 0.028408301621036282,
+          "pearson_r": 0.9895032546895349
+        },
+        "slope_ci95": [
+          0.8629899330875627,
+          1.0340933675490618
+        ],
+        "intercept_ci95": [
+          -0.01434042380282604,
+          0.052524188685632515
+        ],
+        "pearson_r_ci95": [
+          0.9764500319290825,
+          0.9984881869201894
+        ],
+        "n_replicates_undefined": 0,
+        "n_pairs_bootstrapped": 9,
+        "n_boot": 5000,
+        "boot_seed": 520260925
+      },
+      "accuracy": {
+        "n_cells": 63,
+        "n_cells_miss_zero_or_undefined": 0,
+        "share_within_factor_1_5": 0.9523809523809523,
+        "median_abs_log_realised_over_predicted": 0.016047316855640564,
+        "median_is_a_miss": false,
+        "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+        "defined_cells_only_phase1_convention": {
+          "n_cells": 63,
+          "share_within_factor_1_5": 0.9523809523809523,
+          "median_abs_log_realised_over_predicted": 0.016047316855640564
+        }
+      },
+      "two_vs_one_moment_shares": {
+        "two_moment": 0.9523809523809523,
+        "one_moment": 0.8095238095238095,
+        "one_moment_accuracy": {
+          "n_cells": 63,
+          "n_cells_miss_zero_or_undefined": 0,
+          "share_within_factor_1_5": 0.8095238095238095,
+          "median_abs_log_realised_over_predicted": 0.09069858465155459,
+          "median_is_a_miss": false,
+          "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+          "defined_cells_only_phase1_convention": {
+            "n_cells": 63,
+            "share_within_factor_1_5": 0.8095238095238095,
+            "median_abs_log_realised_over_predicted": 0.09069858465155459
+          }
+        }
+      }
+    },
+    "beside_per_pair": {
+      "role": "beside: not a verdict (D-361 (4)); D-177 (2a)",
+      "pairs": {
+        "mistral_v01_v02": {
+          "pre": "mistralai/Mistral-7B-Instruct-v0.1",
+          "post": "mistralai/Mistral-7B-Instruct-v0.2",
+          "group": "primary pair",
+          "note": "",
+          "d170": "D-170: 0 of 7 cells flagged",
+          "n_cells": 7,
+          "n_cells_undefined": 0,
+          "mean_log_realised_over_predicted": 0.4767473789869729,
+          "partition_band_D156": {
+            "mean": 0.474062420537095,
+            "band95": [
+              0.28903785249848557,
+              0.6363622214134486
+            ],
+            "frozen": 0.4573660725627611,
+            "frozen_percentile": 40.2,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.08943207164948334,
+            "note": "95% band over the draws of the within-draw mean offset over the pair's cells, with the frozen value; a partition sensitivity only (D-166, D-177)"
+          },
+          "accuracy": {
+            "n_cells": 7,
+            "n_cells_miss_zero_or_undefined": 0,
+            "share_within_factor_1_5": 0.7142857142857143,
+            "median_abs_log_realised_over_predicted": 0.3464930790390781,
+            "median_is_a_miss": false,
+            "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+            "defined_cells_only_phase1_convention": {
+              "n_cells": 7,
+              "share_within_factor_1_5": 0.7142857142857143,
+              "median_abs_log_realised_over_predicted": 0.3464930790390781
+            }
+          },
+          "ols_point_over_its_cells": {
+            "slope": 0.7591083034050843,
+            "intercept": -0.06163476314871996,
+            "pearson_r": 0.9646773637685775
+          },
+          "interval": "none: one pair cannot be resampled at the pair level (D-177)"
+        },
+        "llama3_to_31": {
+          "pre": "meta-llama/Meta-Llama-3-8B-Instruct",
+          "post": "meta-llama/Llama-3.1-8B-Instruct",
+          "group": "primary pair",
+          "note": "",
+          "d170": "D-170: 0 of 7 cells flagged",
+          "n_cells": 7,
+          "n_cells_undefined": 0,
+          "mean_log_realised_over_predicted": 0.06523690225845812,
+          "partition_band_D156": {
+            "mean": 0.06479603627681899,
+            "band95": [
+              0.038471860699852214,
+              0.09238468057436028
+            ],
+            "frozen": 0.06739065858059985,
+            "frozen_percentile": 58.5,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.013478661715177542,
+            "note": "95% band over the draws of the within-draw mean offset over the pair's cells, with the frozen value; a partition sensitivity only (D-166, D-177)"
+          },
+          "accuracy": {
+            "n_cells": 7,
+            "n_cells_miss_zero_or_undefined": 0,
+            "share_within_factor_1_5": 1.0,
+            "median_abs_log_realised_over_predicted": 0.07023751748151652,
+            "median_is_a_miss": false,
+            "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+            "defined_cells_only_phase1_convention": {
+              "n_cells": 7,
+              "share_within_factor_1_5": 1.0,
+              "median_abs_log_realised_over_predicted": 0.07023751748151652
+            }
+          },
+          "ols_point_over_its_cells": {
+            "slope": 0.9916470329998489,
+            "intercept": 0.0717908963598557,
+            "pearson_r": 0.9412906364341849
+          },
+          "interval": "none: one pair cannot be resampled at the pair level (D-177)"
+        },
+        "qwen2_to_25": {
+          "pre": "Qwen/Qwen2-7B-Instruct",
+          "post": "Qwen/Qwen2.5-7B-Instruct",
+          "group": "primary pair",
+          "note": "",
+          "d170": "D-170: 0 of 7 cells flagged",
+          "n_cells": 7,
+          "n_cells_undefined": 0,
+          "mean_log_realised_over_predicted": 0.12170874470132152,
+          "partition_band_D156": {
+            "mean": 0.11544507006669252,
+            "band95": [
+              0.010391444279618606,
+              0.21094854706167346
+            ],
+            "frozen": 0.17124153783921583,
+            "frozen_percentile": 86.7,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.052082394916598454,
+            "note": "95% band over the draws of the within-draw mean offset over the pair's cells, with the frozen value; a partition sensitivity only (D-166, D-177)"
+          },
+          "accuracy": {
+            "n_cells": 7,
+            "n_cells_miss_zero_or_undefined": 0,
+            "share_within_factor_1_5": 0.5714285714285714,
+            "median_abs_log_realised_over_predicted": 0.34725304517686584,
+            "median_is_a_miss": false,
+            "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+            "defined_cells_only_phase1_convention": {
+              "n_cells": 7,
+              "share_within_factor_1_5": 0.5714285714285714,
+              "median_abs_log_realised_over_predicted": 0.34725304517686584
+            }
+          },
+          "ols_point_over_its_cells": {
+            "slope": 1.450662436508903,
+            "intercept": 0.12032303133337265,
+            "pearson_r": 0.9583189359312032
+          },
+          "interval": "none: one pair cannot be resampled at the pair level (D-177)"
+        },
+        "phi3_128k_to_35": {
+          "pre": "microsoft/Phi-3-mini-128k-instruct",
+          "post": "microsoft/Phi-3.5-mini-instruct",
+          "group": "primary pair",
+          "note": "the rope_scaling caveat (D-318 (7) item 7)",
+          "d170": "D-170: 0 of 7 cells flagged",
+          "n_cells": 7,
+          "n_cells_undefined": 0,
+          "mean_log_realised_over_predicted": 0.034389498232474856,
+          "partition_band_D156": {
+            "mean": 0.03409373755848564,
+            "band95": [
+              0.009145287925236063,
+              0.06279770395865096
+            ],
+            "frozen": 0.0014234204221796412,
+            "frozen_percentile": 0.4,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.013950478190225065,
+            "note": "95% band over the draws of the within-draw mean offset over the pair's cells, with the frozen value; a partition sensitivity only (D-166, D-177)"
+          },
+          "accuracy": {
+            "n_cells": 7,
+            "n_cells_miss_zero_or_undefined": 0,
+            "share_within_factor_1_5": 1.0,
+            "median_abs_log_realised_over_predicted": 0.05115461363363938,
+            "median_is_a_miss": false,
+            "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+            "defined_cells_only_phase1_convention": {
+              "n_cells": 7,
+              "share_within_factor_1_5": 1.0,
+              "median_abs_log_realised_over_predicted": 0.05115461363363938
+            }
+          },
+          "ols_point_over_its_cells": {
+            "slope": 0.8850503149537791,
+            "intercept": 0.062150632134970296,
+            "pearson_r": 0.9634683913895812
+          },
+          "interval": "none: one pair cannot be resampled at the pair level (D-177)"
+        },
+        "olmo2_base_sft": {
+          "pre": "allenai/OLMo-2-1124-7B",
+          "post": "allenai/OLMo-2-1124-7B-SFT",
+          "group": "post-training series step",
+          "note": "",
+          "d170": "D-170: 0 of 7 cells flagged",
+          "n_cells": 7,
+          "n_cells_undefined": 0,
+          "mean_log_realised_over_predicted": 0.19915995284465177,
+          "partition_band_D156": {
+            "mean": 0.1980859884741527,
+            "band95": [
+              0.14603145824222402,
+              0.25517928605319856
+            ],
+            "frozen": 0.20590861896568266,
+            "frozen_percentile": 62.9,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.02733044635162379,
+            "note": "95% band over the draws of the within-draw mean offset over the pair's cells, with the frozen value; a partition sensitivity only (D-166, D-177)"
+          },
+          "accuracy": {
+            "n_cells": 7,
+            "n_cells_miss_zero_or_undefined": 0,
+            "share_within_factor_1_5": 0.8571428571428571,
+            "median_abs_log_realised_over_predicted": 0.11665335587449485,
+            "median_is_a_miss": false,
+            "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+            "defined_cells_only_phase1_convention": {
+              "n_cells": 7,
+              "share_within_factor_1_5": 0.8571428571428571,
+              "median_abs_log_realised_over_predicted": 0.11665335587449485
+            }
+          },
+          "ols_point_over_its_cells": {
+            "slope": 1.0661134468909295,
+            "intercept": 0.1353736563345569,
+            "pearson_r": 0.9407825092612496
+          },
+          "interval": "none: one pair cannot be resampled at the pair level (D-177)"
+        },
+        "olmo2_sft_dpo": {
+          "pre": "allenai/OLMo-2-1124-7B-SFT",
+          "post": "allenai/OLMo-2-1124-7B-DPO",
+          "group": "post-training series step",
+          "note": "",
+          "d170": "D-170: 0 of 7 cells flagged",
+          "n_cells": 7,
+          "n_cells_undefined": 0,
+          "mean_log_realised_over_predicted": 0.03508753792962012,
+          "partition_band_D156": {
+            "mean": 0.03497393839232547,
+            "band95": [
+              0.01866535786629166,
+              0.050542975973208046
+            ],
+            "frozen": 0.03512683548033647,
+            "frozen_percentile": 50.3,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.008411689734993037,
+            "note": "95% band over the draws of the within-draw mean offset over the pair's cells, with the frozen value; a partition sensitivity only (D-166, D-177)"
+          },
+          "accuracy": {
+            "n_cells": 7,
+            "n_cells_miss_zero_or_undefined": 0,
+            "share_within_factor_1_5": 1.0,
+            "median_abs_log_realised_over_predicted": 0.03702358161830227,
+            "median_is_a_miss": false,
+            "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+            "defined_cells_only_phase1_convention": {
+              "n_cells": 7,
+              "share_within_factor_1_5": 1.0,
+              "median_abs_log_realised_over_predicted": 0.03702358161830227
+            }
+          },
+          "ols_point_over_its_cells": {
+            "slope": 1.031238651156615,
+            "intercept": 0.03532464469138681,
+            "pearson_r": 0.9860544071412886
+          },
+          "interval": "none: one pair cannot be resampled at the pair level (D-177)"
+        },
+        "olmo2_dpo_instruct": {
+          "pre": "allenai/OLMo-2-1124-7B-DPO",
+          "post": "allenai/OLMo-2-1124-7B-Instruct",
+          "group": "post-training series step",
+          "note": "",
+          "d170": "D-170: 0 of 7 cells flagged",
+          "n_cells": 7,
+          "n_cells_undefined": 0,
+          "mean_log_realised_over_predicted": 0.004099472711468591,
+          "partition_band_D156": {
+            "mean": 0.004087036940978232,
+            "band95": [
+              -0.001519923785157534,
+              0.009928058514570843
+            ],
+            "frozen": 0.004324381149307288,
+            "frozen_percentile": 53.4,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.002914800859811154,
+            "note": "95% band over the draws of the within-draw mean offset over the pair's cells, with the frozen value; a partition sensitivity only (D-166, D-177)"
+          },
+          "accuracy": {
+            "n_cells": 7,
+            "n_cells_miss_zero_or_undefined": 0,
+            "share_within_factor_1_5": 1.0,
+            "median_abs_log_realised_over_predicted": 0.004250991506016805,
+            "median_is_a_miss": false,
+            "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+            "defined_cells_only_phase1_convention": {
+              "n_cells": 7,
+              "share_within_factor_1_5": 1.0,
+              "median_abs_log_realised_over_predicted": 0.004250991506016805
+            }
+          },
+          "ols_point_over_its_cells": {
+            "slope": 1.084700169811204,
+            "intercept": 0.002179121811864207,
+            "pearson_r": 0.9708446831843566
+          },
+          "interval": "none: one pair cannot be resampled at the pair level (D-177)"
+        },
+        "tulu3_sft_dpo": {
+          "pre": "allenai/Llama-3.1-Tulu-3-8B-SFT",
+          "post": "allenai/Llama-3.1-Tulu-3-8B-DPO",
+          "group": "post-training series step",
+          "note": "",
+          "d170": "D-170: 0 of 7 cells flagged",
+          "n_cells": 7,
+          "n_cells_undefined": 0,
+          "mean_log_realised_over_predicted": 0.11621886797311738,
+          "partition_band_D156": {
+            "mean": 0.1165387669029892,
+            "band95": [
+              0.08194483668324817,
+              0.1560607661267159
+            ],
+            "frozen": 0.15300264261269186,
+            "frozen_percentile": 96.7,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.018617029203667746,
+            "note": "95% band over the draws of the within-draw mean offset over the pair's cells, with the frozen value; a partition sensitivity only (D-166, D-177)"
+          },
+          "accuracy": {
+            "n_cells": 7,
+            "n_cells_miss_zero_or_undefined": 0,
+            "share_within_factor_1_5": 1.0,
+            "median_abs_log_realised_over_predicted": 0.15719206685564402,
+            "median_is_a_miss": false,
+            "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+            "defined_cells_only_phase1_convention": {
+              "n_cells": 7,
+              "share_within_factor_1_5": 1.0,
+              "median_abs_log_realised_over_predicted": 0.15719206685564402
+            }
+          },
+          "ols_point_over_its_cells": {
+            "slope": 0.6699414603123733,
+            "intercept": 0.04542410392182612,
+            "pearson_r": 0.9784742544493561
+          },
+          "interval": "none: one pair cannot be resampled at the pair level (D-177)"
+        },
+        "tulu3_dpo_final": {
+          "pre": "allenai/Llama-3.1-Tulu-3-8B-DPO",
+          "post": "allenai/Llama-3.1-Tulu-3-8B",
+          "group": "post-training series step",
+          "note": "",
+          "d170": "D-170: 0 of 7 cells flagged",
+          "n_cells": 7,
+          "n_cells_undefined": 0,
+          "mean_log_realised_over_predicted": 0.045746513801266674,
+          "partition_band_D156": {
+            "mean": 0.04579648594085417,
+            "band95": [
+              0.03225292716908392,
+              0.06191729863869719
+            ],
+            "frozen": 0.037760477051110276,
+            "frozen_percentile": 13.3,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.007646981858168529,
+            "note": "95% band over the draws of the within-draw mean offset over the pair's cells, with the frozen value; a partition sensitivity only (D-166, D-177)"
+          },
+          "accuracy": {
+            "n_cells": 7,
+            "n_cells_miss_zero_or_undefined": 0,
+            "share_within_factor_1_5": 1.0,
+            "median_abs_log_realised_over_predicted": 0.051180326067052494,
+            "median_is_a_miss": false,
+            "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+            "defined_cells_only_phase1_convention": {
+              "n_cells": 7,
+              "share_within_factor_1_5": 1.0,
+              "median_abs_log_realised_over_predicted": 0.051180326067052494
+            }
+          },
+          "ols_point_over_its_cells": {
+            "slope": 0.7808367701445966,
+            "intercept": 0.018718770364481246,
+            "pearson_r": 0.9535496208794632
+          },
+          "interval": "none: one pair cannot be resampled at the pair level (D-177)"
+        }
+      }
+    },
+    "beside_last_token": {
+      "role": "beside: not a verdict (D-361 (4))",
+      "label": "last-token pooling (D-318 (7) item 2: secondary), the nine pairs",
+      "d170": "D-170: 0 of 63 cells flagged",
+      "n_cells": 63,
+      "n_pairs": 9,
+      "fit": {
+        "n_cells_used": 55,
+        "n_cells_kept": 63,
+        "n_cells_kept_but_undefined": 8,
+        "point": {
+          "slope": 0.8362178522650835,
+          "intercept": 0.021483522931179055,
+          "pearson_r": 0.9615952728224284
+        },
+        "slope_ci95": [
+          0.7308886762209977,
+          0.9563204305690396
+        ],
+        "intercept_ci95": [
+          -0.09572559097729916,
+          0.12068447472819283
+        ],
+        "pearson_r_ci95": [
+          0.928675627877105,
+          0.9921805421654036
+        ],
+        "n_replicates_undefined": 0,
+        "n_pairs_bootstrapped": 9,
+        "n_boot": 5000,
+        "boot_seed": 520260925
+      },
+      "accuracy": {
+        "n_cells": 63,
+        "n_cells_miss_zero_or_undefined": 8,
+        "share_within_factor_1_5": 0.7142857142857143,
+        "median_abs_log_realised_over_predicted": 0.12743429453957922,
+        "median_is_a_miss": false,
+        "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+        "defined_cells_only_phase1_convention": {
+          "n_cells": 55,
+          "share_within_factor_1_5": 0.8181818181818182,
+          "median_abs_log_realised_over_predicted": 0.10887622193763516
+        }
+      },
+      "two_vs_one_moment_shares": {
+        "two_moment": 0.7142857142857143,
+        "one_moment": 0.746031746031746,
+        "one_moment_accuracy": {
+          "n_cells": 63,
+          "n_cells_miss_zero_or_undefined": 0,
+          "share_within_factor_1_5": 0.746031746031746,
+          "median_abs_log_realised_over_predicted": 0.1551525428889381,
+          "median_is_a_miss": false,
+          "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+          "defined_cells_only_phase1_convention": {
+            "n_cells": 63,
+            "share_within_factor_1_5": 0.746031746031746,
+            "median_abs_log_realised_over_predicted": 0.1551525428889381
+          }
+        }
+      }
+    },
+    "beside_tokenizer_change": {
+      "mistral_v02_v03": {
+        "pre": "mistralai/Mistral-7B-Instruct-v0.2",
+        "post": "mistralai/Mistral-7B-Instruct-v0.3",
+        "note": "D-318 (7) item 6: reported as its own line, outside the headline, not a no-update control",
+        "usermean": {
+          "role": "beside: its own line, outside the headline (D-361 (2), (4))",
+          "d170": "D-170: 0 of 7 cells flagged",
+          "n_cells": 7,
+          "n_cells_undefined": 0,
+          "mean_log_realised_over_predicted": -0.030890668118345926,
+          "partition_band_D156": {
+            "mean": -0.03229714173405909,
+            "band95": [
+              -0.09600290676672407,
+              0.025508241242995885
+            ],
+            "frozen": -0.08277172146046216,
+            "frozen_percentile": 4.8,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.030843399676930817,
+            "note": "95% band over the draws of the within-draw mean offset over the pair's cells, with the frozen value; a partition sensitivity only (D-166, D-177)"
+          },
+          "accuracy": {
+            "n_cells": 7,
+            "n_cells_miss_zero_or_undefined": 0,
+            "share_within_factor_1_5": 0.8571428571428571,
+            "median_abs_log_realised_over_predicted": 0.11399752380273986,
+            "median_is_a_miss": false,
+            "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+            "defined_cells_only_phase1_convention": {
+              "n_cells": 7,
+              "share_within_factor_1_5": 0.8571428571428571,
+              "median_abs_log_realised_over_predicted": 0.11399752380273986
+            }
+          },
+          "ols_point_over_its_cells": {
+            "slope": 1.1539517739002407,
+            "intercept": 0.06756932536994731,
+            "pearson_r": 0.9638958641506695
+          },
+          "interval": "none: one pair cannot be resampled at the pair level (D-177)",
+          "one_moment_accuracy": {
+            "n_cells": 7,
+            "n_cells_miss_zero_or_undefined": 0,
+            "share_within_factor_1_5": 0.5714285714285714,
+            "median_abs_log_realised_over_predicted": 0.385780448174734,
+            "median_is_a_miss": false,
+            "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+            "defined_cells_only_phase1_convention": {
+              "n_cells": 7,
+              "share_within_factor_1_5": 0.5714285714285714,
+              "median_abs_log_realised_over_predicted": 0.385780448174734
+            }
+          }
+        },
+        "lastgen": {
+          "role": "beside: its own line, outside the headline (D-361 (2), (4))",
+          "d170": "D-170: 0 of 7 cells flagged",
+          "n_cells": 6,
+          "n_cells_undefined": 1,
+          "mean_log_realised_over_predicted": -0.11095642016344531,
+          "partition_band_D156": {
+            "mean": -0.11638633335734942,
+            "band95": [
+              -0.24574842450206658,
+              -0.007585738909531931
+            ],
+            "frozen": -0.10963576630413012,
+            "frozen_percentile": 51.8,
+            "n_nonfinite_draws": 0,
+            "sd_over_draws": 0.06315907201893717,
+            "note": "95% band over the draws of the within-draw mean offset over the pair's cells, with the frozen value; a partition sensitivity only (D-166, D-177)"
+          },
+          "accuracy": {
+            "n_cells": 7,
+            "n_cells_miss_zero_or_undefined": 1,
+            "share_within_factor_1_5": 0.42857142857142855,
+            "median_abs_log_realised_over_predicted": 0.5161343912728885,
+            "median_is_a_miss": false,
+            "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+            "defined_cells_only_phase1_convention": {
+              "n_cells": 6,
+              "share_within_factor_1_5": 0.5,
+              "median_abs_log_realised_over_predicted": 0.3258776271949411
+            }
+          },
+          "ols_point_over_its_cells": {
+            "slope": 1.0009371694766966,
+            "intercept": -0.1105124992494857,
+            "pearson_r": 0.9642175658628157
+          },
+          "interval": "none: one pair cannot be resampled at the pair level (D-177)",
+          "one_moment_accuracy": {
+            "n_cells": 7,
+            "n_cells_miss_zero_or_undefined": 0,
+            "share_within_factor_1_5": 0.42857142857142855,
+            "median_abs_log_realised_over_predicted": 1.2037176691013898,
+            "median_is_a_miss": false,
+            "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+            "defined_cells_only_phase1_convention": {
+              "n_cells": 7,
+              "share_within_factor_1_5": 0.42857142857142855,
+              "median_abs_log_realised_over_predicted": 1.2037176691013898
+            }
+          }
+        }
+      }
+    },
+    "beside_lora": {
+      "role": "beside: its own line, outside the headline (D-361 (2), (4))",
+      "base": "mistralai/Mistral-7B-Instruct-v0.2",
+      "arms": [
+        "mistral7bi-v02-alpaca-r16-seed0-step25",
+        "mistral7bi-v02-alpaca-r16-seed1-step25",
+        "mistral7bi-v02-alpaca-r16-seed2-step25",
+        "mistral7bi-v02-alpaca-r16-seed0-step100",
+        "mistral7bi-v02-alpaca-r16-seed1-step100",
+        "mistral7bi-v02-alpaca-r16-seed2-step100",
+        "mistral7bi-v02-alpaca-r16-seed0-step400",
+        "mistral7bi-v02-alpaca-r16-seed1-step400",
+        "mistral7bi-v02-alpaca-r16-seed2-step400",
+        "mistral7bi-v02-hhharmless-r16-seed0-step25",
+        "mistral7bi-v02-hhharmless-r16-seed1-step25",
+        "mistral7bi-v02-hhharmless-r16-seed2-step25",
+        "mistral7bi-v02-hhharmless-r16-seed0-step100",
+        "mistral7bi-v02-hhharmless-r16-seed1-step100",
+        "mistral7bi-v02-hhharmless-r16-seed2-step100",
+        "mistral7bi-v02-hhharmless-r16-seed0-step400",
+        "mistral7bi-v02-hhharmless-r16-seed1-step400",
+        "mistral7bi-v02-hhharmless-r16-seed2-step400",
+        "mistral7bi-v02-pkusafe-r16-seed0-step25",
+        "mistral7bi-v02-pkusafe-r16-seed1-step25",
+        "mistral7bi-v02-pkusafe-r16-seed2-step25",
+        "mistral7bi-v02-pkusafe-r16-seed0-step100",
+        "mistral7bi-v02-pkusafe-r16-seed1-step100",
+        "mistral7bi-v02-pkusafe-r16-seed2-step100",
+        "mistral7bi-v02-pkusafe-r16-seed0-step400",
+        "mistral7bi-v02-pkusafe-r16-seed1-step400",
+        "mistral7bi-v02-pkusafe-r16-seed2-step400"
+      ],
+      "rules": [
+        "(v) The LoRA line's arms are the 27 trained adapters of D-343 (alpaca, hh-harmless, pku-saferlhf x steps 25, 100, 400 x seeds 0, 1, 2) on Mistral-7B-Instruct-v0.2 (the base: the pre side, its D-117 selection of record); the step-0 checkpoints are D-343 (2)'s gate against the base, not arms, and are not read. Each adapter is one update (base -> adapter) through the same path as a pair (D-361 (2): 'their own line').",
+        "(w) The LoRA line's cells are the layers the storage decision keeps (D-361 (2); option C, D-365: L* alone, both poolings, float32) that the base also holds; one job per pooling loads the base's caches, fits its probes and gathers its v2 matrices once, then reads each adapter's durable p2sub caches (D-307 (1)); every adapter's caches name the base's selection record and L* in their layer plans (role 'post').",
+        "(x) In the LoRA line's fit each adapter is its own cluster in the bootstrap (D-163: an update is the cluster), B = 5000 with the same seed; the line is beside, never a verdict (D-361 (4))."
+      ],
+      "usermean": {
+        "role": "beside: not a verdict (D-361 (4))",
+        "label": "the LoRA line, usermean: 27 adapters on mistralai/Mistral-7B-Instruct-v0.2, each its own cluster",
+        "d170": "D-170: 0 of 27 cells flagged",
+        "n_cells": 27,
+        "n_pairs": 27,
+        "fit": {
+          "n_cells_used": 27,
+          "n_cells_kept": 27,
+          "n_cells_kept_but_undefined": 0,
+          "point": {
+            "slope": 0.977757285200136,
+            "intercept": 0.047736763773710944,
+            "pearson_r": 0.9974085953978221
+          },
+          "slope_ci95": [
+            0.9459677703185272,
+            1.0047390873710003
+          ],
+          "intercept_ci95": [
+            -0.01887729345779633,
+            0.1342563669147854
+          ],
+          "pearson_r_ci95": [
+            0.9955728510918078,
+            0.9988548297044127
+          ],
+          "n_replicates_undefined": 0,
+          "n_pairs_bootstrapped": 27,
+          "n_boot": 5000,
+          "boot_seed": 520260925
+        },
+        "accuracy": {
+          "n_cells": 27,
+          "n_cells_miss_zero_or_undefined": 0,
+          "share_within_factor_1_5": 1.0,
+          "median_abs_log_realised_over_predicted": 0.05439043290842971,
+          "median_is_a_miss": false,
+          "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+          "defined_cells_only_phase1_convention": {
+            "n_cells": 27,
+            "share_within_factor_1_5": 1.0,
+            "median_abs_log_realised_over_predicted": 0.05439043290842971
+          }
+        },
+        "two_vs_one_moment_shares": {
+          "two_moment": 1.0,
+          "one_moment": 1.0,
+          "one_moment_accuracy": {
+            "n_cells": 27,
+            "n_cells_miss_zero_or_undefined": 0,
+            "share_within_factor_1_5": 1.0,
+            "median_abs_log_realised_over_predicted": 0.08451367061739345,
+            "median_is_a_miss": false,
+            "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+            "defined_cells_only_phase1_convention": {
+              "n_cells": 27,
+              "share_within_factor_1_5": 1.0,
+              "median_abs_log_realised_over_predicted": 0.08451367061739345
+            }
+          }
+        },
+        "cells": [
+          {
+            "arm": "mistral7bi-v02-alpaca-r16-seed0-step25",
+            "repo": "lora/mistral7bi-v02-alpaca-r16-seed0-step25",
+            "rev": "e4ec1907f1a43f9db4c2d668fad6521a2c27de83d7ae9619f3c7d6320c986217",
+            "layer": 16,
+            "log_predicted_d156": 0.43210587849072296,
+            "log_realised_d156": 0.5076426779859143,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-alpaca-r16-seed1-step25",
+            "repo": "lora/mistral7bi-v02-alpaca-r16-seed1-step25",
+            "rev": "90159bb6038accd0c3fdae6118965824d3363d2b6e22abeca9ff38fecc48662e",
+            "layer": 16,
+            "log_predicted_d156": 1.0789189001483508,
+            "log_realised_d156": 1.1751345403675446,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-alpaca-r16-seed2-step25",
+            "repo": "lora/mistral7bi-v02-alpaca-r16-seed2-step25",
+            "rev": "eeaa8bb8209f460b15f5e526e84f3a23943adbe026592b6c12f4f5f27352c693",
+            "layer": 16,
+            "log_predicted_d156": 0.36288238649299376,
+            "log_realised_d156": 0.48712246748521626,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-alpaca-r16-seed0-step100",
+            "repo": "lora/mistral7bi-v02-alpaca-r16-seed0-step100",
+            "rev": "8fc7524d2cd0ef29e305aed626d9c5732615093b07cdbe88f086efb2ba660e86",
+            "layer": 16,
+            "log_predicted_d156": 0.4242793859109249,
+            "log_realised_d156": 0.3685274276408543,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-alpaca-r16-seed1-step100",
+            "repo": "lora/mistral7bi-v02-alpaca-r16-seed1-step100",
+            "rev": "8ba6f9d6d21f122ea4cfd6023b265ac99915ac6bbcf9964856ef62b22e380ad3",
+            "layer": 16,
+            "log_predicted_d156": 0.6695489903136933,
+            "log_realised_d156": 0.6477386771607113,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-alpaca-r16-seed2-step100",
+            "repo": "lora/mistral7bi-v02-alpaca-r16-seed2-step100",
+            "rev": "2f73b82d198578280f2e589ff71d7500f15d140903728fe5f240cb7c5a96e77d",
+            "layer": 16,
+            "log_predicted_d156": 0.8842658683813652,
+            "log_realised_d156": 0.872215173354521,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-alpaca-r16-seed0-step400",
+            "repo": "lora/mistral7bi-v02-alpaca-r16-seed0-step400",
+            "rev": "166b3ebcca4a69c8ac65962873b50eb38c7f4e5c193cdbb4257a3d2896d6a418",
+            "layer": 16,
+            "log_predicted_d156": 0.5003984748666155,
+            "log_realised_d156": 0.3717641313372017,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-alpaca-r16-seed1-step400",
+            "repo": "lora/mistral7bi-v02-alpaca-r16-seed1-step400",
+            "rev": "9e04ffbc256b3862689e0fd8a3b786ce31d97b8643a336b159a1111cba14a5b9",
+            "layer": 16,
+            "log_predicted_d156": 0.32486348625508127,
+            "log_realised_d156": 0.33128503864531544,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-alpaca-r16-seed2-step400",
+            "repo": "lora/mistral7bi-v02-alpaca-r16-seed2-step400",
+            "rev": "b708a5fde5d9e8d517d4a00a1b9454f642fd74ccd9c1b4252ca5ba58f818facb",
+            "layer": 16,
+            "log_predicted_d156": 0.22182602891932032,
+            "log_realised_d156": 0.1832766331108621,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-hhharmless-r16-seed0-step25",
+            "repo": "lora/mistral7bi-v02-hhharmless-r16-seed0-step25",
+            "rev": "02ac15be37f0cd4ecf8267b5926b18c40d5339285cf24425af091ba6a9c4076d",
+            "layer": 16,
+            "log_predicted_d156": 2.9877423206846463,
+            "log_realised_d156": 2.9333518877762166,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-hhharmless-r16-seed1-step25",
+            "repo": "lora/mistral7bi-v02-hhharmless-r16-seed1-step25",
+            "rev": "c01490b2c20329e6f7352723b2e8d9e52fd22657a2d5d83eb6a4addb75656b2c",
+            "layer": 16,
+            "log_predicted_d156": 2.1862682383704213,
+            "log_realised_d156": 2.2960691819299046,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-hhharmless-r16-seed2-step25",
+            "repo": "lora/mistral7bi-v02-hhharmless-r16-seed2-step25",
+            "rev": "abcf57c55df88f7328d3badd51a24f05ec521f13dbdb5613b689bc46bf25766d",
+            "layer": 16,
+            "log_predicted_d156": 2.5533366828383124,
+            "log_realised_d156": 2.602167035876943,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-hhharmless-r16-seed0-step100",
+            "repo": "lora/mistral7bi-v02-hhharmless-r16-seed0-step100",
+            "rev": "aa955ea2d745fe6c4535b2b4bfc907ff85e691f7a0ad6b6d2d12087bc2fefa0b",
+            "layer": 16,
+            "log_predicted_d156": 2.7998875210070793,
+            "log_realised_d156": 2.7953407895597158,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-hhharmless-r16-seed1-step100",
+            "repo": "lora/mistral7bi-v02-hhharmless-r16-seed1-step100",
+            "rev": "92ec1e9bc62f2029536820fc6199984db39f61023e3cbfc5d6ab232d456698f7",
+            "layer": 16,
+            "log_predicted_d156": 3.119786722490974,
+            "log_realised_d156": 3.0806850245028183,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-hhharmless-r16-seed2-step100",
+            "repo": "lora/mistral7bi-v02-hhharmless-r16-seed2-step100",
+            "rev": "c25d3d4c9da9dc2f0b4d19a41eac171d2df13e934bfe8f7104b599202eafb7f7",
+            "layer": 16,
+            "log_predicted_d156": 2.327992720733712,
+            "log_realised_d156": 2.3824734156820804,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-hhharmless-r16-seed0-step400",
+            "repo": "lora/mistral7bi-v02-hhharmless-r16-seed0-step400",
+            "rev": "fc7f88bcbbf334a2eeabf4c1dc35b7cfd24128ff02644c35306fa5246cc0539b",
+            "layer": 16,
+            "log_predicted_d156": 2.4562107609394697,
+            "log_realised_d156": 2.4893942170965233,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-hhharmless-r16-seed1-step400",
+            "repo": "lora/mistral7bi-v02-hhharmless-r16-seed1-step400",
+            "rev": "e0bf0ed39e7f5ff3ede7393e80545e9f3176d15450f8a9ddfe71315890f29afa",
+            "layer": 16,
+            "log_predicted_d156": 1.2297768464613275,
+            "log_realised_d156": 1.4454877190782203,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-hhharmless-r16-seed2-step400",
+            "repo": "lora/mistral7bi-v02-hhharmless-r16-seed2-step400",
+            "rev": "bb4f710ca2a79815688e3364d1a6e87b979b7f653dd178e57f0528a541813a9b",
+            "layer": 16,
+            "log_predicted_d156": 1.911153343269104,
+            "log_realised_d156": 2.0374389027700275,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-pkusafe-r16-seed0-step25",
+            "repo": "lora/mistral7bi-v02-pkusafe-r16-seed0-step25",
+            "rev": "6deffe12ee3d84bd09e777dedd96696a7999d10ea38d44bab24ceca6ecf6bda7",
+            "layer": 16,
+            "log_predicted_d156": 3.252648318214262,
+            "log_realised_d156": 3.150153688334994,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-pkusafe-r16-seed1-step25",
+            "repo": "lora/mistral7bi-v02-pkusafe-r16-seed1-step25",
+            "rev": "ca9e0f4244485a4155eb07523248b4c767612dac7b41142b27da40e8f0273ebb",
+            "layer": 16,
+            "log_predicted_d156": 3.2347107185506783,
+            "log_realised_d156": 3.1405034176408804,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-pkusafe-r16-seed2-step25",
+            "repo": "lora/mistral7bi-v02-pkusafe-r16-seed2-step25",
+            "rev": "cff079efbe1db655eb6f0c9425b85b64adf387d9ea49efd68c36cf48e0efcdac",
+            "layer": 16,
+            "log_predicted_d156": 3.05394571011852,
+            "log_realised_d156": 2.973811218615399,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-pkusafe-r16-seed0-step100",
+            "repo": "lora/mistral7bi-v02-pkusafe-r16-seed0-step100",
+            "rev": "a44c218d9e51ef7b196b7aa7def89a3b90ce8090f7053fb3bd4fbd6b9631dcc3",
+            "layer": 16,
+            "log_predicted_d156": 2.674888031214859,
+            "log_realised_d156": 2.6622485861980385,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-pkusafe-r16-seed1-step100",
+            "repo": "lora/mistral7bi-v02-pkusafe-r16-seed1-step100",
+            "rev": "e309742038b6dc1aef09e72f3b9b0a7b80fbc0a26074ae2d4ae7b50f5f3e7eb3",
+            "layer": 16,
+            "log_predicted_d156": 2.3262423717824894,
+            "log_realised_d156": 2.3329778366970357,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-pkusafe-r16-seed2-step100",
+            "repo": "lora/mistral7bi-v02-pkusafe-r16-seed2-step100",
+            "rev": "35c1f4748e722af77e2973bc6cad49c985971cd4e4348575247679409d982c56",
+            "layer": 16,
+            "log_predicted_d156": 3.369520942915789,
+            "log_realised_d156": 3.295039740666245,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-pkusafe-r16-seed0-step400",
+            "repo": "lora/mistral7bi-v02-pkusafe-r16-seed0-step400",
+            "rev": "8726efe7be93a502830b2ee92e692899befcb2cb2155e4dc3c291c76127f5568",
+            "layer": 16,
+            "log_predicted_d156": 2.4386975147307717,
+            "log_realised_d156": 2.449403381885274,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-pkusafe-r16-seed1-step400",
+            "repo": "lora/mistral7bi-v02-pkusafe-r16-seed1-step400",
+            "rev": "b59c2532b4542ab6fa35bb13974ec379bf6ed0d2efd337e47d058725c6611f59",
+            "layer": 16,
+            "log_predicted_d156": 2.1471313545593014,
+            "log_realised_d156": 2.1447150916992253,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-pkusafe-r16-seed2-step400",
+            "repo": "lora/mistral7bi-v02-pkusafe-r16-seed2-step400",
+            "rev": "fd2c884cad512a7746f1b33fe60788070a8bf7220eeec2a090d008222143678c",
+            "layer": 16,
+            "log_predicted_d156": 2.9067053620653827,
+            "log_realised_d156": 2.85480242353333,
+            "n_draws_in_estimate": 1000
+          }
+        ]
+      },
+      "lastgen": {
+        "role": "beside: not a verdict (D-361 (4))",
+        "label": "the LoRA line, lastgen: 27 adapters on mistralai/Mistral-7B-Instruct-v0.2, each its own cluster",
+        "d170": "D-170: 0 of 27 cells flagged",
+        "n_cells": 27,
+        "n_pairs": 27,
+        "fit": {
+          "n_cells_used": 27,
+          "n_cells_kept": 27,
+          "n_cells_kept_but_undefined": 0,
+          "point": {
+            "slope": 1.3827613412188637,
+            "intercept": -0.48499494848537694,
+            "pearson_r": 0.9199881580702728
+          },
+          "slope_ci95": [
+            1.1544649447002175,
+            1.6265776730694153
+          ],
+          "intercept_ci95": [
+            -0.6453863196740547,
+            -0.29997073147094133
+          ],
+          "pearson_r_ci95": [
+            0.8144397259253159,
+            0.964679884216809
+          ],
+          "n_replicates_undefined": 0,
+          "n_pairs_bootstrapped": 27,
+          "n_boot": 5000,
+          "boot_seed": 520260925
+        },
+        "accuracy": {
+          "n_cells": 27,
+          "n_cells_miss_zero_or_undefined": 0,
+          "share_within_factor_1_5": 0.2962962962962963,
+          "median_abs_log_realised_over_predicted": 0.6605201595420982,
+          "median_is_a_miss": false,
+          "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+          "defined_cells_only_phase1_convention": {
+            "n_cells": 27,
+            "share_within_factor_1_5": 0.2962962962962963,
+            "median_abs_log_realised_over_predicted": 0.6605201595420982
+          }
+        },
+        "two_vs_one_moment_shares": {
+          "two_moment": 0.2962962962962963,
+          "one_moment": 0.037037037037037035,
+          "one_moment_accuracy": {
+            "n_cells": 27,
+            "n_cells_miss_zero_or_undefined": 0,
+            "share_within_factor_1_5": 0.037037037037037035,
+            "median_abs_log_realised_over_predicted": 1.0041102778924138,
+            "median_is_a_miss": false,
+            "convention": "every cell; a zero or undefined prediction is a miss (D-322 (4))",
+            "defined_cells_only_phase1_convention": {
+              "n_cells": 27,
+              "share_within_factor_1_5": 0.037037037037037035,
+              "median_abs_log_realised_over_predicted": 1.0041102778924138
+            }
+          }
+        },
+        "cells": [
+          {
+            "arm": "mistral7bi-v02-alpaca-r16-seed0-step25",
+            "repo": "lora/mistral7bi-v02-alpaca-r16-seed0-step25",
+            "rev": "e4ec1907f1a43f9db4c2d668fad6521a2c27de83d7ae9619f3c7d6320c986217",
+            "layer": 16,
+            "log_predicted_d156": -1.208086876525339,
+            "log_realised_d156": -2.8224780638140863,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-alpaca-r16-seed1-step25",
+            "repo": "lora/mistral7bi-v02-alpaca-r16-seed1-step25",
+            "rev": "90159bb6038accd0c3fdae6118965824d3363d2b6e22abeca9ff38fecc48662e",
+            "layer": 16,
+            "log_predicted_d156": -0.9071577697865086,
+            "log_realised_d156": -1.8982740365588613,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-alpaca-r16-seed2-step25",
+            "repo": "lora/mistral7bi-v02-alpaca-r16-seed2-step25",
+            "rev": "eeaa8bb8209f460b15f5e526e84f3a23943adbe026592b6c12f4f5f27352c693",
+            "layer": 16,
+            "log_predicted_d156": -1.008899344623346,
+            "log_realised_d156": -1.9181018243705945,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-alpaca-r16-seed0-step100",
+            "repo": "lora/mistral7bi-v02-alpaca-r16-seed0-step100",
+            "rev": "8fc7524d2cd0ef29e305aed626d9c5732615093b07cdbe88f086efb2ba660e86",
+            "layer": 16,
+            "log_predicted_d156": -0.5739822288686369,
+            "log_realised_d156": -1.7457347019021756,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-alpaca-r16-seed1-step100",
+            "repo": "lora/mistral7bi-v02-alpaca-r16-seed1-step100",
+            "rev": "8ba6f9d6d21f122ea4cfd6023b265ac99915ac6bbcf9964856ef62b22e380ad3",
+            "layer": 16,
+            "log_predicted_d156": -0.6668502354610599,
+            "log_realised_d156": -1.6400011889396766,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-alpaca-r16-seed2-step100",
+            "repo": "lora/mistral7bi-v02-alpaca-r16-seed2-step100",
+            "rev": "2f73b82d198578280f2e589ff71d7500f15d140903728fe5f240cb7c5a96e77d",
+            "layer": 16,
+            "log_predicted_d156": -0.4401814529640249,
+            "log_realised_d156": -1.36811574100525,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-alpaca-r16-seed0-step400",
+            "repo": "lora/mistral7bi-v02-alpaca-r16-seed0-step400",
+            "rev": "166b3ebcca4a69c8ac65962873b50eb38c7f4e5c193cdbb4257a3d2896d6a418",
+            "layer": 16,
+            "log_predicted_d156": 0.04561072404077889,
+            "log_realised_d156": -0.7963283952284123,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-alpaca-r16-seed1-step400",
+            "repo": "lora/mistral7bi-v02-alpaca-r16-seed1-step400",
+            "rev": "9e04ffbc256b3862689e0fd8a3b786ce31d97b8643a336b159a1111cba14a5b9",
+            "layer": 16,
+            "log_predicted_d156": -0.6265574585142732,
+            "log_realised_d156": -2.0970893951492373,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-alpaca-r16-seed2-step400",
+            "repo": "lora/mistral7bi-v02-alpaca-r16-seed2-step400",
+            "rev": "b708a5fde5d9e8d517d4a00a1b9454f642fd74ccd9c1b4252ca5ba58f818facb",
+            "layer": 16,
+            "log_predicted_d156": -0.37950867927843057,
+            "log_realised_d156": -1.0653417131925447,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-hhharmless-r16-seed0-step25",
+            "repo": "lora/mistral7bi-v02-hhharmless-r16-seed0-step25",
+            "rev": "02ac15be37f0cd4ecf8267b5926b18c40d5339285cf24425af091ba6a9c4076d",
+            "layer": 16,
+            "log_predicted_d156": 1.3788886492835695,
+            "log_realised_d156": 1.5766526593015602,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-hhharmless-r16-seed1-step25",
+            "repo": "lora/mistral7bi-v02-hhharmless-r16-seed1-step25",
+            "rev": "c01490b2c20329e6f7352723b2e8d9e52fd22657a2d5d83eb6a4addb75656b2c",
+            "layer": 16,
+            "log_predicted_d156": 0.060834427290885666,
+            "log_realised_d156": 0.12618697834828807,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-hhharmless-r16-seed2-step25",
+            "repo": "lora/mistral7bi-v02-hhharmless-r16-seed2-step25",
+            "rev": "abcf57c55df88f7328d3badd51a24f05ec521f13dbdb5613b689bc46bf25766d",
+            "layer": 16,
+            "log_predicted_d156": -0.6089990994498727,
+            "log_realised_d156": -0.5248329748644867,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-hhharmless-r16-seed0-step100",
+            "repo": "lora/mistral7bi-v02-hhharmless-r16-seed0-step100",
+            "rev": "aa955ea2d745fe6c4535b2b4bfc907ff85e691f7a0ad6b6d2d12087bc2fefa0b",
+            "layer": 16,
+            "log_predicted_d156": -0.5930399341607019,
+            "log_realised_d156": -0.8598545758436844,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-hhharmless-r16-seed1-step100",
+            "repo": "lora/mistral7bi-v02-hhharmless-r16-seed1-step100",
+            "rev": "92ec1e9bc62f2029536820fc6199984db39f61023e3cbfc5d6ab232d456698f7",
+            "layer": 16,
+            "log_predicted_d156": 0.22084460502007983,
+            "log_realised_d156": 0.4105679516481947,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-hhharmless-r16-seed2-step100",
+            "repo": "lora/mistral7bi-v02-hhharmless-r16-seed2-step100",
+            "rev": "c25d3d4c9da9dc2f0b4d19a41eac171d2df13e934bfe8f7104b599202eafb7f7",
+            "layer": 16,
+            "log_predicted_d156": -0.6378035574147791,
+            "log_realised_d156": -1.298758188660457,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-hhharmless-r16-seed0-step400",
+            "repo": "lora/mistral7bi-v02-hhharmless-r16-seed0-step400",
+            "rev": "fc7f88bcbbf334a2eeabf4c1dc35b7cfd24128ff02644c35306fa5246cc0539b",
+            "layer": 16,
+            "log_predicted_d156": -0.7357302338674335,
+            "log_realised_d156": -1.3595245288358013,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-hhharmless-r16-seed1-step400",
+            "repo": "lora/mistral7bi-v02-hhharmless-r16-seed1-step400",
+            "rev": "e0bf0ed39e7f5ff3ede7393e80545e9f3176d15450f8a9ddfe71315890f29afa",
+            "layer": 16,
+            "log_predicted_d156": -2.106994614434287,
+            "log_realised_d156": -3.366040206411784,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-hhharmless-r16-seed2-step400",
+            "repo": "lora/mistral7bi-v02-hhharmless-r16-seed2-step400",
+            "rev": "bb4f710ca2a79815688e3364d1a6e87b979b7f653dd178e57f0528a541813a9b",
+            "layer": 16,
+            "log_predicted_d156": -0.6747349725331769,
+            "log_realised_d156": -1.3616982338732886,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-pkusafe-r16-seed0-step25",
+            "repo": "lora/mistral7bi-v02-pkusafe-r16-seed0-step25",
+            "rev": "6deffe12ee3d84bd09e777dedd96696a7999d10ea38d44bab24ceca6ecf6bda7",
+            "layer": 16,
+            "log_predicted_d156": -0.39691467325040464,
+            "log_realised_d156": -0.5869341988414395,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-pkusafe-r16-seed1-step25",
+            "repo": "lora/mistral7bi-v02-pkusafe-r16-seed1-step25",
+            "rev": "ca9e0f4244485a4155eb07523248b4c767612dac7b41142b27da40e8f0273ebb",
+            "layer": 16,
+            "log_predicted_d156": -0.36343236920130256,
+            "log_realised_d156": -0.4991414117799021,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-pkusafe-r16-seed2-step25",
+            "repo": "lora/mistral7bi-v02-pkusafe-r16-seed2-step25",
+            "rev": "cff079efbe1db655eb6f0c9425b85b64adf387d9ea49efd68c36cf48e0efcdac",
+            "layer": 16,
+            "log_predicted_d156": -0.7145911034725682,
+            "log_realised_d156": -1.0077684536611649,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-pkusafe-r16-seed0-step100",
+            "repo": "lora/mistral7bi-v02-pkusafe-r16-seed0-step100",
+            "rev": "a44c218d9e51ef7b196b7aa7def89a3b90ce8090f7053fb3bd4fbd6b9631dcc3",
+            "layer": 16,
+            "log_predicted_d156": -0.5381839164774399,
+            "log_realised_d156": -1.197922107797815,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-pkusafe-r16-seed1-step100",
+            "repo": "lora/mistral7bi-v02-pkusafe-r16-seed1-step100",
+            "rev": "e309742038b6dc1aef09e72f3b9b0a7b80fbc0a26074ae2d4ae7b50f5f3e7eb3",
+            "layer": 16,
+            "log_predicted_d156": 0.19478551627607793,
+            "log_realised_d156": -0.3541257914000681,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-pkusafe-r16-seed2-step100",
+            "repo": "lora/mistral7bi-v02-pkusafe-r16-seed2-step100",
+            "rev": "35c1f4748e722af77e2973bc6cad49c985971cd4e4348575247679409d982c56",
+            "layer": 16,
+            "log_predicted_d156": 0.24987638330685508,
+            "log_realised_d156": -0.18067310577312815,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-pkusafe-r16-seed0-step400",
+            "repo": "lora/mistral7bi-v02-pkusafe-r16-seed0-step400",
+            "rev": "8726efe7be93a502830b2ee92e692899befcb2cb2155e4dc3c291c76127f5568",
+            "layer": 16,
+            "log_predicted_d156": 0.09677089645100644,
+            "log_realised_d156": -0.5155050681869126,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-pkusafe-r16-seed1-step400",
+            "repo": "lora/mistral7bi-v02-pkusafe-r16-seed1-step400",
+            "rev": "b59c2532b4542ab6fa35bb13974ec379bf6ed0d2efd337e47d058725c6611f59",
+            "layer": 16,
+            "log_predicted_d156": 1.0335098003648469,
+            "log_realised_d156": 0.3729896408227486,
+            "n_draws_in_estimate": 1000
+          },
+          {
+            "arm": "mistral7bi-v02-pkusafe-r16-seed2-step400",
+            "repo": "lora/mistral7bi-v02-pkusafe-r16-seed2-step400",
+            "rev": "fd2c884cad512a7746f1b33fe60788070a8bf7220eeec2a090d008222143678c",
+            "layer": 16,
+            "log_predicted_d156": 0.07693548144997739,
+            "log_realised_d156": -0.700700233527037,
+            "n_draws_in_estimate": 1000
+          }
+        ]
+      }
+    },
+    "beside_d354_listing": {
+      "role": "beside (D-354 (3)); the selections of record are used (D-361 (2))",
+      "summary": {
+        "file": "results/phase2/ho20cluster_summary.json",
+        "sha256": "83617cddd7369c798f32b6b293a95dd2d555879f67cc8d3710bf37783a56cfd1"
+      },
+      "rows": [
+        {
+          "pair": "llama3_to_31",
+          "pooling": "lastgen",
+          "selection_record": "results/phase2/selection_p2__meta-llama__Meta-Llama-3-8B-Instruct@8afb486c1db2__lastgen.json",
+          "selected_recorded": {
+            "arm": "C=0.003",
+            "layer": 14
+          },
+          "selected_grouped": {
+            "arm": "C=0.003",
+            "layer": 14
+          },
+          "selected_cell_unchanged": true,
+          "margin_under_grouping": 0.0,
+          "margin_under_item_split": 0.0,
+          "recorded_runner_up": {
+            "arm": "C=0.001",
+            "layer": 16,
+            "auroc_ho20": 0.9821512004671469,
+            "margin": 0.0002723549731827868
+          }
+        },
+        {
+          "pair": "llama3_to_31",
+          "pooling": "usermean",
+          "selection_record": "results/phase2/selection_p2__meta-llama__Meta-Llama-3-8B-Instruct@8afb486c1db2__usermean.json",
+          "selected_recorded": {
+            "arm": "C=0.003",
+            "layer": 14
+          },
+          "selected_grouped": {
+            "arm": "C=0.003",
+            "layer": 14
+          },
+          "selected_cell_unchanged": true,
+          "margin_under_grouping": 0.0,
+          "margin_under_item_split": 0.0,
+          "recorded_runner_up": {
+            "arm": "C=0.001",
+            "layer": 14,
+            "auroc_ho20": 0.9788109313662442,
+            "margin": 0.00045927956205982223
+          }
+        },
+        {
+          "pair": "mistral_v01_v02",
+          "pooling": "lastgen",
+          "selection_record": "results/phase2/selection_p2__mistralai__Mistral-7B-Instruct-v0.1@ec5deb64f2c6__lastgen.json",
+          "selected_recorded": {
+            "arm": "C=0.003",
+            "layer": 14
+          },
+          "selected_grouped": {
+            "arm": "C=0.003",
+            "layer": 16
+          },
+          "selected_cell_unchanged": false,
+          "margin_under_grouping": 0.0005837435021494031,
+          "margin_under_item_split": 0.00044667499677308875,
+          "recorded_runner_up": {
+            "arm": "C=0.001",
+            "layer": 14,
+            "auroc_ho20": 0.9763728953670929,
+            "margin": 0.00018015286998662727
+          }
+        },
+        {
+          "pair": "mistral_v01_v02",
+          "pooling": "usermean",
+          "selection_record": "results/phase2/selection_p2__mistralai__Mistral-7B-Instruct-v0.1@ec5deb64f2c6__usermean.json",
+          "selected_recorded": {
+            "arm": "C=0.003",
+            "layer": 16
+          },
+          "selected_grouped": {
+            "arm": "C=0.003",
+            "layer": 16
+          },
+          "selected_cell_unchanged": true,
+          "margin_under_grouping": 0.0,
+          "margin_under_item_split": 0.0,
+          "recorded_runner_up": {
+            "arm": "C=0.001",
+            "layer": 16,
+            "auroc_ho20": 0.9764715208731601,
+            "margin": 0.00034037417807053494
+          }
+        },
+        {
+          "pair": "mistral_v02_v03",
+          "pooling": "lastgen",
+          "selection_record": "results/phase2/selection_p2__mistralai__Mistral-7B-Instruct-v0.2@63a8b0818953__lastgen.json",
+          "selected_recorded": {
+            "arm": "C=0.003",
+            "layer": 16
+          },
+          "selected_grouped": {
+            "arm": "C=0.003",
+            "layer": 16
+          },
+          "selected_cell_unchanged": true,
+          "margin_under_grouping": 0.0,
+          "margin_under_item_split": 0.0,
+          "recorded_runner_up": {
+            "arm": "C=0.01",
+            "layer": 16,
+            "auroc_ho20": 0.9810567082142816,
+            "margin": 0.000731642090834761
+          }
+        },
+        {
+          "pair": "mistral_v02_v03",
+          "pooling": "usermean",
+          "selection_record": "results/phase2/selection_p2__mistralai__Mistral-7B-Instruct-v0.2@63a8b0818953__usermean.json",
+          "selected_recorded": {
+            "arm": "C=0.003",
+            "layer": 16
+          },
+          "selected_grouped": {
+            "arm": "C=0.001",
+            "layer": 16
+          },
+          "selected_cell_unchanged": false,
+          "margin_under_grouping": 1.4836789701599962e-05,
+          "margin_under_item_split": 0.00041568884631026926,
+          "recorded_runner_up": {
+            "arm": "C=0.001",
+            "layer": 16,
+            "auroc_ho20": 0.9785861460555478,
+            "margin": 0.00041568884631026926
+          }
+        },
+        {
+          "pair": "olmo2_base_sft",
+          "pooling": "lastgen",
+          "selection_record": "results/phase2/selection_p2__allenai__OLMo-2-1124-7B@7df9a82518af__lastgen.json",
+          "selected_recorded": {
+            "arm": "C=0.003",
+            "layer": 18
+          },
+          "selected_grouped": {
+            "arm": "C=0.001",
+            "layer": 30
+          },
+          "selected_cell_unchanged": false,
+          "margin_under_grouping": 0.0017270790362207133,
+          "margin_under_item_split": 0.0031891306274793862,
+          "recorded_runner_up": {
+            "arm": "C=0.001",
+            "layer": 18,
+            "auroc_ho20": 0.9545680241607796,
+            "margin": 0.0007939528701002008
+          }
+        },
+        {
+          "pair": "olmo2_base_sft",
+          "pooling": "usermean",
+          "selection_record": "results/phase2/selection_p2__allenai__OLMo-2-1124-7B@7df9a82518af__usermean.json",
+          "selected_recorded": {
+            "arm": "C=0.003",
+            "layer": 14
+          },
+          "selected_grouped": {
+            "arm": "C=0.003",
+            "layer": 16
+          },
+          "selected_cell_unchanged": false,
+          "margin_under_grouping": 0.0006051886520251903,
+          "margin_under_item_split": 0.00040910917361691723,
+          "recorded_runner_up": {
+            "arm": "C=0.003",
+            "layer": 16,
+            "auroc_ho20": 0.9712767852193919,
+            "margin": 0.00040910917361691723
+          }
+        },
+        {
+          "pair": "olmo2_dpo_instruct",
+          "pooling": "lastgen",
+          "selection_record": "results/phase2/selection_p2__allenai__OLMo-2-1124-7B-DPO@e34ea60adff2__lastgen.json",
+          "selected_recorded": {
+            "arm": "C=0.001",
+            "layer": 18
+          },
+          "selected_grouped": {
+            "arm": "C=0.003",
+            "layer": 18
+          },
+          "selected_cell_unchanged": false,
+          "margin_under_grouping": 1.4944764023416823e-05,
+          "margin_under_item_split": 0.00012377236021088311,
+          "recorded_runner_up": {
+            "arm": "C=0.003",
+            "layer": 18,
+            "auroc_ho20": 0.9924391900708198,
+            "margin": 0.00012377236021088311
+          }
+        },
+        {
+          "pair": "olmo2_dpo_instruct",
+          "pooling": "usermean",
+          "selection_record": "results/phase2/selection_p2__allenai__OLMo-2-1124-7B-DPO@e34ea60adff2__usermean.json",
+          "selected_recorded": {
+            "arm": "C=0.001",
+            "layer": 16
+          },
+          "selected_grouped": {
+            "arm": "C=0.001",
+            "layer": 16
+          },
+          "selected_cell_unchanged": true,
+          "margin_under_grouping": 0.0,
+          "margin_under_item_split": 0.0,
+          "recorded_runner_up": {
+            "arm": "C=0.003",
+            "layer": 16,
+            "auroc_ho20": 0.9839267209938555,
+            "margin": 2.8497031725138733e-05
+          }
+        },
+        {
+          "pair": "olmo2_sft_dpo",
+          "pooling": "lastgen",
+          "selection_record": "results/phase2/selection_p2__allenai__OLMo-2-1124-7B-SFT@1de02c017511__lastgen.json",
+          "selected_recorded": {
+            "arm": "C=0.001",
+            "layer": 18
+          },
+          "selected_grouped": {
+            "arm": "C=0.003",
+            "layer": 18
+          },
+          "selected_cell_unchanged": false,
+          "margin_under_grouping": 0.00010759404671079054,
+          "margin_under_item_split": 0.00012513470365205226,
+          "recorded_runner_up": {
+            "arm": "C=0.003",
+            "layer": 18,
+            "auroc_ho20": 0.9923866411522066,
+            "margin": 0.00012513470365205226
+          }
+        },
+        {
+          "pair": "olmo2_sft_dpo",
+          "pooling": "usermean",
+          "selection_record": "results/phase2/selection_p2__allenai__OLMo-2-1124-7B-SFT@1de02c017511__usermean.json",
+          "selected_recorded": {
+            "arm": "C=0.001",
+            "layer": 16
+          },
+          "selected_grouped": {
+            "arm": "C=0.001",
+            "layer": 16
+          },
+          "selected_cell_unchanged": true,
+          "margin_under_grouping": 0.0,
+          "margin_under_item_split": 0.0,
+          "recorded_runner_up": {
+            "arm": "C=0.003",
+            "layer": 16,
+            "auroc_ho20": 0.983707772289063,
+            "margin": 5.946077200391642e-06
+          }
+        },
+        {
+          "pair": "phi3_128k_to_35",
+          "pooling": "lastgen",
+          "selection_record": "results/phase2/selection_p2__microsoft__Phi-3-mini-128k-instruct@f3c06aed622e__lastgen.json",
+          "selected_recorded": {
+            "arm": "C=0.003",
+            "layer": 18
+          },
+          "selected_grouped": {
+            "arm": "C=0.01",
+            "layer": 18
+          },
+          "selected_cell_unchanged": false,
+          "margin_under_grouping": 4.359518321661593e-05,
+          "margin_under_item_split": 0.0005440037580080048,
+          "recorded_runner_up": {
+            "arm": "C=0.01",
+            "layer": 18,
+            "auroc_ho20": 0.9780808134958325,
+            "margin": 0.0005440037580080048
+          }
+        },
+        {
+          "pair": "phi3_128k_to_35",
+          "pooling": "usermean",
+          "selection_record": "results/phase2/selection_p2__microsoft__Phi-3-mini-128k-instruct@f3c06aed622e__usermean.json",
+          "selected_recorded": {
+            "arm": "C=0.003",
+            "layer": 18
+          },
+          "selected_grouped": {
+            "arm": "C=0.001",
+            "layer": 18
+          },
+          "selected_cell_unchanged": false,
+          "margin_under_grouping": 0.0004903526332616925,
+          "margin_under_item_split": 0.0003766328700286481,
+          "recorded_runner_up": {
+            "arm": "C=0.001",
+            "layer": 18,
+            "auroc_ho20": 0.9756147563887266,
+            "margin": 0.0003766328700286481
+          }
+        },
+        {
+          "pair": "qwen2_to_25",
+          "pooling": "lastgen",
+          "selection_record": "results/phase2/selection_p2__Qwen__Qwen2-7B-Instruct@f2826a00ceef__lastgen.json",
+          "selected_recorded": {
+            "arm": "C=0.003",
+            "layer": 20
+          },
+          "selected_grouped": {
+            "arm": "C=0.003",
+            "layer": 18
+          },
+          "selected_cell_unchanged": false,
+          "margin_under_grouping": 0.000688792376373093,
+          "margin_under_item_split": 0.0013117995979475827,
+          "recorded_runner_up": {
+            "arm": "C=0.001",
+            "layer": 20,
+            "auroc_ho20": 0.9778786869138628,
+            "margin": 0.0004140259061049534
+          }
+        },
+        {
+          "pair": "qwen2_to_25",
+          "pooling": "usermean",
+          "selection_record": "results/phase2/selection_p2__Qwen__Qwen2-7B-Instruct@f2826a00ceef__usermean.json",
+          "selected_recorded": {
+            "arm": "C=0.003",
+            "layer": 18
+          },
+          "selected_grouped": {
+            "arm": "C=0.003",
+            "layer": 18
+          },
+          "selected_cell_unchanged": true,
+          "margin_under_grouping": 0.0,
+          "margin_under_item_split": 0.0,
+          "recorded_runner_up": {
+            "arm": "C=0.001",
+            "layer": 18,
+            "auroc_ho20": 0.9782210414678184,
+            "margin": 0.0007008612234010725
+          }
+        },
+        {
+          "pair": "tulu3_dpo_final",
+          "pooling": "lastgen",
+          "selection_record": "results/phase2/selection_p2__allenai__Llama-3.1-Tulu-3-8B-DPO@a7beb67e33ff__lastgen.json",
+          "selected_recorded": {
+            "arm": "C=0.001",
+            "layer": 14
+          },
+          "selected_grouped": {
+            "arm": "C=0.003",
+            "layer": 14
+          },
+          "selected_cell_unchanged": false,
+          "margin_under_grouping": 9.380606668196734e-05,
+          "margin_under_item_split": 0.00017015618946358835,
+          "recorded_runner_up": {
+            "arm": "C=0.001",
+            "layer": 16,
+            "auroc_ho20": 0.9922125211153732,
+            "margin": 3.625929744899281e-05
+          }
+        },
+        {
+          "pair": "tulu3_dpo_final",
+          "pooling": "usermean",
+          "selection_record": "results/phase2/selection_p2__allenai__Llama-3.1-Tulu-3-8B-DPO@a7beb67e33ff__usermean.json",
+          "selected_recorded": {
+            "arm": "C=0.001",
+            "layer": 14
+          },
+          "selected_grouped": {
+            "arm": "C=0.001",
+            "layer": 14
+          },
+          "selected_cell_unchanged": true,
+          "margin_under_grouping": 0.0,
+          "margin_under_item_split": 0.0,
+          "recorded_runner_up": {
+            "arm": "C=0.003",
+            "layer": 14,
+            "auroc_ho20": 0.9831854136248209,
+            "margin": 0.0002887572367568092
+          }
+        },
+        {
+          "pair": "tulu3_sft_dpo",
+          "pooling": "lastgen",
+          "selection_record": "results/phase2/selection_p2__allenai__Llama-3.1-Tulu-3-8B-SFT@f2a0b46b0cfd__lastgen.json",
+          "selected_recorded": {
+            "arm": "C=0.001",
+            "layer": 14
+          },
+          "selected_grouped": {
+            "arm": "C=0.001",
+            "layer": 14
+          },
+          "selected_cell_unchanged": true,
+          "margin_under_grouping": 0.0,
+          "margin_under_item_split": 0.0,
+          "recorded_runner_up": {
+            "arm": "C=0.001",
+            "layer": 16,
+            "auroc_ho20": 0.9922839212053125,
+            "margin": 4.2389083904637026e-05
+          }
+        },
+        {
+          "pair": "tulu3_sft_dpo",
+          "pooling": "usermean",
+          "selection_record": "results/phase2/selection_p2__allenai__Llama-3.1-Tulu-3-8B-SFT@f2a0b46b0cfd__usermean.json",
+          "selected_recorded": {
+            "arm": "C=0.001",
+            "layer": 14
+          },
+          "selected_grouped": {
+            "arm": "C=0.001",
+            "layer": 14
+          },
+          "selected_cell_unchanged": true,
+          "margin_under_grouping": 0.0,
+          "margin_under_item_split": 0.0,
+          "recorded_runner_up": {
+            "arm": "C=0.003",
+            "layer": 14,
+            "auroc_ho20": 0.983180492065127,
+            "margin": 0.00010477807171693776
+          }
+        }
+      ],
+      "n_changed": 10
+    }
+  },
+  "headline_cells": [
+    {
+      "pair": "mistral_v01_v02",
+      "pooling": "usermean",
+      "layer": 0,
+      "deployer": false,
+      "log_predicted_d156": -0.2089274763564731,
+      "log_realised_d156": -0.17976804360910856,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.029159432747364544
+    },
+    {
+      "pair": "mistral_v01_v02",
+      "pooling": "usermean",
+      "layer": 6,
+      "deployer": false,
+      "log_predicted_d156": -2.1098214509622637,
+      "log_realised_d156": -1.8293997397850903,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.2804217111771734
+    },
+    {
+      "pair": "mistral_v01_v02",
+      "pooling": "usermean",
+      "layer": 12,
+      "deployer": false,
+      "log_predicted_d156": -2.480564479058079,
+      "log_realised_d156": -2.134071400019001,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.3464930790390781
+    },
+    {
+      "pair": "mistral_v01_v02",
+      "pooling": "usermean",
+      "layer": 16,
+      "deployer": true,
+      "log_predicted_d156": -3.9000410682975053,
+      "log_realised_d156": -2.9012991942748614,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.9987418740226439
+    },
+    {
+      "pair": "mistral_v01_v02",
+      "pooling": "usermean",
+      "layer": 20,
+      "deployer": false,
+      "log_predicted_d156": -3.6311261999923015,
+      "log_realised_d156": -2.462452876627716,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 1.1686733233645854
+    },
+    {
+      "pair": "mistral_v01_v02",
+      "pooling": "usermean",
+      "layer": 26,
+      "deployer": false,
+      "log_predicted_d156": -2.591901382351674,
+      "log_realised_d156": -2.4753222390791,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.11657914327257402
+    },
+    {
+      "pair": "mistral_v01_v02",
+      "pooling": "usermean",
+      "layer": 32,
+      "deployer": false,
+      "log_predicted_d156": -0.7223041161513266,
+      "log_realised_d156": -0.32514102686593555,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.39716308928539107
+    },
+    {
+      "pair": "llama3_to_31",
+      "pooling": "usermean",
+      "layer": 0,
+      "deployer": false,
+      "log_predicted_d156": 0.6142072034867152,
+      "log_realised_d156": 0.6512604330376144,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.03705322955089918
+    },
+    {
+      "pair": "llama3_to_31",
+      "pooling": "usermean",
+      "layer": 6,
+      "deployer": false,
+      "log_predicted_d156": 1.2223621585000661,
+      "log_realised_d156": 1.4347556599325617,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.21239350143249558
+    },
+    {
+      "pair": "llama3_to_31",
+      "pooling": "usermean",
+      "layer": 12,
+      "deployer": false,
+      "log_predicted_d156": 0.7958746197752389,
+      "log_realised_d156": 0.9265671553613137,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.13069253558607485
+    },
+    {
+      "pair": "llama3_to_31",
+      "pooling": "usermean",
+      "layer": 14,
+      "deployer": true,
+      "log_predicted_d156": 0.8009600284747352,
+      "log_realised_d156": 0.8128150345186917,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.011855006043956506
+    },
+    {
+      "pair": "llama3_to_31",
+      "pooling": "usermean",
+      "layer": 20,
+      "deployer": false,
+      "log_predicted_d156": 0.9333226156114413,
+      "log_realised_d156": 0.8630850981299247,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.07023751748151652
+    },
+    {
+      "pair": "llama3_to_31",
+      "pooling": "usermean",
+      "layer": 26,
+      "deployer": false,
+      "log_predicted_d156": 0.8514305943221805,
+      "log_realised_d156": 0.8284393919088279,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.02299120241335262
+    },
+    {
+      "pair": "llama3_to_31",
+      "pooling": "usermean",
+      "layer": 32,
+      "deployer": false,
+      "log_predicted_d156": 0.27425747618300816,
+      "log_realised_d156": 0.43215023927365803,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.15789276309064987
+    },
+    {
+      "pair": "qwen2_to_25",
+      "pooling": "usermean",
+      "layer": 0,
+      "deployer": false,
+      "log_predicted_d156": 1.2550948819881718,
+      "log_realised_d156": 1.8470856761252292,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.5919907941370575
+    },
+    {
+      "pair": "qwen2_to_25",
+      "pooling": "usermean",
+      "layer": 6,
+      "deployer": false,
+      "log_predicted_d156": 0.8984046210930443,
+      "log_realised_d156": 1.2456576662699101,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.34725304517686584
+    },
+    {
+      "pair": "qwen2_to_25",
+      "pooling": "usermean",
+      "layer": 12,
+      "deployer": false,
+      "log_predicted_d156": 0.14108573452548995,
+      "log_realised_d156": 0.4036810727803734,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.26259533825488346
+    },
+    {
+      "pair": "qwen2_to_25",
+      "pooling": "usermean",
+      "layer": 16,
+      "deployer": false,
+      "log_predicted_d156": -0.4214053268177595,
+      "log_realised_d156": 0.2787556388648067,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.7001609656825662
+    },
+    {
+      "pair": "qwen2_to_25",
+      "pooling": "usermean",
+      "layer": 18,
+      "deployer": true,
+      "log_predicted_d156": -0.2235198750847083,
+      "log_realised_d156": 0.027269905063192417,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.2507897801479007
+    },
+    {
+      "pair": "qwen2_to_25",
+      "pooling": "usermean",
+      "layer": 22,
+      "deployer": false,
+      "log_predicted_d156": 0.04991374334169614,
+      "log_realised_d156": -0.21970523733887337,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.2696189806805695
+    },
+    {
+      "pair": "qwen2_to_25",
+      "pooling": "usermean",
+      "layer": 28,
+      "deployer": false,
+      "log_predicted_d156": -1.6780499226296237,
+      "log_realised_d156": -2.7092596524390773,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 1.0312097298094536
+    },
+    {
+      "pair": "phi3_128k_to_35",
+      "pooling": "usermean",
+      "layer": 0,
+      "deployer": false,
+      "log_predicted_d156": -0.019623678278003886,
+      "log_realised_d156": -0.02696462302495678,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.007340944746952894
+    },
+    {
+      "pair": "phi3_128k_to_35",
+      "pooling": "usermean",
+      "layer": 6,
+      "deployer": false,
+      "log_predicted_d156": 0.11148600827079362,
+      "log_realised_d156": 0.22461342809625967,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.11312741982546605
+    },
+    {
+      "pair": "phi3_128k_to_35",
+      "pooling": "usermean",
+      "layer": 12,
+      "deployer": false,
+      "log_predicted_d156": 0.37193481942801404,
+      "log_realised_d156": 0.40378972314218065,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.031854903714166605
+    },
+    {
+      "pair": "phi3_128k_to_35",
+      "pooling": "usermean",
+      "layer": 18,
+      "deployer": true,
+      "log_predicted_d156": 0.04858326433826285,
+      "log_realised_d156": 0.15824553271991887,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.10966226838165602
+    },
+    {
+      "pair": "phi3_128k_to_35",
+      "pooling": "usermean",
+      "layer": 20,
+      "deployer": false,
+      "log_predicted_d156": 0.2394838351522845,
+      "log_realised_d156": 0.29703509913982223,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.05755126398753774
+    },
+    {
+      "pair": "phi3_128k_to_35",
+      "pooling": "usermean",
+      "layer": 26,
+      "deployer": false,
+      "log_predicted_d156": 0.2713549251488957,
+      "log_realised_d156": 0.22020031151525632,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.05115461363363938
+    },
+    {
+      "pair": "phi3_128k_to_35",
+      "pooling": "usermean",
+      "layer": 32,
+      "deployer": false,
+      "log_predicted_d156": 0.6673286272610816,
+      "log_realised_d156": 0.6543548173601714,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.012973809900910127
+    },
+    {
+      "pair": "olmo2_base_sft",
+      "pooling": "usermean",
+      "layer": 0,
+      "deployer": false,
+      "log_predicted_d156": -0.04839505965504759,
+      "log_realised_d156": 0.06825829621944726,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.11665335587449485
+    },
+    {
+      "pair": "olmo2_base_sft",
+      "pooling": "usermean",
+      "layer": 6,
+      "deployer": false,
+      "log_predicted_d156": 1.1163878205055826,
+      "log_realised_d156": 1.5082992118970557,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.39191139139147313
+    },
+    {
+      "pair": "olmo2_base_sft",
+      "pooling": "usermean",
+      "layer": 12,
+      "deployer": false,
+      "log_predicted_d156": 0.9392818779437058,
+      "log_realised_d156": 1.4382116945882952,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.49892981664458946
+    },
+    {
+      "pair": "olmo2_base_sft",
+      "pooling": "usermean",
+      "layer": 14,
+      "deployer": true,
+      "log_predicted_d156": 1.5072368235989042,
+      "log_realised_d156": 1.7704939190645623,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.2632570954656581
+    },
+    {
+      "pair": "olmo2_base_sft",
+      "pooling": "usermean",
+      "layer": 20,
+      "deployer": false,
+      "log_predicted_d156": 1.2075036282193397,
+      "log_realised_d156": 1.288517738811046,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.08101411059170638
+    },
+    {
+      "pair": "olmo2_base_sft",
+      "pooling": "usermean",
+      "layer": 26,
+      "deployer": false,
+      "log_predicted_d156": 0.951889371226264,
+      "log_realised_d156": 0.9687084633833682,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.0168190921571042
+    },
+    {
+      "pair": "olmo2_base_sft",
+      "pooling": "usermean",
+      "layer": 32,
+      "deployer": false,
+      "log_predicted_d156": 1.079700085618651,
+      "log_realised_d156": 1.105234893406187,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.02553480778753614
+    },
+    {
+      "pair": "olmo2_sft_dpo",
+      "pooling": "usermean",
+      "layer": 0,
+      "deployer": false,
+      "log_predicted_d156": 0.0001827240735231191,
+      "log_realised_d156": 7.941298821193091e-05,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.00010331108531118818
+    },
+    {
+      "pair": "olmo2_sft_dpo",
+      "pooling": "usermean",
+      "layer": 6,
+      "deployer": false,
+      "log_predicted_d156": -0.018633287924891603,
+      "log_realised_d156": 0.018390293693410668,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.03702358161830227
+    },
+    {
+      "pair": "olmo2_sft_dpo",
+      "pooling": "usermean",
+      "layer": 12,
+      "deployer": false,
+      "log_predicted_d156": -0.009574706537906291,
+      "log_realised_d156": 0.023182021541122963,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.032756728079029254
+    },
+    {
+      "pair": "olmo2_sft_dpo",
+      "pooling": "usermean",
+      "layer": 16,
+      "deployer": true,
+      "log_predicted_d156": 0.03456206412089311,
+      "log_realised_d156": 0.049125057515411304,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.014562993394518192
+    },
+    {
+      "pair": "olmo2_sft_dpo",
+      "pooling": "usermean",
+      "layer": 20,
+      "deployer": false,
+      "log_predicted_d156": -0.18316552596428368,
+      "log_realised_d156": -0.12786794351755182,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.05529758244673186
+    },
+    {
+      "pair": "olmo2_sft_dpo",
+      "pooling": "usermean",
+      "layer": 26,
+      "deployer": false,
+      "log_predicted_d156": -0.11179848875338885,
+      "log_realised_d156": -0.07437906127836803,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.03741942747502082
+    },
+    {
+      "pair": "olmo2_sft_dpo",
+      "pooling": "usermean",
+      "layer": 32,
+      "deployer": false,
+      "log_predicted_d156": 0.23529601106134723,
+      "log_realised_d156": 0.30395177464039685,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.06865576357904962
+    },
+    {
+      "pair": "olmo2_dpo_instruct",
+      "pooling": "usermean",
+      "layer": 0,
+      "deployer": false,
+      "log_predicted_d156": -0.00030856929321690737,
+      "log_realised_d156": -7.78279815135832e-05,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.00023074131170332417
+    },
+    {
+      "pair": "olmo2_dpo_instruct",
+      "pooling": "usermean",
+      "layer": 6,
+      "deployer": false,
+      "log_predicted_d156": -0.008551349522439322,
+      "log_realised_d156": -0.004300358016422518,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.004250991506016805
+    },
+    {
+      "pair": "olmo2_dpo_instruct",
+      "pooling": "usermean",
+      "layer": 12,
+      "deployer": false,
+      "log_predicted_d156": 0.03071665318342351,
+      "log_realised_d156": 0.04013507670632487,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.009418423522901363
+    },
+    {
+      "pair": "olmo2_dpo_instruct",
+      "pooling": "usermean",
+      "layer": 16,
+      "deployer": true,
+      "log_predicted_d156": 0.048033704285583734,
+      "log_realised_d156": 0.055071850805082506,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.0070381465194987725
+    },
+    {
+      "pair": "olmo2_dpo_instruct",
+      "pooling": "usermean",
+      "layer": 20,
+      "deployer": false,
+      "log_predicted_d156": 0.03964740644395495,
+      "log_realised_d156": 0.039301797058683925,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.0003456093852710271
+    },
+    {
+      "pair": "olmo2_dpo_instruct",
+      "pooling": "usermean",
+      "layer": 26,
+      "deployer": false,
+      "log_predicted_d156": 0.01891061512856263,
+      "log_realised_d156": 0.014864232752825583,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.0040463823757370485
+    },
+    {
+      "pair": "olmo2_dpo_instruct",
+      "pooling": "usermean",
+      "layer": 32,
+      "deployer": false,
+      "log_predicted_d156": 0.030257907508621763,
+      "log_realised_d156": 0.04240790538978971,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.012149997881167947
+    },
+    {
+      "pair": "tulu3_sft_dpo",
+      "pooling": "usermean",
+      "layer": 0,
+      "deployer": false,
+      "log_predicted_d156": 0.00016843549013237586,
+      "log_realised_d156": 0.00031656813192226444,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.00014813264178988858
+    },
+    {
+      "pair": "tulu3_sft_dpo",
+      "pooling": "usermean",
+      "layer": 6,
+      "deployer": false,
+      "log_predicted_d156": -0.01978647821206679,
+      "log_realised_d156": -0.0009774188934877348,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.018809059318579055
+    },
+    {
+      "pair": "tulu3_sft_dpo",
+      "pooling": "usermean",
+      "layer": 12,
+      "deployer": false,
+      "log_predicted_d156": -0.2947439488741844,
+      "log_realised_d156": -0.1367579391304262,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.15798600974375823
+    },
+    {
+      "pair": "tulu3_sft_dpo",
+      "pooling": "usermean",
+      "layer": 14,
+      "deployer": true,
+      "log_predicted_d156": -0.5832773133426585,
+      "log_realised_d156": -0.2493027140907783,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.3339745992518802
+    },
+    {
+      "pair": "tulu3_sft_dpo",
+      "pooling": "usermean",
+      "layer": 20,
+      "deployer": false,
+      "log_predicted_d156": -0.5791624757644178,
+      "log_realised_d156": -0.37193622114708097,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.20722625461733685
+    },
+    {
+      "pair": "tulu3_sft_dpo",
+      "pooling": "usermean",
+      "layer": 26,
+      "deployer": false,
+      "log_predicted_d156": -0.48215178695324673,
+      "log_realised_d156": -0.3249597200976027,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.15719206685564402
+    },
+    {
+      "pair": "tulu3_sft_dpo",
+      "pooling": "usermean",
+      "layer": 32,
+      "deployer": false,
+      "log_predicted_d156": 0.45751279648885185,
+      "log_realised_d156": 0.39570874987168525,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.0618040466171666
+    },
+    {
+      "pair": "tulu3_dpo_final",
+      "pooling": "usermean",
+      "layer": 0,
+      "deployer": false,
+      "log_predicted_d156": 0.0007740292846969471,
+      "log_realised_d156": 0.0006945440120346595,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 7.948527266228762e-05
+    },
+    {
+      "pair": "tulu3_dpo_final",
+      "pooling": "usermean",
+      "layer": 6,
+      "deployer": false,
+      "log_predicted_d156": -0.04908651768589936,
+      "log_realised_d156": 0.0020938083811531346,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.051180326067052494
+    },
+    {
+      "pair": "tulu3_dpo_final",
+      "pooling": "usermean",
+      "layer": 12,
+      "deployer": false,
+      "log_predicted_d156": -0.16046736303960435,
+      "log_realised_d156": -0.11742729913881264,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.04304006390079171
+    },
+    {
+      "pair": "tulu3_dpo_final",
+      "pooling": "usermean",
+      "layer": 14,
+      "deployer": true,
+      "log_predicted_d156": -0.1545274313069657,
+      "log_realised_d156": -0.09985173618381894,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.05467569512314675
+    },
+    {
+      "pair": "tulu3_dpo_final",
+      "pooling": "usermean",
+      "layer": 20,
+      "deployer": false,
+      "log_predicted_d156": -0.1837325064318309,
+      "log_realised_d156": -0.12633562761846923,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.05739687881336167
+    },
+    {
+      "pair": "tulu3_dpo_final",
+      "pooling": "usermean",
+      "layer": 26,
+      "deployer": false,
+      "log_predicted_d156": -0.17082427580718818,
+      "log_realised_d156": -0.13147069151521815,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.03935358429197003
+    },
+    {
+      "pair": "tulu3_dpo_final",
+      "pooling": "usermean",
+      "layer": 32,
+      "deployer": false,
+      "log_predicted_d156": -0.14539298859068125,
+      "log_realised_d156": -0.07073445490547492,
+      "n_draws_in_estimate": 1000,
+      "abs_log_realised_over_predicted": 0.07465853368520634
+    }
+  ]
+}

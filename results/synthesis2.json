@@ -1,0 +1,1019 @@
+{
+  "schema_version": 1,
+  "run_kind": "synthesis2",
+  "utc": "2026-09-20T05:53:27+00:00",
+  "git": {
+    "commit": "c0a68aa71dfa72b0c40a8bdcaac9f210bb4e45f2",
+    "branch": "master",
+    "dirty": true,
+    "dirty_file_count": 1,
+    "dirty_files": [
+      "M src/synthesis2.py"
+    ]
+  },
+  "env": {
+    "python": "3.12.10",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "machine": "AMD64"
+  },
+  "populations": {
+    "repair": [
+      "repair_mistral_base2instruct",
+      "repair_gemma2_base2instruct",
+      "repair_llama3_base2instruct",
+      "repair_llama31_base2instruct",
+      "repair_qwen_base2instruct",
+      "repair_olmo_base2instruct",
+      "repair_llama3_to_31",
+      "repair_WG_mistral_base2instruct",
+      "repair_WG_llama3_base2instruct"
+    ],
+    "depth": [
+      "depth_mistral_base2instruct",
+      "depth_gemma2_base2instruct",
+      "depth_llama3_base2instruct",
+      "depth_llama31_base2instruct",
+      "depth_qwen_base2instruct",
+      "depth_olmo_base2instruct",
+      "depth_llama3_to_31",
+      "depth_WG_mistral_base2instruct",
+      "depth_WG_llama3_base2instruct",
+      "depth_mistral_v01_v02_dense"
+    ],
+    "moment": [
+      "moment_mistral_base2instruct_v2",
+      "moment_gemma2_base2instruct",
+      "moment_llama3_base2instruct",
+      "moment_llama31_base2instruct",
+      "moment_qwen_base2instruct",
+      "moment_olmo_base2instruct",
+      "moment_llama3_to_31"
+    ],
+    "alignvar": [
+      "alignvar_mistral_base2instruct_v2",
+      "alignvar_gemma2_base2instruct",
+      "alignvar_llama3_base2instruct",
+      "alignvar_llama31_base2instruct",
+      "alignvar_qwen_base2instruct",
+      "alignvar_olmo_base2instruct",
+      "alignvar_llama3_to_31"
+    ],
+    "lora_arms": {
+      "general (alpaca)": [
+        "loraA100_mistral_s25",
+        "loraA100_mistral_s100",
+        "loraA100_mistral_s400"
+      ],
+      "safety (hh-harmless)": [
+        "lorasafe_mistral_s25",
+        "lorasafe_mistral_s100",
+        "lorasafe_mistral_s400"
+      ],
+      "safety (pku-saferlhf)": [
+        "lorapku_mistral_s25",
+        "lorapku_mistral_s100",
+        "lorapku_mistral_s400"
+      ]
+    },
+    "controls": {
+      "gpu_change": [
+        "depth_hw_v100_a100",
+        "repair_hw_v100_a100",
+        "hw_v100_vs_a100_mistral"
+      ]
+    },
+    "superseded_excluded": {
+      "repair_lora_mistral_s25": "mixed-hardware run, superseded by loraA100 (D-092)",
+      "repair_lora_mistral_s100": "mixed-hardware run, superseded by loraA100 (D-092)",
+      "repair_lora_mistral_s400": "mixed-hardware run, superseded by loraA100 (D-092)",
+      "depth_lora_mistral_s25": "mixed-hardware run, superseded by loraA100 (D-092)",
+      "depth_lora_mistral_s100": "mixed-hardware run, superseded by loraA100 (D-092)",
+      "depth_lora_mistral_s400": "mixed-hardware run, superseded by loraA100 (D-092)",
+      "moment_lora_mistral_s25": "mixed-hardware run, superseded by loraA100 (D-092)",
+      "moment_lora_mistral_s100": "mixed-hardware run, superseded by loraA100 (D-092)",
+      "moment_lora_mistral_s400": "mixed-hardware run, superseded by loraA100 (D-092)",
+      "overrefusal_lora_mistral_s25": "mixed-hardware run, superseded by loraA100 (D-092)",
+      "overrefusal_lora_mistral_s100": "mixed-hardware run, superseded by loraA100 (D-092)",
+      "overrefusal_lora_mistral_s400": "mixed-hardware run, superseded by loraA100 (D-092)",
+      "preregistration_verdict_lora": "mixed-hardware scoring, superseded by loraA100 (D-092)",
+      "moment_mistral_base2instruct": "earlier run missing the align_restd/align_affine arms; _v2 supersedes",
+      "depth_mistral_v01_v02": "sparse layer grid understated the damage; the dense grid supersedes (D-062)"
+    }
+  },
+  "input_sha256": {
+    "depth_mistral_base2instruct.json": "092d1e3f470de877cdd83e3fc5f60fdbd2a1cfe9f1ecc102373e9352696e5ebd",
+    "depth_gemma2_base2instruct.json": "9bc8c1b69936c407ecaa8fa4abbc120fdaac16cd43edb6c45525677c18a66573",
+    "depth_llama3_base2instruct.json": "548a9af7421fef83bc745a4a5ff5106e93702e7902d17b8d18c82b881f709d08",
+    "depth_llama31_base2instruct.json": "ace797a999c439e49a6ea1ef322f8e60c5206afa0de35c71f46d99377404e403",
+    "depth_qwen_base2instruct.json": "fe5809b174c8bf70a57763c88319250b80295c6002cdd3f1a39930099e808b3e",
+    "depth_olmo_base2instruct.json": "36c989d11fdfd09d19275bb81f42c3fff204926ee8ba6d87062473e6898dba7a",
+    "depth_llama3_to_31.json": "57a51e23d6ab7058bd07d188a5398c2f9747a465bfe7455d6c3697fc91441d3a",
+    "depth_WG_mistral_base2instruct.json": "be7ef9293dd2629f4fc9803a774d0a0dc58727880ee133a82f17e7e04f616421",
+    "depth_WG_llama3_base2instruct.json": "67cdece84a1a02db5d8674acd230ca3f7053ca68db542789ab62266379506232",
+    "depth_mistral_v01_v02_dense.json": "50db5ba2d93a31d29cd753d0584f3644ece7afcb5492c87633e79acbb458f6e9",
+    "repair_mistral_base2instruct.json": "0e43fa94a11c44ce59b794bdbfa19fe5d52dba34911432603d2d7d0230a066bc",
+    "noisefloor_repair_mistral_base2instruct.json": "a9465221985133da3fad2e146f14c2986978116f5dc9a4e235cbe50ebb3f8d28",
+    "repair_gemma2_base2instruct.json": "de6c093e4d1e8af37f9242227a3af41cfc66dcc9960b273f7c37559bbd630124",
+    "noisefloor_repair_gemma2_base2instruct.json": "1c687d9d85d32e840a7ae81f810e536a13f7986c85e9a1794cf836ffa9e8a384",
+    "repair_llama3_base2instruct.json": "0712048ca919e96861b70361d1f80dcb391d7fd26f39090e4612b4003f3ae67a",
+    "noisefloor_repair_llama3_base2instruct.json": "dcc500ffbcf38aae355acd32ce87c1c249db33636e371f400e72f31f563fccf1",
+    "repair_llama31_base2instruct.json": "f11aa2b5951043adbb1b0f31ae98307e2dd5a9e89af3794d5a033c322cc67d79",
+    "noisefloor_repair_llama31_base2instruct.json": "62ad4bdc90d3c3b560e8749c04e55c28342c1cfcfdd56320c47f8cccf555d6de",
+    "repair_qwen_base2instruct.json": "3ac84758f2278978759542d9a64720fd882c64e2b2e3c08510c3f5b251e4c27f",
+    "noisefloor_repair_qwen_base2instruct.json": "c69de988527124519cbec2e1f82f11b06e85dd2c531978ccbf47b4c36cf85106",
+    "repair_olmo_base2instruct.json": "2cdfcedc673497ec641357fdadb670179aaa92b2d3db671c22efa5114fd90ee5",
+    "noisefloor_repair_olmo_base2instruct.json": "2430ffea316de7e9d004d8f935a0b6eb3088fb11bd51f362587c480a0ac0d46c",
+    "repair_llama3_to_31.json": "695a7cb2d71a32075e379f644ccb5c81181ee7f53532bae03da10d73b965c17f",
+    "noisefloor_repair_llama3_to_31.json": "447f7b860578668b9676716de38f60433643b36471064bb6110942ad498817a3",
+    "repair_WG_mistral_base2instruct.json": "ebabd573ec0f2ab264f7e888caf665b5019a5ed83c504f135777f7ad6dc11232",
+    "noisefloor_repair_WG_mistral_base2instruct.json": "9b276318f5eaa24dea597a9038cee508bdb04062e5030c3fd78b18b423b488ed",
+    "repair_WG_llama3_base2instruct.json": "38461548dfb76f74f74e985cbee90be88b58727871cc4eecb5a716681963a2cd",
+    "noisefloor_repair_WG_llama3_base2instruct.json": "d89577f8169830a5107db0557fa4b66050f2bdca5c242805283e368cd846777b",
+    "repair_np_mistral_base2instruct.json": "59280a2af9830920f29547c233e6419c8b0541383034c3d94810c8de27f9dc08",
+    "repair_np_qwen_base2instruct.json": "1667f99e435a1f0f4692b4156d040d150ddff138324a39b33facdc95e25021d0",
+    "moment_mistral_base2instruct_v2.json": "b7a7b0d0766016d71ad3d227e0a3314026dd5ed27670efcb6c362a7dbc590cd1",
+    "moment_gemma2_base2instruct.json": "87fa3f1190d65a514b11152dd5c6acaf0029432d46d1150cba7a29cdc9e36c05",
+    "moment_llama3_base2instruct.json": "2138ddd53b701dc624b9201745274c142510ce6b8b81dc2dd5154c9c4181aa3c",
+    "moment_llama31_base2instruct.json": "571d64bdd5fc83b2da321eeb7f85f960cb72e59d98e7671775b37b4dd49f348e",
+    "moment_qwen_base2instruct.json": "73e75e632f5b92dd5a74a95eae91754105c51f3d3dddf378ecbefc417f1ba99e",
+    "moment_olmo_base2instruct.json": "cdb2965b1d3c544063f5bafb01ed9cedc26e8092d5c935097304935f55faa935",
+    "moment_llama3_to_31.json": "451bdba59c935f8a354b3231c377772f647d42828b3e7748c384db5a69a223fd",
+    "alignvar_mistral_base2instruct_v2.json": "5e4239994ecda07bbdbf3a472a32766f43e5b7581e712deeb346b90c251ec0be",
+    "alignvar_gemma2_base2instruct.json": "0e952da99a0e0e5ade2e15a9da2501a30861e53fa07d477eab1e8fb3a0aa635c",
+    "alignvar_llama3_base2instruct.json": "790e741cbc5db3efa472e6aa46b7072431dc8a628b34d627ee6fa16577051906",
+    "alignvar_llama31_base2instruct.json": "d95880b71625ebd504dd6573a46d8b7987724a1dd916ff7d224d21857114097e",
+    "alignvar_qwen_base2instruct.json": "fd1157689c9abf4431370cf0282184019b71e91a0e2791ccbc006b9d29c536c8",
+    "alignvar_olmo_base2instruct.json": "cd842633d047a1a1487bb415e875ea5585399daa5dabbf9162216340e315e624",
+    "alignvar_llama3_to_31.json": "7ada93c445bf5c467879affc291043f115cc6576694f8dabb2b2950b5e7a5273",
+    "separability_test.json": "63010cf5a418d134ad701a70b8978bf755ad40c945787366d3e72cb94cbed32b",
+    "repair_loraA100_mistral_s25.json": "a44cb023ea7aa315fcbd4873b38725d2e7fa300d2253142f0882bfef421f0b58",
+    "depth_loraA100_mistral_s25.json": "0ea5ec95b405753dff184c782aaff30c4bd385af7f22e6d05bb9c44c019c6948",
+    "shiftalign_lora_general_s25.json": "ffe338274b7e39bbafc30b8a5980c8cfdd7b387a8ca03a910b17f87148c8c141",
+    "repair_loraA100_mistral_s100.json": "decb5717043b679613ede2a5e97db66a4c741e1958889eee0362dde836614628",
+    "depth_loraA100_mistral_s100.json": "0318c8585993bb1d31ac6f0f09399a0ebd11be0d5fc1709fed87afbd426f3640",
+    "shiftalign_lora_general_s100.json": "fe43c9ba8eebae19b5e5458079b477f6c54dadbb1eb849928c1d51220c39546c",
+    "repair_loraA100_mistral_s400.json": "00cebac1b57e0ac67c1d5d2c7fb35f380614c35af79d6ccb3b2ed19cdb68c2ae",
+    "depth_loraA100_mistral_s400.json": "153414166972ff8053ae92c9f51c378df9ef2240e17b59e55ed7b7d078cf9844",
+    "shiftalign_lora_general_s400.json": "eb8d5b8ba707e1827e02d81df0c99a3a8fc665c57b6b79353e09d9502d531c79",
+    "repair_lorasafe_mistral_s25.json": "8ca5c72472f07a9203900babcf7cbd22cc4eebc99d40350ebd0be86dc087dcfd",
+    "depth_lorasafe_mistral_s25.json": "960d0ae90da0c2d966784286182d62e240b03a28b79066e6838cda8a3d420f02",
+    "shiftalign_lora_safety_s25.json": "ee77c41c98174ddfdb5e35f40c04d9adb02ae40eb1eecd99b88929b3e50c7e3b",
+    "repair_lorasafe_mistral_s100.json": "d7b07eb6484818b93d79f0c6a90e2b6df5563345ab360f766b0828f2e2c96f37",
+    "depth_lorasafe_mistral_s100.json": "df74ea63b2c566737c8c893be0b7117006817dca6a884e1bf65485f1ed82ba46",
+    "shiftalign_lora_safety_s100.json": "9022841c8bbb22932b1cc31e9ce66074dc7f5fa94cabf7cfa3f3813d2486df56",
+    "repair_lorasafe_mistral_s400.json": "13f5ffd17baa40ccea60751b1f421ce5f50865a9c66dba3a1721f5955af6f81a",
+    "depth_lorasafe_mistral_s400.json": "a7a98e5922a30450c7c209983ce3ac87c0f1712036a9d8c87c9270e982b76fe6",
+    "shiftalign_lora_safety_s400.json": "aac10f82593a75d2a3ebe13b2de7fa41c57d2eda18874e9be2466fa44caacd8b",
+    "repair_lorapku_mistral_s25.json": "bd15663c6658e2dad313fa512c9d97da09a67233cdb6ebe1b4271633615c6c02",
+    "depth_lorapku_mistral_s25.json": "cb3eeba9533fa73976347f67fcd52f174142221b3cc117b4ee438af493957837",
+    "shiftalign_lora_pku_s25.json": "431a05fdd4a7749ed53350d5405dba322acf05f1c8145d13558f20e753a70b4d",
+    "repair_lorapku_mistral_s100.json": "75b7b6d3b5ff11febfe6d5a9b1d70baecbcb925377ac761dcf07697e9565b2c3",
+    "depth_lorapku_mistral_s100.json": "e5a85adc00cd938a5609ed47a105f6a36b10d0b2acf8b2882c80bbe27cafb691",
+    "shiftalign_lora_pku_s100.json": "c1eb768a52dd4b58fc790856ab56c9190806bf5e08e1ff7e1bb16917e28344d2",
+    "repair_lorapku_mistral_s400.json": "6e7836c17392d96e013faf7d9ad21bfd6bd3b5d5f2cde11be3f652734cc6d741",
+    "depth_lorapku_mistral_s400.json": "9a2ea0a26c714475a70650d5bc0b9913fe49ab60679e8c3b7028ef6b4cd49ed8",
+    "shiftalign_lora_pku_s400.json": "8f3f3cc9f7195197d496db4d064da6675a73185e6fbf3c2823242d0de0cd2465",
+    "depth_hw_v100_a100.json": "8e226a4a9ef291f78509e9fa42299c33f3cf622151c69064d7e8ddbbc555ed81",
+    "repair_hw_v100_a100.json": "41e843bf1f25918b14dab765360cd1d79901499aa4e57945991d49b740dfa387",
+    "hw_v100_vs_a100_mistral.json": "ef80c3fb09499a04a5faeb55b51141be0fad289c57751ab6265877ee4ae7b79a",
+    "contamrobust_general_s25.json": "2e83c772ce5fc6589ee2eb9a9366b96ff29216479de54c6180ab6057711d4e33",
+    "contamrobust_hh_s25.json": "8c0f2faa329adc13c069ba67f099f70285a239b95f9fd5c74098399f14b5f7f7",
+    "contamrobust_hh_s400.json": "b00217d439138577c5e38182f7a12dda43907bd872887d5f0980929366038d16",
+    "overrefusal_mistral.json": "4c2188340bcee177b22cdb8aba14f21d772fcd6aee7091d7d70b7c718137b59f",
+    "overrefusal_gemma2.json": "642f068617f863466a5ea08606de56f35afbc632f45af8ba3dac8339bc62025c",
+    "overrefusal_llama3.json": "8d551f9e7056c9ee2f6d99be72f1acb725678b8845300c05d9ca962eec8cd408",
+    "overrefusal_llama31.json": "d32ef7429eb50a223c68db0e0107a32cf3c3698a2192edb7658b4046efd67257",
+    "overrefusal_qwen.json": "e2e253a2615bd2dc189c03d1d8fddc42fc5dc8c5451646a80562b60ba50b361a",
+    "overrefusal_mistral_v01_v02.json": "244b226afc2f8166320e71bcb6034b573393b61fe738c0fe61a854fd6582d4e7",
+    "overrefusal_llama3_to_31.json": "4d11a63f75ac6e05e76a0888d1901fc5c239ba1597521572459b05ddd290ff91",
+    "advstrat_mistral.json": "8e8a7ca132bd950e20792901bc60c4ccf9cf0c4b3fa25e4b086938be36600856",
+    "advstrat_llama3.json": "e451130eb9f3daf2b12cfed9ba56af11746bbfc1029603cb505dccd41c30775b",
+    "auc_criterion_audit.json": "85006a1ff290596f9dbcc6ec82d822e3fb7f9affd83c67f41449d112d353b10a",
+    "auc_criterion_audit_lora.json": "56ea55bbb1476aef9eff16933f6f8bf0bad5163597dfc46178dddf57ab40e4e5"
+  },
+  "damage": {
+    "pairs": [
+      {
+        "pair": "mistral_base2instruct",
+        "worst_fpr_ratio": 59.239999999999995,
+        "min_fpr_ratio": 0.72,
+        "max_auroc_drop": 0.16533910000000002,
+        "min_cka": 0.9184446365060236,
+        "n_layers": 17
+      },
+      {
+        "pair": "gemma2_base2instruct",
+        "worst_fpr_ratio": 9.559999999999999,
+        "min_fpr_ratio": 0.02,
+        "max_auroc_drop": 0.009120949999999994,
+        "min_cka": 0.8554267683637705,
+        "n_layers": 22
+      },
+      {
+        "pair": "llama3_base2instruct",
+        "worst_fpr_ratio": 13.54,
+        "min_fpr_ratio": 0.26,
+        "max_auroc_drop": 0.03675029999999999,
+        "min_cka": 0.9436276567205577,
+        "n_layers": 17
+      },
+      {
+        "pair": "llama31_base2instruct",
+        "worst_fpr_ratio": 10.98,
+        "min_fpr_ratio": 0.12000000000000001,
+        "max_auroc_drop": 0.041788549999999994,
+        "min_cka": 0.9600031380286268,
+        "n_layers": 17
+      },
+      {
+        "pair": "qwen_base2instruct",
+        "worst_fpr_ratio": 6.859999999999999,
+        "min_fpr_ratio": 0.1,
+        "max_auroc_drop": 0.03647940000000005,
+        "min_cka": 0.9342721430107983,
+        "n_layers": 15
+      },
+      {
+        "pair": "olmo_base2instruct",
+        "worst_fpr_ratio": 3.9400000000000004,
+        "min_fpr_ratio": 0.5800000000000001,
+        "max_auroc_drop": 0.006527250000000029,
+        "min_cka": 0.866377352740704,
+        "n_layers": 17
+      },
+      {
+        "pair": "llama3_to_31",
+        "worst_fpr_ratio": 12.18,
+        "min_fpr_ratio": 1.22,
+        "max_auroc_drop": 0.037396050000000014,
+        "min_cka": 0.9930164493225427,
+        "n_layers": 17
+      },
+      {
+        "pair": "WG_mistral_base2instruct",
+        "worst_fpr_ratio": 21.740000000000002,
+        "min_fpr_ratio": 0.3,
+        "max_auroc_drop": 0.10438060000000002,
+        "min_cka": 0.9089036941249075,
+        "n_layers": 17
+      },
+      {
+        "pair": "WG_llama3_base2instruct",
+        "worst_fpr_ratio": 5.4799999999999995,
+        "min_fpr_ratio": 0.27999999999999997,
+        "max_auroc_drop": 0.014157850000000027,
+        "min_cka": 0.9522417306725216,
+        "n_layers": 17
+      },
+      {
+        "pair": "mistral_v01_v02_dense",
+        "worst_fpr_ratio": 3.66,
+        "min_fpr_ratio": 0.32,
+        "max_auroc_drop": 0.021053900000000004,
+        "min_cka": 0.9928341015995819,
+        "n_layers": 17
+      }
+    ],
+    "worst_fpr_ratio_range": [
+      3.66,
+      59.239999999999995
+    ],
+    "max_auroc_drop_over_pairs": 0.16533910000000002
+  },
+  "repair": {
+    "per_pair": [
+      {
+        "pair": "mistral_base2instruct",
+        "frozen_all": 2.210746376983259,
+        "restandardise": 0.4387725553329336,
+        "quantile_thr": 0.6276419721602489,
+        "refit_probe": 0.3779962593458103,
+        "n_censored_cells": {
+          "frozen_all": 0,
+          "restandardise": 0,
+          "quantile_thr": 0,
+          "refit_probe": 0
+        },
+        "floor_q95": 0.4168293200387088,
+        "floor_as_realised": 0.41579682387632433
+      },
+      {
+        "pair": "gemma2_base2instruct",
+        "frozen_all": 1.4247050572837823,
+        "restandardise": 0.3128164910287486,
+        "quantile_thr": 0.5214175100118426,
+        "refit_probe": 0.4728620290606127,
+        "n_censored_cells": {
+          "frozen_all": 0,
+          "restandardise": 0,
+          "quantile_thr": 0,
+          "refit_probe": 0
+        },
+        "floor_q95": 0.3900196570275521,
+        "floor_as_realised": 0.3118900030501522
+      },
+      {
+        "pair": "llama3_base2instruct",
+        "frozen_all": 0.6530848010060611,
+        "restandardise": 0.400093069553191,
+        "quantile_thr": 0.5296719452832421,
+        "refit_probe": 0.27915484358536086,
+        "n_censored_cells": {
+          "frozen_all": 0,
+          "restandardise": 0,
+          "quantile_thr": 0,
+          "refit_probe": 0
+        },
+        "floor_q95": 0.4159912355735562,
+        "floor_as_realised": 0.27712991504108203
+      },
+      {
+        "pair": "llama31_base2instruct",
+        "frozen_all": 0.7737216216642587,
+        "restandardise": 0.3580595297564938,
+        "quantile_thr": 0.5148249952541367,
+        "refit_probe": 0.31715357662638044,
+        "n_censored_cells": {
+          "frozen_all": 0,
+          "restandardise": 0,
+          "quantile_thr": 0,
+          "refit_probe": 0
+        },
+        "floor_q95": 0.4203031215607601,
+        "floor_as_realised": 0.3209508162032061
+      },
+      {
+        "pair": "qwen_base2instruct",
+        "frozen_all": 0.860734863041373,
+        "restandardise": 0.49194058628866116,
+        "quantile_thr": 0.5438237275974647,
+        "refit_probe": 0.4336096095781175,
+        "n_censored_cells": {
+          "frozen_all": 0,
+          "restandardise": 0,
+          "quantile_thr": 0,
+          "refit_probe": 0
+        },
+        "floor_q95": 0.4048382450221699,
+        "floor_as_realised": 0.3833686892091206
+      },
+      {
+        "pair": "olmo_base2instruct",
+        "frozen_all": 0.5542792820386022,
+        "restandardise": 0.36489792760687967,
+        "quantile_thr": 0.7507612240880656,
+        "refit_probe": 0.5314785936592786,
+        "n_censored_cells": {
+          "frozen_all": 0,
+          "restandardise": 0,
+          "quantile_thr": 0,
+          "refit_probe": 0
+        },
+        "floor_q95": 0.4341232430621751,
+        "floor_as_realised": 0.5149366170608217
+      },
+      {
+        "pair": "llama3_to_31",
+        "frozen_all": 1.0474685596866988,
+        "restandardise": 0.4131106201771548,
+        "quantile_thr": 0.37447900233872383,
+        "refit_probe": 0.3209508162032061,
+        "n_censored_cells": {
+          "frozen_all": 0,
+          "restandardise": 0,
+          "quantile_thr": 0,
+          "refit_probe": 0
+        },
+        "floor_q95": 0.4159912355735562,
+        "floor_as_realised": 0.27712991504108203
+      },
+      {
+        "pair": "WG_mistral_base2instruct",
+        "frozen_all": 2.1520060193626374,
+        "restandardise": 0.45355725549331505,
+        "quantile_thr": 0.5770675702557516,
+        "refit_probe": 0.2389132809582699,
+        "n_censored_cells": {
+          "frozen_all": 0,
+          "restandardise": 0,
+          "quantile_thr": 0,
+          "refit_probe": 0
+        },
+        "floor_q95": 0.46546740490182087,
+        "floor_as_realised": 0.31471739261679427
+      },
+      {
+        "pair": "WG_llama3_base2instruct",
+        "frozen_all": 0.7110396188158862,
+        "restandardise": 0.16277835499703544,
+        "quantile_thr": 0.32469600612960614,
+        "refit_probe": 0.1361474302655548,
+        "n_censored_cells": {
+          "frozen_all": 0,
+          "restandardise": 0,
+          "quantile_thr": 0,
+          "refit_probe": 0
+        },
+        "floor_q95": 0.4795353212743627,
+        "floor_as_realised": 0.2669752976466432
+      }
+    ],
+    "means": {
+      "frozen_all": 1.1541984666536176,
+      "restandardise": 0.37733626558160144,
+      "quantile_thr": 0.5293759947910092,
+      "refit_probe": 0.3453629376980657
+    },
+    "n_at_floor_q95": {
+      "frozen_all": 0,
+      "restandardise": 7,
+      "quantile_thr": 2,
+      "refit_probe": 6
+    },
+    "mean_realised_no_update_floor": 0.34254394108280295
+  },
+  "non_parametric": [
+    {
+      "pair": "mistral_base2instruct",
+      "frozen_thr": 3.1894300659541046,
+      "quantile_thr": 0.16653534551421573,
+      "zscore_thr": 2.511966789469109,
+      "oracle_recal": 0.17789577056280093
+    },
+    {
+      "pair": "qwen_base2instruct",
+      "frozen_thr": 0.9544500585451939,
+      "quantile_thr": 0.10651332727836088,
+      "zscore_thr": 12.632827205723414,
+      "oracle_recal": 0.19626269909058858
+    }
+  ],
+  "mechanism": {
+    "moment": [
+      {
+        "pair": "mistral_base2instruct_v2",
+        "mean_share_of_repair": 0.7195688786255329,
+        "frozen": 2.4116294737789707,
+        "restandardise": 0.6729794769026827,
+        "refit_oracle": 0.25963744845493897
+      },
+      {
+        "pair": "gemma2_base2instruct",
+        "mean_share_of_repair": 0.5419399725645047,
+        "frozen": 1.595203648557603,
+        "restandardise": 0.360356482080178,
+        "refit_oracle": 0.4462445613576989
+      },
+      {
+        "pair": "llama3_base2instruct",
+        "mean_share_of_repair": 0.6994500892710434,
+        "frozen": 0.9435307839659061,
+        "restandardise": 0.5024945765164927,
+        "refit_oracle": 0.20523703456132428
+      },
+      {
+        "pair": "llama31_base2instruct",
+        "mean_share_of_repair": 0.8147369666457335,
+        "frozen": 0.9767256055097352,
+        "restandardise": 0.4757358877038807,
+        "refit_oracle": 0.33373569849567464
+      },
+      {
+        "pair": "qwen_base2instruct",
+        "mean_share_of_repair": 0.7001277676827182,
+        "frozen": 0.8367013227415212,
+        "restandardise": 0.42481110468182165,
+        "refit_oracle": 0.4264305720343966
+      },
+      {
+        "pair": "olmo_base2instruct",
+        "mean_share_of_repair": 1.021723128482478,
+        "frozen": 0.7628461158796315,
+        "restandardise": 0.35424260020061754,
+        "refit_oracle": 0.5528194702872222
+      },
+      {
+        "pair": "llama3_to_31",
+        "mean_share_of_repair": 0.5966565905722436,
+        "frozen": 1.3050437174427905,
+        "restandardise": 0.46806615335389734,
+        "refit_oracle": 0.264199051946321
+      }
+    ],
+    "mean_share_median": 0.7001277676827182,
+    "alignment_variants": [
+      {
+        "pair": "mistral_base2instruct_v2",
+        "frozen": 2.4116294737789707,
+        "restandardise": 0.6729794769026827,
+        "paired_align": 1.8491417031627946,
+        "procrustes_paired": 0.830169729490487,
+        "coral_unpaired": 1.3265848558163629,
+        "refit_oracle": 0.25963744845493897
+      },
+      {
+        "pair": "gemma2_base2instruct",
+        "frozen": 1.595203648557603,
+        "restandardise": 0.360356482080178,
+        "paired_align": 0.8441448890208004,
+        "procrustes_paired": 0.8910072240228096,
+        "coral_unpaired": 0.9672449698647444,
+        "refit_oracle": 0.4462445613576989
+      },
+      {
+        "pair": "llama3_base2instruct",
+        "frozen": 0.9435307839659061,
+        "restandardise": 0.5024945765164927,
+        "paired_align": 1.2350074893009244,
+        "procrustes_paired": 0.2745377418128223,
+        "coral_unpaired": 0.5102020244441704,
+        "refit_oracle": 0.20523703456132428
+      },
+      {
+        "pair": "llama31_base2instruct",
+        "frozen": 0.9767256055097352,
+        "restandardise": 0.4757358877038807,
+        "paired_align": 1.2895442361547782,
+        "procrustes_paired": 0.29449249148140455,
+        "coral_unpaired": 0.5589010107408995,
+        "refit_oracle": 0.33373569849567464
+      },
+      {
+        "pair": "qwen_base2instruct",
+        "frozen": 0.8367013227415212,
+        "restandardise": 0.42481110468182165,
+        "paired_align": 1.629542360237616,
+        "procrustes_paired": 0.6174331953224791,
+        "coral_unpaired": 0.6602182183466315,
+        "refit_oracle": 0.4264305720343966
+      },
+      {
+        "pair": "olmo_base2instruct",
+        "frozen": 0.7628461158796315,
+        "restandardise": 0.35424260020061754,
+        "paired_align": 1.059418042566501,
+        "procrustes_paired": 0.377141268069904,
+        "coral_unpaired": 1.0645373342540592,
+        "refit_oracle": 0.5528194702872222
+      },
+      {
+        "pair": "llama3_to_31",
+        "frozen": 1.3050437174427905,
+        "restandardise": 0.46806615335389734,
+        "paired_align": 1.0396915694161115,
+        "procrustes_paired": 0.5593893102786549,
+        "coral_unpaired": 0.4727377187867102,
+        "refit_oracle": 0.264199051946321
+      }
+    ],
+    "alignment_means": {
+      "frozen": 1.2616686668394512,
+      "restandardise": 0.4655266116342244,
+      "paired_align": 1.2780700414085038,
+      "procrustes_paired": 0.5491672800683659,
+      "coral_unpaired": 0.7943465903219398,
+      "refit_oracle": 0.3554719767339395
+    },
+    "procrustes_beats_ridge": [
+      6,
+      7
+    ],
+    "coral_beats_restandardise": [
+      0,
+      7
+    ],
+    "ridge_worse_than_restandardise": [
+      7,
+      7
+    ],
+    "separability_median_change": 0.0017457499999998793,
+    "separability_verdict": "SEPARABILITY INTACT: damage is calibration-only in our setting (rule 2)"
+  },
+  "lora_arms": {
+    "general (alpaca)": [
+      {
+        "dose": 25,
+        "frozen": 0.7415936719316792,
+        "restandardise": 0.34724662083634994,
+        "refit": 0.470806524290312,
+        "n_censored": 0,
+        "worst_fpr_ratio": 6.2,
+        "auroc_drop": 0.011575614705882352,
+        "shift_norm": 23.178279374260644,
+        "cos_abs": 0.008715830102967134
+      },
+      {
+        "dose": 100,
+        "frozen": 0.6042142209577069,
+        "restandardise": 0.37489646210488997,
+        "refit": 0.48512380146759226,
+        "n_censored": 1,
+        "worst_fpr_ratio": 2.08,
+        "auroc_drop": 0.006157326470588238,
+        "shift_norm": 15.93265474229553,
+        "cos_abs": 0.010603057386521234
+      },
+      {
+        "dose": 400,
+        "frozen": 0.6037999875608052,
+        "restandardise": 0.4084844474849959,
+        "refit": 0.39583416072583366,
+        "n_censored": 0,
+        "worst_fpr_ratio": 2.2800000000000002,
+        "auroc_drop": 0.003091738235294121,
+        "shift_norm": 16.071453179606316,
+        "cos_abs": 0.013715146210244843
+      }
+    ],
+    "safety (hh-harmless)": [
+      {
+        "dose": 25,
+        "frozen": 2.0996717753845724,
+        "restandardise": 0.46339582200889745,
+        "refit": 0.3849644295882863,
+        "n_censored": 0,
+        "worst_fpr_ratio": 23.2,
+        "auroc_drop": 0.033503647058823534,
+        "shift_norm": 40.64795832905677,
+        "cos_abs": 0.027493990703378518
+      },
+      {
+        "dose": 100,
+        "frozen": 1.0915216517522544,
+        "restandardise": 0.3205362328237166,
+        "refit": 0.3995362420899951,
+        "n_censored": 0,
+        "worst_fpr_ratio": 7.06,
+        "auroc_drop": 0.014528726470588236,
+        "shift_norm": 25.286937433454916,
+        "cos_abs": 0.021851361699216053
+      },
+      {
+        "dose": 400,
+        "frozen": 1.0311784279498162,
+        "restandardise": 0.2571704191495285,
+        "refit": 0.3014306761730349,
+        "n_censored": 0,
+        "worst_fpr_ratio": 7.899999999999999,
+        "auroc_drop": 0.015291500000000008,
+        "shift_norm": 21.186249044826038,
+        "cos_abs": 0.029455786388493888
+      }
+    ],
+    "safety (pku-saferlhf)": [
+      {
+        "dose": 25,
+        "frozen": 1.7863827778241663,
+        "restandardise": 0.49973809202939645,
+        "refit": 0.4186128354899441,
+        "n_censored": 0,
+        "worst_fpr_ratio": 24.220000000000002,
+        "auroc_drop": 0.03213313235294118,
+        "shift_norm": 38.7530314637788,
+        "cos_abs": 0.021441193027710973
+      },
+      {
+        "dose": 100,
+        "frozen": 0.9172678817419326,
+        "restandardise": 0.2933434441780252,
+        "refit": 0.4933855866154728,
+        "n_censored": 0,
+        "worst_fpr_ratio": 7.139999999999999,
+        "auroc_drop": 0.010608450000000002,
+        "shift_norm": 21.906864615998103,
+        "cos_abs": 0.025514263662499575
+      },
+      {
+        "dose": 400,
+        "frozen": 1.2154960183748709,
+        "restandardise": 0.29002672809933455,
+        "refit": 0.5258428727862464,
+        "n_censored": 0,
+        "worst_fpr_ratio": 7.660000000000001,
+        "auroc_drop": 0.0185417,
+        "shift_norm": 24.346886225841853,
+        "cos_abs": 0.023763864112270647
+      }
+    ]
+  },
+  "controls": {
+    "gpu_change": {
+      "max_abs_diff": 0.15625,
+      "bit_identical_layers": 1,
+      "fpr_ratio_range": [
+        0.9199999999999999,
+        1.0
+      ],
+      "frozen_error": 0.41612467566211925,
+      "no_update_floor": 0.41579682387632433
+    },
+    "contamination_robustness_relative_change": {
+      "general_s25": 0.0,
+      "hh_s25": -0.0050432979912406655,
+      "hh_s400": -0.008582324826367548
+    }
+  },
+  "over_refusal": [
+    {
+      "pair": "Mistral v0.1 -> Instruct",
+      "kind": "instruct",
+      "mid_layer": 16,
+      "n_safe": 250,
+      "mid_pre_items": 3.6,
+      "mid_post_items": 97.8,
+      "mid_ratio": 27.166666666666668,
+      "all_layers": {
+        "8": {
+          "pre_items": 3.4000000000000004,
+          "post_items": 85.0,
+          "ratio": 25.0
+        },
+        "16": {
+          "pre_items": 3.6,
+          "post_items": 97.8,
+          "ratio": 27.166666666666668
+        },
+        "24": {
+          "pre_items": 8.4,
+          "post_items": 80.0,
+          "ratio": 9.523809523809522
+        },
+        "32": {
+          "pre_items": 11.2,
+          "post_items": 11.4,
+          "ratio": 1.0178571428571428
+        }
+      }
+    },
+    {
+      "pair": "Gemma-2 -> it",
+      "kind": "instruct",
+      "mid_layer": 20,
+      "n_safe": 250,
+      "mid_pre_items": 6.199999999999999,
+      "mid_post_items": 59.6,
+      "mid_ratio": 9.612903225806454,
+      "all_layers": {
+        "10": {
+          "pre_items": 5.800000000000001,
+          "post_items": 29.199999999999996,
+          "ratio": 5.034482758620689
+        },
+        "20": {
+          "pre_items": 6.199999999999999,
+          "post_items": 59.6,
+          "ratio": 9.612903225806454
+        },
+        "30": {
+          "pre_items": 11.0,
+          "post_items": 48.4,
+          "ratio": 4.4
+        },
+        "42": {
+          "pre_items": 8.200000000000001,
+          "post_items": 1.8000000000000003,
+          "ratio": 0.21951219512195122
+        }
+      }
+    },
+    {
+      "pair": "Llama-3 -> Instruct",
+      "kind": "instruct",
+      "mid_layer": 16,
+      "n_safe": 250,
+      "mid_pre_items": 7.000000000000001,
+      "mid_post_items": 20.4,
+      "mid_ratio": 2.9142857142857137,
+      "all_layers": {
+        "8": {
+          "pre_items": 5.6,
+          "post_items": 20.200000000000003,
+          "ratio": 3.6071428571428577
+        },
+        "16": {
+          "pre_items": 7.000000000000001,
+          "post_items": 20.4,
+          "ratio": 2.9142857142857137
+        },
+        "24": {
+          "pre_items": 6.6,
+          "post_items": 6.0,
+          "ratio": 0.9090909090909091
+        },
+        "32": {
+          "pre_items": 10.8,
+          "post_items": 6.599999999999999,
+          "ratio": 0.611111111111111
+        }
+      }
+    },
+    {
+      "pair": "Llama-3.1 -> Instruct",
+      "kind": "instruct",
+      "mid_layer": 16,
+      "n_safe": 250,
+      "mid_pre_items": 6.0,
+      "mid_post_items": 9.799999999999999,
+      "mid_ratio": 1.6333333333333333,
+      "all_layers": {
+        "8": {
+          "pre_items": 6.0,
+          "post_items": 17.0,
+          "ratio": 2.8333333333333335
+        },
+        "16": {
+          "pre_items": 6.0,
+          "post_items": 9.799999999999999,
+          "ratio": 1.6333333333333333
+        },
+        "24": {
+          "pre_items": 8.8,
+          "post_items": 6.0,
+          "ratio": 0.6818181818181818
+        },
+        "32": {
+          "pre_items": 9.600000000000001,
+          "post_items": 1.8000000000000003,
+          "ratio": 0.1875
+        }
+      }
+    },
+    {
+      "pair": "Qwen2.5 -> Instruct (2 depths only, D-095)",
+      "kind": "instruct",
+      "mid_layer": 14,
+      "n_safe": 250,
+      "mid_pre_items": 3.4000000000000004,
+      "mid_post_items": 5.4,
+      "mid_ratio": 1.588235294117647,
+      "all_layers": {
+        "14": {
+          "pre_items": 3.4000000000000004,
+          "post_items": 5.4,
+          "ratio": 1.588235294117647
+        },
+        "28": {
+          "pre_items": 11.399999999999999,
+          "post_items": 29.199999999999996,
+          "ratio": 2.56140350877193
+        }
+      }
+    },
+    {
+      "pair": "Mistral v0.1 -> v0.2 [VERSION]",
+      "kind": "version",
+      "mid_layer": 16,
+      "n_safe": 250,
+      "mid_pre_items": 3.6,
+      "mid_post_items": 7.200000000000001,
+      "mid_ratio": 2.0000000000000004,
+      "all_layers": {
+        "8": {
+          "pre_items": 3.4000000000000004,
+          "post_items": 3.8,
+          "ratio": 1.1176470588235294
+        },
+        "16": {
+          "pre_items": 3.6,
+          "post_items": 7.200000000000001,
+          "ratio": 2.0000000000000004
+        },
+        "24": {
+          "pre_items": 8.4,
+          "post_items": 7.3999999999999995,
+          "ratio": 0.8809523809523807
+        },
+        "32": {
+          "pre_items": 11.2,
+          "post_items": 11.4,
+          "ratio": 1.0178571428571428
+        }
+      }
+    },
+    {
+      "pair": "Llama-3 -> Llama-3.1 [VERSION]",
+      "kind": "version",
+      "mid_layer": 16,
+      "n_safe": 250,
+      "mid_pre_items": 7.000000000000001,
+      "mid_post_items": 31.199999999999996,
+      "mid_ratio": 4.4571428571428555,
+      "all_layers": {
+        "8": {
+          "pre_items": 5.6,
+          "post_items": 27.400000000000002,
+          "ratio": 4.892857142857143
+        },
+        "16": {
+          "pre_items": 7.000000000000001,
+          "post_items": 31.199999999999996,
+          "ratio": 4.4571428571428555
+        },
+        "24": {
+          "pre_items": 6.6,
+          "post_items": 23.200000000000003,
+          "ratio": 3.5151515151515156
+        },
+        "32": {
+          "pre_items": 10.8,
+          "post_items": 10.8,
+          "ratio": 1.0
+        }
+      }
+    }
+  ],
+  "adversarial_files": [
+    {
+      "pair": "mistral",
+      "summary_keys": [
+        "config",
+        "config_hash",
+        "env",
+        "frozen_split_sha256",
+        "git",
+        "input_cache_sha256",
+        "levels",
+        "rows",
+        "run_kind",
+        "schema_version",
+        "update_kind",
+        "utc"
+      ]
+    },
+    {
+      "pair": "llama3",
+      "summary_keys": [
+        "config",
+        "config_hash",
+        "env",
+        "frozen_split_sha256",
+        "git",
+        "input_cache_sha256",
+        "levels",
+        "rows",
+        "run_kind",
+        "schema_version",
+        "update_kind",
+        "utc"
+      ]
+    }
+  ],
+  "auc_rule_invisibility": {
+    "released update pairs": {
+      "n_cells": 173,
+      "n_stale_by_auc": 3,
+      "at_2x": [
+        106,
+        109,
+        0.9724770642201835
+      ],
+      "at_5x": [
+        43,
+        46,
+        0.9347826086956522
+      ]
+    },
+    "LoRA (alpaca, HH-RLHF) + GPU control": {
+      "n_cells": 119,
+      "n_stale_by_auc": 8,
+      "at_2x": [
+        53,
+        59,
+        0.8983050847457628
+      ],
+      "at_5x": [
+        24,
+        30,
+        0.8
+      ]
+    }
+  },
+  "auc_rule_by_update_intent": {
+    "safety (hh-harmless)": {
+      "primary_2x": {
+        "n_calibration_failures": 44,
+        "n_invisible": 41,
+        "fraction_invisible": 0.9318181818181818
+      },
+      "sensitivity_5x": {
+        "n_calibration_failures": 27,
+        "n_invisible": 24,
+        "fraction_invisible": 0.8888888888888888
+      },
+      "n_cells": 51
+    },
+    "general (alpaca)": {
+      "primary_2x": {
+        "n_calibration_failures": 15,
+        "n_invisible": 12,
+        "fraction_invisible": 0.8
+      },
+      "sensitivity_5x": {
+        "n_calibration_failures": 3,
+        "n_invisible": 0,
+        "fraction_invisible": 0.0
+      },
+      "n_cells": 51
+    }
+  }
+}

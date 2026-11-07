@@ -1,0 +1,1138 @@
+{
+  "schema_version": 1,
+  "run_kind": "p2auroc_d424_grouped",
+  "utc": "2026-10-13T02:00:56+00:00",
+  "git": {
+    "commit": null,
+    "branch": null,
+    "dirty": null,
+    "dirty_file_count": null,
+    "dirty_files": []
+  },
+  "env": {
+    "python": "3.10.12",
+    "platform": "Linux-3.10.0-1160.119.1.el7.x86_64-x86_64-with-glibc2.35",
+    "machine": "x86_64",
+    "blas_threads": {
+      "OMP_NUM_THREADS": "6",
+      "OPENBLAS_NUM_THREADS": "6",
+      "MKL_NUM_THREADS": "6",
+      "NUMEXPR_NUM_THREADS": null
+    },
+    "cpu_count": 12,
+    "libraries": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.7.2",
+      "torch": "2.7.0+cu126",
+      "transformers": "4.56.1"
+    }
+  },
+  "preregistration": "D-440 (6) (the author's item 6 of 2026-10-13: 'report the two D-354 grouped cells (Phi-3, OLMo-2 L16)'); D-424 (7) (Phi-3 C=0.001 L18 computable on CPU, anchored on the selection record's grid entry; OLMo-2 base L16 needs an ingest first); D-430 (8) (the L16 route); D-354 (3) (a sensitivity row: the selections of record stand); D-424's arithmetic, intervals and flags unchanged",
+  "code": {
+    "sha256": {
+      "src/p2auroc_d424_grouped.py": "647e45e5317098365df30ea4496965b66c372b2bc1b829e8b2a95d9afae6a8e6",
+      "src/p2auroc_d424.py": "dc6284489c17feb48781ce87e64a6915e6a1662c3b85ace09770f84ec98687c9",
+      "src/depth_d156.py": "a1f7b50ce70395f290b681f336e5a5e95e1428a2ca7c5915818644ad70f26734",
+      "src/input_registry.py": "e05d1fba11a4db8c46d0e7231fa7b804fbd8101017fda1c0889070c193684fbf",
+      "src/paired.py": "80429fa57f0267236a2af1670c74ef327802598257ab75834fddf64a70d97195",
+      "src/populations.py": "0c9e944f70e1d580474218bd9e35f8e7d447e8b26e0f316bfbe399133498cba6",
+      "src/provenance.py": "3cef96e8ede12af7dc920409cc9bd7e072cdedc579e9211604cf481084e9aa47",
+      "src/superseded_provenance.py": "6613f47f086958ef424f1be1263afc4a5918f17a50b24d025baad69aeb0738b8",
+      "src/metrics.py": "f7aac316793d69097939ecbeb1de0719534d0bb0cdff04534a2d7de0a454b9ed",
+      "src/repdist.py": "b98ae6bdeb4c7597188524f114a910c766f0af8c954b8e328333727bccefc855",
+      "src/refsize_d382.py": "36d1a7709904b21cfdc522aa1feb61f151a0d0d10b14a57b99bbfb3ec507e81a",
+      "src/twomoment_p2_d361.py": "843a6c13316545b550c3c1850840707a45a409bb8cdb63d5b8d4b863339ddea1",
+      "src/twomoment_cells.py": "14b28c91e7f2267a752f51a925e2bb875a834a52556e21b0c620ad30c18eeafe",
+      "src/twomoment_fit.py": "1a1c57668068c4e86dfb08bc61c141d9c921d92a04da3b620ec7781ae9713b26",
+      "src/float16_check_d364.py": "6027c597844e4c684a530c15af3fd40d06bbd218275ee50ee7f00e4a2fa356b7",
+      "src/selection_tpr_v2.py": "e928a44e969e8fc1ec87a2e9bb93f3c9ddd11f06778dd3066b1d9d0905c3746d",
+      "src/phase2_resplit_v2.py": "8929519b4618119693038f5b123a4d980f0063591e64f741bbbdfebeb40966bc",
+      "src/selection_p2.py": "a79bb1b8a635c15190bad181e29c1ecd885ef01a71fda26e1101339f3bc59e97",
+      "src/regularisation_sweep.py": "8c475baf246c9cc59459555832ed644d9d30e692579752dc0f83b059ab0cf269",
+      "src/subset_p2.py": "fc81a30170b0047c4d4606cd5f700001b2f7e2afb45b1e7d130f8269155576c5",
+      "src/safe_outputs.py": "e0c7a4bcb969de9a0c5c1b97377e8f38f5257672a869036eb8d6c9c642b40639",
+      "src/healthcheck_d156.py": "0ec2687ecdd887a28d4b8fb7a4db4b9081b69ea3fcf2b175c345279b4ed74de7",
+      "src/healthcheck_summary_d156.py": "b149b66181fe1c2d953d255355e44e2d15651bff9ccf8a456819092db526ccf5"
+    },
+    "commit": "56898abc11463820c26818d1492b54328ebdea5a",
+    "commit_source": "SYNC_COMMIT",
+    "libraries": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.7.2"
+    }
+  },
+  "reused_files_sha256": {
+    "src/p2auroc_d424.py": "dc6284489c17feb48781ce87e64a6915e6a1662c3b85ace09770f84ec98687c9",
+    "src/refsize_d382.py": "36d1a7709904b21cfdc522aa1feb61f151a0d0d10b14a57b99bbfb3ec507e81a",
+    "src/twomoment_p2_d361.py": "843a6c13316545b550c3c1850840707a45a409bb8cdb63d5b8d4b863339ddea1",
+    "src/depth_d156.py": "a1f7b50ce70395f290b681f336e5a5e95e1428a2ca7c5915818644ad70f26734",
+    "src/paired.py": "80429fa57f0267236a2af1670c74ef327802598257ab75834fddf64a70d97195",
+    "src/metrics.py": "f7aac316793d69097939ecbeb1de0719534d0bb0cdff04534a2d7de0a454b9ed",
+    "src/selection_tpr_v2.py": "e928a44e969e8fc1ec87a2e9bb93f3c9ddd11f06778dd3066b1d9d0905c3746d",
+    "src/selection_p2.py": "a79bb1b8a635c15190bad181e29c1ecd885ef01a71fda26e1101339f3bc59e97",
+    "src/float16_check_d364.py": "6027c597844e4c684a530c15af3fd40d06bbd218275ee50ee7f00e4a2fa356b7"
+  },
+  "registered_parameters": true,
+  "status": {
+    "status": "FINAL",
+    "d_entries": [],
+    "rule": "CLAUDE.md evidence standard: FINAL, FLAGGED (with the D-entry) or PROVISIONAL (not the registered parameters {'n_boot': 5000, 'seeds': [0, 1, 2, 3, 4], 'anchor_draws': 1000})"
+  },
+  "elapsed_s": 53.5,
+  "implementation_choices": [
+    "(g1) CELL: the pair's D-354 grouped cell (D354_GROUPED), which must equal the grouped cell that results/phase2/ho20cluster_summary.json (sha256 pinned, D-354 (1)) records for the pair's user-span-mean selection record, with that record's own recorded cell = the binding's selection (C, L*). User-span mean only (the two headline cells); the eight last-token or tokenizer-pair grouped cells are not this mode's.",
+    "(g2) PROBES AND THE GRID ANCHOR: at the grouped layer, the five probes at the grouped C are fitted by twomoment_p2_d361.fit_probes (as at L*) and must equal selection_tpr_v2.seed_probes at the grouped arm bit for bit; their fit and ho20 AUROCs, recomputed in selection_p2.sweep's expressions (the seed's permutation, the fitting part's standardisation, regularisation_sweep.auroc, the mean over seeds), must EQUAL the selection record's grid[arm][layer] (auroc_fit, auroc_ho20, gap) after the JSON round trip (D-424 (7)). Nothing is written unless they do.",
+    "(g3) THE RECORDED CELL BESIDE, AS AN ANCHOR: the pair's recorded cell (the selection's C at L*) is recomputed by the pair mode's own lines (load_scores with its L* probe anchor, compute_cell with its D-361 operating-point anchor) and its AUROC block, Duan flags, beside rows and score hashes must equal the pair's D-424 record's L* cell (the record bound through the D-424 summary, sha256 pinned). This ties the loading, the v2 gather and the bootstrap counts of this run to the committed table.",
+    "(g4) THE GROUPED CELL: the v2 frozen evaluation split's AUROC block (pre, post, change, the same item-bootstrap counts as the recorded cell, so the two cells' intervals use the same resamples), Duan's flags, and the realised D-156 operating point at 1% over D-361's 1000 draws (paired.repartition_estimate, the D-361 report's keys: paired ratio, ratio to target, TPRs, delta TPR, mean, band and frozen split). No committed record holds this cell's operating point, so (g2) and (g3) are its anchors; no prediction, no verdict (D-354 (3): reported beside).",
+    "(g5) A LAYER THE PRE SIDE'S p2sub CACHES LACK (OLMo-2 base L16, D-424 (7)): the pre side's eval and pool4d entries are read from the explicit-layer subset record results/phase2/extract__<org>__<model>__p2subx@<rev12>__rest.json (src/subset_p2x.py; ingested by scripts/p2_ingest_record.sh), which must say run_kind subset_p2x, tag p2subx, ingest yes, be cut from the same rest extraction record (file and sha256) as the p2sub record, and hold the layer; each entry checked by selection_tpr_v2.subset_entry against its own ingest index. Absent or not ingested: the job refuses (never a GPU job, never NVMe scratch). The post side, the calibration and probe_train caches must hold the layer already (they do for L16: the post's p2sub plan holds SFT -> DPO's L* 16 and the select sets are full grid); otherwise it refuses.",
+    "(g6) OUTPUTS: results/p2auroc_d424_grouped_<pair>.json and _scores.npz (keys 'recorded|L<l>|...' and 'grouped|L<l>|...' in the pair mode's form), written once (staged, then named, never overwritten); final names need the pair mode's gates. D-424's own records and summaries are not touched or re-read for any value but the anchor (g3)."
+  ],
+  "pair_mode_choices": [
+    "(a) CELLS: D-361 (2)'s headline, bound by refsize_d382.p2_bind unchanged (records only; its own predictions record and final gates are not this item's, as realign_d418 calls it): the nine pairs x every layer both sides hold (GRID6 plus the pre side's L*, D-325 (2); seven per pair, 63), user-span mean, split v2, the selection's C (D-117), seeds 0-4. No C=1, last-token, cluster-level or 5% row (no such row was asked; D-361 (4)'s beside lines are not this item's). For D-424's own (user-span mean) records; the last-token run added later is CHOICES (k).",
+    "(b) AUROC: depth_d156's block, its lines repeated (D-152 P5, D-180): metrics.auroc per seed, checked bit for bit against depth_d156.weighted_auroc with unit weights; on the v2 frozen evaluation split, not re-partitioned (D-156 keeps the item bootstrap for threshold-free quantities). pre = pre activations, pre probe; frozen = post activations, the SAME pre probe (the post AUROC); change = frozen - pre per seed, the cell's value the seed mean (D-419 (3)). No post-refit arm (not asked).",
+    "(c) INTERVALS: the D-152 P5 item bootstrap, B = 5000, eval negatives and eval positives resampled separately by paired.counts_matrix at depth_d156.ITEM_BOOT_SEED (D-180's seeds, reused as mlp_probe_d383 and hh_sensitivity_d363 reuse them; at Phase 2's sizes, 6,000 and 4,000); every seed recomputed per resample and the replicate's seed mean taken (depth_d156's expression); the same resamples for pre and frozen and at every layer, so the change's interval is paired; percentile 95% by paired.ci; per-seed intervals beside.",
+    "(d) DUAN'S FLAGS on the seed means (point estimates, D-419 (3) and realign_d418's constants): big_drop = change <= -0.05, operational_failure = frozen < 0.70, eligible = pre >= 0.75; beside, whether the change's interval lies wholly at or below -0.05 or wholly above it. Descriptive: no verdict, no prediction (D-424).",
+    "(e) ANCHOR (D-382 CHOICES (n), refsize_d382.run_p2's lines): twomoment_p2_d361.passing_anchor; at L* the probes are the selection's own fit bit for bit (selection_tpr_v2.seed_probes) and reproduce its ho20 TPRs (anchor_diffs); at EVERY computed layer the realised operating point at 1% over D-361's 1000 draws (paired.repartition_estimate, seed twomoment_p2_d361.P2_DRAW_SEED) equals the pair's D-361 record as canonical JSON. Every layer, not L* alone as realign_d418.run_p2: the AUROC is read at every layer, and that report holds the post positives' TPR, so it ties the post eval positives' scores at each layer to a committed record. Nothing is written unless all pass.",
+    "(f) MISSING (the author's 'if post-update harmful activations are missing, report it; no GPU work'): before any cache is opened, each of the seven cache files of the cell set (refsize_d382.run_p2's keys) is checked for presence in data/hidden (a regular file) and for each layer in its record's layers_resolved. A POST-side absence goes into 'missing' per (layer, cache) with the v2 items it supplies (from the v2 plan: calibration, eval negatives, eval POSITIVES); those cells are not filled (no value, no imputation) and the record is written FLAGGED (D-424). A PRE-side absence refuses: the selection's and D-361's own inputs are not this item's question, and pre and post caches share data/hidden, so a fault of the store refuses here rather than being reported as missing. SCOPE (review S2): only a POST cache FILE absent from data/hidden while its extraction record and ingest index are present reaches 'missing'; an absent post record or ingest index, or a post record whose layers_resolved lacks a required layer, already refuses inside refsize_d382.p2_bind, before this check (the layers_lacking branch is then unreachable for post caches and is kept for the pre side's report).",
+    "(g) EVIDENCE (the evidence standard: aggregates recomputable from per-item values): per filled cell the four score matrices of the v2 frozen evaluation split (negatives and positives, pre and post, one column per seed) and the seed-mean replicate arrays, in the record's npz; their sha256 in the record; the bootstrap counts are re-derivable from the seeds (their sha256 recorded). The summary recomputes every point AUROC from the stored scores and every seed-mean interval from the stored replicates before it writes.",
+    "(h) SUMMARY: the 63-cell table; the share of cells with change <= -0.05 overall, by pair, by layer number and by grid position (L* and GRID6's six positions; GRID6 differs by depth, so position is the comparable unit across pairs); a missing cell is kept out of n and the share, its count stated (D-419 (6), CHOICE 17's convention); the per-pair list with Mistral v0.1 -> v0.2 FIRST (the author: its AUROC change beside its delta TPR), each pair's L* cell beside its D-156 delta TPR from the same job. No predicted-against-realised table, so no D-177 line (D-412 (1)).",
+    "(i) LANE: one CPU list on lane C (preflight, the nine pair jobs with Mistral first, the summary), run through scripts/detach.sh with the 6-thread BLAS pin of scripts/project_env.sh as every CPU list. The preflight exits 1 on a failed record check or an absent PRE-side cache; an absent POST-side cache is printed and left to the pair job's 'missing' list (CHOICES (f)), so the author's report is written either way. No manifest job: the summary binds each pair record by its sha256 and its npz by the sha256 the record names.",
+    "(j) POPULATION GROUP: none until the pull (src/populations.py validate() needs every declared file on disk; REFSIZE_D382's and REALIGN's precedent, D-411 (4)).",
+    "(k) LAST-TOKEN POOLING (D-429, the author's item 4 of 2026-10-10, added after D-424's run; (a)'s 'no last-token row' stands for D-424's own records): --pooling lastgen runs the same job on D-361 (4)'s beside pooling. refsize_d382.p2_bind is called unchanged with its module constant P2_POOLING set for the call (pooled(); its bytes are pinned here and by realign_d418 and realign_d423), so the lastgen selection record's own C and L*, its subset entries and the pair's lastgen D-361 record of record (bound through the same p2mech manifest) define the cells: the lastgen L* plus GRID6, seven per pair, 63; every other step, anchor and check unchanged. Outputs p2auroc_d424_<pair>_lastgen.json (+ _scores.npz) and p2auroc_d424_summary_lastgen.json; D-424's names untouched. A record and its summary must name the same pooling. COMPARABILITY (review of 2026-10-10): shared by construction are the v2 split, seeds 0-4, the item bootstrap (B and its seeds), GRID6's layers, D-361's 1000 draws and the anchors; NOT shared are the probe, C and L*, which come from the lastgen selection record (L* differs from the user-span mean's in four of nine pairs), so a lastgen - usermean difference is pooling plus re-selection, not pooling alone. 'lastgen' is the hidden state at the final position of the templated prompt with the generation prompt added (extract_p2), not a response token; whether that is Duan's 'final token' is not stated by Duan. The comparison with the user-span mean cells is read from the two summaries, beside (no record pairs them)."
+  ],
+  "config": {
+    "item": "D-440 (6): D-354's grouped cell beside the recorded cell, Phase 2 AUROC and operating point; descriptive (a sensitivity row, D-354 (3))",
+    "population": "phase2_headline",
+    "pair": "phi3_128k_to_35",
+    "pair_group": "primary pair",
+    "pair_note": "the rope_scaling caveat (D-318 (7) item 7)",
+    "pre_repo": "microsoft/Phi-3-mini-128k-instruct",
+    "pre_rev": "f3c06aed622e14ca0abf5115094e4fc9a9948f36",
+    "post_repo": "microsoft/Phi-3.5-mini-instruct",
+    "post_rev": "2fe192450127e6a83f7441aef6e3ca586c338b77",
+    "pooling": "usermean",
+    "axis": "p2wg",
+    "split_version": 2,
+    "selection_record": {
+      "file": "results/phase2/selection_p2__microsoft__Phi-3-mini-128k-instruct@f3c06aed622e__usermean.json",
+      "sha256": "e4aa7cdc02400e74ad4d26a062308deb5488ddfcc68c380726eff370587de2c2"
+    },
+    "recorded_cell": {
+      "arm": "C=0.003",
+      "C": 0.003,
+      "layer": 18
+    },
+    "grouped_cell": {
+      "arm": "C=0.001",
+      "C": 0.001,
+      "layer": 18
+    },
+    "d354_row": {
+      "file": "results/phase2/ho20cluster_summary.json",
+      "sha256": "83617cddd7369c798f32b6b293a95dd2d555879f67cc8d3710bf37783a56cfd1",
+      "row": {
+        "output": "results/phase2/ho20cluster__microsoft__Phi-3-mini-128k-instruct@f3c06aed622e__usermean.json",
+        "selection_record": "results/phase2/selection_p2__microsoft__Phi-3-mini-128k-instruct@f3c06aed622e__usermean.json",
+        "repo": "microsoft/Phi-3-mini-128k-instruct",
+        "revision": "f3c06aed622e14ca0abf5115094e4fc9a9948f36",
+        "pooling": "usermean",
+        "selected_recorded": {
+          "arm": "C=0.003",
+          "layer": 18
+        },
+        "selected_grouped": {
+          "arm": "C=0.001",
+          "layer": 18
+        },
+        "selected_cell_unchanged": false,
+        "margin_under_grouping": 0.0004903526332616925,
+        "margin_under_item_split": 0.0003766328700286481,
+        "recorded_runner_up": {
+          "arm": "C=0.001",
+          "layer": 18,
+          "auroc_ho20": 0.9756147563887266,
+          "margin": 0.0003766328700286481
+        },
+        "leakage_gap_max": 0.015249854201507262,
+        "leakage_gap_max_cell": {
+          "arm": "C=1",
+          "layer": 6
+        },
+        "grouped_selection_ho20_tpr_mean": 0.7473633903711276,
+        "realised_ho20_size_range": [
+          800,
+          800
+        ]
+      }
+    },
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "holdout": 0.2,
+    "n_eval_negatives": 6000,
+    "n_eval_positives": 4000,
+    "n_calibration": 5000,
+    "item_bootstrap": {
+      "n_boot": 5000,
+      "seeds": {
+        "eval_negatives": 20260929,
+        "eval_positives": 20260930
+      },
+      "counts": "paired.counts_matrix(n, B, seed)",
+      "counts_sha256": {
+        "eval_negatives": "54181ffad0b1f58877a1a7827a9a8c9b6c8a590d01b5e68f6dcc27d5e3b073b0",
+        "eval_positives": "42cffddc24536aeaff98eba83b0f162b7189012bc11982544b74d6732b6b368b"
+      },
+      "rule": "(c) INTERVALS: the D-152 P5 item bootstrap, B = 5000, eval negatives and eval positives resampled separately by paired.counts_matrix at depth_d156.ITEM_BOOT_SEED (D-180's seeds, reused as mlp_probe_d383 and hh_sensitivity_d363 reuse them; at Phase 2's sizes, 6,000 and 4,000); every seed recomputed per resample and the replicate's seed mean taken (depth_d156's expression); the same resamples for pre and frozen and at every layer, so the change's interval is paired; percentile 95% by paired.ci; per-seed intervals beside."
+    },
+    "operating_point": {
+      "target_fpr": 0.01,
+      "n_draws": 1000,
+      "draw_seed": 20261006
+    },
+    "duan_criteria": {
+      "big_drop": -0.05,
+      "operational_failure": 0.7,
+      "eligible": 0.75,
+      "note": "Duan (arXiv:2606.15980v2, 'Benchmark Cells'): big_drop(c) = 1[dAUC(c) <= -0.05]; operational_failure(c) = 1[A_post(c) < 0.70]; eligible(c) = 1[A_base(c) >= 0.75]; read here on the seed means of the cell (change, frozen, pre); point estimates. Beside: whether the change's 95% interval lies wholly at or below -0.05, or wholly above it"
+    },
+    "explicit_subset": null,
+    "join_rule": "A v2 split's caches are its items gathered by item_id from the model's v1 caches, each item from the cache of the split v1 put it in (v1 calibration: the select record's p2wg/calibration cache; v1 eval or pool4d: the rest record's p2wg/eval or p2wg/pool4d cache), whichever v2 split it is now in; plan.items_from_v1_to_v2 counts the moved negatives by v1 and v2 split (positives stay in their v1 split). A cache keyed 'p2wg/<split>' is a v1 cache and is never read as a v2 split. Under D-307 (1) a result reads only ingested caches, so a v2 reader needs the rest caches (or their durable layer subsets) ingested and indexed first.",
+    "post_select_set": "p2sub",
+    "blas_threads": {
+      "OMP_NUM_THREADS": "6",
+      "OPENBLAS_NUM_THREADS": "6",
+      "MKL_NUM_THREADS": "6"
+    }
+  },
+  "config_hash": "b3d63ac2798af647cce32648100f6f010c64d87caf1cf11af318f4688a755bb2",
+  "anchor": {
+    "d361_anchor_record": {
+      "file": "results/twomoment_p2_d361_anchor_repair_WG_mistral_base2instruct.json",
+      "sha256": "6b861e289c3e1544a658a40da19db8d53c6c26439532256947eb1ee31fe4a18f",
+      "exact_equal": true,
+      "n_cells_compared": 34,
+      "records": {
+        "0.01": {
+          "file": "results/twomoment_repair_WG_mistral_base2instruct.json",
+          "sha256": "fe885cdf6b421decadb46cc17eec1252d2162448bddc8687dc6a6e4010dfcdaf",
+          "draw_arrays": {
+            "file": "results/twomoment_repair_WG_mistral_base2instruct_draws.npz",
+            "sha256": "cd0ccd6e8d9221bf5f012e215ceffe5cff9e0a69866a38f15757428f612cf4fa"
+          },
+          "named_by": {
+            "file": "results/twomoment_fit_r2.json",
+            "sha256": "5522bc8d0faf6790c19ab025d82dd444e7c85d03bf78e880c5383053203a8709",
+            "bound_by": {
+              "file": "logs/reissue_d305_20261001.sha256",
+              "sha256": "10f8e9d40e640584c19a34063f041f3c3895c7d36f3025dd1ba9b0ccdab702c6"
+            }
+          }
+        },
+        "0.05": {
+          "file": "results/twomoment_repair_WG_mistral_base2instruct_fpr5.json",
+          "sha256": "968f8545ea9443d3e764b34429cc6b40a55674686061a05a4e7953b631572722",
+          "draw_arrays": {
+            "file": "results/twomoment_repair_WG_mistral_base2instruct_fpr5_draws.npz",
+            "sha256": "579614e59ce6552778e28ae03cd6a295ba96b22b22a1e594d085348da7de43f5"
+          },
+          "named_by": {
+            "file": "results/twomoment_fit_fpr5.json",
+            "sha256": "001db8b9553d0ef6f5d60f38ad7cc767f5630b3e915e90288e57d4d55980659c"
+          }
+        }
+      }
+    },
+    "d361_pair_record": {
+      "file": "results/twomoment_p2_d361_phi3_128k_to_35_usermean.json",
+      "sha256": "84341f8548cbe7ea43918ef95958f484f77a61c8e65614d500c04005412bc2ba"
+    },
+    "probe_anchor_at_L_star": {
+      "selection_record": {
+        "file": "results/phase2/selection_p2__microsoft__Phi-3-mini-128k-instruct@f3c06aed622e__usermean.json",
+        "sha256": "e4aa7cdc02400e74ad4d26a062308deb5488ddfcc68c380726eff370587de2c2"
+      },
+      "layer": 18,
+      "probes_equal_to_selection_fit_bit_for_bit": true,
+      "ho20_tpr_per_seed_recorded": [
+        0.7122302158273381,
+        0.7830423940149626,
+        0.7461538461538462,
+        0.7718446601941747,
+        0.7627551020408163
+      ],
+      "ho20_tpr_per_seed_recomputed": [
+        0.7122302158273381,
+        0.7830423940149626,
+        0.7461538461538462,
+        0.7718446601941747,
+        0.7627551020408163
+      ],
+      "values_compared": 8,
+      "values_differing": 0,
+      "exact_equal": true
+    },
+    "recorded_cell_equals": {
+      "d361_operating_point": true,
+      "d424_record": {
+        "file": "results/p2auroc_d424_phi3_128k_to_35.json",
+        "sha256": "0559bb2da2525b0246c25fa766fb7b2cbef46470ef336d500d68da59d5df2698"
+      },
+      "keys_compared": [
+        "auroc",
+        "duan_flags",
+        "beside_d156_at_1pct",
+        "scores_sha256",
+        "grid_position",
+        "probe_C"
+      ]
+    },
+    "grid_anchor_at_grouped_cell": {
+      "recomputed": {
+        "auroc_fit": 0.9921187837010337,
+        "auroc_ho20": 0.9756147563887266,
+        "gap": 0.016504027312307046
+      },
+      "recorded": {
+        "auroc_fit": 0.9921187837010337,
+        "auroc_ho20": 0.9756147563887266,
+        "gap": 0.016504027312307046
+      },
+      "values_compared": 3,
+      "values_differing": 0,
+      "exact_equal": true
+    },
+    "manifests": {
+      "logs/twomoment_p2_d361.sha256": "0edd7976e42b984a265cdd9dda20203ca3d78fa1f32ec7e5eea4928d68a7d6cc"
+    }
+  },
+  "input_verification": {
+    "flag": null,
+    "pin_only_inputs": [],
+    "rule": "D-170/D-172 on Phase 2 inputs: every cache is read from data/hidden at its record's sha256, listed in its ingest index (D-307 (1)); no input is vouched for by a pin alone, so no cell carries the flag"
+  },
+  "bos_check": {
+    "file": "results/phase2/bos_check_p2.json",
+    "sha256": "4aa34e43484e892be7c76e3cf367b84f95646abb0a3888f301af3200fa17b5cd",
+    "rule": "(y) BOS check (D-361 (5), D-318 (6)): step 1 reads results/phase2/bos_check_p2.json and refuses unless both sides' models are 'ok' there: listed at the side's revision, cache_tie status 'ok', prompts_tie and plain_path ok, not in ties_failed, cache_tie_skipped or cache_tie_incomplete, and no tokenizer left unloaded; its sha256 is recorded. The LoRA line requires the base's line; the adapters are not in the scan and use the base's tokenizer (D-343).",
+    "models": {
+      "pre": {
+        "repo": "microsoft/Phi-3-mini-128k-instruct",
+        "revision": "f3c06aed622e14ca0abf5115094e4fc9a9948f36",
+        "ok": true
+      },
+      "post": {
+        "repo": "microsoft/Phi-3.5-mini-instruct",
+        "revision": "2fe192450127e6a83f7441aef6e3ca586c338b77",
+        "ok": true
+      }
+    }
+  },
+  "v2_gather": {
+    "recorded": {
+      "pre": {
+        "calibration": {
+          "calibration": 2367,
+          "eval": 2335,
+          "pool4d": 298
+        },
+        "eval_negatives": {
+          "calibration": 2806,
+          "eval": 2830,
+          "pool4d": 364
+        },
+        "eval_positives": {
+          "calibration": 0,
+          "eval": 4000,
+          "pool4d": 0
+        }
+      },
+      "post": {
+        "calibration": {
+          "calibration": 2367,
+          "eval": 2335,
+          "pool4d": 298
+        },
+        "eval_negatives": {
+          "calibration": 2806,
+          "eval": 2830,
+          "pool4d": 364
+        },
+        "eval_positives": {
+          "calibration": 0,
+          "eval": 4000,
+          "pool4d": 0
+        }
+      }
+    },
+    "grouped": {
+      "pre": {
+        "calibration": {
+          "calibration": 2367,
+          "eval": 2335,
+          "pool4d": 298
+        },
+        "eval_negatives": {
+          "calibration": 2806,
+          "eval": 2830,
+          "pool4d": 364
+        },
+        "eval_positives": {
+          "calibration": 0,
+          "eval": 4000,
+          "pool4d": 0
+        }
+      },
+      "post": {
+        "calibration": {
+          "calibration": 2367,
+          "eval": 2335,
+          "pool4d": 298
+        },
+        "eval_negatives": {
+          "calibration": 2806,
+          "eval": 2830,
+          "pool4d": 364
+        },
+        "eval_positives": {
+          "calibration": 0,
+          "eval": 4000,
+          "pool4d": 0
+        }
+      }
+    }
+  },
+  "inputs": {
+    "results/phase2/extract__microsoft__Phi-3-mini-128k-instruct__p2tpl@f3c06aed622e__select.json": "60164fb51904d1eb0a7e1727cf099071c77a8b83ce6e6c8728d688e3ff6e7301",
+    "results/phase2/selection_p2__microsoft__Phi-3-mini-128k-instruct@f3c06aed622e__usermean.json": "e4aa7cdc02400e74ad4d26a062308deb5488ddfcc68c380726eff370587de2c2",
+    "results/phase2/dataset_manifest_p2_v2.json": "48594df0622e614327d3d9f564b05ce83d0cb64dd82a2adf19f526e3d930266d",
+    "results/phase2/extract__microsoft__Phi-3-mini-128k-instruct__p2sub@f3c06aed622e__rest.json": "29641aaf7446dd56c4463f87b220d1e4fbbfc2a4e6f56ab3cc9a42d0f8182cef",
+    "results/phase2/extract__microsoft__Phi-3-mini-128k-instruct__p2tpl@f3c06aed622e__rest.json": "d8e76288b115f7cbf32c32bf6911e449abbd592b99dc2c01358e59c97884a2b4",
+    "results/phase2/extract__microsoft__Phi-3.5-mini-instruct__p2tpl@2fe192450127__select.json": "b90e8081350235832725e731189b1942db3c28553daf1f844d290ebd1d023862",
+    "results/phase2/extract__microsoft__Phi-3.5-mini-instruct__p2sub@2fe192450127__select.json": "2fe4d641eacb2dfca1557aba64c4eeaf57dee1416c88dfaa19a808862d68fc3d",
+    "results/phase2/bos_check_p2.json": "4aa34e43484e892be7c76e3cf367b84f95646abb0a3888f301af3200fa17b5cd",
+    "results/phase2/extract__microsoft__Phi-3.5-mini-instruct__p2sub@2fe192450127__rest.json": "3af864febaeaf26287112560388e2e37bb182b4ad7fb1eafe67d85a109f1b809",
+    "results/phase2/extract__microsoft__Phi-3.5-mini-instruct__p2tpl@2fe192450127__rest.json": "d53023d43e65dc4258862e54918c8428c9ffc62e65680fa6dab9956ff0a5a19a",
+    "results/phase2/dataset_manifest_p2.json": "b51e8419ccbf035581d7f4960d422a7a1a9d46eca35b3c47cfe46e6507d1621e",
+    "manifests/phase2_pool_clusters.json": "6c206f5b6e0d3d9a2f071eb7255b5ffe54b45ccad10a8f0119f58938a5282d57",
+    "results/twomoment_p2_d361_phi3_128k_to_35_usermean.json": "84341f8548cbe7ea43918ef95958f484f77a61c8e65614d500c04005412bc2ba",
+    "results/twomoment_p2_d361_anchor_repair_WG_mistral_base2instruct.json": "6b861e289c3e1544a658a40da19db8d53c6c26439532256947eb1ee31fe4a18f",
+    "results/phase2/ho20cluster_summary.json": "83617cddd7369c798f32b6b293a95dd2d555879f67cc8d3710bf37783a56cfd1",
+    "results/p2auroc_d424_summary.json": "3073b6855aca53b9fd3768b6c0f5e90df8a7c5a37964d5bfcd93d1673069d7a1",
+    "results/p2auroc_d424_phi3_128k_to_35.json": "0559bb2da2525b0246c25fa766fb7b2cbef46470ef336d500d68da59d5df2698"
+  },
+  "input_files_sha256": {
+    "data/frozen_p2_v2/p2wg_v2__calibration.jsonl": "98bc80c966349bc5e03c5cdeab97d035d40447b34c5337d72e2f9062841393e5",
+    "data/frozen_p2_v2/p2wg_v2__eval.jsonl": "e0fcf8a30de263e502d191c7df87e11d330362602670247bc7de8620cdd17a4c",
+    "manifests/ingest_p2/extract__microsoft__Phi-3-mini-128k-instruct__p2tpl@f3c06aed622e__select.sha256": "34fdd6f28ec2612b7c6e1df194b0df0afa44e165ecd3d0b3d5efdc2b6cb77a6f",
+    "manifests/ingest_p2/extract__microsoft__Phi-3-mini-128k-instruct__p2sub@f3c06aed622e__rest.sha256": "b9422e8621bdd11dc0d7c1e4f519b03208cbad9f47d37eebb802d19ee4fcd79f",
+    "manifests/ingest_p2/extract__microsoft__Phi-3.5-mini-instruct__p2sub@2fe192450127__rest.sha256": "732e6d781ee6b0f4d5800f845bc65ed86060a24419a7362362108af8c770641f",
+    "manifests/ingest_p2/extract__microsoft__Phi-3.5-mini-instruct__p2sub@2fe192450127__select.sha256": "76fb6cd95f840523f734158cbd82a27eb938ced192b68d27adf7e5149134cca3",
+    "results/phase2/extract__microsoft__Phi-3-mini-128k-instruct__p2tpl@f3c06aed622e__select.json": "60164fb51904d1eb0a7e1727cf099071c77a8b83ce6e6c8728d688e3ff6e7301",
+    "results/phase2/selection_p2__microsoft__Phi-3-mini-128k-instruct@f3c06aed622e__usermean.json": "e4aa7cdc02400e74ad4d26a062308deb5488ddfcc68c380726eff370587de2c2",
+    "results/phase2/dataset_manifest_p2_v2.json": "48594df0622e614327d3d9f564b05ce83d0cb64dd82a2adf19f526e3d930266d",
+    "results/phase2/extract__microsoft__Phi-3-mini-128k-instruct__p2sub@f3c06aed622e__rest.json": "29641aaf7446dd56c4463f87b220d1e4fbbfc2a4e6f56ab3cc9a42d0f8182cef",
+    "results/phase2/extract__microsoft__Phi-3-mini-128k-instruct__p2tpl@f3c06aed622e__rest.json": "d8e76288b115f7cbf32c32bf6911e449abbd592b99dc2c01358e59c97884a2b4",
+    "results/phase2/extract__microsoft__Phi-3.5-mini-instruct__p2tpl@2fe192450127__select.json": "b90e8081350235832725e731189b1942db3c28553daf1f844d290ebd1d023862",
+    "results/phase2/extract__microsoft__Phi-3.5-mini-instruct__p2sub@2fe192450127__select.json": "2fe4d641eacb2dfca1557aba64c4eeaf57dee1416c88dfaa19a808862d68fc3d",
+    "results/phase2/bos_check_p2.json": "4aa34e43484e892be7c76e3cf367b84f95646abb0a3888f301af3200fa17b5cd",
+    "results/phase2/extract__microsoft__Phi-3.5-mini-instruct__p2sub@2fe192450127__rest.json": "3af864febaeaf26287112560388e2e37bb182b4ad7fb1eafe67d85a109f1b809",
+    "results/phase2/extract__microsoft__Phi-3.5-mini-instruct__p2tpl@2fe192450127__rest.json": "d53023d43e65dc4258862e54918c8428c9ffc62e65680fa6dab9956ff0a5a19a",
+    "results/phase2/dataset_manifest_p2.json": "b51e8419ccbf035581d7f4960d422a7a1a9d46eca35b3c47cfe46e6507d1621e",
+    "manifests/phase2_pool_clusters.json": "6c206f5b6e0d3d9a2f071eb7255b5ffe54b45ccad10a8f0119f58938a5282d57",
+    "results/twomoment_p2_d361_phi3_128k_to_35_usermean.json": "84341f8548cbe7ea43918ef95958f484f77a61c8e65614d500c04005412bc2ba",
+    "results/twomoment_p2_d361_anchor_repair_WG_mistral_base2instruct.json": "6b861e289c3e1544a658a40da19db8d53c6c26439532256947eb1ee31fe4a18f",
+    "results/phase2/ho20cluster_summary.json": "83617cddd7369c798f32b6b293a95dd2d555879f67cc8d3710bf37783a56cfd1",
+    "results/p2auroc_d424_summary.json": "3073b6855aca53b9fd3768b6c0f5e90df8a7c5a37964d5bfcd93d1673069d7a1",
+    "results/p2auroc_d424_phi3_128k_to_35.json": "0559bb2da2525b0246c25fa766fb7b2cbef46470ef336d500d68da59d5df2698"
+  },
+  "ingest_indexes_sha256": {
+    "at_read": {
+      "manifests/ingest_p2/extract__microsoft__Phi-3-mini-128k-instruct__p2tpl@f3c06aed622e__select.sha256": "34fdd6f28ec2612b7c6e1df194b0df0afa44e165ecd3d0b3d5efdc2b6cb77a6f",
+      "manifests/ingest_p2/extract__microsoft__Phi-3-mini-128k-instruct__p2sub@f3c06aed622e__rest.sha256": "b9422e8621bdd11dc0d7c1e4f519b03208cbad9f47d37eebb802d19ee4fcd79f",
+      "manifests/ingest_p2/extract__microsoft__Phi-3.5-mini-instruct__p2sub@2fe192450127__rest.sha256": "732e6d781ee6b0f4d5800f845bc65ed86060a24419a7362362108af8c770641f",
+      "manifests/ingest_p2/extract__microsoft__Phi-3.5-mini-instruct__p2sub@2fe192450127__select.sha256": "76fb6cd95f840523f734158cbd82a27eb938ced192b68d27adf7e5149134cca3"
+    },
+    "unchanged_at_end": true
+  },
+  "input_cache_sha256": {
+    "pre/p2wg/probe_train/usermean": "6e85325a063bf54febdf98ea0622a8411d63cea4ba4119cca47cec15234f12bd",
+    "pre/p2wg/calibration/usermean": "46aec1a43cf9d85ffe8e22effa3d42862e5c9bb2b70efff63f0f4381927c179b",
+    "post/p2sub/p2wg/calibration/usermean": "a237aadb930ef99a65f61e6322beb1960e159426a6ff86f56e05be1dd713f20f",
+    "pre/p2sub/p2wg/eval/usermean": "6baaab6bbceb118f6a0493754d055d7d8f41877b224c9e708c4bb88a9fd8834a",
+    "pre/p2sub/p2wg/pool4d/usermean": "45ec76a80462c719073bdb0ab2bcbfe49f3722e171b1608c578f53328e6e5ab8",
+    "post/p2sub/p2wg/eval/usermean": "c7a6e39903986f739275b17b47f4dc9c68f46baf5666576c54e0c2436e0269e8",
+    "post/p2sub/p2wg/pool4d/usermean": "32a1760850524ea800574d89653ba9f7953e42f263766ab828e46eb05794845e"
+  },
+  "input_cache_source": {
+    "pre/p2wg/probe_train/usermean": "data/hidden/microsoft__Phi-3-mini-128k-instruct__p2tpl@f3c06aed622e__p2wg__probe_train__usermean.npz (expected bytes from results/phase2/extract__microsoft__Phi-3-mini-128k-instruct__p2tpl@f3c06aed622e__select.json)",
+    "pre/p2wg/calibration/usermean": "data/hidden/microsoft__Phi-3-mini-128k-instruct__p2tpl@f3c06aed622e__p2wg__calibration__usermean.npz (expected bytes from results/phase2/extract__microsoft__Phi-3-mini-128k-instruct__p2tpl@f3c06aed622e__select.json)",
+    "post/p2sub/p2wg/calibration/usermean": "data/hidden/microsoft__Phi-3.5-mini-instruct__p2sub@2fe192450127__p2wg__calibration__usermean.npz (expected bytes from results/phase2/extract__microsoft__Phi-3.5-mini-instruct__p2sub@2fe192450127__select.json)",
+    "pre/p2sub/p2wg/eval/usermean": "data/hidden/microsoft__Phi-3-mini-128k-instruct__p2sub@f3c06aed622e__p2wg__eval__usermean.npz (expected bytes from results/phase2/extract__microsoft__Phi-3-mini-128k-instruct__p2sub@f3c06aed622e__rest.json)",
+    "pre/p2sub/p2wg/pool4d/usermean": "data/hidden/microsoft__Phi-3-mini-128k-instruct__p2sub@f3c06aed622e__p2wg__pool4d__usermean.npz (expected bytes from results/phase2/extract__microsoft__Phi-3-mini-128k-instruct__p2sub@f3c06aed622e__rest.json)",
+    "post/p2sub/p2wg/eval/usermean": "data/hidden/microsoft__Phi-3.5-mini-instruct__p2sub@2fe192450127__p2wg__eval__usermean.npz (expected bytes from results/phase2/extract__microsoft__Phi-3.5-mini-instruct__p2sub@2fe192450127__rest.json)",
+    "post/p2sub/p2wg/pool4d/usermean": "data/hidden/microsoft__Phi-3.5-mini-instruct__p2sub@2fe192450127__p2wg__pool4d__usermean.npz (expected bytes from results/phase2/extract__microsoft__Phi-3.5-mini-instruct__p2sub@2fe192450127__rest.json)"
+  },
+  "caches_rehashed_at_end": true,
+  "scores_npz": {
+    "file": "results/p2auroc_d424_grouped_phi3_128k_to_35_scores.npz",
+    "sha256": "bf82893d54932f1ac26654c46fc908c692b72bcdc33d2fa1063050911a07278a",
+    "size": 1740078,
+    "keys": "'recorded|' + the pair mode's keys (NPZ_KEYS) of the recorded cell; 'grouped|L<layer>|scores|...' and 'grouped|L<layer>|auroc|...' of the grouped cell, in the same form"
+  },
+  "cells": {
+    "recorded": {
+      "pair": "phi3_128k_to_35",
+      "layer": 18,
+      "grid_position": "L*",
+      "is_selected_layer": true,
+      "probe_set": "selected",
+      "probe_C": 0.003,
+      "filled": true,
+      "n_eval_negatives": 6000,
+      "n_eval_positives": 4000,
+      "auroc": {
+        "note": "the v2 frozen evaluation split (its negatives against its positives), per seed and the mean over the seeds: 'pre' = the pre model's activations scored by the pre probe; 'frozen' = the POST model's activations of the same items scored by the SAME pre probe (the post AUROC); 'change' = frozen - pre per seed (D-419 (3)'s dAUROC; depth_d156's drop_frozen with the sign reversed). 95% interval of the seed mean by the D-152 P5 item bootstrap (B = 5000, eval negatives and positives resampled separately, all seeds recomputed per resample, the same resamples for pre and frozen and at every layer, so the change's interval is paired); per-seed intervals beside; not re-partitioned (D-156)",
+        "depth_d156_note": "frozen eval split; 95% interval by the D-152 P5 item bootstrap (B = 5000, eval negatives and positives resampled separately, all seeds recomputed per resample); not re-partitioned (D-156 keeps the item bootstrap for threshold-free quantities)",
+        "pre": {
+          "mean_over_seeds": 0.97774445,
+          "per_seed": [
+            0.9776660416666667,
+            0.9779477916666667,
+            0.9778138333333334,
+            0.9775477083333334,
+            0.977746875
+          ],
+          "range_over_seeds": [
+            0.9775477083333334,
+            0.9779477916666667
+          ],
+          "ci95": [
+            0.9752629447916668,
+            0.98005062
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.9751231927083334,
+              0.9800146479166667
+            ],
+            [
+              0.9754365979166666,
+              0.98029769375
+            ],
+            [
+              0.9753305625,
+              0.9801457625000001
+            ],
+            [
+              0.9749758104166666,
+              0.9799468802083333
+            ],
+            [
+              0.9752206833333333,
+              0.9800993312499999
+            ]
+          ]
+        },
+        "frozen": {
+          "mean_over_seeds": 0.9767233916666667,
+          "per_seed": [
+            0.9766775416666666,
+            0.97685725,
+            0.9769075416666667,
+            0.9766523333333333,
+            0.9765222916666667
+          ],
+          "range_over_seeds": [
+            0.9765222916666667,
+            0.9769075416666667
+          ],
+          "ci95": [
+            0.974189761875,
+            0.9791436891666667
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.9740961895833333,
+              0.9791175791666666
+            ],
+            [
+              0.9742825395833333,
+              0.9792887812500001
+            ],
+            [
+              0.9743996625,
+              0.9793273052083333
+            ],
+            [
+              0.9740734645833333,
+              0.9791202364583333
+            ],
+            [
+              0.9739524072916667,
+              0.9789652958333334
+            ]
+          ]
+        },
+        "change": {
+          "mean_over_seeds": -0.0010210583333333466,
+          "per_seed": [
+            -0.0009885000000000588,
+            -0.0010905416666666667,
+            -0.0009062916666666698,
+            -0.0008953750000000316,
+            -0.0012245833333333067
+          ],
+          "range_over_seeds": [
+            -0.0012245833333333067,
+            -0.0008953750000000316
+          ],
+          "ci95": [
+            -0.001563699166666785,
+            -0.0004770399999999564
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              -0.0015632197916666756,
+              -0.00041667187500006917
+            ],
+            [
+              -0.0016754854166666027,
+              -0.0005095833333333006
+            ],
+            [
+              -0.0014680687499999234,
+              -0.0003398624999999907
+            ],
+            [
+              -0.0014592270833333504,
+              -0.00034248645833324953
+            ],
+            [
+              -0.0018002229166666106,
+              -0.0006401635416666635
+            ]
+          ]
+        }
+      },
+      "duan_flags": {
+        "defined": true,
+        "big_drop": false,
+        "operational_failure": false,
+        "eligible": true,
+        "criteria": {
+          "big_drop": -0.05,
+          "operational": 0.7,
+          "eligible": 0.75
+        },
+        "beside_change_ci95_wholly_at_or_below_big_drop": false,
+        "beside_change_ci95_wholly_above_big_drop": true
+      },
+      "beside_d156_at_1pct": {
+        "source": "this job's realised D-156 report at 1% over D-361's draws, equal to the pair's D-361 record (the anchor)",
+        "delta_tpr": {
+          "mean": 0.009775050000000002,
+          "band95": [
+            0.008700000000000017,
+            0.010849999999999981
+          ],
+          "frozen": 0.01004999999999998,
+          "frozen_percentile": 68.55,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.0005442988689670074
+        },
+        "tpr_pre": {
+          "mean": 0.7315960499999999,
+          "band95": [
+            0.71289875,
+            0.7515025
+          ],
+          "frozen": 0.72815,
+          "frozen_percentile": 34.95,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.009707613747062775
+        },
+        "tpr_post": {
+          "mean": 0.7413711,
+          "band95": [
+            0.7218975,
+            0.761955
+          ],
+          "frozen": 0.7382,
+          "frozen_percentile": 35.65,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.010096403178714054
+        },
+        "paired_ratio": {
+          "mean": 1.1714537896344706,
+          "band95": [
+            1.0881864898249152,
+            1.2654941709673542
+          ],
+          "frozen": 1.1164259692948217,
+          "frozen_percentile": 9.5,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.0452538308233052
+        },
+        "ratio_to_target": {
+          "mean": 1.16768,
+          "band95": [
+            0.8299999999999998,
+            1.54
+          ],
+          "frozen": 1.0699999999999998,
+          "frozen_percentile": 29.75,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.18279383671857716
+        }
+      },
+      "scores_sha256": {
+        "ev_pre": "00ccdfce9a263191bd0129f0dcadde924948b9f157ce1ff653b457ae65c247fe",
+        "pos_pre": "9ef45b849a6d1544e115662690d12a72c37449675ea8605e52f9d9667d8cc08d",
+        "ev_post": "79d2adabef07322b5507fe2abdcc6526b992e0233a3587f8416fb23fcc99b84f",
+        "pos_post": "ee556d5890bdc5168e740b712057f7b2e240c14b61a0f5c399c042e171c2b704"
+      },
+      "missing": []
+    },
+    "grouped": {
+      "pair": "phi3_128k_to_35",
+      "role": "D-354 grouped cell (cluster-grouped ho20's selection; a sensitivity row, D-354 (3))",
+      "arm": "C=0.001",
+      "probe_C": 0.001,
+      "layer": 18,
+      "filled": true,
+      "n_eval_negatives": 6000,
+      "n_eval_positives": 4000,
+      "auroc": {
+        "note": "the v2 frozen evaluation split (its negatives against its positives), per seed and the mean over the seeds: 'pre' = the pre model's activations scored by the pre probe; 'frozen' = the POST model's activations of the same items scored by the SAME pre probe (the post AUROC); 'change' = frozen - pre per seed (D-419 (3)'s dAUROC; depth_d156's drop_frozen with the sign reversed). 95% interval of the seed mean by the D-152 P5 item bootstrap (B = 5000, eval negatives and positives resampled separately, all seeds recomputed per resample, the same resamples for pre and frozen and at every layer, so the change's interval is paired); per-seed intervals beside; not re-partitioned (D-156)",
+        "depth_d156_note": "frozen eval split; 95% interval by the D-152 P5 item bootstrap (B = 5000, eval negatives and positives resampled separately, all seeds recomputed per resample); not re-partitioned (D-156 keeps the item bootstrap for threshold-free quantities)",
+        "pre": {
+          "mean_over_seeds": 0.9770869666666666,
+          "per_seed": [
+            0.9769717083333334,
+            0.977401875,
+            0.9770599166666667,
+            0.9769951666666666,
+            0.9770061666666666
+          ],
+          "range_over_seeds": [
+            0.9769717083333334,
+            0.977401875
+          ],
+          "ci95": [
+            0.9745191062500002,
+            0.9794520812499999
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.9743824229166667,
+              0.9793907010416666
+            ],
+            [
+              0.97485005,
+              0.9797627427083333
+            ],
+            [
+              0.9744744958333333,
+              0.9794247604166666
+            ],
+            [
+              0.9743966447916667,
+              0.9794283666666667
+            ],
+            [
+              0.9744318447916667,
+              0.9793688458333334
+            ]
+          ]
+        },
+        "frozen": {
+          "mean_over_seeds": 0.9761503749999999,
+          "per_seed": [
+            0.9760782083333334,
+            0.9764134166666667,
+            0.9761696666666667,
+            0.9761682083333333,
+            0.975922375
+          ],
+          "range_over_seeds": [
+            0.975922375,
+            0.9764134166666667
+          ],
+          "ci95": [
+            0.9735647372916667,
+            0.9786022243750001
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              0.973454109375,
+              0.9785330010416666
+            ],
+            [
+              0.9738222708333333,
+              0.978852559375
+            ],
+            [
+              0.9735661729166666,
+              0.9786416458333334
+            ],
+            [
+              0.9735318875,
+              0.9786507197916666
+            ],
+            [
+              0.97331885625,
+              0.978395090625
+            ]
+          ]
+        },
+        "change": {
+          "mean_over_seeds": -0.0009365916666666419,
+          "per_seed": [
+            -0.0008934999999999915,
+            -0.0009884583333332753,
+            -0.0008902499999999813,
+            -0.0008269583333333497,
+            -0.0010837916666666114
+          ],
+          "range_over_seeds": [
+            -0.0010837916666666114,
+            -0.0008269583333333497
+          ],
+          "ci95": [
+            -0.0014710216666665803,
+            -0.00041145291666674124
+          ],
+          "n_replicates": 5000,
+          "n_nonfinite": 0,
+          "per_seed_ci95": [
+            [
+              -0.0014475927083333895,
+              -0.0003610572916666253
+            ],
+            [
+              -0.0015490093750000211,
+              -0.0004414375000000862
+            ],
+            [
+              -0.0014204197916667023,
+              -0.00035399166666674823
+            ],
+            [
+              -0.0013708760416666604,
+              -0.0002948093750000217
+            ],
+            [
+              -0.0016380781249999226,
+              -0.0005253135416666003
+            ]
+          ]
+        }
+      },
+      "duan_flags": {
+        "defined": true,
+        "big_drop": false,
+        "operational_failure": false,
+        "eligible": true,
+        "criteria": {
+          "big_drop": -0.05,
+          "operational": 0.7,
+          "eligible": 0.75
+        },
+        "beside_change_ci95_wholly_at_or_below_big_drop": false,
+        "beside_change_ci95_wholly_above_big_drop": true
+      },
+      "realised_d156_at_1pct": {
+        "source": "this job's realised D-156 report at 1% over D-361's 1000 draws (the D-361 estimator); no committed record holds this cell",
+        "n_draws": 1000,
+        "fpr_pre": {
+          "mean": 0.010059799999999999,
+          "band95": [
+            0.006665833333333333,
+            0.013867499999999998
+          ],
+          "frozen": 0.010833333333333334,
+          "frozen_percentile": 69.65,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.0017777150777231515
+        },
+        "fpr_post": {
+          "mean": 0.010557433333333333,
+          "band95": [
+            0.006933333333333333,
+            0.014533333333333334
+          ],
+          "frozen": 0.010633333333333331,
+          "frozen_percentile": 53.75,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.0018878812218277802
+        },
+        "paired_ratio": {
+          "mean": 1.0505977317932955,
+          "band95": [
+            0.9807404470904043,
+            1.1200890677415443
+          ],
+          "frozen": 0.9805245734657498,
+          "frozen_percentile": 2.5,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.03602023401132812
+        },
+        "ratio_to_target": {
+          "mean": 1.0557433333333333,
+          "band95": [
+            0.6933333333333332,
+            1.4533333333333334
+          ],
+          "frozen": 1.063333333333333,
+          "frozen_percentile": 53.75,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.18878812218277802
+        },
+        "floor_ratio_to_target": {
+          "mean": 1.00598,
+          "band95": [
+            0.6665833333333333,
+            1.3867499999999997
+          ],
+          "frozen": 1.0833333333333333,
+          "frozen_percentile": 69.55,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.17777150777231515
+        },
+        "floor_abs_log": {
+          "mean": 0.13972233718410065,
+          "band95": [
+            0.006644542718668511,
+            0.42057874591821265
+          ],
+          "frozen": 0.08004270767353636,
+          "frozen_percentile": 38.25,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.11290207251165703
+        },
+        "tpr_pre": {
+          "mean": 0.7318554500000001,
+          "band95": [
+            0.70629625,
+            0.7531012499999999
+          ],
+          "frozen": 0.7383,
+          "frozen_percentile": 70.75,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.011295683922311778
+        },
+        "tpr_post": {
+          "mean": 0.7277007,
+          "band95": [
+            0.7024925,
+            0.7494550000000001
+          ],
+          "frozen": 0.7357,
+          "frozen_percentile": 74.15,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.011638703060002817
+        },
+        "delta_tpr": {
+          "mean": -0.004154749999999999,
+          "band95": [
+            -0.005401250000000003,
+            -0.0029000000000000354
+          ],
+          "frozen": -0.0026000000000000246,
+          "frozen_percentile": 99.6,
+          "n_nonfinite_draws": 0,
+          "sd_over_draws": 0.0006914318589098363
+        },
+        "frozen_split_significance": {
+          "mcnemar_neg_p_max": 0.8238029479980469,
+          "mcnemar_neg_min_achievable_p": 1.9073486328125e-06,
+          "mcnemar_pos_p_max": 0.155400100083905,
+          "mcnemar_pos_min_achievable_p": 1.2037062152420224e-35
+        },
+        "share_of_draws_mcnemar_neg_p_max_below_0_05": 0.0,
+        "share_of_draws_mcnemar_pos_p_max_below_0_05": 0.014,
+        "frozen_split_counts": {
+          "n_flagged_pre": [
+            68,
+            60,
+            63,
+            66,
+            68
+          ],
+          "n_flagged_post": [
+            73,
+            58,
+            57,
+            70,
+            61
+          ],
+          "neg_discordant_b_c": [
+            [
+              9,
+              14
+            ],
+            [
+              11,
+              9
+            ],
+            [
+              13,
+              7
+            ],
+            [
+              9,
+              13
+            ],
+            [
+              14,
+              7
+            ]
+          ],
+          "hits_pre": [
+            2946,
+            2970,
+            2940,
+            2974,
+            2936
+          ],
+          "hits_post": [
+            2963,
+            2932,
+            2904,
+            3015,
+            2900
+          ],
+          "pos_discordant_b_c": [
+            [
+              55,
+              72
+            ],
+            [
+              80,
+              42
+            ],
+            [
+              86,
+              50
+            ],
+            [
+              38,
+              79
+            ],
+            [
+              90,
+              54
+            ]
+          ],
+          "n_eval_negatives": 6000,
+          "n_positives": 4000
+        }
+      },
+      "scores_sha256": {
+        "ev_pre": "e9f634b348503803e78728f45f08eba09ad57b49e14662cb1d8d91622d3ae141",
+        "pos_pre": "4d3c324c682e4f71e180ac96c1a43b26470e4e2d4418cf7af2b23dedcfeaad85",
+        "ev_post": "e92a9cb7fe8971852eac5dac8c79b6e162082a50a640f5b00716b8c0504fb83b",
+        "pos_post": "c0eec3b502a04cf25d442fe3f858914969d67aff16c35a840d385bc75a8ed814"
+      },
+      "grid_anchor": {
+        "recomputed": {
+          "auroc_fit": 0.9921187837010337,
+          "auroc_ho20": 0.9756147563887266,
+          "gap": 0.016504027312307046
+        },
+        "recorded": {
+          "auroc_fit": 0.9921187837010337,
+          "auroc_ho20": 0.9756147563887266,
+          "gap": 0.016504027312307046
+        },
+        "values_compared": 3,
+        "values_differing": 0,
+        "exact_equal": true
+      },
+      "probe_fit_diagnostics": [
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 27,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.004709467042584306,
+          "grad_max_abs": 0.0002767588642354178,
+          "w_norm": 0.6272187749271839
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 26,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.004705391433800683,
+          "grad_max_abs": 0.0003150455135314187,
+          "w_norm": 0.631751167233786
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 27,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.004450213333472923,
+          "grad_max_abs": 0.0002887683438828857,
+          "w_norm": 0.6282558675957227
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 27,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.005449678871198009,
+          "grad_max_abs": 0.0003149423502321986,
+          "w_norm": 0.6276105606039737
+        },
+        {
+          "C": 0.001,
+          "row_order": "d117_permutation",
+          "tol": 0.0001,
+          "n_fit": 3200,
+          "n_iter": 28,
+          "max_iter": 2000,
+          "converged": true,
+          "convergence_warning": false,
+          "grad_norm": 0.0040756645507243035,
+          "grad_max_abs": 0.000239549363985226,
+          "w_norm": 0.629938466763031
+        }
+      ]
+    }
+  }
+}

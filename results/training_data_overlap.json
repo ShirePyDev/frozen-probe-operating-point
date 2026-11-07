@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "run_kind": "training_data_overlap",
+  "utc": "2026-09-16T10:27:29+00:00",
+  "git": {
+    "commit": "aaf526511ebc9c35f94104891e4efe588e082795",
+    "branch": "master",
+    "dirty": true,
+    "dirty_file_count": 84,
+    "dirty_files": [
+      "M .gitignore",
+      " M DECISIONS.md",
+      " M FAILURES.md",
+      " M RESEARCH_LEDGER.md",
+      " M data/hidden/Qwen__Qwen2.5-7B@d14972939875__safety__eval__mean.npz",
+      " M data/hidden/Qwen__Qwen2.5-7B@d14972939875__safety__probe_train__mean.npz",
+      " M data/hidden/Qwen__Qwen2.5-7B@d14972939875__safety__threshold_calib__mean.npz",
+      " M data/hidden/mistral-community__Mistral-7B-v0.2@80cf49b18de6__safety__eval__mean.npz",
+      " M data/hidden/mistral-community__Mistral-7B-v0.2@80cf49b18de6__safety__probe_train__mean.npz",
+      " M data/hidden/mistral-community__Mistral-7B-v0.2@80cf49b18de6__safety__threshold_calib__mean.npz",
+      " M data/hidden/mistralai__Mistral-7B-v0.1@27d67f1b5f57__over_refusal__eval__mean.npz",
+      " M results/extract__Qwen__Qwen2.5-7B@d14972939875.json",
+      " M results/extract__mistral-community__Mistral-7B-v0.2@80cf49b18de6.json",
+      " M results/extract__mistralai__Mistral-7B-Instruct-v0.1@ec5deb64f2c6.json",
+      " M results/extract__mistralai__Mistral-7B-v0.1@27d67f1b5f57.json",
+      " M src/depth_curve.py",
+      " M src/extract_hidden.py",
+      " M src/freeze_splits.py",
+      "?? data/frozen/safety_wildguard__eval.jsonl",
+      "?? data/frozen/safety_wildguard__probe_train.jsonl",
+      "?? data/frozen/safety_wildguard__threshold_calib.jsonl",
+      "?? results/access_check.json",
+      "?? results/advstrat_llama3.json",
+      "?? results/advstrat_mistral.json",
+      "?? results/compare_reruns.json",
+      "?? results/dataset_manifest_wildguard.json",
+      "?? results/depth_WG_llama3_base2instruct.json",
+      "?? results/depth_WG_mistral_base2instruct.json",
+      "?? results/depth_gemma2_base2instruct.json",
+      "?? results/depth_llama31_base2instruct.json",
+      "?? results/depth_llama3_base2instruct.json",
+      "?? results/depth_llama3_to_31.json",
+      "?? results/depth_mistral_base2instruct_CHAT.json",
+      "?? results/depth_mistral_v01_v02.json",
+      "?? results/depth_mistral_v01_v02_dense.json",
+      "?? results/depth_olmo_base2instruct.json",
+      "?? results/depth_qwen_base2instruct.json",
+      "?? results/extract__Qwen__Qwen2.5-7B-Instruct@a09a35458c70.json",
+      "?? results/extract__allenai__OLMo-2-1124-7B-Instruct@470b1fba1ae0.json",
+      "?? results/extract__allenai__OLMo-2-1124-7B@7df9a82518af.json",
+      "?? results/extract__google__gemma-2-9b-it@11c9b309abf7.json",
+      "?? results/extract__google__gemma-2-9b@33c193028431.json",
+      "?? results/extract__meta-llama__Llama-3.1-8B-Instruct@0e9e39f249a1.json",
+      "?? results/extract__meta-llama__Llama-3.1-8B@d04e592bb4f6.json",
+      "?? results/extract__meta-llama__Meta-Llama-3-8B-Instruct@8afb486c1db2.json",
+      "?? results/extract__meta-llama__Meta-Llama-3-8B@8cde5ca83804.json",
+      "?? results/moment_llama3_base2instruct.json",
+      "?? results/moment_llama3_to_31.json",
+      "?? results/moment_mistral_base2instruct.json",
+      "?? results/moment_mistral_base2instruct_v2.json"
+    ]
+  },
+  "env": {
+    "python": "3.10.12",
+    "platform": "Linux-5.14.0-687.46.1.el9_8.x86_64-x86_64-with-glibc2.35",
+    "machine": "x86_64"
+  },
+  "limitation": "exact-match only; paraphrased or lightly edited prompts are not detected",
+  "frozen_axis_sizes": {
+    "over_refusal": 450,
+    "safety": 10000,
+    "safety_wildguard": 10000
+  },
+  "sources": {
+    "hh-rlhf-harmless": {
+      "repo": "Anthropic/hh-rlhf",
+      "data_dir": "harmless-base",
+      "revision": "09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa",
+      "n_rows": 42537,
+      "n_unique_prompts": 17008,
+      "overlap_by_axis": {
+        "over_refusal": 3,
+        "safety": 2369,
+        "safety_wildguard": 258
+      },
+      "accessible": true
+    },
+    "pku-saferlhf": {
+      "repo": "PKU-Alignment/PKU-SafeRLHF",
+      "data_dir": null,
+      "revision": "9421ffafec3fa40a1f1a7d567b4d525079477ecb",
+      "n_rows": 73907,
+      "n_unique_prompts": 38640,
+      "overlap_by_axis": {
+        "over_refusal": 1,
+        "safety": 1156,
+        "safety_wildguard": 115
+      },
+      "accessible": true
+    }
+  }
+}

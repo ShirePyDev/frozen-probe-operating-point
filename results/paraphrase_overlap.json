@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "run_kind": "paraphrase_overlap",
+  "utc": "2026-09-18T13:22:11+00:00",
+  "git": {
+    "commit": null,
+    "branch": null,
+    "dirty": null,
+    "dirty_file_count": null,
+    "dirty_files": []
+  },
+  "env": {
+    "python": "3.10.12",
+    "platform": "Linux-3.10.0-1160.119.1.el7.x86_64-x86_64-with-glibc2.35",
+    "machine": "x86_64"
+  },
+  "preregistration": "D-107",
+  "params": {
+    "n_perm": 64,
+    "n_bands": 16,
+    "shingle": 3,
+    "seed": 0
+  },
+  "corpora": {
+    "alpaca (general)": {
+      "repo": "yahma/alpaca-cleaned",
+      "data_dir": null,
+      "revision": "12567cabf869d7c92e573c7c783905fc160e9639",
+      "n_train_prompts": 51760,
+      "over_refusal": {
+        "n_frozen_prompts": 450,
+        "exact_normalised_matches": 0,
+        "frac_jaccard_ge_0.5": 0.0,
+        "frac_jaccard_ge_0.8": 0.0,
+        "median_max_jaccard": 0.0,
+        "p95_max_jaccard": 0.15384615384615385
+      },
+      "safety": {
+        "n_frozen_prompts": 10000,
+        "exact_normalised_matches": 2,
+        "frac_jaccard_ge_0.5": 0.0011,
+        "frac_jaccard_ge_0.8": 0.0002,
+        "median_max_jaccard": 0.0,
+        "p95_max_jaccard": 0.08333333333333333
+      },
+      "safety_wildguard": {
+        "n_frozen_prompts": 10000,
+        "exact_normalised_matches": 0,
+        "frac_jaccard_ge_0.5": 0.0002,
+        "frac_jaccard_ge_0.8": 0.0,
+        "median_max_jaccard": 0.0,
+        "p95_max_jaccard": 0.043478260869565216
+      }
+    },
+    "hh-rlhf harmless (safety)": {
+      "repo": "Anthropic/hh-rlhf",
+      "data_dir": "harmless-base",
+      "revision": "09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa",
+      "n_train_prompts": 42537,
+      "over_refusal": {
+        "n_frozen_prompts": 450,
+        "exact_normalised_matches": 3,
+        "frac_jaccard_ge_0.5": 0.03111111111111111,
+        "frac_jaccard_ge_0.8": 0.006666666666666667,
+        "median_max_jaccard": 0.0,
+        "p95_max_jaccard": 0.4
+      },
+      "safety": {
+        "n_frozen_prompts": 10000,
+        "exact_normalised_matches": 2449,
+        "frac_jaccard_ge_0.5": 0.2521,
+        "frac_jaccard_ge_0.8": 0.2461,
+        "median_max_jaccard": 0.0,
+        "p95_max_jaccard": 1.0
+      },
+      "safety_wildguard": {
+        "n_frozen_prompts": 10000,
+        "exact_normalised_matches": 261,
+        "frac_jaccard_ge_0.5": 0.0277,
+        "frac_jaccard_ge_0.8": 0.0261,
+        "median_max_jaccard": 0.0,
+        "p95_max_jaccard": 0.12257653061224304
+      }
+    },
+    "pku-saferlhf (safety)": {
+      "repo": "PKU-Alignment/PKU-SafeRLHF",
+      "data_dir": null,
+      "revision": "9421ffafec3fa40a1f1a7d567b4d525079477ecb",
+      "n_train_prompts": 73907,
+      "over_refusal": {
+        "n_frozen_prompts": 450,
+        "exact_normalised_matches": 1,
+        "frac_jaccard_ge_0.5": 0.022222222222222223,
+        "frac_jaccard_ge_0.8": 0.0022222222222222222,
+        "median_max_jaccard": 0.0,
+        "p95_max_jaccard": 0.3333333333333333
+      },
+      "safety": {
+        "n_frozen_prompts": 10000,
+        "exact_normalised_matches": 1207,
+        "frac_jaccard_ge_0.5": 0.1335,
+        "frac_jaccard_ge_0.8": 0.1215,
+        "median_max_jaccard": 0.0,
+        "p95_max_jaccard": 1.0
+      },
+      "safety_wildguard": {
+        "n_frozen_prompts": 10000,
+        "exact_normalised_matches": 117,
+        "frac_jaccard_ge_0.5": 0.0133,
+        "frac_jaccard_ge_0.8": 0.0117,
+        "median_max_jaccard": 0.0,
+        "p95_max_jaccard": 0.1
+      }
+    }
+  },
+  "safety_axis_gap_vs_alpaca": {
+    "hh-rlhf harmless (safety)": 0.251,
+    "pku-saferlhf (safety)": 0.13240000000000002
+  },
+  "verdict": "PARAPHRASE CONTAMINATION IS A LIVE CONFOUND (rule 1)"
+}

@@ -1,0 +1,887 @@
+{
+  "schema_version": 1,
+  "run_kind": "c1_recompute_d645",
+  "utc": "2026-11-02T07:31:30+00:00",
+  "git": {
+    "commit": "5ed450107beb2873ddf761a67b51a43503c02b6b",
+    "branch": "d645-run",
+    "dirty": false,
+    "dirty_file_count": 0,
+    "dirty_files": []
+  },
+  "env": {
+    "python": "3.12.10",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "machine": "AMD64",
+    "blas_threads": {
+      "OMP_NUM_THREADS": null,
+      "OPENBLAS_NUM_THREADS": null,
+      "MKL_NUM_THREADS": null,
+      "NUMEXPR_NUM_THREADS": null
+    },
+    "cpu_count": 8,
+    "libraries": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1",
+      "torch": null,
+      "transformers": null
+    }
+  },
+  "preregistration": "none: a recomputation by the author's items A1 and A2 of 2026-11-02 (D-645); no verdict",
+  "code": {
+    "sha256": {
+      "src/c1_recompute_d645.py": "60255faf1d2d963bf7deaffcd32ce107236fd22f53f4325f56b256850c435be4",
+      "src/paired.py": "80429fa57f0267236a2af1670c74ef327802598257ab75834fddf64a70d97195",
+      "src/populations.py": "0c9e944f70e1d580474218bd9e35f8e7d447e8b26e0f316bfbe399133498cba6",
+      "src/provenance.py": "3cef96e8ede12af7dc920409cc9bd7e072cdedc579e9211604cf481084e9aa47",
+      "src/superseded_provenance.py": "6613f47f086958ef424f1be1263afc4a5918f17a50b24d025baad69aeb0738b8"
+    },
+    "commit": "5ed450107beb2873ddf761a67b51a43503c02b6b",
+    "commit_source": "git HEAD",
+    "libraries": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1"
+    }
+  },
+  "input_files_sha256": {
+    "results/depth_d156_mistral_base2instruct.json": "b23a84367190603e6012cfd4b3871dd1d475c75983c7e125930164bb51e49b03",
+    "results/depth_d156_gemma2_base2instruct.json": "27131ebcfefa5995a3c56f60c80558e53abc34b03ee132dcda2a74abc2c8498c",
+    "results/depth_d156_llama3_base2instruct.json": "1eaac71d6c8ec722cdf61d6fb47a23a006801839912a9049fa10d6069a206b82",
+    "results/depth_d156_llama31_base2instruct.json": "321faa00b11395a7ce27a2028ad433fcd048cddebe2183d29bdeb64ca86457a2",
+    "results/depth_d156_qwen_base2instruct.json": "a88c43680e878c2df8c59ee620f03a6fa1cfb57563c9df27a20a69529b550c18",
+    "results/depth_d156_olmo_base2instruct.json": "ea560ab89855ad283127e21a06901859ab3c4caffc6f2c8790e5d7a4330c71c6",
+    "results/depth_d156_WG_mistral_base2instruct.json": "c137c2f6d451e5020f9704025719a812680bc02d6f13da7c57c2a75e30ed6338",
+    "results/depth_d156_WG_llama3_base2instruct.json": "a19a1f1c821d07b6ae739032d7f0633d1b0a36486d48631810865f71befed586",
+    "results/depth_d156_mistral_v01_v02_dense.json": "84f512dea62fe68e9bc61937837435a0e7e4ba5fd14ca918b699ebc8fe5f9b10",
+    "results/depth_d156_llama3_to_31.json": "a12d119919d8d49de31f1cf4020075a6c39bb26aab83e8ee7742fbccc6346bb5",
+    "results/depth_d156_loraA100_mistral_s25.json": "7f6b0e89c514ee6f1d2bfae790ef29c88dd9dc02c16004e91ebb7ad437d4a377",
+    "results/depth_d156_loraA100_mistral_s100.json": "40adca6cb4cd3f02d3ad159a7c6d23f853902829cd3186435d76ccb83e76753f",
+    "results/depth_d156_loraA100_mistral_s400.json": "6672cdfffee33020bf7f68754304bc638a9965cc9010e8519e1acf887403eadd",
+    "results/depth_d156_lorasafe_mistral_s25.json": "27157a2e22309b0782b1b93af2c07ff527fbc6cc6110015cc1e20c0d9519fd49",
+    "results/depth_d156_lorasafe_mistral_s100.json": "6d51db4827f2cabda026a376a153ea97f58e3fa19d469b38dcc1b50cd520b853",
+    "results/depth_d156_lorasafe_mistral_s400.json": "0f333079e33fbadd571f109dfbb762a819931867a50fc4ddf0d276ac6ce69414",
+    "results/depth_d156_hw_v100_a100.json": "228317838ca0145747f4ee0c58cbd5ecaed0b800e13a7e0bf02314c6cd952e80",
+    "results/alignvar_d156_mistral_base2instruct.json": "2fc6b77f3ef9d50a5e1403dd97e76ea389dc91d02bbb4bb19f65c2eaf2bf154a",
+    "results/alignvar_mistral_base2instruct_v2.json": "5e4239994ecda07bbdbf3a472a32766f43e5b7581e712deeb346b90c251ec0be",
+    "results/alignvar_d156_gemma2_base2instruct.json": "86c88c2716c4f2a899a3d5f30fece571e672f91a9f14330334331a1e53167e39",
+    "results/alignvar_gemma2_base2instruct.json": "0e952da99a0e0e5ade2e15a9da2501a30861e53fa07d477eab1e8fb3a0aa635c",
+    "results/alignvar_d156_llama3_base2instruct.json": "008b54d7e4fcb7ca10701aa9b4af0acb84b1032596608d2c4e3bbf556f5a9cfa",
+    "results/alignvar_llama3_base2instruct.json": "790e741cbc5db3efa472e6aa46b7072431dc8a628b34d627ee6fa16577051906",
+    "results/alignvar_d156_llama31_base2instruct.json": "8c5b0fc630340b0da332bc2d749bd93fc5ab8bb3a49e92ec496888bad282221c",
+    "results/alignvar_llama31_base2instruct.json": "d95880b71625ebd504dd6573a46d8b7987724a1dd916ff7d224d21857114097e",
+    "results/alignvar_d156_qwen_base2instruct.json": "6dc73571229a7f0a727cfb08f5816276c24068cf26d31207af60f5e8fa10c741",
+    "results/alignvar_qwen_base2instruct.json": "fd1157689c9abf4431370cf0282184019b71e91a0e2791ccbc006b9d29c536c8",
+    "results/alignvar_d156_olmo_base2instruct.json": "3a760075e05d3ba30cc739ceead1e42a558b58424b65bb962afd1c652329fe3e",
+    "results/alignvar_olmo_base2instruct.json": "cd842633d047a1a1487bb415e875ea5585399daa5dabbf9162216340e315e624",
+    "results/alignvar_d156_llama3_to_31.json": "f7c010d943b265713a2b73f54055bd7c1926256caa0a15b42e67acd017400f41",
+    "results/alignvar_llama3_to_31.json": "7ada93c445bf5c467879affc291043f115cc6576694f8dabb2b2950b5e7a5273"
+  },
+  "config": {
+    "probe_set": "C=1",
+    "level": "item_level_D156",
+    "sweeps": [
+      "mistral_base2instruct",
+      "gemma2_base2instruct",
+      "llama3_base2instruct",
+      "llama31_base2instruct",
+      "qwen_base2instruct",
+      "olmo_base2instruct",
+      "WG_mistral_base2instruct",
+      "WG_llama3_base2instruct",
+      "mistral_v01_v02_dense",
+      "llama3_to_31",
+      "loraA100_mistral_s25",
+      "loraA100_mistral_s100",
+      "loraA100_mistral_s400",
+      "lorasafe_mistral_s25",
+      "lorasafe_mistral_s100",
+      "lorasafe_mistral_s400",
+      "hw_v100_a100"
+    ],
+    "printed": {
+      "commit": "2ea2abc",
+      "where": "paper/sections/results.tex, the two C2.4 lines and the row #15 line",
+      "median_16_sweeps": "+0.0017",
+      "n_negative": "4 of 16",
+      "control": "+0.0001",
+      "median_8_instruct": "+0.0062",
+      "p_backbones": "0.031",
+      "n_backbones": 6,
+      "procrustes_under_ridge": "6 of 7"
+    }
+  },
+  "separability": {
+    "median_16_sweeps": 0.002016974999999921,
+    "n_negative": 4,
+    "n_sweeps": 16,
+    "control": -1.8499999999921357e-05,
+    "median_8_instruct": 0.005883624999999892,
+    "n_instruct_positive": 8,
+    "sign_test": {
+      "n_backbones": 6,
+      "n_positive": 6,
+      "p_exact": "1/32",
+      "p": 0.03125,
+      "backbones": [
+        {
+          "pre": "mistralai/Mistral-7B-v0.1@27d67f1b5f57dc0953326b2601d68371d40ea8da",
+          "post": "mistralai/Mistral-7B-Instruct-v0.1@ec5deb64f2c6e6fa90c1abf74a91d5c93a9669ca",
+          "sweeps": [
+            "mistral_base2instruct",
+            "WG_mistral_base2instruct"
+          ],
+          "sign": "+"
+        },
+        {
+          "pre": "google/gemma-2-9b@33c193028431c2fde6c6e51f29e6f17b60cbfac6",
+          "post": "google/gemma-2-9b-it@11c9b309abf73637e4b6f9a3fa1e92e615547819",
+          "sweeps": [
+            "gemma2_base2instruct"
+          ],
+          "sign": "+"
+        },
+        {
+          "pre": "meta-llama/Meta-Llama-3-8B@8cde5ca8380496c9a6cc7ef3a8b46a0372a1d920",
+          "post": "meta-llama/Meta-Llama-3-8B-Instruct@8afb486c1db24fe5011ec46dfbe5b5dccdb575c2",
+          "sweeps": [
+            "llama3_base2instruct",
+            "WG_llama3_base2instruct"
+          ],
+          "sign": "+"
+        },
+        {
+          "pre": "meta-llama/Llama-3.1-8B@d04e592bb4f6aa9cfee91e2e20afa771667e1d4b",
+          "post": "meta-llama/Llama-3.1-8B-Instruct@0e9e39f249a16976918f6564b8830bc894c89659",
+          "sweeps": [
+            "llama31_base2instruct"
+          ],
+          "sign": "+"
+        },
+        {
+          "pre": "Qwen/Qwen2.5-7B@d149729398750b98c0af14eb82c78cfe92750796",
+          "post": "Qwen/Qwen2.5-7B-Instruct@a09a35458c702b33eeacc393d103063234e8bc28",
+          "sweeps": [
+            "qwen_base2instruct"
+          ],
+          "sign": "+"
+        },
+        {
+          "pre": "allenai/OLMo-2-1124-7B@7df9a82518afdecae4e8c026b27adccc8c1f0032",
+          "post": "allenai/OLMo-2-1124-7B-Instruct@470b1fba1ae01581f270116362ee4aa1b97f4c84",
+          "sweeps": [
+            "olmo_base2instruct"
+          ],
+          "sign": "+"
+        }
+      ]
+    },
+    "rows": [
+      {
+        "sweep": "mistral_base2instruct",
+        "kind": "instruct",
+        "n_layers": 17,
+        "median_change": 0.006377449999999896,
+        "change_per_layer": {
+          "0": -0.0013361499999999804,
+          "2": 0.0005814500000000944,
+          "4": -0.0025313999999998504,
+          "6": 0.002351050000000021,
+          "8": 0.003909800000000074,
+          "10": 0.006124550000000006,
+          "12": 0.00798225000000008,
+          "14": 0.009160849999999998,
+          "16": 0.006377449999999896,
+          "18": 0.008331899999999948,
+          "20": 0.005891649999999804,
+          "22": 0.008166050000000147,
+          "24": 0.008683700000000072,
+          "26": 0.008348200000000028,
+          "28": 0.008956000000000075,
+          "30": 0.0068571499999998675,
+          "32": 0.004715800000000048
+        },
+        "pre": "mistralai/Mistral-7B-v0.1@27d67f1b5f57dc0953326b2601d68371d40ea8da",
+        "post": "mistralai/Mistral-7B-Instruct-v0.1@ec5deb64f2c6e6fa90c1abf74a91d5c93a9669ca"
+      },
+      {
+        "sweep": "gemma2_base2instruct",
+        "kind": "instruct",
+        "n_layers": 22,
+        "median_change": 0.011930400000000008,
+        "change_per_layer": {
+          "0": 0.00020590000000009212,
+          "2": -0.0005503999999998399,
+          "4": 0.0009227499999999722,
+          "6": -0.001030699999999829,
+          "8": -0.0003862500000000324,
+          "10": 5.789999999994411e-05,
+          "12": 0.004390500000000075,
+          "14": 0.009635149999999926,
+          "16": 0.009898399999999974,
+          "18": 0.00941460000000005,
+          "20": 0.010931100000000082,
+          "22": 0.016626150000000006,
+          "24": 0.015788399999999925,
+          "26": 0.016634900000000008,
+          "28": 0.013476550000000032,
+          "30": 0.012929699999999933,
+          "32": 0.013689099999999899,
+          "34": 0.013703249999999945,
+          "36": 0.01583615000000016,
+          "38": 0.014397600000000121,
+          "40": 0.015551749999999975,
+          "42": 0.017349100000000006
+        },
+        "pre": "google/gemma-2-9b@33c193028431c2fde6c6e51f29e6f17b60cbfac6",
+        "post": "google/gemma-2-9b-it@11c9b309abf73637e4b6f9a3fa1e92e615547819"
+      },
+      {
+        "sweep": "llama3_base2instruct",
+        "kind": "instruct",
+        "n_layers": 17,
+        "median_change": 0.005389799999999889,
+        "change_per_layer": {
+          "0": -0.00044134999999978497,
+          "2": -0.0027359000000002354,
+          "4": -0.0005499499999999102,
+          "6": 0.000909099999999885,
+          "8": 0.00461289999999992,
+          "10": 0.004669849999999975,
+          "12": 0.009699350000000106,
+          "14": 0.00887484999999999,
+          "16": 0.0055808499999998595,
+          "18": 0.007355749999999994,
+          "20": 0.006998699999999802,
+          "22": 0.0052101499999999135,
+          "24": 0.004421899999999979,
+          "26": 0.005389799999999889,
+          "28": 0.005496499999999904,
+          "30": 0.005645599999999917,
+          "32": 0.008126449999999896
+        },
+        "pre": "meta-llama/Meta-Llama-3-8B@8cde5ca8380496c9a6cc7ef3a8b46a0372a1d920",
+        "post": "meta-llama/Meta-Llama-3-8B-Instruct@8afb486c1db24fe5011ec46dfbe5b5dccdb575c2"
+      },
+      {
+        "sweep": "llama31_base2instruct",
+        "kind": "instruct",
+        "n_layers": 17,
+        "median_change": 0.005187299999999784,
+        "change_per_layer": {
+          "0": -2.0750000000013813e-05,
+          "2": 4.1500000000027626e-05,
+          "4": 0.004414750000000134,
+          "6": 0.005187299999999784,
+          "8": 0.0030810499999999186,
+          "10": 0.004199700000000028,
+          "12": 0.010137099999999899,
+          "14": 0.00627090000000019,
+          "16": 0.006346099999999799,
+          "18": 0.005568149999999994,
+          "20": 0.006758900000000012,
+          "22": 0.004647000000000068,
+          "24": 0.00463385000000005,
+          "26": 0.004260099999999878,
+          "28": 0.006396500000000138,
+          "30": 0.00846015,
+          "32": 0.009477300000000133
+        },
+        "pre": "meta-llama/Llama-3.1-8B@d04e592bb4f6aa9cfee91e2e20afa771667e1d4b",
+        "post": "meta-llama/Llama-3.1-8B-Instruct@0e9e39f249a16976918f6564b8830bc894c89659"
+      },
+      {
+        "sweep": "qwen_base2instruct",
+        "kind": "instruct",
+        "n_layers": 15,
+        "median_change": 0.003139349999999985,
+        "change_per_layer": {
+          "0": 0.00018050000000002786,
+          "2": -0.0003716500000001677,
+          "4": 0.001575000000000104,
+          "6": 0.0021553500000000003,
+          "8": 0.0016138000000002206,
+          "10": 0.003139349999999985,
+          "12": 0.00303959999999992,
+          "14": 0.0022148999999999086,
+          "16": 0.0037117499999999026,
+          "18": 0.004098599999999952,
+          "20": 0.0073963499999999405,
+          "22": 0.005571749999999764,
+          "24": 0.0058027000000000495,
+          "26": 0.004491849999999964,
+          "28": 0.006670100000000012
+        },
+        "pre": "Qwen/Qwen2.5-7B@d149729398750b98c0af14eb82c78cfe92750796",
+        "post": "Qwen/Qwen2.5-7B-Instruct@a09a35458c702b33eeacc393d103063234e8bc28"
+      },
+      {
+        "sweep": "olmo_base2instruct",
+        "kind": "instruct",
+        "n_layers": 17,
+        "median_change": 0.007077349999999982,
+        "change_per_layer": {
+          "0": 0.00017060000000013176,
+          "2": -0.0003627500000000783,
+          "4": 0.001804049999999946,
+          "6": 0.0012297999999999476,
+          "8": 0.00019519999999995097,
+          "10": 0.0034661499999998346,
+          "12": 0.0014279500000000667,
+          "14": 0.010969650000000053,
+          "16": 0.010706699999999847,
+          "18": 0.010810450000000027,
+          "20": 0.010163699999999998,
+          "22": 0.007077349999999982,
+          "24": 0.006193049999999811,
+          "26": 0.007587150000000098,
+          "28": 0.00799939999999999,
+          "30": 0.00979529999999984,
+          "32": 0.013645299999999971
+        },
+        "pre": "allenai/OLMo-2-1124-7B@7df9a82518afdecae4e8c026b27adccc8c1f0032",
+        "post": "allenai/OLMo-2-1124-7B-Instruct@470b1fba1ae01581f270116362ee4aa1b97f4c84"
+      },
+      {
+        "sweep": "WG_mistral_base2instruct",
+        "kind": "instruct",
+        "n_layers": 17,
+        "median_change": 0.0044753500000001,
+        "change_per_layer": {
+          "0": -0.0011005000000000598,
+          "2": 0.003770749999999934,
+          "4": -0.00043520000000007997,
+          "6": -0.0015049500000000604,
+          "8": 0.001098149999999909,
+          "10": 0.0009091500000000252,
+          "12": 0.003944549999999936,
+          "14": 0.004239850000000156,
+          "16": 0.0044753500000001,
+          "18": 0.006846250000000054,
+          "20": 0.007245399999999957,
+          "22": 0.004763799999999874,
+          "24": 0.006196749999999862,
+          "26": 0.00846710000000006,
+          "28": 0.00730524999999993,
+          "30": 0.008367299999999855,
+          "32": 0.00478024999999993
+        },
+        "pre": "mistralai/Mistral-7B-v0.1@27d67f1b5f57dc0953326b2601d68371d40ea8da",
+        "post": "mistralai/Mistral-7B-Instruct-v0.1@ec5deb64f2c6e6fa90c1abf74a91d5c93a9669ca"
+      },
+      {
+        "sweep": "WG_llama3_base2instruct",
+        "kind": "instruct",
+        "n_layers": 17,
+        "median_change": 0.009809249999999992,
+        "change_per_layer": {
+          "0": -0.0004890499999998799,
+          "2": 0.0003964500000002147,
+          "4": 0.0003868500000001607,
+          "6": 0.004675450000000025,
+          "8": 0.006001699999999999,
+          "10": 0.007887300000000153,
+          "12": 0.009881499999999988,
+          "14": 0.009073099999999723,
+          "16": 0.009809249999999992,
+          "18": 0.010570149999999834,
+          "20": 0.010007150000000076,
+          "22": 0.009395800000000065,
+          "24": 0.010450099999999907,
+          "26": 0.011435349999999955,
+          "28": 0.012509100000000162,
+          "30": 0.012995549999999967,
+          "32": 0.010969200000000123
+        },
+        "pre": "meta-llama/Meta-Llama-3-8B@8cde5ca8380496c9a6cc7ef3a8b46a0372a1d920",
+        "post": "meta-llama/Meta-Llama-3-8B-Instruct@8afb486c1db24fe5011ec46dfbe5b5dccdb575c2"
+      },
+      {
+        "sweep": "mistral_v01_v02_dense",
+        "kind": "version",
+        "n_layers": 17,
+        "median_change": -0.0004054000000000002,
+        "change_per_layer": {
+          "0": -9.29999999987885e-06,
+          "2": -0.004353650000000098,
+          "4": 0.0009635499999999242,
+          "6": 0.00044515000000000526,
+          "8": -0.0018989500000000659,
+          "10": -0.0018670499999998702,
+          "12": -0.0007118499999998473,
+          "14": -3.3349999999932045e-05,
+          "16": -0.0002631000000000716,
+          "18": 0.0012590499999998173,
+          "20": -0.0005507500000000443,
+          "22": -0.0013041500000000594,
+          "24": -0.0004054000000000002,
+          "26": -0.00026334999999999553,
+          "28": -0.0007496500000000461,
+          "30": 0.00029039999999991295,
+          "32": -0.0020519500000000246
+        },
+        "pre": "mistralai/Mistral-7B-v0.1@27d67f1b5f57dc0953326b2601d68371d40ea8da",
+        "post": "mistral-community/Mistral-7B-v0.2@80cf49b18de6354fd8a6d1e81c177dd830e05eea"
+      },
+      {
+        "sweep": "llama3_to_31",
+        "kind": "version",
+        "n_layers": 17,
+        "median_change": 0.00020530000000007487,
+        "change_per_layer": {
+          "0": 0.000889350000000122,
+          "2": -0.00151150000000011,
+          "4": -0.0038619000000000847,
+          "6": -0.0029156999999999655,
+          "8": 0.0013052999999999537,
+          "10": 0.0011552000000000229,
+          "12": 0.0011791000000002105,
+          "14": 0.0034322999999998327,
+          "16": -0.0005188999999999888,
+          "18": -0.0007521000000000333,
+          "20": -0.00035130000000016537,
+          "22": 0.0019564499999997764,
+          "24": -0.00019485000000007968,
+          "26": 0.00020530000000007487,
+          "28": 0.0004229999999999512,
+          "30": 0.00017165000000007868,
+          "32": 0.0011723999999997403
+        },
+        "pre": "meta-llama/Meta-Llama-3-8B@8cde5ca8380496c9a6cc7ef3a8b46a0372a1d920",
+        "post": "meta-llama/Llama-3.1-8B@d04e592bb4f6aa9cfee91e2e20afa771667e1d4b"
+      },
+      {
+        "sweep": "loraA100_mistral_s25",
+        "kind": "lora_general",
+        "n_layers": 17,
+        "median_change": 0.0006447499999999717,
+        "change_per_layer": {
+          "0": 0.0,
+          "2": -0.003972950000000086,
+          "4": 6.0599999999966236e-05,
+          "6": -0.0003811500000001633,
+          "8": 0.0005125999999999742,
+          "10": -0.002485650000000117,
+          "12": -0.0008055000000000145,
+          "14": 0.0019249999999999545,
+          "16": 0.001052050000000082,
+          "18": 0.0007791499999997287,
+          "20": 0.0012982999999998635,
+          "22": 0.0006447499999999717,
+          "24": -0.0011153500000000705,
+          "26": 0.0006941000000003639,
+          "28": 0.0029247499999998094,
+          "30": 0.002076550000000066,
+          "32": 0.003760899999999956
+        },
+        "pre": "mistralai/Mistral-7B-v0.1__a100@27d67f1b5f57dc0953326b2601d68371d40ea8da",
+        "post": "lora/mistral7b-v01-alpaca-r16-s25__a100@9fbdf29f9afcf08a8d1b13346edea35cec0a5eacd4fe22bace6282b100163168"
+      },
+      {
+        "sweep": "loraA100_mistral_s100",
+        "kind": "lora_general",
+        "n_layers": 17,
+        "median_change": 0.00037964999999995364,
+        "change_per_layer": {
+          "0": 0.0,
+          "2": -0.002087550000000271,
+          "4": -0.00024585000000010293,
+          "6": 0.0005378499999999509,
+          "8": 0.0015572000000000363,
+          "10": 0.0012706000000001216,
+          "12": 0.001320049999999795,
+          "14": 0.0022204999999999586,
+          "16": -0.0004194499999999879,
+          "18": 0.002014999999999878,
+          "20": 6.239999999979595e-05,
+          "22": -0.0007113000000000813,
+          "24": -0.002281100000000036,
+          "26": -0.0008787999999997353,
+          "28": 0.00037964999999995364,
+          "30": 0.001032300000000097,
+          "32": 0.0030183499999999475
+        },
+        "pre": "mistralai/Mistral-7B-v0.1__a100@27d67f1b5f57dc0953326b2601d68371d40ea8da",
+        "post": "lora/mistral7b-v01-alpaca-r16-s100@76676cb005beaa86ff4d60874cdb033a1c6123b850bd34181a013193a0c1b306"
+      },
+      {
+        "sweep": "loraA100_mistral_s400",
+        "kind": "lora_general",
+        "n_layers": 17,
+        "median_change": 0.0008945999999998566,
+        "change_per_layer": {
+          "0": 0.0,
+          "2": -0.0010537000000001573,
+          "4": -0.0015522000000000036,
+          "6": 0.0008945999999998566,
+          "8": 0.0010719999999998508,
+          "10": 0.0007003000000000981,
+          "12": -0.0001343500000000608,
+          "14": 0.00209495000000004,
+          "16": 0.0025376000000000287,
+          "18": 0.0013956499999998595,
+          "20": -4.605000000013071e-05,
+          "22": -0.0009785500000000225,
+          "24": -0.0013079000000001395,
+          "26": 0.001090950000000257,
+          "28": 0.001849099999999937,
+          "30": 0.0026793999999999984,
+          "32": 0.0035610499999998435
+        },
+        "pre": "mistralai/Mistral-7B-v0.1__a100@27d67f1b5f57dc0953326b2601d68371d40ea8da",
+        "post": "lora/mistral7b-v01-alpaca-r16-s400@a8a01d08d31b3bf986ac53f3656007186d4825faa41769d5ef7ca668ef5e5bee"
+      },
+      {
+        "sweep": "lorasafe_mistral_s25",
+        "kind": "lora_safety",
+        "n_layers": 17,
+        "median_change": -0.0005815500000000418,
+        "change_per_layer": {
+          "0": 0.0,
+          "2": -0.005599999999999938,
+          "4": -0.0026908499999999114,
+          "6": 0.0016402499999997877,
+          "8": 0.0034682999999998687,
+          "10": 0.002425100000000069,
+          "12": -0.002412300000000145,
+          "14": 0.003230499999999914,
+          "16": 0.0015559499999998616,
+          "18": 0.0017783999999998468,
+          "20": -0.002965200000000112,
+          "22": -0.0019237000000000837,
+          "24": -0.0011369500000000254,
+          "26": -0.0027126999999997903,
+          "28": -0.0005815500000000418,
+          "30": 0.000686949999999964,
+          "32": -0.0010658000000000056
+        },
+        "pre": "mistralai/Mistral-7B-v0.1__a100@27d67f1b5f57dc0953326b2601d68371d40ea8da",
+        "post": "lora/mistral7b-v01-hhharmless-r16-s25@21ffe256c348f9ef6b27c47c9f9c0b86fe708219136560ba82f50700057ba8f3"
+      },
+      {
+        "sweep": "lorasafe_mistral_s100",
+        "kind": "lora_safety",
+        "n_layers": 17,
+        "median_change": -0.00088990000000011,
+        "change_per_layer": {
+          "0": 0.0,
+          "2": -0.0021402500000000657,
+          "4": -0.0063232500000001135,
+          "6": 0.0017366500000000062,
+          "8": 0.004076399999999869,
+          "10": 0.0025185999999999265,
+          "12": 0.00058294999999986,
+          "14": 0.002990500000000007,
+          "16": -0.0013680000000000359,
+          "18": 0.0007996499999998186,
+          "20": -0.0011621000000000548,
+          "22": -0.001198450000000073,
+          "24": -0.00242885000000026,
+          "26": -0.0022521999999997044,
+          "28": -0.00088990000000011,
+          "30": -0.0003594499999999279,
+          "32": -0.001196049999999893
+        },
+        "pre": "mistralai/Mistral-7B-v0.1__a100@27d67f1b5f57dc0953326b2601d68371d40ea8da",
+        "post": "lora/mistral7b-v01-hhharmless-r16-s100@94fddba22d6cc0eae6bfb48fce1bc3c96087c22b0ce222bbd17d0dfcd19fe877"
+      },
+      {
+        "sweep": "lorasafe_mistral_s400",
+        "kind": "lora_safety",
+        "n_layers": 17,
+        "median_change": -0.0010406500000000873,
+        "change_per_layer": {
+          "0": 0.0,
+          "2": -0.002105950000000245,
+          "4": -0.003230799999999978,
+          "6": 0.0010904000000000469,
+          "8": 0.002849149999999856,
+          "10": -0.00047154999999998726,
+          "12": -0.004423600000000194,
+          "14": 0.0018059500000000561,
+          "16": -0.0016985499999999654,
+          "18": -0.0021818500000002627,
+          "20": -0.0030791500000001415,
+          "22": -0.0010406500000000873,
+          "24": -0.0017663500000001386,
+          "26": -0.0017110999999997434,
+          "28": -0.0005144500000000551,
+          "30": 0.0008029999999998871,
+          "32": 0.0013490499999999628
+        },
+        "pre": "mistralai/Mistral-7B-v0.1__a100@27d67f1b5f57dc0953326b2601d68371d40ea8da",
+        "post": "lora/mistral7b-v01-hhharmless-r16-s400@a9e79db8ff5c04f298ecd4083a3442847037005c5d908260ec9d7c02d83eb212"
+      },
+      {
+        "sweep": "hw_v100_a100",
+        "kind": "control",
+        "n_layers": 17,
+        "median_change": -1.8499999999921357e-05,
+        "change_per_layer": {
+          "0": 0.0,
+          "2": 0.0002852500000001257,
+          "4": 9.164999999999868e-05,
+          "6": 0.0002183000000000046,
+          "8": -4.545000000000243e-05,
+          "10": -4.9300000000029875e-05,
+          "12": 0.00047210000000019736,
+          "14": -2.595000000005232e-05,
+          "16": 0.00032440000000000246,
+          "18": -5.349999999904043e-06,
+          "20": -0.00027854999999998853,
+          "22": -0.00017654999999994203,
+          "24": -2.0799999999931984e-05,
+          "26": 0.0001896999999997373,
+          "28": -8.059999999987522e-05,
+          "30": -0.00013250000000009088,
+          "32": -1.8499999999921357e-05
+        },
+        "pre": "mistralai/Mistral-7B-v0.1@27d67f1b5f57dc0953326b2601d68371d40ea8da",
+        "post": "mistralai/Mistral-7B-v0.1__a100@27d67f1b5f57dc0953326b2601d68371d40ea8da"
+      }
+    ],
+    "at_printed_precision": {
+      "median_16_sweeps": "+0.0020",
+      "n_negative": "4 of 16",
+      "control": "-0.0000",
+      "median_8_instruct": "+0.0059",
+      "p_backbones": "0.031"
+    },
+    "matches_printed": {
+      "median_16_sweeps": false,
+      "n_negative": true,
+      "control": false,
+      "median_8_instruct": false,
+      "p_backbones": true
+    }
+  },
+  "alignvar": {
+    "views": {
+      "grid_fixed_split": {
+        "n": 7,
+        "of": 7,
+        "at_printed_precision": "7 of 7",
+        "matches_printed": false,
+        "rows": {
+          "mistral_base2instruct": {
+            "ridge": 1.5112215974481478,
+            "procrustes": 0.7722484375718294,
+            "procrustes_under_ridge": true
+          },
+          "gemma2_base2instruct": {
+            "ridge": 0.8214169306930277,
+            "procrustes": 0.4656054317465205,
+            "procrustes_under_ridge": true
+          },
+          "llama3_base2instruct": {
+            "ridge": 1.0247011702465127,
+            "procrustes": 0.3802022616895605,
+            "procrustes_under_ridge": true
+          },
+          "llama31_base2instruct": {
+            "ridge": 1.1796403240266313,
+            "procrustes": 0.5254809787839901,
+            "procrustes_under_ridge": true
+          },
+          "qwen_base2instruct": {
+            "ridge": 1.7419545125643057,
+            "procrustes": 0.5182146315550015,
+            "procrustes_under_ridge": true
+          },
+          "olmo_base2instruct": {
+            "ridge": 1.15381956391886,
+            "procrustes": 0.5100004385647078,
+            "procrustes_under_ridge": true
+          },
+          "llama3_to_31": {
+            "ridge": 0.837282364110993,
+            "procrustes": 0.4737460148000565,
+            "procrustes_under_ridge": true
+          }
+        }
+      },
+      "grid_repartition_mean": {
+        "n": 6,
+        "of": 7,
+        "at_printed_precision": "6 of 7",
+        "matches_printed": true,
+        "rows": {
+          "mistral_base2instruct": {
+            "ridge": 1.0499631048573985,
+            "procrustes": 0.9180836695405797,
+            "procrustes_under_ridge": true
+          },
+          "gemma2_base2instruct": {
+            "ridge": 0.6203236366689056,
+            "procrustes": 0.5689525773382557,
+            "procrustes_under_ridge": true
+          },
+          "llama3_base2instruct": {
+            "ridge": 0.7206393509002552,
+            "procrustes": 0.3286945837355107,
+            "procrustes_under_ridge": true
+          },
+          "llama31_base2instruct": {
+            "ridge": 0.799815290443482,
+            "procrustes": 0.35746778987042066,
+            "procrustes_under_ridge": true
+          },
+          "qwen_base2instruct": {
+            "ridge": 1.337012635962503,
+            "procrustes": 0.2836898752510978,
+            "procrustes_under_ridge": true
+          },
+          "olmo_base2instruct": {
+            "ridge": 0.48444445779312817,
+            "procrustes": 0.25705576048329987,
+            "procrustes_under_ridge": true
+          },
+          "llama3_to_31": {
+            "ridge": 0.5443031483096988,
+            "procrustes": 0.6551153257601036,
+            "procrustes_under_ridge": false
+          }
+        }
+      },
+      "five_layers_fixed_split": {
+        "n": 7,
+        "of": 7,
+        "at_printed_precision": "7 of 7",
+        "matches_printed": false,
+        "rows": {
+          "mistral_base2instruct": {
+            "ridge": 1.7860876973686728,
+            "procrustes": 0.8048699193940262,
+            "procrustes_under_ridge": true
+          },
+          "gemma2_base2instruct": {
+            "ridge": 0.8090917948068513,
+            "procrustes": 0.7416041848722477,
+            "procrustes_under_ridge": true
+          },
+          "llama3_base2instruct": {
+            "ridge": 1.243945033664334,
+            "procrustes": 0.3076952355023411,
+            "procrustes_under_ridge": true
+          },
+          "llama31_base2instruct": {
+            "ridge": 1.3786768083366328,
+            "procrustes": 0.4627748351151091,
+            "procrustes_under_ridge": true
+          },
+          "qwen_base2instruct": {
+            "ridge": 1.6278256114993375,
+            "procrustes": 0.612522618256651,
+            "procrustes_under_ridge": true
+          },
+          "olmo_base2instruct": {
+            "ridge": 1.1702482618387775,
+            "procrustes": 0.5242759776471883,
+            "procrustes_under_ridge": true
+          },
+          "llama3_to_31": {
+            "ridge": 1.0113138685658858,
+            "procrustes": 0.46824684284967377,
+            "procrustes_under_ridge": true
+          }
+        }
+      },
+      "five_layers_repartition_mean": {
+        "n": 6,
+        "of": 7,
+        "at_printed_precision": "6 of 7",
+        "matches_printed": true,
+        "rows": {
+          "mistral_base2instruct": {
+            "ridge": 1.4148007750137996,
+            "procrustes": 0.8842619654012287,
+            "procrustes_under_ridge": true
+          },
+          "gemma2_base2instruct": {
+            "ridge": 0.6307232992799152,
+            "procrustes": 0.8629703159084336,
+            "procrustes_under_ridge": false
+          },
+          "llama3_base2instruct": {
+            "ridge": 1.0380585447447206,
+            "procrustes": 0.28952997130823,
+            "procrustes_under_ridge": true
+          },
+          "llama31_base2instruct": {
+            "ridge": 1.160746733232016,
+            "procrustes": 0.3082285243643177,
+            "procrustes_under_ridge": true
+          },
+          "qwen_base2instruct": {
+            "ridge": 1.1714384111953673,
+            "procrustes": 0.27594787076372357,
+            "procrustes_under_ridge": true
+          },
+          "olmo_base2instruct": {
+            "ridge": 0.48349749569976763,
+            "procrustes": 0.28590393407133863,
+            "procrustes_under_ridge": true
+          },
+          "llama3_to_31": {
+            "ridge": 0.8081824394223643,
+            "procrustes": 0.6247761789730027,
+            "procrustes_under_ridge": true
+          }
+        }
+      }
+    },
+    "old_records_read_for_the_layer_list_only": true,
+    "five_layers": {
+      "mistral_base2instruct": [
+        2,
+        8,
+        16,
+        24,
+        32
+      ],
+      "gemma2_base2instruct": [
+        2,
+        10,
+        20,
+        30,
+        42
+      ],
+      "llama3_base2instruct": [
+        2,
+        8,
+        16,
+        24,
+        32
+      ],
+      "llama31_base2instruct": [
+        2,
+        8,
+        16,
+        24,
+        32
+      ],
+      "qwen_base2instruct": [
+        2,
+        8,
+        14,
+        20,
+        28
+      ],
+      "olmo_base2instruct": [
+        2,
+        8,
+        16,
+        24,
+        32
+      ],
+      "llama3_to_31": [
+        2,
+        8,
+        16,
+        24,
+        32
+      ]
+    }
+  }
+}
