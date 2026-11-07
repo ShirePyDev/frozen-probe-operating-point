@@ -2,7 +2,7 @@
 
     python release/verify_inputs.py            # from the repository root; Python 3.10 or later, standard library only
 
-Every result record (results/**/*.json, docs/paper/*.json) names the SHA-256 of the code that wrote it and of the
+Every result record (results/**/*.json, docs/**/*.json) names the SHA-256 of the code that wrote it and of the
 files it read; docs/registered_predictions.md names the first 16 hex digits of each result file it cites. For each
 (file, SHA-256) a record lists (as src/provenance.py's _listed_files lists them) this prints one of:
 
@@ -84,7 +84,7 @@ def absent_kind(rel: str) -> str:
 
 def main() -> int:
     bad_table = [e["path"] for e in SUBS if not (ROOT / e["path"]).is_file() or sha256(e["path"]) != e["sha256_public"]]
-    records = sorted(p.relative_to(ROOT).as_posix() for d in ("results", "docs/paper")
+    records = sorted(p.relative_to(ROOT).as_posix() for d in ("results", "docs")
                      for p in (ROOT / d).rglob("*.json"))
     counts, absent, fails, subs = Counter(), Counter(), [], Counter()
     for rec in records:

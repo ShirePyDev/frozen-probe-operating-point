@@ -1,0 +1,616 @@
+{
+ "pre_registration": "D-457",
+ "status": "DESCRIPTIVE, post-hoc; no verdict changes",
+ "alpha": 0.05,
+ "cp_rule": "exact two-sided: Beta(a/2; k, n-k+1), Beta(1-a/2; k+1, n-k); 0 at k = 0, 1 at k = n",
+ "counts": [
+  {
+   "claim": "Phase 1, 9 cells: fail open (D-241 (3))",
+   "k": 0,
+   "n": 9,
+   "share": 0.0,
+   "cp95": [
+    0.0,
+    0.3362671168799428
+   ],
+   "source": "docs/paper/review_20261016b_calc.json",
+   "independence": "the 2 WildGuardMix cells reuse the Mistral and Llama-3 base -> instruct backbones; Llama-3 base is the pre model of two pairs",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "Phase 1, 9 cells: fail closed (D-241 (3))",
+   "k": 8,
+   "n": 9,
+   "share": 0.8888888888888888,
+   "cp95": [
+    0.517503485082663,
+    0.9971908632534008
+   ],
+   "source": "docs/paper/review_20261016b_calc.json",
+   "independence": "the 2 WildGuardMix cells reuse the Mistral and Llama-3 base -> instruct backbones; Llama-3 base is the pre model of two pairs",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "Phase 1, 9 cells: within (D-241 (3))",
+   "k": 1,
+   "n": 9,
+   "share": 0.1111111111111111,
+   "cp95": [
+    0.0028091367465992146,
+    0.48249651491733697
+   ],
+   "source": "docs/paper/review_20261016b_calc.json",
+   "independence": "the 2 WildGuardMix cells reuse the Mistral and Llama-3 base -> instruct backbones; Llama-3 base is the pre model of two pairs",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "Phase 2, 9 headline pairs: fail open (D-241 (3))",
+   "k": 1,
+   "n": 9,
+   "share": 0.1111111111111111,
+   "cp95": [
+    0.0028091367465992146,
+    0.48249651491733697
+   ],
+   "source": "docs/paper/review_20261016b_calc.json",
+   "independence": "OLMo-2 SFT and DPO and Tulu-3 DPO are each the post of one pair and the pre of the next",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "Phase 2, 9 headline pairs: fail closed (D-241 (3))",
+   "k": 2,
+   "n": 9,
+   "share": 0.2222222222222222,
+   "cp95": [
+    0.028144973477898197,
+    0.600093573716312
+   ],
+   "source": "docs/paper/review_20261016b_calc.json",
+   "independence": "OLMo-2 SFT and DPO and Tulu-3 DPO are each the post of one pair and the pre of the next",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "Phase 2, 9 headline pairs: within (D-241 (3))",
+   "k": 6,
+   "n": 9,
+   "share": 0.6666666666666666,
+   "cp95": [
+    0.29929505620854036,
+    0.9251453685803082
+   ],
+   "source": "docs/paper/review_20261016b_calc.json",
+   "independence": "OLMo-2 SFT and DPO and Tulu-3 DPO are each the post of one pair and the pre of the next",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "19 released pairs: fail open (D-241 (3))",
+   "k": 1,
+   "n": 19,
+   "share": 0.05263157894736842,
+   "cp95": [
+    0.001331628804179423,
+    0.2602806541952142
+   ],
+   "source": "docs/paper/review_20261016b_calc.json",
+   "independence": "both notes above; 17 distinct model pairs over 19 cells",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "19 released pairs: fail closed (D-241 (3))",
+   "k": 10,
+   "n": 19,
+   "share": 0.5263157894736842,
+   "cp95": [
+    0.2886432479169988,
+    0.7555253105338039
+   ],
+   "source": "docs/paper/review_20261016b_calc.json",
+   "independence": "both notes above; 17 distinct model pairs over 19 cells",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "19 released pairs: within (D-241 (3))",
+   "k": 8,
+   "n": 19,
+   "share": 0.42105263157894735,
+   "cp95": [
+    0.2025214389771628,
+    0.6650021559882646
+   ],
+   "source": "docs/paper/review_20261016b_calc.json",
+   "independence": "both notes above; 17 distinct model pairs over 19 cells",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "Phase 1 two-moment within x1.5, all cells",
+   "k": 138,
+   "n": 156,
+   "share": 0.8846153846153846,
+   "cp95": [
+    0.8237826863168642,
+    0.9301633979837087
+   ],
+   "source": "item5_baselines (D-425 (1))",
+   "independence": "156 cells are the layers of 9 pairs: cells of one pair share probes and draws",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "Phase 1 two-moment within x1.5, cells outside x1.5 of 1",
+   "k": 103,
+   "n": 120,
+   "share": 0.8583333333333333,
+   "cp95": [
+    0.7828931017566235,
+    0.9152552705054843
+   ],
+   "source": "item5_baselines (D-425 (1))",
+   "independence": "156 cells are the layers of 9 pairs: cells of one pair share probes and draws; the subset is chosen on the realised value",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "Phase 2 two-moment within x1.5, all cells",
+   "k": 57,
+   "n": 63,
+   "share": 0.9047619047619048,
+   "cp95": [
+    0.804143979441893,
+    0.9642409881346669
+   ],
+   "source": "item5_baselines (D-425 (1))",
+   "independence": "63 cells are the layers of 9 pairs: cells of one pair share probes and draws",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "Phase 2 two-moment within x1.5, cells outside x1.5 of 1",
+   "k": 17,
+   "n": 22,
+   "share": 0.7727272727272727,
+   "cp95": [
+    0.5462963763378781,
+    0.9217937396481075
+   ],
+   "source": "item5_baselines (D-425 (1))",
+   "independence": "63 cells are the layers of 9 pairs: cells of one pair share probes and draws; the subset is chosen on the realised value",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "P-A2.1 cells with dAUROC > -0.05",
+   "k": 30,
+   "n": 30,
+   "share": 1.0,
+   "cp95": [
+    0.8842966917779722,
+    1.0
+   ],
+   "source": "results/phase3_a2_verdicts_d440.json",
+   "independence": "the 30 cells share one pre model, one clean backbone (seed 0) and its five probes; 3 categories x 2 c x 5 attack seeds",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "P-A2.2 cells where the 4c flag fires",
+   "k": 7,
+   "n": 30,
+   "share": 0.23333333333333334,
+   "cp95": [
+    0.09933786495801974,
+    0.4228365229782195
+   ],
+   "source": "results/phase3_a2_verdicts_d440.json",
+   "independence": "the 30 cells share one pre model, one clean backbone (seed 0) and its five probes; 3 categories x 2 c x 5 attack seeds",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "P-A2.4 cells within x1.5",
+   "k": 30,
+   "n": 30,
+   "share": 1.0,
+   "cp95": [
+    0.8842966917779722,
+    1.0
+   ],
+   "source": "results/phase3_a2_verdicts_d440.json",
+   "independence": "the 30 cells share one pre model, one clean backbone (seed 0) and its five probes; 3 categories x 2 c x 5 attack seeds",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "A2 stealthy cells",
+   "k": 23,
+   "n": 30,
+   "share": 0.7666666666666667,
+   "cp95": [
+    0.5771634770217805,
+    0.9006621350419802
+   ],
+   "source": "results/phase3_a2_verdicts_d440.json",
+   "independence": "the 30 cells share one pre model, one clean backbone (seed 0) and its five probes; 3 categories x 2 c x 5 attack seeds",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "A2 successful seeds at c = -2, cat-1",
+   "k": 2,
+   "n": 5,
+   "share": 0.4,
+   "cp95": [
+    0.052744950526316906,
+    0.8533672003653268
+   ],
+   "source": "results/phase3_a2_verdicts_d440.json",
+   "independence": "the 5 attack seeds vary only the LoRA init; one clean backbone and one probe set",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "A2 successful seeds at c = -2, cat-2",
+   "k": 0,
+   "n": 5,
+   "share": 0.0,
+   "cp95": [
+    0.0,
+    0.5218237501049814
+   ],
+   "source": "results/phase3_a2_verdicts_d440.json",
+   "independence": "the 5 attack seeds vary only the LoRA init; one clean backbone and one probe set",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "A2 successful seeds at c = -2, cat-3",
+   "k": 3,
+   "n": 5,
+   "share": 0.6,
+   "cp95": [
+    0.14663279963467313,
+    0.9472550494736831
+   ],
+   "source": "results/phase3_a2_verdicts_d440.json",
+   "independence": "the 5 attack seeds vary only the LoRA init; one clean backbone and one probe set",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "P-A1m.4 cells within x1.5",
+   "k": 24,
+   "n": 30,
+   "share": 0.8,
+   "cp95": [
+    0.6143334890033929,
+    0.9228644879989344
+   ],
+   "source": "results/phase3_a1m_verdicts.json",
+   "independence": "30 cells on one clean backbone and one probe set",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "D2 (e) max statistic fires, frozen split",
+   "k": 12,
+   "n": 30,
+   "share": 0.4,
+   "cp95": [
+    0.22655764882859367,
+    0.5939650699481813
+   ],
+   "source": "results/phase3_defence_d2e_d443.json",
+   "independence": "the 30 cells share one pre model, one clean backbone (seed 0) and its five probes; 3 categories x 2 c x 5 attack seeds",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "P-D2e.2 primary cells firing",
+   "k": 3,
+   "n": 3,
+   "share": 1.0,
+   "cp95": [
+    0.2924017738212866,
+    1.0
+   ],
+   "source": "results/phase3_defence_d2e_d443.json",
+   "independence": "3 cells of one category at c = -2",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "P-D2e.3 two-arm cells firing",
+   "k": 8,
+   "n": 8,
+   "share": 1.0,
+   "cp95": [
+    0.6305833524471807,
+    1.0
+   ],
+   "source": "results/phase3_defence_d2e_d443.json",
+   "independence": "the 30 cells share one pre model, one clean backbone (seed 0) and its five probes; 3 categories x 2 c x 5 attack seeds",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "D2 (e) clean false alarms (max statistic)",
+   "k": 0,
+   "n": 603,
+   "share": 0.0,
+   "cp95": [
+    0.0,
+    0.006098870622684007
+   ],
+   "source": "results/phase3_defence_d2e_d443.json",
+   "independence": "603 = 3 clean backbones x 201 draws that vary only the threshold; tau is set on these same 603 values (in-sample: 0 by construction)",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "D1 global 4c flag fires (P-D1.2's anchor)",
+   "k": 7,
+   "n": 30,
+   "share": 0.23333333333333334,
+   "cp95": [
+    0.09933786495801974,
+    0.4228365229782195
+   ],
+   "source": "results/phase3_defence_d1_d442.json",
+   "independence": "the 30 cells share one pre model, one clean backbone (seed 0) and its five probes; 3 categories x 2 c x 5 attack seeds",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "D-424 Phase 2 cells with dAUROC <= -0.05",
+   "k": 1,
+   "n": 63,
+   "share": 0.015873015873015872,
+   "cp95": [
+    0.0004017892290848871,
+    0.08529570929926301
+   ],
+   "source": "results/p2auroc_d424_summary.json",
+   "independence": "63 cells = 7 layers of 9 pairs",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "D-424 Phase 2 L* cells with dAUROC <= -0.05",
+   "k": 0,
+   "n": 9,
+   "share": 0.0,
+   "cp95": [
+    0.0,
+    0.3362671168799428
+   ],
+   "source": "results/p2auroc_d424_summary.json",
+   "independence": "see the Phase 2 note",
+   "label": "NOMINAL"
+  },
+  {
+   "claim": "realignment P-RA.1 cells with frozen dAUC <= -0.05",
+   "k": 0,
+   "n": 162,
+   "share": 0.0,
+   "cp95": [
+    0.0,
+    0.022513561452805492
+   ],
+   "source": "docs/paper/review_20261016b_calc.json",
+   "independence": "the cells are pair x pool x map population: each pair appears in 3 pools and 2 maps, so a pair's frozen dAUC repeats",
+   "label": "NOMINAL"
+  }
+ ],
+ "families": [
+  {
+   "family": "F1 (C2.4; D-100)",
+   "tests": [
+    {
+     "test": "refit AUROC change > 0 in base-to-instruct rows, sign test (8 of 8 positive)",
+     "p": 0.0078125,
+     "printed": "0.008",
+     "units": [
+      "depth_mistral_base2instruct",
+      "depth_gemma2_base2instruct",
+      "depth_llama3_base2instruct",
+      "depth_llama31_base2instruct",
+      "depth_qwen_base2instruct",
+      "depth_olmo_base2instruct",
+      "depth_WG_mistral_base2instruct",
+      "depth_WG_llama3_base2instruct"
+     ],
+     "holm_p": 0.0078125,
+     "matches_printed": true
+    }
+   ],
+   "backbone_test": {
+    "test": "refit AUROC change > 0 per base-to-instruct backbone, two-sided exact sign test (6 of 6 positive)",
+    "unit": "backbone: the (pre repo@revision, post repo@revision) pair of a row's depth record; the 2 WildGuardMix rows reuse two Aegis backbones (this family's note), so the 8 rows above are 6 backbones",
+    "sign_rule": "a backbone's sign is its rows' common sign (every backbone's rows agree; none is zero)",
+    "backbones": [
+     {
+      "name": "Mistral-7B-v0.1 -> Mistral-7B-Instruct-v0.1",
+      "pre": "mistralai/Mistral-7B-v0.1@27d67f1b5f57dc0953326b2601d68371d40ea8da",
+      "post": "mistralai/Mistral-7B-Instruct-v0.1@ec5deb64f2c6e6fa90c1abf74a91d5c93a9669ca",
+      "rows": [
+       "depth_mistral_base2instruct",
+       "depth_WG_mistral_base2instruct"
+      ],
+      "median_separability_change": [
+       0.0058392499999999625,
+       0.00448555000000006
+      ],
+      "sign": "+"
+     },
+     {
+      "name": "gemma-2-9b -> gemma-2-9b-it",
+      "pre": "google/gemma-2-9b@33c193028431c2fde6c6e51f29e6f17b60cbfac6",
+      "post": "google/gemma-2-9b-it@11c9b309abf73637e4b6f9a3fa1e92e615547819",
+      "rows": [
+       "depth_gemma2_base2instruct"
+      ],
+      "median_separability_change": [
+       0.010813925000000058
+      ],
+      "sign": "+"
+     },
+     {
+      "name": "Meta-Llama-3-8B -> Meta-Llama-3-8B-Instruct",
+      "pre": "meta-llama/Meta-Llama-3-8B@8cde5ca8380496c9a6cc7ef3a8b46a0372a1d920",
+      "post": "meta-llama/Meta-Llama-3-8B-Instruct@8afb486c1db24fe5011ec46dfbe5b5dccdb575c2",
+      "rows": [
+       "depth_llama3_base2instruct",
+       "depth_WG_llama3_base2instruct"
+      ],
+      "median_separability_change": [
+       0.0061843000000000314,
+       0.009445649999999972
+      ],
+      "sign": "+"
+     },
+     {
+      "name": "Llama-3.1-8B -> Llama-3.1-8B-Instruct",
+      "pre": "meta-llama/Llama-3.1-8B@d04e592bb4f6aa9cfee91e2e20afa771667e1d4b",
+      "post": "meta-llama/Llama-3.1-8B-Instruct@0e9e39f249a16976918f6564b8830bc894c89659",
+      "rows": [
+       "depth_llama31_base2instruct"
+      ],
+      "median_separability_change": [
+       0.006232299999999857
+      ],
+      "sign": "+"
+     },
+     {
+      "name": "Qwen2.5-7B -> Qwen2.5-7B-Instruct",
+      "pre": "Qwen/Qwen2.5-7B@d149729398750b98c0af14eb82c78cfe92750796",
+      "post": "Qwen/Qwen2.5-7B-Instruct@a09a35458c702b33eeacc393d103063234e8bc28",
+      "rows": [
+       "depth_qwen_base2instruct"
+      ],
+      "median_separability_change": [
+       0.002721399999999874
+      ],
+      "sign": "+"
+     },
+     {
+      "name": "OLMo-2-1124-7B -> OLMo-2-1124-7B-Instruct",
+      "pre": "allenai/OLMo-2-1124-7B@7df9a82518afdecae4e8c026b27adccc8c1f0032",
+      "post": "allenai/OLMo-2-1124-7B-Instruct@470b1fba1ae01581f270116362ee4aa1b97f4c84",
+      "rows": [
+       "depth_olmo_base2instruct"
+      ],
+      "median_separability_change": [
+       0.008733599999999897
+      ],
+      "sign": "+"
+     }
+    ],
+    "p": 0.03125,
+    "p_exact": "1/32",
+    "printed": "0.031",
+    "matches_printed": true,
+    "label": "DESCRIPTIVE (results.tex:82 labels it so); no verdict changes",
+    "holm": "not applied: F1's hypothesis over other units, not a further member of its family; the 8-row test above, its holm_p and family_size are unchanged",
+    "added": {
+     "d_entry": "D-611",
+     "ruling": "the author's item 2 of 2026-10-29",
+     "script": "docs/paper/backbone_sign_test_d611.py",
+     "script_sha256": "8bd5ebbd1d24b2a853bbfbcfb83992206e4eb35ebac54e2311e6dd8af349ffb3",
+     "git": {
+      "commit": "f97ae37213e747d8481c5f6fe366323fdaadc070",
+      "dirty_files": [
+       "?? docs/paper/backbone_sign_test_d611.py"
+      ]
+     },
+     "utc": "2026-10-29T05:23:53Z",
+     "record_sha256_before": "ae5e6781cf586b368a3e9bcd638f4bc396c30dee7824e2dc0449d938b20179e3",
+     "read_sha256": {
+      "results/depth_WG_llama3_base2instruct.json": "67cdece84a1a02db5d8674acd230ca3f7053ca68db542789ab62266379506232",
+      "results/depth_WG_mistral_base2instruct.json": "be7ef9293dd2629f4fc9803a774d0a0dc58727880ee133a82f17e7e04f616421",
+      "results/depth_gemma2_base2instruct.json": "9bc8c1b69936c407ecaa8fa4abbc120fdaac16cd43edb6c45525677c18a66573",
+      "results/depth_llama31_base2instruct.json": "ace797a999c439e49a6ea1ef322f8e60c5206afa0de35c71f46d99377404e403",
+      "results/depth_llama3_base2instruct.json": "548a9af7421fef83bc745a4a5ff5106e93702e7902d17b8d18c82b881f709d08",
+      "results/depth_mistral_base2instruct.json": "092d1e3f470de877cdd83e3fc5f60fdbd2a1cfe9f1ecc102373e9352696e5ebd",
+      "results/depth_olmo_base2instruct.json": "36c989d11fdfd09d19275bb81f42c3fff204926ee8ba6d87062473e6898dba7a",
+      "results/depth_qwen_base2instruct.json": "fe5809b174c8bf70a57763c88319250b80295c6002cdd3f1a39930099e808b3e",
+      "results/separability_test.json": "63010cf5a418d134ad701a70b8978bf755ad40c945787366d3e72cb94cbed32b"
+     }
+    }
+   },
+   "note": "8 rows = 6 Aegis + 2 WildGuardMix base -> instruct pairs; the 2 WildGuardMix rows reuse two Aegis backbones, so the 8 signs are not 8 independent backbones",
+   "family_size": 1
+  },
+  {
+   "family": "F2 (C4.2; D-116)",
+   "tests": [
+    {
+     "test": "refit_probe vs floor_as_realised: 5 of 9 worse (difference > 0), mean +0.0028",
+     "p": 1.0,
+     "printed": "1.000",
+     "n_ties": 0,
+     "holm_p": 1.0,
+     "matches_printed": true
+    },
+    {
+     "test": "restandardise vs floor_as_realised: 7 of 9 worse (difference > 0), mean +0.0348",
+     "p": 0.1796875,
+     "printed": "0.180",
+     "n_ties": 0,
+     "holm_p": 0.5390625,
+     "matches_printed": true
+    },
+    {
+     "test": "refit_probe vs restandardise: 2 of 9 worse (difference > 0), mean -0.0320",
+     "p": 0.1796875,
+     "printed": "0.180",
+     "n_ties": 0,
+     "holm_p": 0.5390625,
+     "matches_printed": true
+    }
+   ],
+   "note": "9 repair pairs; the 2 WildGuardMix pairs reuse two Aegis backbones; the three tests reuse the same 9 pairs",
+   "family_size": 3
+  },
+  {
+   "family": "F3 (registered_predictions row 26; D-152 P5, D-155 check 4)",
+   "tests": [
+    {
+     "test": "McNemar exact, general arm, dose 25 (L12), max over 5 seeds",
+     "p": 0.625,
+     "printed": "0.62",
+     "holm_p": 1.0,
+     "matches_printed": true
+    },
+    {
+     "test": "McNemar exact, general arm, dose 100 (L12), max over 5 seeds",
+     "p": 1.0,
+     "printed": "1.00",
+     "holm_p": 1.0,
+     "matches_printed": true
+    },
+    {
+     "test": "McNemar exact, general arm, dose 400 (L12), max over 5 seeds",
+     "p": 1.0,
+     "printed": "1.00",
+     "holm_p": 1.0,
+     "matches_printed": true
+    }
+   ],
+   "note": "three doses of one LoRA run (seed 0) on one base; each p is the maximum over the 5 probe seeds' exact McNemar p (an intersection-union test), so the per-dose test is already conservative",
+   "family_size": 3
+  }
+ ],
+ "files_read_sha256": {
+  "docs/paper/review_20261016b_calc.json": "ab06f59bea20e866d05e63fb1a987163f7765fee7bc8a66d6a82dcb5017f783b",
+  "results/intent_selected.json": "ed3e0736b961ceb4ae4477007d20d26368345a3d9bab093aa5b4ee1f1b662dd1",
+  "results/p2auroc_d424_summary.json": "3073b6855aca53b9fd3768b6c0f5e90df8a7c5a37964d5bfcd93d1673069d7a1",
+  "results/phase3_a1m_verdicts.json": "f74fb614f7e4b167c7a187adb328cfaae72ac21e2cbaa7592eddd687fbc4f002",
+  "results/phase3_a2_categories.json": "2ed1274f4cb12ce66afc094975f4753003dea8dedbf590cd9044877d8499218c",
+  "results/phase3_a2_verdicts_d440.json": "ddc6c0e7663acf076dcb1527dbc567494813796fe98f009055977ed7f594911a",
+  "results/phase3_defence_d1_d442.json": "ac3e299470e7b6f1ccea9d6ac2ad9659406d1200126e7f85b8c2a61e3d49bd16",
+  "results/phase3_defence_d2e_d443.json": "488e7230da94adebe75dcc81f6009a1c836d8c92b5c0476b3fd9e940b0f32b1b",
+  "results/separability_test.json": "63010cf5a418d134ad701a70b8978bf755ad40c945787366d3e72cb94cbed32b",
+  "results/synthesis2.json": "98f9c9f181d74a136afce94f2b4721ff1916c670f95a9238ef697e8c26b2954e",
+  "results/twomoment_fit_r2.json": "5522bc8d0faf6790c19ab025d82dd444e7c85d03bf78e880c5383053203a8709",
+  "results/twomoment_p2_d361_llama3_to_31_usermean.json": "64a933ed496ec22780ef92c94ad0bf315c3a1bc48c472290006df0349761b5d2",
+  "results/twomoment_p2_d361_mistral_v01_v02_usermean.json": "1d9cfc51024f0de81d2e6f064112fd69e2d8e7ad36901bcada9b2cae783b5250",
+  "results/twomoment_p2_d361_olmo2_base_sft_usermean.json": "c33a33a94aa8c0c0edfa49f774e5624f0cf7bca5bba3afb36e1b7adee5a6edcd",
+  "results/twomoment_p2_d361_olmo2_dpo_instruct_usermean.json": "66fd4d92c3731865618455d245576081a6893c852832ca0911fc4f4a5f467b2e",
+  "results/twomoment_p2_d361_olmo2_sft_dpo_usermean.json": "34d74d82ca32b5b0770df0aa94b3c62063c09d2c32614a2f0cb629ffed364d8e",
+  "results/twomoment_p2_d361_phi3_128k_to_35_usermean.json": "84341f8548cbe7ea43918ef95958f484f77a61c8e65614d500c04005412bc2ba",
+  "results/twomoment_p2_d361_qwen2_to_25_usermean.json": "a52be592c50e6567cfb9915c8aec04bc136032827d43de8bf5ad02469282fb1b",
+  "results/twomoment_p2_d361_summary.json": "24a152d042183152ec86b46d7594a6d76c20631620df3681dba226393f5a007a",
+  "results/twomoment_p2_d361_tulu3_dpo_final_usermean.json": "88bc83b986a4f0f620e74fc719aff0f5ceb50b638d3d4c23433ddbc91dea9f85",
+  "results/twomoment_p2_d361_tulu3_sft_dpo_usermean.json": "8432e3988618b88ffb50f9f694213220a65ef6be083a188bd953b9657d7979f4",
+  "results/twomoment_repair_WG_llama3_base2instruct.json": "ad142c318011fc0b3b634ac900a0017fb7fa6cc865fb1329a5507b560e1ec4e5",
+  "results/twomoment_repair_WG_mistral_base2instruct.json": "fe885cdf6b421decadb46cc17eec1252d2162448bddc8687dc6a6e4010dfcdaf",
+  "results/twomoment_repair_gemma2_base2instruct.json": "e3052e00ad27a77f2d7ca021e62d1c00582e0a9b25a5afd2f1325e85e2a54c52",
+  "results/twomoment_repair_llama31_base2instruct.json": "def23af477e46a24811065a1576dff3c6388d8cac07877120a6973c549883094",
+  "results/twomoment_repair_llama3_base2instruct.json": "9c7d34185b50b5134b10a1b9e4eacfe36029fb6f37c779d2936b89bb6048ed18",
+  "results/twomoment_repair_llama3_to_31.json": "ccd09cd343c8d5cd7f51e172c5622ed93b27563d1a8547c0f57cf56d7d547d59",
+  "results/twomoment_repair_mistral_base2instruct.json": "ce0ac4e4cbf8cca1909e5463d39598533d8e3b85b8a14ec17cae4d249df8d041",
+  "results/twomoment_repair_olmo_base2instruct.json": "e106ac2597c0fb1cbc393822c47dea206c30c205e829d322d947bb31181f59b7",
+  "results/twomoment_repair_qwen_base2instruct.json": "97309dbcf7730301c30e3cf65ef507a5eac3d139a9821bc9448fba4c91b00e21"
+ }
+}

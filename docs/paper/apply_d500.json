@@ -1,0 +1,2391 @@
+{
+ "registered_in": "D-500 (dfa61f2)",
+ "recorded_in": "D-501",
+ "item1": {
+  "C1.7": {
+   "record": "results/auc_criterion_audit_lora.json",
+   "why": "results/auc_criterion_audit_lora.json is SUPERSEDED in src/populations.py ('code provenance unverifiable; its GPU-control part is covered by healthcheck_d156_summary (D-255); its LoRA part has no D-156 replacement yet (D-259)'); results/auc_criterion_audit_lora.json is the frozen split (pre-D-156; the basis D-156 supersedes for the estimator)"
+  },
+  "C1.9": {
+   "record": "results/synthesis2.json",
+   "why": "results/synthesis2.json is the frozen split (pre-D-156; the basis D-156 supersedes for the estimator)",
+   "h_rows": [
+    "C3.1a",
+    "C3.1c",
+    "C3.2",
+    "C3.3",
+    "C3.5",
+    "C3.7",
+    "C5.2"
+   ]
+  },
+  "C1.24": {
+   "record": "results/synthesis2.json",
+   "why": "results/synthesis2.json is the frozen split (pre-D-156; the basis D-156 supersedes for the estimator)"
+  }
+ },
+ "item2": {
+  "status": "SUPPORTED",
+  "why": null,
+  "old_status": "FLAGGED",
+  "H": "HH-RLHF exposure (D-349): the HH arm's consumed training conversations held frozen evaluation items in a user turn other than the checked prompt (rule D-344), 46 conversations / 55 distinct items at 25 steps, 188 / 211 at 100 and 810 / 763 at 400, about 8% of the 3,000 pooled negatives (0.079) and 6% of the 2,000 evaluation positives (0.061) at 400 steps; the HH rows survive the removal of those items at every dose (D-380); on the reduced items Table IV's six safety runs' specificity falls from 0.987 to 0.784, a drop that is unexplained"
+ },
+ "item3_5": {
+  "C2.10": {
+   "map": [
+    "`C2.10`",
+    "SUPPORTED (D-501 (3); new row, PR-7)",
+    "#77 HELD; #78 HELD; #79 HELD",
+    "#77: the slope (P2-M.1); #78: the accuracy line (P2-M.2); #79: two moments over one (P2-M.3)"
+   ],
+   "status": "SUPPORTED",
+   "why": null,
+   "text": "On the 9 Phase 2 pairs (63 headline cells; user-span mean, selected C, item level, 1%) the two-moment model (moment_full_in_sample: the post-update moments of the same evaluation negatives) accounts for the realised paired ratio: slope 0.911 [0.806, 1.292] (pair-cluster bootstrap, includes 1; P2-M.1 HELD); share within x1.5 0.905 of the 63 cells, median |log error| 0.058 (P2-M.2 HELD); share within x1.5 for two moments 0.905 against translation 0.730 (P2-M.3 HELD). With all three HELD, the Phase 2 gate (D-361 (5)) is met.",
+   "reworded": false,
+   "ledger": "#77 HELD, #78 HELD, #79 HELD"
+  },
+  "C4.9": {
+   "map": [
+    "`C4.9`",
+    "SUPPORTED (D-501 (3); new row, PR-7)",
+    "#105 HELD; #109 HELD; #113 HELD; #117 HELD; #121 HELD; #125 HELD",
+    "#105: P-RA.1, Phase 1 ridge; #109: P-RA.1, Phase 2 ridge; #113: P-RA.1, LoRA ridge; #117: P-RA.1, Phase 1 Procrustes; #121: P-RA.1, Phase 2 Procrustes; #125: P-RA.1, LoRA Procrustes"
+   ],
+   "status": "SUPPORTED",
+   "why": null,
+   "text": "Realignment (a ridge (D-418) or orthogonal Procrustes (D-423) map of the post-update features onto the pre-update ones, fitted on a reference pool (R_same, R_fresh, 1% traffic)) keeps AUROC by Duan's criterion (P-RA.1): Phase 1 ridge 27 of 27 cells (HELD, #105); Phase 2 ridge 27 of 27 cells (HELD, #109); LoRA ridge 27 of 27 cells (HELD, #113); Phase 1 Procrustes 27 of 27 cells (HELD, #117); Phase 2 Procrustes 27 of 27 cells (HELD, #121); LoRA Procrustes 27 of 27 cells (HELD, #125).",
+   "reworded": false,
+   "ledger": "#105 HELD, #109 HELD, #113 HELD, #117 HELD, #121 HELD, #125 HELD"
+  },
+  "C1.25": {
+   "map": [
+    "`C1.25`",
+    "SUPPORTED (D-501 (3); new row, PR-7)",
+    "#86 HELD; #88 HELD",
+    "#86: P-MLP.1 (paired ratio at or above 2); #88: P-MLP.3 (AUROC change below 0.05)"
+   ],
+   "status": "SUPPORTED",
+   "why": null,
+   "text": "A one-hidden-layer MLP probe in place of the linear probe shows damage close to the linear probe's: the frozen paired ratio is >= 2 in 7 of 9 released pairs (linear 8; P-MLP.1 HELD), its Table I paired ratios within x1.5 of the linear probe's with share 1.000 of the 9 pairs (median |log| 0.085); |delta AUROC| < 0.05 in 9 pairs (linear 9; P-MLP.3 HELD; largest 0.0079, D-419 (5)). A post-exit supplement; it cannot reopen Phase 1 (D-401 (b)).",
+   "reworded": false,
+   "ledger": "#86 HELD, #88 HELD"
+  },
+  "C4.12": {
+   "map": [
+    "`C4.12`",
+    "SUPPORTED (D-501 (3); new row, PR-7)",
+    "#87 HELD",
+    "#87: P-MLP.2"
+   ],
+   "status": "SUPPORTED",
+   "why": null,
+   "text": "For the MLP probe the R_same threshold repair's FPR/target (D-156 mean) lies in (0.5, 2) in 9 of 9 pairs (linear 9; P-MLP.2 HELD).",
+   "reworded": false,
+   "ledger": "#87 HELD"
+  },
+  "C5.7": {
+   "map": [
+    "`C5.7`",
+    "SUPPORTED (D-501 (3); new row, PR-7)",
+    "#89 HELD",
+    "#89: P-MLP.4"
+   ],
+   "status": "SUPPORTED",
+   "why": null,
+   "text": "For the MLP probe the Gaussian health ratio's pooled sensitivity for the primary class over the nine L* cells is 0.807, at or above 0.8 (P-MLP.4 HELD; linear 0.860).",
+   "reworded": false,
+   "ledger": "#89 HELD"
+  },
+  "C4.10": {
+   "map": [
+    "`C4.10`",
+    "SUPPORTED (D-501 (3); new row, PR-7)",
+    "#106 HELD; #110 HELD; #114 HELD; #118 HELD; #122 FAILED; #126 FAILED",
+    "#106: P-RA.2, Phase 1 ridge; #110: P-RA.2, Phase 2 ridge; #114: P-RA.2, LoRA ridge; #118: P-RA.2, Phase 1 Procrustes; #122: P-RA.2, Phase 2 Procrustes; #126: P-RA.2, LoRA Procrustes"
+   ],
+   "status": "SUPPORTED",
+   "why": null,
+   "text": "Realignment fitted on the stored reference R_same, with the probe and its threshold frozen, leaves FPR/target outside x1.5 with the ridge map (D-418) in 9 of 9 pairs in each of the three arms, Phase 1, Phase 2 and LoRA (P-RA.2 HELD, #106, #110, #114). With the orthogonal Procrustes map (D-423) it does so in 6 of 9 pairs in Phase 1 (HELD, #118), 4 of 9 in Phase 2 (FAILED, #122) and 3 of 9 in LoRA (FAILED, #126): P-RA.2 predicted at least 6 of the 9 pairs (D-418 (5)'s rule; D-423 (5) applies it to the LoRA and Procrustes units), and with Procrustes in Phase 2 and LoRA fewer pairs stay outside x1.5.",
+   "reworded": true,
+   "ledger": "#106 HELD, #110 HELD, #114 HELD, #118 HELD, #122 FAILED, #126 FAILED"
+  },
+  "C2.11": {
+   "map": [
+    "`C2.11`",
+    "SUPPORTED (D-501 (3); new row, PR-7)",
+    "#107 FAILED; #111 FAILED; #115 HELD; #119 HELD; #123 HELD; #127 HELD",
+    "#107: P-RA.3, Phase 1 ridge; #111: P-RA.3, Phase 2 ridge; #115: P-RA.3, LoRA ridge; #119: P-RA.3, Phase 1 Procrustes; #123: P-RA.3, Phase 2 Procrustes; #127: P-RA.3, LoRA Procrustes"
+   ],
+   "status": "SUPPORTED",
+   "why": null,
+   "text": "After realignment the two-moment model (moment_full_in_sample) gives the realised FPR/target within x1.5 in every cell with the orthogonal Procrustes map (D-423): share within x1.5 1.000 of the 27 cells in Phase 1, Phase 2 and LoRA, median |log error| 0.070, 0.021 and 0.057 (P-RA.3 HELD, #119, #123, #127). With the ridge map (D-418) it does so in LoRA, 1.000 of the 27 cells, median 0.236 (HELD, #115), but not in Phase 1 or Phase 2: share within x1.5 0.556 and 0.630 of the 27 cells, median 0.285 and 0.261 (FAILED, #107, #111), below the 80% that P-RA.3 predicted (D-418 (5)'s rule, with the D-177 line; D-423 (5) applies it to the LoRA and Procrustes units).",
+   "reworded": true,
+   "ledger": "#107 FAILED, #111 FAILED, #115 HELD, #119 HELD, #123 HELD, #127 HELD"
+  },
+  "C4.11": {
+   "map": [
+    "`C4.11`",
+    "SUPPORTED (D-501 (3); new row, PR-7)",
+    "#108 FAILED; #112 FAILED; #116 FAILED; #120 FAILED; #124 FAILED; #128 FAILED",
+    "#108: P-RA.4, Phase 1 ridge; #112: P-RA.4, Phase 2 ridge; #116: P-RA.4, LoRA ridge; #120: P-RA.4, Phase 1 Procrustes; #124: P-RA.4, Phase 2 Procrustes; #128: P-RA.4, LoRA Procrustes"
+   ],
+   "status": "SUPPORTED",
+   "why": null,
+   "text": "Null result: A1's poisoning sets at rho <= 1% move the realigned FPR (poisoned over clean) by x2 or more (D-241 (3)'s cut) in 5 of 162 cells across the six arms (the ridge (D-418) and orthogonal Procrustes (D-423) maps, each on Phase 1, Phase 2 and LoRA): 5 of 27 in Phase 2 ridge, 0 of 27 in each other arm. P-RA.4 predicted a move of x2 in at least 80% of the cells (D-418 (5)'s rule; D-423 (5) applies it to the LoRA and Procrustes units); it FAILED in all six arms (#108, #112, #116, #120, #124, #128).",
+   "reworded": true,
+   "ledger": "#108 FAILED, #112 FAILED, #116 FAILED, #120 FAILED, #124 FAILED, #128 FAILED"
+  }
+ },
+ "item6": {
+  "vals": {
+   "lo": "0.36",
+   "hi": "0.45",
+   "a1": "0.411",
+   "a5": "0.462",
+   "p1": "2.15",
+   "p5": "1.83",
+   "det1": 2,
+   "det5": 6
+  },
+  "added": "At 5% the pre-update dispersion narrows: its SD over draws is 0.36-0.45 of its 1% SD in each of the 7 pairs. Llama-3.1's frozen excess (the frozen arm's mean excess over the pre-update dispersion, D_frozen) rises at 5%, 0.411 to 0.462, while its paired ratio falls, 2.15 to 1.83, so the narrowing does not account for the shift."
+ },
+ "item7": {
+  "by_row": {
+   "C1.12": [
+    "map cell 3: #9",
+    "map cell 3: D-083 rule 3",
+    "row cell 1: D-083 rule 3",
+    "row cell 9: D-083 rule 3"
+   ],
+   "C4.2": [
+    "map cell 2: #8",
+    "map cell 3: #8",
+    "map cell 3: D-083 rule 2"
+   ]
+  },
+  "by_entry": {
+   "C1.12": [
+    "cell 1: D-083",
+    "cell 5: D-083",
+    "cell 6: D-091",
+    "cell 9: D-083",
+    "cell 9: D-091"
+   ],
+   "C4.1": [
+    "cell 5: D-083",
+    "cell 6: D-091"
+   ],
+   "C4.2": [
+    "cell 5: D-083",
+    "cell 6: D-091"
+   ]
+  },
+  "prose_lines": [
+   "line 17"
+  ]
+ },
+ "claims_md": {
+  "changed": {
+   "C1.7": {
+    "old_status": "FLAGGED",
+    "new_status": "RETIRED",
+    "line": 53
+   },
+   "C1.9": {
+    "old_status": "FLAGGED",
+    "new_status": "RETIRED",
+    "line": 55
+   },
+   "C1.12": {
+    "old_status": "SUPPORTED",
+    "new_status": "SUPPORTED",
+    "line": 58
+   },
+   "C1.24": {
+    "old_status": "FLAGGED",
+    "new_status": "RETIRED",
+    "line": 71
+   },
+   "C1.25": {
+    "old_status": null,
+    "new_status": "SUPPORTED",
+    "line": null
+   },
+   "C2.10": {
+    "old_status": null,
+    "new_status": "SUPPORTED",
+    "line": null
+   },
+   "C2.11": {
+    "old_status": null,
+    "new_status": "SUPPORTED",
+    "line": null
+   },
+   "C3.5": {
+    "old_status": "FLAGGED",
+    "new_status": "SUPPORTED",
+    "line": 99
+   },
+   "C4.9": {
+    "old_status": null,
+    "new_status": "SUPPORTED",
+    "line": null
+   },
+   "C4.10": {
+    "old_status": null,
+    "new_status": "SUPPORTED",
+    "line": null
+   },
+   "C4.11": {
+    "old_status": null,
+    "new_status": "SUPPORTED",
+    "line": null
+   },
+   "C4.12": {
+    "old_status": null,
+    "new_status": "SUPPORTED",
+    "line": null
+   },
+   "C5.7": {
+    "old_status": null,
+    "new_status": "SUPPORTED",
+    "line": null
+   }
+  },
+  "counts": {
+   "NO EVIDENCE YET": 7,
+   "AUTHOR DECISION PENDING": 0,
+   "FLAGGED": 0,
+   "PROVISIONAL": 0,
+   "SUPPORTED": 56,
+   "DESCRIPTIVE": 4,
+   "RETIRED": 8
+  },
+  "total": 75,
+  "map_lines": 68
+ },
+ "numbers_to_verify_rows": [
+  23,
+  24,
+  25,
+  26,
+  27,
+  28
+ ],
+ "sources": [
+  {
+   "claim": "C3.5",
+   "file": "results/lora_contamination_p1.json",
+   "sha256": "c39a2d78125d9c4b5215090a2d8e05e25159659d8482a201d49bb8b1ff5ed6f1",
+   "path": "headline/rule",
+   "raw": "trained_unchecked_user_turn",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C3.5",
+   "file": "results/lora_contamination_p1.json",
+   "sha256": "c39a2d78125d9c4b5215090a2d8e05e25159659d8482a201d49bb8b1ff5ed6f1",
+   "path": "counts/hh/doses/25/headline/rule",
+   "raw": "trained_unchecked_user_turn",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C3.5",
+   "file": "results/lora_contamination_p1.json",
+   "sha256": "c39a2d78125d9c4b5215090a2d8e05e25159659d8482a201d49bb8b1ff5ed6f1",
+   "path": "counts/hh/doses/25/headline/n_conversations",
+   "raw": 46,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C3.5",
+   "file": "results/lora_contamination_p1.json",
+   "sha256": "c39a2d78125d9c4b5215090a2d8e05e25159659d8482a201d49bb8b1ff5ed6f1",
+   "path": "counts/hh/doses/25/headline/n_distinct_items",
+   "raw": 55,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C3.5",
+   "file": "results/lora_contamination_p1.json",
+   "sha256": "c39a2d78125d9c4b5215090a2d8e05e25159659d8482a201d49bb8b1ff5ed6f1",
+   "path": "counts/hh/doses/100/headline/rule",
+   "raw": "trained_unchecked_user_turn",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C3.5",
+   "file": "results/lora_contamination_p1.json",
+   "sha256": "c39a2d78125d9c4b5215090a2d8e05e25159659d8482a201d49bb8b1ff5ed6f1",
+   "path": "counts/hh/doses/100/headline/n_conversations",
+   "raw": 188,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C3.5",
+   "file": "results/lora_contamination_p1.json",
+   "sha256": "c39a2d78125d9c4b5215090a2d8e05e25159659d8482a201d49bb8b1ff5ed6f1",
+   "path": "counts/hh/doses/100/headline/n_distinct_items",
+   "raw": 211,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C3.5",
+   "file": "results/lora_contamination_p1.json",
+   "sha256": "c39a2d78125d9c4b5215090a2d8e05e25159659d8482a201d49bb8b1ff5ed6f1",
+   "path": "counts/hh/doses/400/headline/rule",
+   "raw": "trained_unchecked_user_turn",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C3.5",
+   "file": "results/lora_contamination_p1.json",
+   "sha256": "c39a2d78125d9c4b5215090a2d8e05e25159659d8482a201d49bb8b1ff5ed6f1",
+   "path": "counts/hh/doses/400/headline/n_conversations",
+   "raw": 810,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C3.5",
+   "file": "results/lora_contamination_p1.json",
+   "sha256": "c39a2d78125d9c4b5215090a2d8e05e25159659d8482a201d49bb8b1ff5ed6f1",
+   "path": "counts/hh/doses/400/headline/n_distinct_items",
+   "raw": 763,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C3.5",
+   "file": "results/lora_contamination_p1.json",
+   "sha256": "c39a2d78125d9c4b5215090a2d8e05e25159659d8482a201d49bb8b1ff5ed6f1",
+   "path": "counts/hh/doses/400/populations_4a/pooled_negatives/trained_unchecked_user_turn/share",
+   "raw": 0.079,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C3.5",
+   "file": "results/lora_contamination_p1.json",
+   "sha256": "c39a2d78125d9c4b5215090a2d8e05e25159659d8482a201d49bb8b1ff5ed6f1",
+   "path": "counts/hh/doses/400/populations_4a/eval_positives/trained_unchecked_user_turn/share",
+   "raw": 0.061,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C3.5",
+   "file": "results/lora_contamination_p1.json",
+   "sha256": "c39a2d78125d9c4b5215090a2d8e05e25159659d8482a201d49bb8b1ff5ed6f1",
+   "path": "counts/hh/doses/400/populations_4a/pooled_negatives/n_items",
+   "raw": 3000,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C3.5",
+   "file": "results/lora_contamination_p1.json",
+   "sha256": "c39a2d78125d9c4b5215090a2d8e05e25159659d8482a201d49bb8b1ff5ed6f1",
+   "path": "counts/hh/doses/400/populations_4a/eval_positives/n_items",
+   "raw": 2000,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C3.5",
+   "file": "results/hh_sensitivity_d363.json",
+   "sha256": "030f6c4ccc639231c0f7d083b43319077d59a0a024cbb4ace763679ed56ccdc0",
+   "path": "reading/item_level_D156/25/hh_minus_alpaca/sensitivity/survives",
+   "raw": true,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C3.5",
+   "file": "results/hh_sensitivity_d363.json",
+   "sha256": "030f6c4ccc639231c0f7d083b43319077d59a0a024cbb4ace763679ed56ccdc0",
+   "path": "reading/item_level_D156/100/hh_minus_alpaca/sensitivity/survives",
+   "raw": true,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C3.5",
+   "file": "results/hh_sensitivity_d363.json",
+   "sha256": "030f6c4ccc639231c0f7d083b43319077d59a0a024cbb4ace763679ed56ccdc0",
+   "path": "reading/item_level_D156/400/hh_minus_alpaca/sensitivity/survives",
+   "raw": true,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C3.5",
+   "file": "results/hh_sensitivity_d363.json",
+   "sha256": "030f6c4ccc639231c0f7d083b43319077d59a0a024cbb4ace763679ed56ccdc0",
+   "path": "table_iv_lora/cells/LoRA, safety (six runs)/gaussian/specificity/record/value",
+   "raw": 0.9873027389805913,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C3.5",
+   "file": "results/healthcheck_d156_summary_lora.json",
+   "sha256": "f697569d57c82d07678d8c8e79c0a953f9b6b7ffff8e4d6dffb802f7b16fe500",
+   "path": "rows/selected|item_level_D156/lora_safety/gaussian|two_sided_2x/pooled_from_mean_counts/specificity",
+   "raw": 0.9873027389805913,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C3.5",
+   "file": "results/healthcheck_d156_summary_lora.json",
+   "sha256": "f697569d57c82d07678d8c8e79c0a953f9b6b7ffff8e4d6dffb802f7b16fe500",
+   "path": "rows/selected|item_level_D156/lora_safety/gaussian|two_sided_2x/pooled_from_mean_counts/specificity",
+   "raw": 0.9873027389805913,
+   "printed": "0.987",
+   "note": ""
+  },
+  {
+   "claim": "C3.5",
+   "file": "results/hh_sensitivity_d363.json",
+   "sha256": "030f6c4ccc639231c0f7d083b43319077d59a0a024cbb4ace763679ed56ccdc0",
+   "path": "table_iv_lora/cells/LoRA, safety (six runs)/gaussian/specificity/sensitivity/value",
+   "raw": 0.7843948166528811,
+   "printed": "0.784",
+   "note": ""
+  },
+  {
+   "claim": "C3.5",
+   "file": null,
+   "sha256": null,
+   "path": "exposure c25",
+   "raw": 46,
+   "printed": "46",
+   "note": "lora_contamination_p1.json counts/hh/doses/<d>/headline"
+  },
+  {
+   "claim": "C3.5",
+   "file": null,
+   "sha256": null,
+   "path": "exposure i25",
+   "raw": 55,
+   "printed": "55",
+   "note": "lora_contamination_p1.json counts/hh/doses/<d>/headline"
+  },
+  {
+   "claim": "C3.5",
+   "file": null,
+   "sha256": null,
+   "path": "exposure c100",
+   "raw": 188,
+   "printed": "188",
+   "note": "lora_contamination_p1.json counts/hh/doses/<d>/headline"
+  },
+  {
+   "claim": "C3.5",
+   "file": null,
+   "sha256": null,
+   "path": "exposure i100",
+   "raw": 211,
+   "printed": "211",
+   "note": "lora_contamination_p1.json counts/hh/doses/<d>/headline"
+  },
+  {
+   "claim": "C3.5",
+   "file": null,
+   "sha256": null,
+   "path": "exposure c400",
+   "raw": 810,
+   "printed": "810",
+   "note": "lora_contamination_p1.json counts/hh/doses/<d>/headline"
+  },
+  {
+   "claim": "C3.5",
+   "file": null,
+   "sha256": null,
+   "path": "exposure i400",
+   "raw": 763,
+   "printed": "763",
+   "note": "lora_contamination_p1.json counts/hh/doses/<d>/headline"
+  },
+  {
+   "claim": "C3.5",
+   "file": null,
+   "sha256": null,
+   "path": "share negatives",
+   "raw": 0.079,
+   "printed": "0.079 (about 8%)",
+   "note": "round(100 x share)"
+  },
+  {
+   "claim": "C3.5",
+   "file": null,
+   "sha256": null,
+   "path": "share positives",
+   "raw": 0.061,
+   "printed": "0.061 (about 6%)",
+   "note": "round(100 x share)"
+  },
+  {
+   "claim": "C2.10",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 77 Verdict leading word",
+   "raw": "HELD",
+   "printed": "HELD",
+   "note": ""
+  },
+  {
+   "claim": "C2.10",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 78 Verdict leading word",
+   "raw": "HELD",
+   "printed": "HELD",
+   "note": ""
+  },
+  {
+   "claim": "C2.10",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 79 Verdict leading word",
+   "raw": "HELD",
+   "printed": "HELD",
+   "note": ""
+  },
+  {
+   "claim": "C2.10",
+   "file": "results/twomoment_p2_d361_summary.json",
+   "sha256": "24a152d042183152ec86b46d7594a6d76c20631620df3681dba226393f5a007a",
+   "path": "verdicts/P2-M.1/slope_ci95",
+   "raw": [
+    0.8059131184104489,
+    1.2918898145512785
+   ],
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.10",
+   "file": "results/twomoment_p2_d361_summary.json",
+   "sha256": "24a152d042183152ec86b46d7594a6d76c20631620df3681dba226393f5a007a",
+   "path": "verdicts/P2-M.1/verdict",
+   "raw": "HELD",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.10",
+   "file": "results/twomoment_p2_d361_summary.json",
+   "sha256": "24a152d042183152ec86b46d7594a6d76c20631620df3681dba226393f5a007a",
+   "path": "verdicts/P2-M.2/verdict",
+   "raw": "HELD",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.10",
+   "file": "results/twomoment_p2_d361_summary.json",
+   "sha256": "24a152d042183152ec86b46d7594a6d76c20631620df3681dba226393f5a007a",
+   "path": "verdicts/P2-M.3/verdict",
+   "raw": "HELD",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.10",
+   "file": "results/twomoment_p2_d361_summary.json",
+   "sha256": "24a152d042183152ec86b46d7594a6d76c20631620df3681dba226393f5a007a",
+   "path": "headline/n_pairs",
+   "raw": 9,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.10",
+   "file": "results/twomoment_p2_d361_summary.json",
+   "sha256": "24a152d042183152ec86b46d7594a6d76c20631620df3681dba226393f5a007a",
+   "path": "headline/n_cells",
+   "raw": 63,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.10",
+   "file": "results/twomoment_p2_d361_summary.json",
+   "sha256": "24a152d042183152ec86b46d7594a6d76c20631620df3681dba226393f5a007a",
+   "path": "verdicts/P2-M.1/slope",
+   "raw": 0.9105432189883305,
+   "printed": "0.911",
+   "note": ""
+  },
+  {
+   "claim": "C2.10",
+   "file": "results/twomoment_p2_d361_summary.json",
+   "sha256": "24a152d042183152ec86b46d7594a6d76c20631620df3681dba226393f5a007a",
+   "path": "verdicts/P2-M.1/slope_ci95",
+   "raw": [
+    0.8059131184104489,
+    1.2918898145512785
+   ],
+   "printed": "[0.806, 1.292]",
+   "note": ""
+  },
+  {
+   "claim": "C2.10",
+   "file": "results/twomoment_p2_d361_summary.json",
+   "sha256": "24a152d042183152ec86b46d7594a6d76c20631620df3681dba226393f5a007a",
+   "path": "verdicts/P2-M.2/share_within_factor_1_5",
+   "raw": 0.9047619047619048,
+   "printed": "0.905",
+   "note": ""
+  },
+  {
+   "claim": "C2.10",
+   "file": "results/twomoment_p2_d361_summary.json",
+   "sha256": "24a152d042183152ec86b46d7594a6d76c20631620df3681dba226393f5a007a",
+   "path": "verdicts/P2-M.2/n_cells",
+   "raw": 63,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.10",
+   "file": "results/twomoment_p2_d361_summary.json",
+   "sha256": "24a152d042183152ec86b46d7594a6d76c20631620df3681dba226393f5a007a",
+   "path": "verdicts/P2-M.2/median_abs_log_realised_over_predicted",
+   "raw": 0.05755126398753774,
+   "printed": "0.058",
+   "note": ""
+  },
+  {
+   "claim": "C2.10",
+   "file": "results/twomoment_p2_d361_summary.json",
+   "sha256": "24a152d042183152ec86b46d7594a6d76c20631620df3681dba226393f5a007a",
+   "path": "verdicts/P2-M.3/two_moment_share",
+   "raw": 0.9047619047619048,
+   "printed": "0.905",
+   "note": ""
+  },
+  {
+   "claim": "C2.10",
+   "file": "results/twomoment_p2_d361_summary.json",
+   "sha256": "24a152d042183152ec86b46d7594a6d76c20631620df3681dba226393f5a007a",
+   "path": "verdicts/P2-M.3/one_moment_share",
+   "raw": 0.7301587301587301,
+   "printed": "0.730",
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 105 Verdict leading word",
+   "raw": "HELD",
+   "printed": "HELD",
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase1_released/P-RA.1/verdict",
+   "raw": "HELD",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 109 Verdict leading word",
+   "raw": "HELD",
+   "printed": "HELD",
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase2_headline/P-RA.1/verdict",
+   "raw": "HELD",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 113 Verdict leading word",
+   "raw": "HELD",
+   "printed": "HELD",
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_ridge/P-RA.1/verdict",
+   "raw": "HELD",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 117 Verdict leading word",
+   "raw": "HELD",
+   "printed": "HELD",
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p1_procrustes/P-RA.1/verdict",
+   "raw": "HELD",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 121 Verdict leading word",
+   "raw": "HELD",
+   "printed": "HELD",
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p2_procrustes/P-RA.1/verdict",
+   "raw": "HELD",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 125 Verdict leading word",
+   "raw": "HELD",
+   "printed": "HELD",
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_procrustes/P-RA.1/verdict",
+   "raw": "HELD",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase1_released/P-RA.1/n_pass",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase1_released/P-RA.1/n_eligible",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase2_headline/P-RA.1/n_pass",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase2_headline/P-RA.1/n_eligible",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_ridge/P-RA.1/n_pass",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_ridge/P-RA.1/n_eligible",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p1_procrustes/P-RA.1/n_pass",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p1_procrustes/P-RA.1/n_eligible",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p2_procrustes/P-RA.1/n_pass",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p2_procrustes/P-RA.1/n_eligible",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_procrustes/P-RA.1/n_pass",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.9",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_procrustes/P-RA.1/n_eligible",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.25",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 86 Verdict leading word",
+   "raw": "HELD",
+   "printed": "HELD",
+   "note": ""
+  },
+  {
+   "claim": "C1.25",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 88 Verdict leading word",
+   "raw": "HELD",
+   "printed": "HELD",
+   "note": ""
+  },
+  {
+   "claim": "C1.25",
+   "file": "results/mlp_probe_d383.json",
+   "sha256": "c402911c196e7604734f48ef5fe8fac35aab1c92e01572b2f681bb1e27ece54f",
+   "path": "predictions/P-MLP.3/rows",
+   "raw": [
+    {
+     "pair": "mistral_base2instruct",
+     "mlp": -0.007778899999999989,
+     "linear_of_record": -0.005788399999999983,
+     "d170_flag": null,
+     "mlp_minus_linear": -0.001990500000000006
+    },
+    {
+     "pair": "gemma2_base2instruct",
+     "mlp": -0.0009309000000000233,
+     "linear_of_record": 0.001452999999999971,
+     "d170_flag": null,
+     "mlp_minus_linear": -0.0023838999999999944
+    },
+    {
+     "pair": "llama3_base2instruct",
+     "mlp": 0.005310000000000014,
+     "linear_of_record": 0.0047987,
+     "d170_flag": null,
+     "mlp_minus_linear": 0.000511300000000014
+    },
+    {
+     "pair": "llama31_base2instruct",
+     "mlp": 0.004333000000000009,
+     "linear_of_record": 0.004162250000000034,
+     "d170_flag": null,
+     "mlp_minus_linear": 0.00017074999999997474
+    },
+    {
+     "pair": "qwen_base2instruct",
+     "mlp": 0.007006750000000017,
+     "linear_of_record": 0.003909099999999976,
+     "d170_flag": null,
+     "mlp_minus_linear": 0.003097650000000041
+    },
+    {
+     "pair": "olmo_base2instruct",
+     "mlp": 0.007887100000000013,
+     "linear_of_record": 0.004263050000000002,
+     "d170_flag": null,
+     "mlp_minus_linear": 0.0036240500000000115
+    },
+    {
+     "pair": "llama3_to_31",
+     "mlp": 0.0015551000000000315,
+     "linear_of_record": -0.00020045000000001867,
+     "d170_flag": null,
+     "mlp_minus_linear": 0.0017555500000000501
+    },
+    {
+     "pair": "WG_mistral_base2instruct",
+     "mlp": -0.004711749999999992,
+     "linear_of_record": -0.003879599999999983,
+     "d170_flag": null,
+     "mlp_minus_linear": -0.0008321500000000089
+    },
+    {
+     "pair": "WG_llama3_base2instruct",
+     "mlp": 0.0044319999999999915,
+     "linear_of_record": 0.004960850000000017,
+     "d170_flag": null,
+     "mlp_minus_linear": -0.0005288500000000251
+    }
+   ],
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.25",
+   "file": "results/mlp_probe_d383.json",
+   "sha256": "c402911c196e7604734f48ef5fe8fac35aab1c92e01572b2f681bb1e27ece54f",
+   "path": "predictions/P-MLP.1/n_pairs_at_or_above_2",
+   "raw": 7,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.25",
+   "file": "results/mlp_probe_d383.json",
+   "sha256": "c402911c196e7604734f48ef5fe8fac35aab1c92e01572b2f681bb1e27ece54f",
+   "path": "predictions/P-MLP.1/rows",
+   "raw": [
+    {
+     "pair": "mistral_base2instruct",
+     "mlp": 17.971649438713605,
+     "linear_of_record": 17.37703845180044,
+     "d170_flag": null
+    },
+    {
+     "pair": "gemma2_base2instruct",
+     "mlp": 6.234172787833293,
+     "linear_of_record": 6.783391866710568,
+     "d170_flag": null
+    },
+    {
+     "pair": "llama3_base2instruct",
+     "mlp": 2.3896096334344596,
+     "linear_of_record": 2.3949298246424737,
+     "d170_flag": null
+    },
+    {
+     "pair": "llama31_base2instruct",
+     "mlp": 1.7300221708885926,
+     "linear_of_record": 2.1519466146268145,
+     "d170_flag": null
+    },
+    {
+     "pair": "qwen_base2instruct",
+     "mlp": 1.4222176140214946,
+     "linear_of_record": 1.5770286880356257,
+     "d170_flag": null
+    },
+    {
+     "pair": "olmo_base2instruct",
+     "mlp": 2.8685042977725694,
+     "linear_of_record": 3.145726632707297,
+     "d170_flag": null
+    },
+    {
+     "pair": "llama3_to_31",
+     "mlp": 3.8560298361318135,
+     "linear_of_record": 3.2242430815570997,
+     "d170_flag": null
+    },
+    {
+     "pair": "WG_mistral_base2instruct",
+     "mlp": 9.748050673911646,
+     "linear_of_record": 9.520735780258535,
+     "d170_flag": null
+    },
+    {
+     "pair": "WG_llama3_base2instruct",
+     "mlp": 2.2657045518361048,
+     "linear_of_record": 2.081292021969159,
+     "d170_flag": null
+    }
+   ],
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.25",
+   "file": "results/mlp_probe_d383.json",
+   "sha256": "c402911c196e7604734f48ef5fe8fac35aab1c92e01572b2f681bb1e27ece54f",
+   "path": "predictions/P-MLP.1/linear_n_pairs_at_or_above_2_from_the_records",
+   "raw": 8,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.25",
+   "file": "results/mlp_probe_d383.json",
+   "sha256": "c402911c196e7604734f48ef5fe8fac35aab1c92e01572b2f681bb1e27ece54f",
+   "path": "predictions/P-MLP.1/accuracy_line_vs_linear/share_within_factor_1_5",
+   "raw": 1.0,
+   "printed": "1.000",
+   "note": ""
+  },
+  {
+   "claim": "C1.25",
+   "file": "results/mlp_probe_d383.json",
+   "sha256": "c402911c196e7604734f48ef5fe8fac35aab1c92e01572b2f681bb1e27ece54f",
+   "path": "predictions/P-MLP.1/accuracy_line_vs_linear/n_rows",
+   "raw": 9,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.25",
+   "file": "results/mlp_probe_d383.json",
+   "sha256": "c402911c196e7604734f48ef5fe8fac35aab1c92e01572b2f681bb1e27ece54f",
+   "path": "predictions/P-MLP.1/accuracy_line_vs_linear/median_abs_log_realised_over_predicted",
+   "raw": 0.08489690570030965,
+   "printed": "0.085",
+   "note": ""
+  },
+  {
+   "claim": "C1.25",
+   "file": "results/mlp_probe_d383.json",
+   "sha256": "c402911c196e7604734f48ef5fe8fac35aab1c92e01572b2f681bb1e27ece54f",
+   "path": "predictions/P-MLP.3/n_pairs_mlp",
+   "raw": 9,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.25",
+   "file": "results/mlp_probe_d383.json",
+   "sha256": "c402911c196e7604734f48ef5fe8fac35aab1c92e01572b2f681bb1e27ece54f",
+   "path": "predictions/P-MLP.3/n_pairs_linear",
+   "raw": 9,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.25",
+   "file": null,
+   "sha256": null,
+   "path": "max abs mlp delta AUROC",
+   "raw": 0.007887100000000013,
+   "printed": "0.0079",
+   "note": "max abs of P-MLP.3 rows mlp"
+  },
+  {
+   "claim": "C4.12",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 87 Verdict leading word",
+   "raw": "HELD",
+   "printed": "HELD",
+   "note": ""
+  },
+  {
+   "claim": "C4.12",
+   "file": "results/mlp_probe_d383.json",
+   "sha256": "c402911c196e7604734f48ef5fe8fac35aab1c92e01572b2f681bb1e27ece54f",
+   "path": "predictions/P-MLP.2/n_pairs_in_interval",
+   "raw": 9,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.12",
+   "file": "results/mlp_probe_d383.json",
+   "sha256": "c402911c196e7604734f48ef5fe8fac35aab1c92e01572b2f681bb1e27ece54f",
+   "path": "predictions/P-MLP.2/rows",
+   "raw": [
+    {
+     "pair": "mistral_base2instruct",
+     "mlp": 1.0097900000000002,
+     "linear_of_record": 1.00748,
+     "d170_flag": null
+    },
+    {
+     "pair": "gemma2_base2instruct",
+     "mlp": 1.00844,
+     "linear_of_record": 1.0070999999999999,
+     "d170_flag": null
+    },
+    {
+     "pair": "llama3_base2instruct",
+     "mlp": 1.02102,
+     "linear_of_record": 1.01955,
+     "d170_flag": null
+    },
+    {
+     "pair": "llama31_base2instruct",
+     "mlp": 1.0199099999999999,
+     "linear_of_record": 1.02071,
+     "d170_flag": null
+    },
+    {
+     "pair": "qwen_base2instruct",
+     "mlp": 1.01065,
+     "linear_of_record": 1.00823,
+     "d170_flag": null
+    },
+    {
+     "pair": "olmo_base2instruct",
+     "mlp": 1.0201,
+     "linear_of_record": 1.02418,
+     "d170_flag": null
+    },
+    {
+     "pair": "llama3_to_31",
+     "mlp": 1.01494,
+     "linear_of_record": 1.01816,
+     "d170_flag": null
+    },
+    {
+     "pair": "WG_mistral_base2instruct",
+     "mlp": 0.99144,
+     "linear_of_record": 0.98422,
+     "d170_flag": null
+    },
+    {
+     "pair": "WG_llama3_base2instruct",
+     "mlp": 0.99501,
+     "linear_of_record": 0.9898100000000001,
+     "d170_flag": null
+    }
+   ],
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.12",
+   "file": "results/mlp_probe_d383.json",
+   "sha256": "c402911c196e7604734f48ef5fe8fac35aab1c92e01572b2f681bb1e27ece54f",
+   "path": "predictions/P-MLP.2/linear_n_pairs_in_interval",
+   "raw": 9,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C5.7",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 89 Verdict leading word",
+   "raw": "HELD",
+   "printed": "HELD",
+   "note": ""
+  },
+  {
+   "claim": "C5.7",
+   "file": "results/mlp_probe_d383.json",
+   "sha256": "c402911c196e7604734f48ef5fe8fac35aab1c92e01572b2f681bb1e27ece54f",
+   "path": "predictions/P-MLP.4/pooled_sensitivity",
+   "raw": 0.8073099415204679,
+   "printed": "0.807",
+   "note": ""
+  },
+  {
+   "claim": "C5.7",
+   "file": "results/mlp_probe_d383.json",
+   "sha256": "c402911c196e7604734f48ef5fe8fac35aab1c92e01572b2f681bb1e27ece54f",
+   "path": "predictions/P-MLP.4/linear_pooled_sensitivity_lstar_cells",
+   "raw": 0.8602679792179382,
+   "printed": "0.860",
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 106 Verdict leading word",
+   "raw": "HELD",
+   "printed": "HELD",
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase1_released/P-RA.2/verdict",
+   "raw": "HELD",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 110 Verdict leading word",
+   "raw": "HELD",
+   "printed": "HELD",
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase2_headline/P-RA.2/verdict",
+   "raw": "HELD",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 114 Verdict leading word",
+   "raw": "HELD",
+   "printed": "HELD",
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_ridge/P-RA.2/verdict",
+   "raw": "HELD",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 118 Verdict leading word",
+   "raw": "HELD",
+   "printed": "HELD",
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p1_procrustes/P-RA.2/verdict",
+   "raw": "HELD",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 122 Verdict leading word",
+   "raw": "FAILED",
+   "printed": "FAILED",
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p2_procrustes/P-RA.2/verdict",
+   "raw": "FAILED",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 126 Verdict leading word",
+   "raw": "FAILED",
+   "printed": "FAILED",
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_procrustes/P-RA.2/verdict",
+   "raw": "FAILED",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase1_released/P-RA.2/n_outside",
+   "raw": 9,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase2_headline/P-RA.2/n_outside",
+   "raw": 9,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_ridge/P-RA.2/n_outside",
+   "raw": 9,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p1_procrustes/P-RA.2/n_outside",
+   "raw": 6,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p2_procrustes/P-RA.2/n_outside",
+   "raw": 4,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_procrustes/P-RA.2/n_outside",
+   "raw": 3,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase1_released/P-RA.2/n_pairs",
+   "raw": 9,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase2_headline/P-RA.2/n_pairs",
+   "raw": 9,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_ridge/P-RA.2/n_pairs",
+   "raw": 9,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p1_procrustes/P-RA.2/n_pairs",
+   "raw": 9,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p2_procrustes/P-RA.2/n_pairs",
+   "raw": 9,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.10",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_procrustes/P-RA.2/n_pairs",
+   "raw": 9,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 107 Verdict leading word",
+   "raw": "FAILED",
+   "printed": "FAILED",
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase1_released/P-RA.3/verdict",
+   "raw": "FAILED",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 111 Verdict leading word",
+   "raw": "FAILED",
+   "printed": "FAILED",
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase2_headline/P-RA.3/verdict",
+   "raw": "FAILED",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 115 Verdict leading word",
+   "raw": "HELD",
+   "printed": "HELD",
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_ridge/P-RA.3/verdict",
+   "raw": "HELD",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 119 Verdict leading word",
+   "raw": "HELD",
+   "printed": "HELD",
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p1_procrustes/P-RA.3/verdict",
+   "raw": "HELD",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 123 Verdict leading word",
+   "raw": "HELD",
+   "printed": "HELD",
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p2_procrustes/P-RA.3/verdict",
+   "raw": "HELD",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 127 Verdict leading word",
+   "raw": "HELD",
+   "printed": "HELD",
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_procrustes/P-RA.3/verdict",
+   "raw": "HELD",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase1_released/P-RA.3/accuracy_line/share_within_factor_1_5",
+   "raw": 0.5555555555555556,
+   "printed": "0.556",
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase1_released/P-RA.3/accuracy_line/n_cells",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase1_released/P-RA.3/accuracy_line/median_abs_log_realised_over_predicted",
+   "raw": 0.2849572076282414,
+   "printed": "0.285",
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase1_released/P-RA.3/accuracy_line/share_within_factor_1_5",
+   "raw": 0.5555555555555556,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase2_headline/P-RA.3/accuracy_line/share_within_factor_1_5",
+   "raw": 0.6296296296296297,
+   "printed": "0.630",
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase2_headline/P-RA.3/accuracy_line/n_cells",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase2_headline/P-RA.3/accuracy_line/median_abs_log_realised_over_predicted",
+   "raw": 0.2612342499081717,
+   "printed": "0.261",
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase2_headline/P-RA.3/accuracy_line/share_within_factor_1_5",
+   "raw": 0.6296296296296297,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_ridge/P-RA.3/accuracy_line/share_within_factor_1_5",
+   "raw": 1.0,
+   "printed": "1.000",
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_ridge/P-RA.3/accuracy_line/n_cells",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_ridge/P-RA.3/accuracy_line/median_abs_log_realised_over_predicted",
+   "raw": 0.23582680228613961,
+   "printed": "0.236",
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_ridge/P-RA.3/accuracy_line/share_within_factor_1_5",
+   "raw": 1.0,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p1_procrustes/P-RA.3/accuracy_line/share_within_factor_1_5",
+   "raw": 1.0,
+   "printed": "1.000",
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p1_procrustes/P-RA.3/accuracy_line/n_cells",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p1_procrustes/P-RA.3/accuracy_line/median_abs_log_realised_over_predicted",
+   "raw": 0.06961882654908946,
+   "printed": "0.070",
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p1_procrustes/P-RA.3/accuracy_line/share_within_factor_1_5",
+   "raw": 1.0,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p2_procrustes/P-RA.3/accuracy_line/share_within_factor_1_5",
+   "raw": 1.0,
+   "printed": "1.000",
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p2_procrustes/P-RA.3/accuracy_line/n_cells",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p2_procrustes/P-RA.3/accuracy_line/median_abs_log_realised_over_predicted",
+   "raw": 0.020694591242833252,
+   "printed": "0.021",
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p2_procrustes/P-RA.3/accuracy_line/share_within_factor_1_5",
+   "raw": 1.0,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_procrustes/P-RA.3/accuracy_line/share_within_factor_1_5",
+   "raw": 1.0,
+   "printed": "1.000",
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_procrustes/P-RA.3/accuracy_line/n_cells",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_procrustes/P-RA.3/accuracy_line/median_abs_log_realised_over_predicted",
+   "raw": 0.0567935701714119,
+   "printed": "0.057",
+   "note": ""
+  },
+  {
+   "claim": "C2.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_procrustes/P-RA.3/accuracy_line/share_within_factor_1_5",
+   "raw": 1.0,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 108 Verdict leading word",
+   "raw": "FAILED",
+   "printed": "FAILED",
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase1_released/P-RA.4/verdict",
+   "raw": "FAILED",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 112 Verdict leading word",
+   "raw": "FAILED",
+   "printed": "FAILED",
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase2_headline/P-RA.4/verdict",
+   "raw": "FAILED",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 116 Verdict leading word",
+   "raw": "FAILED",
+   "printed": "FAILED",
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_ridge/P-RA.4/verdict",
+   "raw": "FAILED",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 120 Verdict leading word",
+   "raw": "FAILED",
+   "printed": "FAILED",
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p1_procrustes/P-RA.4/verdict",
+   "raw": "FAILED",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 124 Verdict leading word",
+   "raw": "FAILED",
+   "printed": "FAILED",
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p2_procrustes/P-RA.4/verdict",
+   "raw": "FAILED",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "docs/registered_predictions.md",
+   "sha256": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c",
+   "path": "row 128 Verdict leading word",
+   "raw": "FAILED",
+   "printed": "FAILED",
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_procrustes/P-RA.4/verdict",
+   "raw": "FAILED",
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase1_released/P-RA.4/n_moved",
+   "raw": 0,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase2_headline/P-RA.4/n_moved",
+   "raw": 5,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_ridge/P-RA.4/n_moved",
+   "raw": 0,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p1_procrustes/P-RA.4/n_moved",
+   "raw": 0,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p2_procrustes/P-RA.4/n_moved",
+   "raw": 0,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_procrustes/P-RA.4/n_moved",
+   "raw": 0,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase1_released/n_cells",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "results/realign_d418_summary.json",
+   "sha256": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+   "path": "populations/phase2_headline/n_cells",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_ridge/n_cells",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p1_procrustes/n_cells",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/p2_procrustes/n_cells",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": "results/realign_d423_summary.json",
+   "sha256": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+   "path": "units/lora_procrustes/n_cells",
+   "raw": 27,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C4.11",
+   "file": null,
+   "sha256": null,
+   "path": "P-RA.4 cells moved, six arms",
+   "raw": 5,
+   "printed": "5",
+   "note": "sum of the six units' n_moved"
+  },
+  {
+   "claim": "C4.11",
+   "file": null,
+   "sha256": null,
+   "path": "P-RA.4 cells, six arms",
+   "raw": 162,
+   "printed": "162",
+   "note": "sum of the six units' n_cells"
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2.json",
+   "sha256": "571c66fe69bfd4c6fadc10614d9125565612d6854ffa7f67f26502e0ca91b7d7",
+   "path": "by_metric/d117_layer/per_pair/moment_mistral_base2instruct_v2/selected|item_level_D156/floor/sd_over_draws",
+   "raw": 0.2521703071416143,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2_fpr5.json",
+   "sha256": "5c9e9cb6b88ebb24821c182dc4b161853c9b93b0685a447e8608eb5db48af312",
+   "path": "by_metric/d117_layer/per_pair/moment_mistral_base2instruct_v2/selected|item_level_D156/floor/sd_over_draws",
+   "raw": 0.09051911468376553,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2.json",
+   "sha256": "571c66fe69bfd4c6fadc10614d9125565612d6854ffa7f67f26502e0ca91b7d7",
+   "path": "by_metric/d117_layer/per_pair/moment_mistral_base2instruct_v2/selected|item_level_D156/damage_detected",
+   "raw": true,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2_fpr5.json",
+   "sha256": "5c9e9cb6b88ebb24821c182dc4b161853c9b93b0685a447e8608eb5db48af312",
+   "path": "by_metric/d117_layer/per_pair/moment_mistral_base2instruct_v2/selected|item_level_D156/damage_detected",
+   "raw": true,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2.json",
+   "sha256": "571c66fe69bfd4c6fadc10614d9125565612d6854ffa7f67f26502e0ca91b7d7",
+   "path": "by_metric/d117_layer/per_pair/moment_gemma2_base2instruct/selected|item_level_D156/floor/sd_over_draws",
+   "raw": 0.21884968136002705,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2_fpr5.json",
+   "sha256": "5c9e9cb6b88ebb24821c182dc4b161853c9b93b0685a447e8608eb5db48af312",
+   "path": "by_metric/d117_layer/per_pair/moment_gemma2_base2instruct/selected|item_level_D156/floor/sd_over_draws",
+   "raw": 0.09875810660075987,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2.json",
+   "sha256": "571c66fe69bfd4c6fadc10614d9125565612d6854ffa7f67f26502e0ca91b7d7",
+   "path": "by_metric/d117_layer/per_pair/moment_gemma2_base2instruct/selected|item_level_D156/damage_detected",
+   "raw": true,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2_fpr5.json",
+   "sha256": "5c9e9cb6b88ebb24821c182dc4b161853c9b93b0685a447e8608eb5db48af312",
+   "path": "by_metric/d117_layer/per_pair/moment_gemma2_base2instruct/selected|item_level_D156/damage_detected",
+   "raw": true,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2.json",
+   "sha256": "571c66fe69bfd4c6fadc10614d9125565612d6854ffa7f67f26502e0ca91b7d7",
+   "path": "by_metric/d117_layer/per_pair/moment_llama3_base2instruct/selected|item_level_D156/floor/sd_over_draws",
+   "raw": 0.22361810940872606,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2_fpr5.json",
+   "sha256": "5c9e9cb6b88ebb24821c182dc4b161853c9b93b0685a447e8608eb5db48af312",
+   "path": "by_metric/d117_layer/per_pair/moment_llama3_base2instruct/selected|item_level_D156/floor/sd_over_draws",
+   "raw": 0.09673356054001517,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2.json",
+   "sha256": "571c66fe69bfd4c6fadc10614d9125565612d6854ffa7f67f26502e0ca91b7d7",
+   "path": "by_metric/d117_layer/per_pair/moment_llama3_base2instruct/selected|item_level_D156/damage_detected",
+   "raw": false,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2_fpr5.json",
+   "sha256": "5c9e9cb6b88ebb24821c182dc4b161853c9b93b0685a447e8608eb5db48af312",
+   "path": "by_metric/d117_layer/per_pair/moment_llama3_base2instruct/selected|item_level_D156/damage_detected",
+   "raw": true,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2.json",
+   "sha256": "571c66fe69bfd4c6fadc10614d9125565612d6854ffa7f67f26502e0ca91b7d7",
+   "path": "by_metric/d117_layer/per_pair/moment_llama31_base2instruct/selected|item_level_D156/floor/sd_over_draws",
+   "raw": 0.2354773849907236,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2_fpr5.json",
+   "sha256": "5c9e9cb6b88ebb24821c182dc4b161853c9b93b0685a447e8608eb5db48af312",
+   "path": "by_metric/d117_layer/per_pair/moment_llama31_base2instruct/selected|item_level_D156/floor/sd_over_draws",
+   "raw": 0.09630676835458879,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2.json",
+   "sha256": "571c66fe69bfd4c6fadc10614d9125565612d6854ffa7f67f26502e0ca91b7d7",
+   "path": "by_metric/d117_layer/per_pair/moment_llama31_base2instruct/selected|item_level_D156/damage_detected",
+   "raw": false,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2_fpr5.json",
+   "sha256": "5c9e9cb6b88ebb24821c182dc4b161853c9b93b0685a447e8608eb5db48af312",
+   "path": "by_metric/d117_layer/per_pair/moment_llama31_base2instruct/selected|item_level_D156/damage_detected",
+   "raw": true,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2.json",
+   "sha256": "571c66fe69bfd4c6fadc10614d9125565612d6854ffa7f67f26502e0ca91b7d7",
+   "path": "by_metric/d117_layer/per_pair/moment_qwen_base2instruct/selected|item_level_D156/floor/sd_over_draws",
+   "raw": 0.23087686498505935,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2_fpr5.json",
+   "sha256": "5c9e9cb6b88ebb24821c182dc4b161853c9b93b0685a447e8608eb5db48af312",
+   "path": "by_metric/d117_layer/per_pair/moment_qwen_base2instruct/selected|item_level_D156/floor/sd_over_draws",
+   "raw": 0.09106247058715282,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2.json",
+   "sha256": "571c66fe69bfd4c6fadc10614d9125565612d6854ffa7f67f26502e0ca91b7d7",
+   "path": "by_metric/d117_layer/per_pair/moment_qwen_base2instruct/selected|item_level_D156/damage_detected",
+   "raw": false,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2_fpr5.json",
+   "sha256": "5c9e9cb6b88ebb24821c182dc4b161853c9b93b0685a447e8608eb5db48af312",
+   "path": "by_metric/d117_layer/per_pair/moment_qwen_base2instruct/selected|item_level_D156/damage_detected",
+   "raw": false,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2.json",
+   "sha256": "571c66fe69bfd4c6fadc10614d9125565612d6854ffa7f67f26502e0ca91b7d7",
+   "path": "by_metric/d117_layer/per_pair/moment_olmo_base2instruct/selected|item_level_D156/floor/sd_over_draws",
+   "raw": 0.2424283170281448,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2_fpr5.json",
+   "sha256": "5c9e9cb6b88ebb24821c182dc4b161853c9b93b0685a447e8608eb5db48af312",
+   "path": "by_metric/d117_layer/per_pair/moment_olmo_base2instruct/selected|item_level_D156/floor/sd_over_draws",
+   "raw": 0.09493570379709734,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2.json",
+   "sha256": "571c66fe69bfd4c6fadc10614d9125565612d6854ffa7f67f26502e0ca91b7d7",
+   "path": "by_metric/d117_layer/per_pair/moment_olmo_base2instruct/selected|item_level_D156/damage_detected",
+   "raw": false,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2_fpr5.json",
+   "sha256": "5c9e9cb6b88ebb24821c182dc4b161853c9b93b0685a447e8608eb5db48af312",
+   "path": "by_metric/d117_layer/per_pair/moment_olmo_base2instruct/selected|item_level_D156/damage_detected",
+   "raw": true,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2.json",
+   "sha256": "571c66fe69bfd4c6fadc10614d9125565612d6854ffa7f67f26502e0ca91b7d7",
+   "path": "by_metric/d117_layer/per_pair/moment_llama3_to_31/selected|item_level_D156/floor/sd_over_draws",
+   "raw": 0.22361810940872606,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2_fpr5.json",
+   "sha256": "5c9e9cb6b88ebb24821c182dc4b161853c9b93b0685a447e8608eb5db48af312",
+   "path": "by_metric/d117_layer/per_pair/moment_llama3_to_31/selected|item_level_D156/floor/sd_over_draws",
+   "raw": 0.09673356054001517,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2.json",
+   "sha256": "571c66fe69bfd4c6fadc10614d9125565612d6854ffa7f67f26502e0ca91b7d7",
+   "path": "by_metric/d117_layer/per_pair/moment_llama3_to_31/selected|item_level_D156/damage_detected",
+   "raw": false,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2_fpr5.json",
+   "sha256": "5c9e9cb6b88ebb24821c182dc4b161853c9b93b0685a447e8608eb5db48af312",
+   "path": "by_metric/d117_layer/per_pair/moment_llama3_to_31/selected|item_level_D156/damage_detected",
+   "raw": true,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": null,
+   "sha256": null,
+   "path": "pre-update dispersion SD ratio 5%/1%, min over 7 pairs",
+   "raw": 0.3589602428208632,
+   "printed": "0.36",
+   "note": "floor sd_over_draws 5% / 1%"
+  },
+  {
+   "claim": "C1.12",
+   "file": null,
+   "sha256": null,
+   "path": "pre-update dispersion SD ratio 5%/1%, max over 7 pairs",
+   "raw": 0.4512599972137682,
+   "printed": "0.45",
+   "note": "floor sd_over_draws 5% / 1%"
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2.json",
+   "sha256": "571c66fe69bfd4c6fadc10614d9125565612d6854ffa7f67f26502e0ca91b7d7",
+   "path": "by_metric/d117_layer/per_pair/moment_llama31_base2instruct/selected|item_level_D156/paired_floor_test/frozen/arm_minus_floor/mean",
+   "raw": 0.4105238709510359,
+   "printed": "0.411",
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2_fpr5.json",
+   "sha256": "5c9e9cb6b88ebb24821c182dc4b161853c9b93b0685a447e8608eb5db48af312",
+   "path": "by_metric/d117_layer/per_pair/moment_llama31_base2instruct/selected|item_level_D156/paired_floor_test/frozen/arm_minus_floor/mean",
+   "raw": 0.46166711998544635,
+   "printed": "0.462",
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/depth_d156_llama31_base2instruct.json",
+   "sha256": "321faa00b11395a7ce27a2028ad433fcd048cddebe2183d29bdeb64ca86457a2",
+   "path": "pair_summary/selected/item_level_D156/headline_selected_layer/paired_ratio/mean",
+   "raw": 2.1519466146268145,
+   "printed": "2.15",
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/depth_d156_llama31_base2instruct_fpr5.json",
+   "sha256": "4ebbdd7b31681312adc3dce5a12304cb0976af533aa1c43bd189c4d094ade7b8",
+   "path": "pair_summary/selected/item_level_D156/headline_selected_layer/paired_ratio/mean",
+   "raw": 1.833954767345434,
+   "printed": "1.83",
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/depth_d156_llama31_base2instruct.json",
+   "sha256": "321faa00b11395a7ce27a2028ad433fcd048cddebe2183d29bdeb64ca86457a2",
+   "path": "pair_summary/selected/item_level_D156/headline_selected_layer/layer",
+   "raw": 14,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/depth_d156_llama31_base2instruct_fpr5.json",
+   "sha256": "4ebbdd7b31681312adc3dce5a12304cb0976af533aa1c43bd189c4d094ade7b8",
+   "path": "pair_summary/selected/item_level_D156/headline_selected_layer/layer",
+   "raw": 14,
+   "printed": null,
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2.json",
+   "sha256": "571c66fe69bfd4c6fadc10614d9125565612d6854ffa7f67f26502e0ca91b7d7",
+   "path": "by_metric/d117_layer/per_pair/moment_mistral_base2instruct_v2/selected|item_level_D156/paired_floor_test/frozen/arm_minus_floor/band95",
+   "raw": [
+    1.6619614726971663,
+    2.71389999951699
+   ],
+   "printed": "[1.662, 2.714]",
+   "note": ""
+  },
+  {
+   "claim": "C1.12",
+   "file": "results/moment_contrasts_d156_r2.json",
+   "sha256": "571c66fe69bfd4c6fadc10614d9125565612d6854ffa7f67f26502e0ca91b7d7",
+   "path": "by_metric/d117_layer/per_pair/moment_gemma2_base2instruct/selected|item_level_D156/paired_floor_test/frozen/arm_minus_floor/band95",
+   "raw": [
+    0.7389693863908207,
+    1.8177508125333581
+   ],
+   "printed": "[0.739, 1.818]",
+   "note": ""
+  }
+ ],
+ "input_sha256": {
+  "docs/claims.md": "5ac1ce89bca314fe1cf9670c2438b4c7c3bdbbe0d53c75be6d5985fb9af07504",
+  "docs/paper/numbers_to_verify.md": "03669f49d21c6a9f528fb1cfddbc8e2527486797d66273afc4ee6e381963ae85",
+  "docs/paper/proposals_method.md": "31b896e4252dbb99341293376063ba5cc4aa94f63042a885582e1176c15c3d53",
+  "docs/paper_explainer.md": "699b1df1dccc0cf1434e8789f1ee79eb8d4a6f719484c8fa85fb68fe4e48aa02",
+  "docs/paper/apply_d496.json": "c51b471e0e0449e4ca325535a3f3faedffb31467b897e8b9a7c0d16bfea77865",
+  "docs/paper/apply_d498.json": "ae59d36d8bcb6247d348db21006a9a9d3bfa280ea67463c676486b791d6d66b4",
+  "results/depth_d156_llama31_base2instruct.json": "321faa00b11395a7ce27a2028ad433fcd048cddebe2183d29bdeb64ca86457a2",
+  "results/depth_d156_llama31_base2instruct_fpr5.json": "4ebbdd7b31681312adc3dce5a12304cb0976af533aa1c43bd189c4d094ade7b8",
+  "results/healthcheck_d156_summary_lora.json": "f697569d57c82d07678d8c8e79c0a953f9b6b7ffff8e4d6dffb802f7b16fe500",
+  "results/hh_sensitivity_d363.json": "030f6c4ccc639231c0f7d083b43319077d59a0a024cbb4ace763679ed56ccdc0",
+  "results/lora_contamination_p1.json": "c39a2d78125d9c4b5215090a2d8e05e25159659d8482a201d49bb8b1ff5ed6f1",
+  "results/mlp_probe_d383.json": "c402911c196e7604734f48ef5fe8fac35aab1c92e01572b2f681bb1e27ece54f",
+  "results/moment_contrasts_d156_r2.json": "571c66fe69bfd4c6fadc10614d9125565612d6854ffa7f67f26502e0ca91b7d7",
+  "results/moment_contrasts_d156_r2_fpr5.json": "5c9e9cb6b88ebb24821c182dc4b161853c9b93b0685a447e8608eb5db48af312",
+  "results/realign_d418_summary.json": "73277f639f3caaf07972aee7978ca70299cd704b731271d7a2585ceff1fda258",
+  "results/realign_d423_summary.json": "67faf3fddd5c5dad0ebe9393b6308caaa3fcb01d7b78b1815980f18fedb9d910",
+  "results/twomoment_p2_d361_summary.json": "24a152d042183152ec86b46d7594a6d76c20631620df3681dba226393f5a007a",
+  "docs/registered_predictions.md": "8011c31608ceb806fe1819e4f896cc4850bad0e4b458e97ea953d53066bd617c"
+ }
+}
