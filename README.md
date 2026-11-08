@@ -13,7 +13,8 @@ controls the update can do.
 What can be checked from this repository:
 
 - **Every result number the paper prints can be found in a record here, except in five sentences whose numbers come
-  from our decision log.** The paper and its supplement have 149 sentences that print a result number. For 144 of them,
+  from our decision log.** The paper and its supplement had 149 sentences that print a result number on 2026-11-05;
+  the few added on 2026-11-08 are not yet in the map. For 144 of the 149,
   `release/numbers_map.tsv` names the records they read (result records, the registry of predictions
   `docs/registered_predictions.md`, and session records under `docs/`), and every one of those records is here. The
   other 5 take their numbers from our decision log, which is not here. The paper's generated tables and figures read
@@ -22,6 +23,10 @@ What can be checked from this repository:
 - **Every SHA-256 that the records state for a file that is here can be checked** (`release/verify_inputs.py`, below).
   For the 15 files changed for publication it checks only against our table of those changes. Hashes of files that are
   not here, and of earlier versions of the code, cannot be checked from here.
+- **The bands that the paper's headline table and LoRA table print can be recomputed from stored per-draw values**,
+  except the LoRA runs' worst FPR/target (`release/bands_from_draws.py`, below): the 18 bands of the Phase 1 cells'
+  paired ratio at the 1% and the 5% target, from 18 arrays shipped here, and the 9 bands of the LoRA runs' frozen
+  error, from values their records hold.
 
 What cannot: a number that a record computed from the hidden-state activations cannot be recomputed here, because the
 activations are not released (209 GiB); they can be regenerated with the code in `src/` and the checkpoint revisions the
@@ -36,7 +41,9 @@ also fix the bytes of the records it read that are not here.
   modules import one another by name and the records name them by these paths. `release/modules.md` says, for each
   file, whether it runs here, and which parts of the paper read its records.
 - `results/`: 284 result records: the 108 that the table and figure writers read, the records that the paper's
-  sentences read, and the records of the datasets and splits.
+  sentences read, and the records of the datasets and splits. Also 18 arrays of per-draw values,
+  `results/healthcheck_d156_<pair>[_fpr5]_draws.npz`, one per Phase 1 headline cell's record at each target, each
+  pinned by SHA-256 in the `draws_npz` block of the record of the same name (below, "Recomputing the bands").
 - `manifests/splits/`, `manifests/splits_p2/`, `manifests/splits_p2_v2/`: one manifest per frozen split, with each
   item's identifier, label and source row, and the SHA-256 of the split file. No prompt text. The Phase 3 split is
   recorded in `results/phase3_capcost_wgtest_split.json`.
@@ -118,7 +125,11 @@ root and must lie inside the repository. Left unset, it is `paper/`.
 
 The figures are pgfplots code, not images, so their numbers can be read in the `.tex` files. We regenerated all six
 files in a fresh environment, from this repository's files alone. Each was byte-identical to the file the manuscript
-is built from.
+is built from, as the manuscript stood on 2026-11-05. Since 2026-11-08 the manuscript's headline and LoRA tables also
+print, beneath each Phase 1 cell and each LoRA run, the 2.5-97.5% band of its values over the re-partitions; the
+copies of `results_tables_d504.py` and `supp_tables_d585.py` here do not carry that change yet, so `tables_results.tex`
+and `tables_supplement.tex` written here differ from the current manuscript's in those band rows and in one source
+hash. The bands themselves can be recomputed here (next sections).
 
 Two tables cannot be regenerated here: the registry table in the Supplement (`tab:registry`) and the claims table in
 the Introduction (`tab:claims`). Their writers read the manuscript's LaTeX source, to find the section where each claim
@@ -138,6 +149,23 @@ the stated hash is the original's, which a reader cannot check from here), OTHER
 the record read at an earlier version; this repository ships one version of each, and the record names the commit of
 our working repository that it ran at, which is not public), ABSENT (the file is not here) or FAIL. It exits 1 on any
 FAIL. On this repository it reports no FAIL.
+
+## Recomputing the bands
+
+```sh
+python release/bands_from_draws.py
+```
+
+It needs Python 3.10 or later and numpy, reads files only, and writes nothing. A band is the 2.5th and 97.5th
+percentiles of a statistic over the 1000 re-partitions of the pooled negatives, and the printed value is the mean over
+them (the paper's Section 4.1); index 0 of every stored array is the fixed split, kept beside. For each of the 9 Phase 1
+headline cells at its selected layer, at the 1% and at the 5% target, the script checks the array's SHA-256 against its
+record, recomputes the paired ratio's mean and band from key `L<layer>|selected|item_level_D156|realised_paired_ratio`
+with `src/paired.py`'s `band_summary`, and compares them with the selected cell of `results/depth_d156_<pair>.json`
+(or `_fpr5.json`), the record the table is written from. For each of the 9 LoRA runs it does the same for the frozen
+error, from the 1001 values that `results/repair_d156_<run>.json` stores with their SHA-256. All 27 agree. Two kinds of
+printed band cannot be recomputed here, because no per-draw values of them were stored: the LoRA runs' worst
+FPR/target and the Phase 1 XSTest ratios. The script lists them.
 
 ## Which code runs here
 
