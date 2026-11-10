@@ -256,8 +256,8 @@ written.
   read, and the dataset and split records. The records those were computed from are not here: many of them name
   private paths of our compute node or name harm categories by their dataset labels, some in their file names, which
   other records cite by path, so they cannot be published unchanged without breaking the hashes that cite them. The
-  hashes the records here state fix their bytes. Where they will be deposited is not yet decided: [ARCHIVE LOCATION:
-  placeholder, to be filled in].
+  hashes the records here state fix their bytes. The deeper records are not deposited anywhere yet, and where they will
+  be deposited is not yet decided.
 - The decision log. Each registry row cites, by D-number, the entries of our decision log that registered and scored
   the prediction. Those entries and their dates are not in this repository yet, so the order of registration and
   scoring cannot be checked from here alone.
@@ -298,8 +298,7 @@ Until the paper appears, please cite it as:
 }
 ```
 
-`CITATION.cff` holds the same entry. Repository: [REPOSITORY URL: placeholder, to be added when the repository is
-published].
+`CITATION.cff` holds the same entry. Repository: <https://github.com/ShirePyDev/frozen-probe-operating-point>.
 
 ## Licence
 
