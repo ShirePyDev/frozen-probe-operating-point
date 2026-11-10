@@ -2,7 +2,7 @@
 
 The result records name the SHA-256 of the code that wrote them and of every input they read. Every file copied into this repository from the authors' working repository is a byte-for-byte copy of the file at the same path there, except the 15 below. In 12 of them the changes are path and machine settings only, and their diffs are given in full. In the other 3, Phase 3 records, harm-category labels were replaced by neutral IDs (below, "Masked records"); their diffs are not given, because they would print the labels. `release/substitutions.json` lists all 15 with both SHA-256 values and both sizes, and `release/verify_inputs.py` reads it.
 
-The other files were written for this release and have no counterpart that produced a result: `README.md`, `LICENSE`, `CITATION.cff`, this file, `requirements.txt`, `requirements-tables.txt`, `.gitignore`, `.gitattributes`, `config/example.env`, and the four files under `release/`: `substitutions.json`, `verify_inputs.py` (the hash check), `numbers_map.tsv` (each sentence of the paper that prints a result number, with the records it reads) and `modules.md` (each Python file, whether it runs here, and the parts of the paper its records serve). The last two were generated from the authors' claims table, the hand-written bindings of sentences to records, the records' own code blocks and the manuscript source, none of which is here. (The working repository has its own `requirements.txt`, `.gitignore` and `.gitattributes`; these are not copies of them.)
+The other files were written for this release and have no counterpart that produced a result: `README.md`, `LICENSE`, `CITATION.cff`, this file, `requirements.txt`, `requirements-tables.txt`, `.gitignore`, `.gitattributes`, `config/example.env`, and the five files under `release/`: `substitutions.json`, `verify_inputs.py` (the hash check), `bands_from_draws.py` (the band check), `numbers_map.tsv` (each sentence of the paper that prints a result number, with the records it reads) and `modules.md` (each Python file, whether it runs here, and the parts of the paper its records serve). The last two were generated from the authors' claims table, the hand-written bindings of sentences to records, the records' own code blocks and the manuscript source, none of which is here. (The working repository has its own `requirements.txt`, `.gitignore` and `.gitattributes`; these are not copies of them.)
 
 Two of the changes are not paths. Three modules pin the SHA-256 of `src/p2auroc_d424.py` and refuse to run when it differs; since that file's home path changed, those pins now hold its public SHA-256. The original SHA-256 in the second column is the value the result records and the original pins name.
 
@@ -17,8 +17,8 @@ In the diffs, the compute node's account name is written `<account>` on the remo
 | `src/pairs_table_d468.py` | `4ce7aa30c7e8455468e65cfa0f9e62c338bd52b84c142b7edeb12fcb5c7b4ec7` | `0e2f6f06f158345edd18ce3eecbd4ee1762deb19ec9ccc2cfae50fa672cba3cc` | output directory from GUARDRAIL_PAPER_DIR (default paper/, as before) | 1/3 |
 | `src/recalnoise_d433.py` | `ff92237abba65956c3eab3f7977ccd0a0dbffaabcfac9090121f5047352bfbf1` | `b55df292f37179ab97a9b73d538654403600284688b3d4a85fec88df431848f7` | the compute node's home path literal replaced by GUARDRAIL_NODE_HOME (default: the current user's home); its REUSED_SHA256 pin of src/p2auroc_d424.py set to that file's public bytes | 2/2 |
 | `src/results_figures_d570.py` | `3ef5205594587ffdfb69248170b47c537dd6b964024713a0c209d7bdc5b265fe` | `d7af301df99b2cd8049f877e4bf5ad110bbc5bd5da55b520d29aa83487aae713` | output directory from GUARDRAIL_PAPER_DIR (default paper/, as before) | 2/4 |
-| `src/results_tables_d504.py` | `8339267273ca3bf7d54fac7a5bf5ddf24f779ee7bf55f3943099dd3740b33710` | `8d5cef2259771d84e20181ac4c670e75300008fa23b3337e3380bf923b5450b4` | output directory from GUARDRAIL_PAPER_DIR (default paper/, as before) | 1/3 |
-| `src/supp_tables_d585.py` | `f71a75e6034c12a6a46623b1ba998ab0d4abc888f8085b4058dd6557106701b1` | `754ec3d1c6e308244b527c9194f32ed69a26f6dcfad08ec0f04101064db400e9` | output directory, and the directory it reads the regenerated tables_results.tex from, from GUARDRAIL_PAPER_DIR (default paper/, as before) | 2/4 |
+| `src/results_tables_d504.py` | `8a9f05ed04c0621eeb6d33cc9ff4f2371ce13ab1044c7790e8a8f1f19b5d1e92` | `770df9044fbaa2a65f7a98a6fbdc89794d737f03d4419ce8c45e53e269c5468a` | output directory from GUARDRAIL_PAPER_DIR (default paper/, as before) | 1/3 |
+| `src/supp_tables_d585.py` | `2da3deec13f5755f38623fe46e2290152478556c8e8d1d27942705e9d349753b` | `c4342be99610ecd92261d945584c856fd2949ba4bec0197fc5a0ca9daaad7fdb` | output directory, and the directory it reads the regenerated tables_results.tex from, from GUARDRAIL_PAPER_DIR (default paper/, as before) | 2/4 |
 | `results/phase2/dataset_manifest_p2.json` | `b51e8419ccbf035581d7f4960d422a7a1a9d46eca35b3c47cfe46e6507d1621e` | `c0a12f87cb970ab48bb052710b3bb5887b68fc1b81a1bb1cd07a84ca74544227` | five absolute paths under the compute node's home directory: '/home/<account>' replaced by '<HOME>' | 5/5 |
 | `results/phase2/dataset_manifest_p2sst.json` | `a339c9593e894f2be33ef96a5a8a932c0119bdf7db6f0cd8e5cb80932a409954` | `b056e5533224248029c9a14da52d17e5c1c0c0a45dfe60baefa725a7400d084a` | five absolute paths under the compute node's home directory: '/home/<account>' replaced by '<HOME>' | 5/5 |
 | `results/phase3_capcost_wgtest_split.json` | `aac7f4e42ef84e98506bc6449167704e9970267329cc3c54a279aed142913a9c` | `99b0cd4ea674513fc8970e151beae609c0e0bcad8f03d7654619db1c425952d8` | five absolute paths under the compute node's home directory: '/home/<account>' replaced by '<HOME>' | 5/5 |
@@ -150,11 +150,11 @@ The three Phase 3 records above, the attack's verdicts (`phase3_a2_verdicts_d440
 ```diff
 --- guardrail-ccf/src/results_tables_d504.py
 +++ src/results_tables_d504.py
-@@ -54,2 +54,3 @@
+@@ -73,2 +73,3 @@
  import math
 +import os
  import sys
-@@ -64,3 +65,4 @@
+@@ -83,3 +84,4 @@
  
 -OUT = ROOT / "paper" / "tables_results.tex"
 +PAPER_DIR = ROOT / os.environ.get("GUARDRAIL_PAPER_DIR", "paper")  # where the .tex files are written (README, config/example.env)

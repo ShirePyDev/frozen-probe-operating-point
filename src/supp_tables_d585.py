@@ -147,7 +147,7 @@ def headline_printed() -> dict[tuple[str, str], tuple[str, str]]:
     blk = text.split("\\label{tab:headline}", 1)[1].split("\\midrule", 1)[1].split("\\bottomrule", 1)[0]
     out = {}
     for ln in blk.splitlines():
-        if ln.endswith(EOL):
+        if ln.endswith(EOL) and "[" not in ln:   # D-666: a band row (D-156's band beneath a Phase 1 row) holds a '['
             c = [x.strip() for x in ln.removesuffix(EOL).split("&")]
             out[(c[0], c[1])] = (c[2], c[3])  # ID, Data, L*, r (D-590 dropped tab:headline's Ph. column)
     if len(out) != 18:
@@ -202,7 +202,9 @@ def table_geomean(cells: list[dict]) -> list[str]:
             "\\end{tabular*}",
             "\\par\\smallskip\\parbox{\\columnwidth}{\\scriptsize $r$: the mean over the 1000 re-partitions of the "
             "per-draw paired ratio, as in the main paper's headline table; geometric mean: $\\exp$ of the mean of "
-            "its logarithm over the same draws. Class: closed at 2 or more, open at 0.5 or less, within otherwise. "
+            "its logarithm over the same draws. Both summarise the same per-draw values, whose band, their 2.5th and "
+            "97.5th percentiles, is printed beneath each row of the main paper's headline table. "
+            "Class: closed at 2 or more, open at 0.5 or less, within otherwise. "
             "Aegis: Aegis~2.0; WGM: WildGuardMix.}",
             "\\end{table}"]
 
@@ -279,7 +281,8 @@ def lastgen_cells(load: Reads) -> list[dict]:
         c = selected(doc, rel)
         L, C = c["layer"], c["probe_C"]
         e = {"id": r["id"], "headline": r["headline"], "L": L, "C": C,
-             "r": fin(c["realised"]["paired_ratio"]["mean"]), "dauc": None, "xs": None}
+             "r": fin(c["realised"]["paired_ratio"]["mean"]), "dauc": None, "xs": None,
+             "r_band": c["realised"]["paired_ratio"]["band95"], "xs_band": None}   # D-667 Q1: D-156's band
         e["class"] = cls241(e["r"])
         for kind, key in (("p2auroc_d424", "dauc"), ("overrefusal_p2_d440", "xs")):
             krel = f"results/{kind}_{r['record']}_lastgen.json"
@@ -295,6 +298,8 @@ def lastgen_cells(load: Reads) -> list[dict]:
             kc = selected(kdoc, krel, L, C)
             e[key] = fin(kc["auroc"]["change"]["mean_over_seeds"] if key == "dauc"
                          else kc["item_level_D156"]["paired_refusal_ratio"]["mean"])
+            if key == "xs":
+                e["xs_band"] = kc["item_level_D156"]["paired_refusal_ratio"]["band95"]
         out.append(e)
     if n != 28:
         raise SystemExit(f"REFUSING: {n} lastgen records read, the author's item 2 (d) names 28")
@@ -308,6 +313,9 @@ def table_lastgen(cells: list[dict]) -> list[str]:
                                 f"{c['C']:g}", f(c["r"], 3), CLASS[c["class"]],
                                 DASH if c["dauc"] is None else f(c["dauc"], 4, signed=True),
                                 DASH if c["xs"] is None else f(c["xs"], 3)]) + EOL)
+        # D-667 Q1: beneath each row, D-156's band of each paired ratio it prints (r, and XSTest r where it exists)
+        body.append(" & ".join(["", "", "", f"\\multicolumn{{2}}{{l}}{{{RT.band(c['r_band'], 3)}}}", "",
+                                "" if c["xs_band"] is None else RT.band(c["xs_band"], 3)]) + EOL)
     return ["\\begin{table}[t]",
             "\\caption{Phase~2 at the last templated position, each pair at its own $L^*$ (descriptive).}",
             "\\label{tab:lastgen}",
@@ -320,7 +328,8 @@ def table_lastgen(cells: list[dict]) -> list[str]:
             "\\end{tabular*}",
             "\\par\\smallskip\\parbox{\\columnwidth}{\\scriptsize Probe and threshold fit on the hidden state at "
             "the last templated position, WildGuardMix, 1\\% target. $r$: the paired ratio, mean over the 1000 "
-            "re-partitions; class: closed at 2 or more, open at 0.5 or less, within otherwise; $\\Delta$AUROC: the "
+            "re-partitions; beneath each row, the band of each paired ratio, its 2.5th and 97.5th percentiles over "
+            "the re-partitions; class: closed at 2 or more, open at 0.5 or less, within otherwise; $\\Delta$AUROC: the "
             "frozen probe after the update minus the probe before it, on the fixed split, mean over the five probe "
             "seeds; XSTest $r$: the paired ratio of the share of XSTest's 250 safe prompts flagged. $^{\\dagger}$ "
             "Outside the headline cells; it has no AUROC or XSTest record.}",

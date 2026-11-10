@@ -1,0 +1,445 @@
+{
+ "record": "failure direction of the FAILED, NOT SUPPORTED and REFUTED ledger rows, under two readings",
+ "decision": "D-634 (the author's item 6 of 2026-10-30, third message); classifications from D-628",
+ "source_of_classifications": "docs/paper/answers_d628.md (session 3a, D-628), items 4 to 6",
+ "ledger": {
+  "path": "docs/registered_predictions.md",
+  "sha256": "c6e9e54ef296e519de6d861d75e54803ef26862c3fac13f363fd501fa3d7607a",
+  "read_by": "scripts/ledger_rows_d489.py words() (leading word, D-487 (4))"
+ },
+ "script": {
+  "path": "docs/paper/failure_direction_d634.py",
+  "sha256": "45873e533cef4c23a3bbb86df072d15417fbff7538d9bacb5b70d2fa83793060"
+ },
+ "groups": {
+  "STRONGER": "the prediction asserted more of the effect than the data showed",
+  "WEAKER": "the data showed more than the prediction asserted",
+  "NEITHER": "the failure is orthogonal to how much effect there was"
+ },
+ "readings": {
+  "A": "session 3a's: the effect is the quantity the pass condition is stated on, in the direction the condition asserts it; a floor the data fell short of is STRONGER, a ceiling the data exceeded is WEAKER, a failure on another quantity than the prediction's is NEITHER",
+  "B": "the checker's: as A, except that for 'within a tolerance in at least k units' the effect is the size of the miss, so such a row is WEAKER"
+ },
+ "ambiguity": {
+  "form": "within a tolerance in at least k units",
+  "rows": [
+   16,
+   58,
+   107,
+   111
+  ],
+  "checker_classified": [
+   16,
+   58
+  ],
+  "reading_B_applied_only": [
+   107,
+   111
+  ]
+ },
+ "counts": {
+  "A": {
+   "FAILED": {
+    "STRONGER": 19,
+    "WEAKER": 5,
+    "NEITHER": 0
+   },
+   "NOT SUPPORTED": {
+    "STRONGER": 4,
+    "WEAKER": 0,
+    "NEITHER": 1
+   },
+   "REFUTED": {
+    "STRONGER": 2,
+    "WEAKER": 1,
+    "NEITHER": 0
+   }
+  },
+  "B": {
+   "FAILED": {
+    "STRONGER": 16,
+    "WEAKER": 8,
+    "NEITHER": 0
+   },
+   "NOT SUPPORTED": {
+    "STRONGER": 3,
+    "WEAKER": 1,
+    "NEITHER": 1
+   },
+   "REFUTED": {
+    "STRONGER": 2,
+    "WEAKER": 1,
+    "NEITHER": 0
+   }
+  }
+ },
+ "true_under_both_readings": {
+  "FAILED": {
+   "STRONGER": [
+    24,
+    41,
+    59,
+    66,
+    76,
+    81,
+    99,
+    101,
+    108,
+    112,
+    116,
+    120,
+    122,
+    124,
+    126,
+    128
+   ],
+   "WEAKER": [
+    1,
+    13,
+    14,
+    25,
+    98
+   ],
+   "NEITHER": []
+  },
+  "NOT SUPPORTED": {
+   "STRONGER": [
+    3,
+    7,
+    67
+   ],
+   "WEAKER": [],
+   "NEITHER": [
+    18
+   ]
+  },
+  "REFUTED": {
+   "STRONGER": [
+    4,
+    6
+   ],
+   "WEAKER": [
+    90
+   ],
+   "NEITHER": []
+  }
+ },
+ "reading_dependent": {
+  "FAILED": [
+   58,
+   107,
+   111
+  ],
+  "NOT SUPPORTED": [
+   16
+  ],
+  "REFUTED": []
+ },
+ "checker": {
+  "rows": [
+   1,
+   4,
+   13,
+   16,
+   18,
+   58,
+   90,
+   98
+  ],
+  "agrees_with_reading_A": [
+   1,
+   4,
+   13,
+   18,
+   90,
+   98
+  ],
+  "disagrees": [
+   16,
+   58
+  ],
+  "note": "the checker named NEITHER as its second choice for five rows, so that group's boundary is also soft"
+ },
+ "rows": [
+  {
+   "row": 1,
+   "verdict": "FAILED",
+   "reading_A": "WEAKER",
+   "reading_B": "WEAKER",
+   "ambiguous": false,
+   "checker": {
+    "group": "WEAKER",
+    "second_choice": null
+   }
+  },
+  {
+   "row": 3,
+   "verdict": "NOT SUPPORTED",
+   "reading_A": "STRONGER",
+   "reading_B": "STRONGER",
+   "ambiguous": false,
+   "checker": null
+  },
+  {
+   "row": 4,
+   "verdict": "REFUTED",
+   "reading_A": "STRONGER",
+   "reading_B": "STRONGER",
+   "ambiguous": false,
+   "checker": {
+    "group": "STRONGER",
+    "second_choice": "NEITHER"
+   }
+  },
+  {
+   "row": 6,
+   "verdict": "REFUTED",
+   "reading_A": "STRONGER",
+   "reading_B": "STRONGER",
+   "ambiguous": false,
+   "checker": null
+  },
+  {
+   "row": 7,
+   "verdict": "NOT SUPPORTED",
+   "reading_A": "STRONGER",
+   "reading_B": "STRONGER",
+   "ambiguous": false,
+   "checker": null
+  },
+  {
+   "row": 13,
+   "verdict": "FAILED",
+   "reading_A": "WEAKER",
+   "reading_B": "WEAKER",
+   "ambiguous": false,
+   "checker": {
+    "group": "WEAKER",
+    "second_choice": "NEITHER"
+   }
+  },
+  {
+   "row": 14,
+   "verdict": "FAILED",
+   "reading_A": "WEAKER",
+   "reading_B": "WEAKER",
+   "ambiguous": false,
+   "checker": null
+  },
+  {
+   "row": 16,
+   "verdict": "NOT SUPPORTED",
+   "reading_A": "STRONGER",
+   "reading_B": "WEAKER",
+   "ambiguous": true,
+   "checker": {
+    "group": "WEAKER",
+    "second_choice": "NEITHER"
+   }
+  },
+  {
+   "row": 18,
+   "verdict": "NOT SUPPORTED",
+   "reading_A": "NEITHER",
+   "reading_B": "NEITHER",
+   "ambiguous": false,
+   "checker": {
+    "group": "NEITHER",
+    "second_choice": "WEAKER"
+   }
+  },
+  {
+   "row": 24,
+   "verdict": "FAILED",
+   "reading_A": "STRONGER",
+   "reading_B": "STRONGER",
+   "ambiguous": false,
+   "checker": null
+  },
+  {
+   "row": 25,
+   "verdict": "FAILED",
+   "reading_A": "WEAKER",
+   "reading_B": "WEAKER",
+   "ambiguous": false,
+   "checker": null
+  },
+  {
+   "row": 41,
+   "verdict": "FAILED",
+   "reading_A": "STRONGER",
+   "reading_B": "STRONGER",
+   "ambiguous": false,
+   "checker": null
+  },
+  {
+   "row": 58,
+   "verdict": "FAILED",
+   "reading_A": "STRONGER",
+   "reading_B": "WEAKER",
+   "ambiguous": true,
+   "checker": {
+    "group": "WEAKER",
+    "second_choice": null
+   }
+  },
+  {
+   "row": 59,
+   "verdict": "FAILED",
+   "reading_A": "STRONGER",
+   "reading_B": "STRONGER",
+   "ambiguous": false,
+   "checker": null
+  },
+  {
+   "row": 66,
+   "verdict": "FAILED",
+   "reading_A": "STRONGER",
+   "reading_B": "STRONGER",
+   "ambiguous": false,
+   "checker": null
+  },
+  {
+   "row": 67,
+   "verdict": "NOT SUPPORTED",
+   "reading_A": "STRONGER",
+   "reading_B": "STRONGER",
+   "ambiguous": false,
+   "checker": null
+  },
+  {
+   "row": 76,
+   "verdict": "FAILED",
+   "reading_A": "STRONGER",
+   "reading_B": "STRONGER",
+   "ambiguous": false,
+   "checker": null
+  },
+  {
+   "row": 81,
+   "verdict": "FAILED",
+   "reading_A": "STRONGER",
+   "reading_B": "STRONGER",
+   "ambiguous": false,
+   "checker": null
+  },
+  {
+   "row": 90,
+   "verdict": "REFUTED",
+   "reading_A": "WEAKER",
+   "reading_B": "WEAKER",
+   "ambiguous": false,
+   "checker": {
+    "group": "WEAKER",
+    "second_choice": "NEITHER"
+   }
+  },
+  {
+   "row": 98,
+   "verdict": "FAILED",
+   "reading_A": "WEAKER",
+   "reading_B": "WEAKER",
+   "ambiguous": false,
+   "checker": {
+    "group": "WEAKER",
+    "second_choice": "NEITHER"
+   }
+  },
+  {
+   "row": 99,
+   "verdict": "FAILED",
+   "reading_A": "STRONGER",
+   "reading_B": "STRONGER",
+   "ambiguous": false,
+   "checker": null
+  },
+  {
+   "row": 101,
+   "verdict": "FAILED",
+   "reading_A": "STRONGER",
+   "reading_B": "STRONGER",
+   "ambiguous": false,
+   "checker": null
+  },
+  {
+   "row": 107,
+   "verdict": "FAILED",
+   "reading_A": "STRONGER",
+   "reading_B": "WEAKER",
+   "ambiguous": true,
+   "checker": null
+  },
+  {
+   "row": 108,
+   "verdict": "FAILED",
+   "reading_A": "STRONGER",
+   "reading_B": "STRONGER",
+   "ambiguous": false,
+   "checker": null
+  },
+  {
+   "row": 111,
+   "verdict": "FAILED",
+   "reading_A": "STRONGER",
+   "reading_B": "WEAKER",
+   "ambiguous": true,
+   "checker": null
+  },
+  {
+   "row": 112,
+   "verdict": "FAILED",
+   "reading_A": "STRONGER",
+   "reading_B": "STRONGER",
+   "ambiguous": false,
+   "checker": null
+  },
+  {
+   "row": 116,
+   "verdict": "FAILED",
+   "reading_A": "STRONGER",
+   "reading_B": "STRONGER",
+   "ambiguous": false,
+   "checker": null
+  },
+  {
+   "row": 120,
+   "verdict": "FAILED",
+   "reading_A": "STRONGER",
+   "reading_B": "STRONGER",
+   "ambiguous": false,
+   "checker": null
+  },
+  {
+   "row": 122,
+   "verdict": "FAILED",
+   "reading_A": "STRONGER",
+   "reading_B": "STRONGER",
+   "ambiguous": false,
+   "checker": null
+  },
+  {
+   "row": 124,
+   "verdict": "FAILED",
+   "reading_A": "STRONGER",
+   "reading_B": "STRONGER",
+   "ambiguous": false,
+   "checker": null
+  },
+  {
+   "row": 126,
+   "verdict": "FAILED",
+   "reading_A": "STRONGER",
+   "reading_B": "STRONGER",
+   "ambiguous": false,
+   "checker": null
+  },
+  {
+   "row": 128,
+   "verdict": "FAILED",
+   "reading_A": "STRONGER",
+   "reading_B": "STRONGER",
+   "ambiguous": false,
+   "checker": null
+  }
+ ]
+}

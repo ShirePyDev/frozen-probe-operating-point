@@ -46,6 +46,25 @@ are longer than the general arm's, and it is printed only while both of its comp
 words are written here, from D-104 and D-105 (d = (mu_post - mu_pre)/sd_pre) and from the record's own code, which it
 pins by sha256 (src/intent_selected.py's docstring; sd is the probe's standardisation vector, src/paired.py
 fit_probe); they are printed only while that pin and that docstring line hold (dnorm_definition).
+
+D-666 (the author's item 1 of 2026-11-08: bands): D-156 (PRE-REGISTRATION, 2026-09-25) registered that every
+operating-point metric is 'REPORTED for each: the mean over the 1000 draws and its 2.5-97.5% band', with SCOPE 'the
+nine released pairs at their selected layer (the nine-pair table) and 4a's nine LoRA runs ... 4b-4e use it from the
+start' (4e is the 5% arm, D-248). D-159 printed those bands (paper/legacy/tables_d156.tex Tables I and III). D-504's
+BUILD defined tab:headline and tab:lora with the means only, so the bands were dropped: a reporting change. This module
+now prints them where D-156 put them: beneath each Phase 1 row of tab:headline, the band of r at 1% and at 5%
+(results/depth_d156_<rec>[_fpr5].json, operating_point.paired_ratio.band95, the field the means come from); beneath
+each run of tab:lora, the bands of the frozen error (repair_d156_<run>.json ...frozen.band95) and of the worst
+FPR/target (depth_d156_<run>.json ...sweep_maximum.ratio_to_target.band95). Not printed: Phase 2's rows (D-361 adopts
+the D-156 estimator and registers no reporting rule; that is the author's decision), and the TPR columns, whose
+interval D-282 (2) replaced (method.tex IV-C). Band rows hold a '[' and are the only rows that do.
+
+D-667 (the author's Q1 of 2026-11-08, second message: judge the reporting by what a reader sees): the reporting of a
+quantity follows the quantity and its estimator, not the registration that scoped the run. D-361 adopts 'the D-156
+estimator as Phase 1', and every Phase 2 record holds band95 in the field Phase 1's do (realised.paired_ratio,
+cells and cells_fpr5; equal to the stored per-draw arrays, docs/paper/checks_d667/p2_bands_d667.json), so the Phase 2
+rows now print their bands beneath them as the Phase 1 rows do. The 'Not printed: Phase 2's rows' clause above is
+superseded; the TPR clause stands.
 """
 from __future__ import annotations
 
@@ -102,6 +121,16 @@ def f(x: float, d: int, signed: bool = False) -> str:
     return ("$-$" if x < 0 else "$+$") + s
 
 
+def band(b, d: int) -> str:
+    """A D-156 2.5-97.5% band as '[lo, hi]' with d decimals (D-666); refuses anything but two ordered finite values."""
+    if not (isinstance(b, list) and len(b) == 2):
+        raise SystemExit(f"REFUSING: a band is not two values ({b!r})")
+    lo, hi = fin(b[0]), fin(b[1])
+    if lo > hi:
+        raise SystemExit(f"REFUSING: a band's ends are out of order ({b!r})")
+    return f"[{f(lo, d)}, {f(hi, d)}]"
+
+
 # ------------------------------------------------------------------------------------------------- tab:headline
 def cell_p1(r: dict) -> dict:
     rec, L, C = r["record"], r["L"], r["C"]
@@ -113,6 +142,7 @@ def cell_p1(r: dict) -> dict:
     if len(sel) != 1 or (sel[0]["layer"], sel[0]["probe_C"]) != (L, C):
         raise SystemExit(f"REFUSING: {five} has no single selected cell at L{L}, C={C}")
     return {"r1": fin(op["paired_ratio"]["mean"]), "r5": fin(sel[0]["operating_point"]["paired_ratio"]["mean"]),
+            "b1": op["paired_ratio"]["band95"], "b5": sel[0]["operating_point"]["paired_ratio"]["band95"],
             "tpr_pre": fin(op["tpr_pre"]["mean"]), "tpr_post": fin(op["tpr_post"]["mean"]),
             "auc_pre": fin(c1["auroc"]["pre"]["mean_over_seeds"]),
             "auc_post": fin(c1["auroc"]["frozen"]["mean_over_seeds"])}
@@ -132,6 +162,7 @@ def cell_p2(r: dict) -> dict:
         raise SystemExit(f"REFUSING: {arel} has no single selected cell at L{L}, C={C}")
     re1 = one[0]["realised"]
     return {"r1": fin(re1["paired_ratio"]["mean"]), "r5": fin(five[0]["realised"]["paired_ratio"]["mean"]),
+            "b1": re1["paired_ratio"]["band95"], "b5": five[0]["realised"]["paired_ratio"]["band95"],  # D-667 Q1
             "tpr_pre": fin(re1["tpr_pre"]["mean"]), "tpr_post": fin(re1["tpr_post"]["mean"]),
             "auc_pre": fin(ac[0]["auroc"]["pre"]["mean_over_seeds"]),
             "auc_post": fin(ac[0]["auroc"]["frozen"]["mean_over_seeds"])}
@@ -161,6 +192,9 @@ def table_headline(cells: list[dict]) -> list[str]:
                                 f(c["r1"], 3), CLASS[c["class1"]], f(c["r5"], 3), CLASS[c["class5"]],
                                 f(c["tpr_pre"], 3), f(c["tpr_post"], 3), f(c["auc_pre"], 4), f(c["auc_post"], 4)])
                     + EOL)
+        if c["phase"] in (1, 2):                 # D-666, D-667 Q1: the band beneath the mean it belongs to, both phases
+            body.append(" & ".join(["", "", "", f"\\multicolumn{{2}}{{l}}{{{band(c['b1'], 2)}}}",
+                                    f"\\multicolumn{{2}}{{l}}{{{band(c['b5'], 2)}}}", "", "", "", ""]) + EOL)
     return ["\\begin{table}[t]",
             "\\caption{In the headline cells the frozen threshold's operating point moves in both directions while "
             "AUROC barely changes.}",
@@ -178,6 +212,7 @@ def table_headline(cells: list[dict]) -> list[str]:
             "\\par\\smallskip\\parbox{\\columnwidth}{\\scriptsize $r$: the paired ratio "
             "FPR$_{\\mathrm{post}}$/FPR$_{\\mathrm{pre}}$ at the frozen threshold, mean over the 1000 re-partitions, "
             "each with 2000 evaluation negatives in Phase~1 (1a to 1g) and 6000 in Phase~2 (2a to 2i); "
+            "beneath each row, the band of each $r$, its 2.5th and 97.5th percentiles over the re-partitions; "
             "class: closed if $r\\ge2$, open if $r\\le0.5$, within otherwise; TPR at the frozen 1\\% threshold, mean "
             "over the re-partitions; AUROC before the update and of the frozen probe after it, on the fixed split, "
             "mean over the five probe seeds. Aegis: Aegis~2.0; WGM: WildGuardMix.}",
@@ -200,6 +235,7 @@ def lora_runs() -> list[dict]:
             g = geo[run]
             out.append({"arm": arm, "run": run, "steps": int(run.rsplit("_s", 1)[1]), "L": L,
                         "frozen": fin(rep["frozen"]["mean"]), "worst": fin(sm["ratio_to_target"]["mean"]),
+                        "frozen_band": rep["frozen"]["band95"], "worst_band": sm["ratio_to_target"]["band95"],
                         "worst_layer": int(sm["layer"]), "dtpr": fin(dt["mean_D156"]),
                         "cos": fin(g["cos"]["mean"]), "abs_cos": fin(g["abs_cos"]["mean"]),
                         "dnorm": fin(g["d_norm"]["mean"])})
@@ -297,6 +333,8 @@ def table_lora(runs: list[dict], ref: dict) -> list[str]:
         name = (CORPUS[r["arm"]] + (HH_MARK if r["arm"] == HH_ARM else "")) if first else ""
         body.append(" & ".join([name, str(r["steps"]), f(r["frozen"], 3), f(r["worst"], 2), str(r["worst_layer"]),
                                 f(r["dtpr"], 3, True), f(r["cos"], 4, True), f(r["dnorm"], 2)]) + EOL)
+        body.append(" & ".join(["", "", band(r["frozen_band"], 3),          # D-666: D-156's bands, as Table III printed
+                                f"\\multicolumn{{2}}{{l}}{{{band(r['worst_band'], 2)}}}", "", "", ""]) + EOL)
     L = runs[0]["L"]
     return ["\\begin{table}[t]",
             "\\caption{At matched dose the two safety-trained adapters move the frozen threshold more than the "
@@ -315,7 +353,8 @@ def table_lora(runs: list[dict], ref: dict) -> list[str]:
             "\\end{tabular*}",
             "\\par\\smallskip\\parbox{\\columnwidth}{\\scriptsize LoRA fine-tunes of Mistral-7B v0.1 on Aegis~2.0. "
             "Frozen error: mean $|\\log(\\mathrm{FPR}/\\mathrm{target})|$ over the layer sweep; worst FPR/target: the "
-            "largest per-layer mean over the sweep and its layer; $\\Delta$TPR: post minus pre at the frozen "
+            "largest per-layer mean over the sweep and its layer; beneath each run, the bands of both, their 2.5th "
+            "and 97.5th percentiles over the re-partitions; $\\Delta$TPR: post minus pre at the frozen "
             "threshold; $\\cos\\theta$ and $\\lVert d\\rVert$: the signed cosine between the mean shift of the "
             "fixed evaluation split's negatives and the probe direction, and the shift's length in standard "
             "deviations, $d=(\\mu_{\\mathrm{post}}-\\mu_{\\mathrm{pre}})/\\mathrm{sd}_{\\mathrm{pre}}$: the negatives' "

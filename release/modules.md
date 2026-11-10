@@ -7,6 +7,7 @@ Generated for this release (PROVENANCE.md lists it). One row per Python file. 'R
 | `docs/paper/config_fetch_d471.py` | a script with no GPU-stage import; it runs only where its input files are | 0 | 0 | - |
 | `docs/paper/config_fetch_d474.py` | a script with no GPU-stage import; it runs only where its input files are | 0 | 0 | - |
 | `docs/paper/review_20261016b_calc.py` | a script with no GPU-stage import; it runs only where its input files are | 0 | 0 | - |
+| `release/bands_from_draws.py` | a script with no GPU-stage import; it runs only where its input files are | 0 | 0 | - |
 | `release/verify_inputs.py` | RUNS HERE: the hash check (README) | 0 | 0 | - |
 | `scripts/tally_ledger_verdicts_d449.py` | a script with no GPU-stage import; it runs only where its input files are | 0 | 0 | - |
 | `src/a1m_p3.py` | inspection only here: needs files under logs/ that are not here; job lists under queues/ that are not here; the experiment environment (peft, torch) | 3 | 2 | Supplement, V Results |
