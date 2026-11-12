@@ -3,6 +3,7 @@
 Code and records for the paper *Operating-Point Failure of Frozen Guardrail Probes Under Backbone Updates*, by Yusuf
 Khalid Shire and Sang-Chul Kim.
 
+An archived snapshot of this repository is deposited on Zenodo: https://doi.org/10.5281/zenodo.24154024
 ## Start here
 
 1. Check the records' hashes. This needs Python 3.10 or later and nothing else. From the repository root, run
@@ -344,7 +345,6 @@ The records and data are released under the Creative Commons Attribution 4.0 Int
 - the registry and the session records under `docs/`;
 - the hash list under `logs/`;
 - the tables `release/numbers_map.tsv`, `release/modules.md` and `release/substitutions.json`.
-- An archived snapshot of this repository is deposited on Zenodo: https://doi.org/10.5281/zenodo.24154024
 
 Neither licence covers the datasets the records were computed from. The manifests carry the datasets' item
 identifiers, labels and row numbers, not their text, and each dataset stays under its owner's licence.
